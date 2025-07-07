@@ -320,9 +320,9 @@ func hide_battle_ui() -> void:
 func change_max_breath(val : float) -> void: 
 	%airProgress.max_value = val
 	$UI/breathBar.hide()
-	
+
 func update_breath_bar(val : float) -> void:
-	%airProgress.value = max(val, 0.0000001)
+	%airProgress.value = max(val, 0.01)
 	if %airProgress.max_value - val >= 1.0:
 		if !$UI/breathBar.visible:
 			show_breath_bar()

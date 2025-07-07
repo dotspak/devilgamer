@@ -55,6 +55,7 @@ const maxPitch : float = 50
 @onready var mainCam : PhantomCamera3D = %mainCam
 @onready var lockCam : PhantomCamera3D = %lockCam
 
+var isRespawning : bool = false
 var inputAllowed : bool = true
 
 var moveInput : Vector2 = Vector2.ZERO
@@ -74,7 +75,7 @@ var lastSafePosition : Vector3 = Vector3.ZERO
 
 var inWater : bool = false
 var headInWater : bool = false
-var maxBreath : float = 20 :
+var maxBreath : float = 5 :
 	set(val):
 		maxBreath = val
 		breathTimer = maxBreath
@@ -85,6 +86,8 @@ var breathTimer : float = 0 :
 	set(val):
 		breathTimer = val
 		GameManager.update_breath_bar(breathTimer)
+		if breathTimer <= 0:
+			respawn()
 
 # stair detection variables
 const MAX_STEP_HEIGHT : float = 0.5
@@ -171,11 +174,7 @@ func _physics_process(delta: float) -> void:
 				skillTarget = get_closest_target()
 		
 		# handle drowning logic
-		if headInWater:
-			breathTimer -= delta
-			if breathTimer <= 0:
-				breathTimer = INF
-				respawn()
+		if headInWater: breathTimer -= delta
 	
 	if !movementAllowed: velocity = lerp(velocity, Vector3.ZERO, stopMoveWeight)
 
@@ -362,18 +361,25 @@ func enable_collision() -> void: $CollisionShape3D.disabled = false
 
 
 func respawn() -> void:
+	if isRespawning: return
+
+	isRespawning = true
 	sounds["void"].play()
 	var tempDamp : Vector3 = mainCam.follow_damping_value
 	mainCam.follow_damping_value = Vector3(1,1,1)
+
 	await GameManager.fadeout_screen(0.5)
+
 	global_position = lastSafePosition
 	velocity = Vector3.ZERO
-	
 	mainCam.follow_damping = false
 	sounds["respawn"].play()
+
 	await GameManager.fadein_screen(0.5)
+
 	mainCam.follow_damping_value = tempDamp
 	mainCam.follow_damping = true
+	isRespawning = false
 
 
 func is_head_underwater() -> bool: return is_underwater() && headInWater

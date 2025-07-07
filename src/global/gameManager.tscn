@@ -1186,7 +1186,6 @@ autowrap_mode = 0
 vertical_alignment = 2
 
 [node name="breathBar" type="Control" parent="UI"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -1244,7 +1243,7 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_qfiq7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ofr1g")
 max_value = 5.0
-value = 5.0
+value = 0.01
 allow_lesser = true
 show_percentage = false
 metadata/_edit_use_anchors_ = true
