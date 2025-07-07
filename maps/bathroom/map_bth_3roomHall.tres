@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RoomDef" load_steps=3 format=3 uid="uid://kf13p3t834jt"]
+
+[ext_resource type="PackedScene" uid="uid://cwnvg85n0irc6" path="res://maps/bathroom/map_bth_3roomHall.tscn" id="1_huovt"]
+[ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="2_ofr5v"]
+
+[resource]
+script = ExtResource("2_ofr5v")
+scene = ExtResource("1_huovt")
+roomName = "Trihall"
+description = "A room"
+chests = Array[String]([])
+npcs = Array[String]([])
+exits = Array[String](["3DoorHall_exitA", "3DoorHall_exitB", "3DoorHall_exitC"])

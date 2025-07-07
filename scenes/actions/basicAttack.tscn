@@ -1,0 +1,192 @@
+[gd_scene load_steps=19 format=3 uid="uid://cvayjaj7gt8m"]
+
+[ext_resource type="Script" uid="uid://btt68s0sqrigi" path="res://src/battle/skillshotAction.gd" id="1_v4i0t"]
+[ext_resource type="ArrayMesh" uid="uid://t0nutn1wswk4" path="res://assets/models/swordDummy.obj" id="2_2cg41"]
+[ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="2_l4y8v"]
+[ext_resource type="Shader" uid="uid://c4u2ou740syo7" path="res://shaders/psx/psx_lit_metal.gdshader" id="2_rp74o"]
+[ext_resource type="Texture2D" uid="uid://cf6awgynm560g" path="res://textures/tex_metal1.png" id="3_2cg41"]
+[ext_resource type="Script" uid="uid://c1f0esp0hdccy" path="res://addons/Trail3D.gd" id="3_ex6r1"]
+[ext_resource type="Shader" uid="uid://ck783vxyjmm2d" path="res://shaders/psx/psx_lit.gdshader" id="5_vyf27"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l4y8v"]
+radius = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jr77v"]
+render_priority = 0
+shader = ExtResource("2_rp74o")
+shader_parameter/modulate_color = Color(0.969823, 1, 0.989312, 1)
+shader_parameter/albedoTex = ExtResource("3_2cg41")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7hcii"]
+render_priority = 0
+shader = ExtResource("5_vyf27")
+shader_parameter/modulate_color = Color(0, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vxo8u"]
+render_priority = 0
+shader = ExtResource("5_vyf27")
+shader_parameter/modulate_color = Color(0, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_vyf27"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6uxv"]
+albedo_color = Color(0.103906, 0.103906, 0.103906, 1)
+metallic = 1.0
+roughness = 0.35
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_l4y8v"]
+material = SubResource("StandardMaterial3D_v6uxv")
+top_radius = 0.1
+bottom_radius = 0.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyf27"]
+render_priority = 0
+shader = ExtResource("2_rp74o")
+shader_parameter/modulate_color = Color(0.424219, 0.424219, 0.424219, 1)
+shader_parameter/albedoTex = ExtResource("3_2cg41")
+
+[sub_resource type="Animation" id="Animation_2cg41"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area3D/CollisionShape3D2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_rp74o"]
+resource_name = "swing"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.25),
+"transitions": PackedFloat32Array(2, 0.3, 0.5, 1),
+"update": 0,
+"values": [Vector3(-0.523599, 0.523599, -0.523599), Vector3(-0.785398, 0.785398, -0.785398), Vector3(0.785398, -0.785398, -0.785398), Vector3(0.349066, -0.349066, -0.349066)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area3D/CollisionShape3D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Area3D/CollisionShape3D2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vyf27"]
+_data = {
+&"RESET": SubResource("Animation_2cg41"),
+&"swing": SubResource("Animation_rp74o")
+}
+
+[node name="basicAttack" type="Node3D" node_paths=PackedStringArray("animator", "collider")]
+script = ExtResource("1_v4i0t")
+animationName = "swing"
+animator = NodePath("AnimationPlayer")
+pierce = true
+collider = NodePath("Area3D")
+metadata/_custom_type_script = "uid://btt68s0sqrigi"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.5)
+shape = SubResource("SphereShape3D_l4y8v")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+shape = SubResource("SphereShape3D_l4y8v")
+disabled = true
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="SwordDummy" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(0, 1.49012e-08, 0.6, 0.6, -4.47035e-08, 0, 2.98023e-08, 0.6, -2.98023e-08, 0.17101, 0.160697, 0.441511)
+mesh = ExtResource("2_2cg41")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_jr77v")
+surface_material_override/1 = SubResource("ShaderMaterial_7hcii")
+surface_material_override/2 = SubResource("ShaderMaterial_vxo8u")
+
+[node name="Trail3D" type="MeshInstance3D" parent="Node3D/SwordDummy"]
+transform = Transform3D(1.40029e-07, -0.614012, 0.789297, 1, 1.94707e-07, -2.5942e-08, -1.37753e-07, 0.789297, 0.614012, 4.37114e-08, 1, -1.39091e-08)
+material_override = ExtResource("2_l4y8v")
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_vyf27")
+skeleton = NodePath("../../../..")
+script = ExtResource("3_ex6r1")
+fromWidth = 1.5
+toWidth = 1.0
+lifespan = 0.4
+startColor = Color(1, 0, 0.00366354, 1)
+endColor = Color(0.283594, 0.00660386, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 1)
+visible = false
+mesh = SubResource("CylinderMesh_l4y8v")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("ShaderMaterial_vyf27")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vyf27")
+}

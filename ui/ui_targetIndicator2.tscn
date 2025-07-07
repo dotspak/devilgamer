@@ -1,0 +1,98 @@
+[gd_scene load_steps=9 format=3 uid="uid://b02x4b5geyjef"]
+
+[ext_resource type="PackedScene" uid="uid://cpxm6gwsd3rxk" path="res://icons/exitPointer.fbx" id="1_rhh5c"]
+[ext_resource type="Shader" uid="uid://c8hg4aauf11cm" path="res://shaders/psx/psx_unlit_transparent.gdshader" id="2_24j77"]
+
+[sub_resource type="Gradient" id="Gradient_24j77"]
+colors = PackedColorArray(0.4, 0, 0.2, 1, 2, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1yyiv"]
+gradient = SubResource("Gradient_24j77")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nq02d"]
+render_priority = 0
+shader = ExtResource("2_24j77")
+shader_parameter/modulate_color = Color(1, 1, 1, 0.623529)
+shader_parameter/albedoTex = SubResource("GradientTexture2D_1yyiv")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="Animation" id="Animation_s7b2a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("exitPointer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("exitPointer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p1pqc"]
+resource_name = "spin"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("exitPointer:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708), Vector3(0, 6.28319, -1.5708)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("exitPointer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(2, 0.5, 2, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0.5, 0), Vector3(0, 1, 0), Vector3(0, 0.5, 0), Vector3(0, 1, 0), Vector3(0, 0.5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i86jf"]
+_data = {
+&"RESET": SubResource("Animation_s7b2a"),
+&"spin": SubResource("Animation_p1pqc")
+}
+
+[node name="targetIndicator" type="Node3D"]
+
+[node name="exitPointer" parent="." instance=ExtResource("1_rhh5c")]
+transform = Transform3D(-1.81e-06, 0.5, 0, -0.5, -1.81e-06, 0, 0, 0, 0.5, 0, 1, 0)
+
+[node name="Cone" parent="exitPointer" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_nq02d")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_i86jf")
+}
+autoplay = "spin"
+
+[editable path="exitPointer"]

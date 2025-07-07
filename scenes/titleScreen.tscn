@@ -1,0 +1,378 @@
+[gd_scene load_steps=13 format=3 uid="uid://ctcxpyjx1is8s"]
+
+[ext_resource type="Script" uid="uid://cyoexpvuqvp4v" path="res://src/titleScreen.gd" id="1_atem8"]
+[ext_resource type="Texture2D" uid="uid://duotreltf5fr7" path="res://assets/portraits/port_save_epia.png" id="2_uxtqq"]
+[ext_resource type="Texture2D" uid="uid://detqh05jlnc2h" path="res://assets/portraits/port_save_dummy.png" id="3_imref"]
+[ext_resource type="AudioStream" uid="uid://cbk7b2bfuxryp" path="res://assets/audio/bgm/titleDummy.wav" id="3_iul6a"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iul6a"]
+bg_color = Color(0, 0, 0, 1)
+border_color = Color(0.215331, 0.227099, 0.342188, 1)
+border_blend = true
+
+[sub_resource type="Gradient" id="Gradient_uxtqq"]
+offsets = PackedFloat32Array(0.176471, 0.392941)
+colors = PackedColorArray(0.282353, 0.270588, 0.4, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_imref"]
+gradient = SubResource("Gradient_uxtqq")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uxtqq"]
+gradient = SubResource("Gradient_uxtqq")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atem8"]
+bg_color = Color(0.196339, 0.201766, 0.232813, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpt7i"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxtqq"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxefk"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="titleScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_atem8")
+
+[node name="title" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+anchor_left = 0.0714286
+anchor_top = 0.0634921
+anchor_right = 0.928571
+anchor_bottom = 0.160714
+size_flags_vertical = 0
+bbcode_enabled = true
+text = "[font_size=48][shake][bgcolor=000]> devilgamer_"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.190476
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 32
+metadata/_edit_use_anchors_ = true
+
+[node name="startPage" type="RichTextLabel" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+bbcode_enabled = true
+text = "[font_size=16][bgcolor=000]Press anything to start"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="filePage" type="VBoxContainer" parent="MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="BG" type="PanelContainer" parent="MarginContainer/filePage"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_iul6a")
+
+[node name="deadLabel" type="RichTextLabel" parent="MarginContainer/filePage/BG"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "[shake][color=484566][font_size=12]this world is dead."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="fileContainer" type="MarginContainer" parent="MarginContainer/filePage/BG"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/filePage/BG/fileContainer"]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Control" type="Control" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="location" type="Label" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_right = 87.0
+offset_bottom = 13.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "World Birth - ???"
+
+[node name="playtime" type="Label" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/Control"]
+layout_mode = 2
+offset_left = 258.0
+offset_right = 300.0
+offset_bottom = 13.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "00:00"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="MC" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 2
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_uxtqq")
+expand_mode = 4
+
+[node name="partner" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/HBoxContainer"]
+texture_filter = 2
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_imref")
+expand_mode = 4
+
+[node name="spacer" type="Control" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="money" type="Label" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "$0.00"
+vertical_alignment = 1
+
+[node name="items" type="GridContainer" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/h_separation = 48
+columns = 3
+
+[node name="1" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/items"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_imref")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="2" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/items"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_imref")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="3" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/items"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_imref")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="4" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/items"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_imref")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="5" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/items"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_imref")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="6" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/items"]
+clip_contents = true
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_imref")
+expand_mode = 4
+stretch_mode = 3
+
+[node name="trophies" type="HBoxContainer" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="6" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="7" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="8" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="9" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="10" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="11" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="12" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="13" type="TextureRect" parent="MarginContainer/filePage/BG/fileContainer/VBoxContainer/trophies"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 4
+texture = SubResource("GradientTexture2D_uxtqq")
+
+[node name="titleOptions" type="HBoxContainer" parent="MarginContainer/filePage"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="continue" type="Button" parent="MarginContainer/filePage/titleOptions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.145098, 0.141176, 0.207843, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vpt7i")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vpt7i")
+text = "create"
+
+[node name="reset" type="Button" parent="MarginContainer/filePage/titleOptions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.280533, 0.272, 0.4, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vpt7i")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vpt7i")
+disabled = true
+text = "kill world"
+
+[node name="options" type="Button" parent="MarginContainer/filePage/titleOptions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 24)
+layout_mode = 2
+theme_override_colors/font_disabled_color = Color(0.145098, 0.141176, 0.207843, 1)
+theme_override_font_sizes/font_size = 12
+theme_override_styles/focus = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_vpt7i")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/hover = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_atem8")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vpt7i")
+text = "options"
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_uxtqq")
+
+[node name="infoLabel" type="HBoxContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_constants/separation = 24
+
+[node name="gameVersion" type="Label" parent="MarginContainer/PanelContainer/infoLabel"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxefk")
+text = "v 0.0"
+
+[node name="creator" type="Label" parent="MarginContainer/PanelContainer/infoLabel"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_wxefk")
+text = "dotspak 2025"
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_iul6a")
+bus = &"BGM"
+
+[node name="dashTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="focus_entered" from="MarginContainer/filePage/titleOptions/continue" to="." method="button_focus"]
+[connection signal="pressed" from="MarginContainer/filePage/titleOptions/continue" to="." method="_on_continue_pressed"]
+[connection signal="focus_entered" from="MarginContainer/filePage/titleOptions/reset" to="." method="button_focus"]
+[connection signal="pressed" from="MarginContainer/filePage/titleOptions/reset" to="." method="_on_reset_pressed"]
+[connection signal="focus_entered" from="MarginContainer/filePage/titleOptions/options" to="." method="button_focus"]
+[connection signal="pressed" from="MarginContainer/filePage/titleOptions/options" to="." method="_on_options_pressed"]
+[connection signal="timeout" from="dashTimer" to="." method="animate_title"]

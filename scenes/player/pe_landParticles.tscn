@@ -1,0 +1,63 @@
+[gd_scene load_steps=11 format=3 uid="uid://37enc871tpt1"]
+
+[ext_resource type="Shader" uid="uid://ckfvmlysydrct" path="res://shaders/puffShader.tres" id="1_jlqeh"]
+
+[sub_resource type="Curve" id="Curve_td2q8"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.761404, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_430qx"]
+curve = SubResource("Curve_td2q8")
+
+[sub_resource type="Gradient" id="Gradient_lhldj"]
+offsets = PackedFloat32Array(0.144357, 1)
+colors = PackedColorArray(0.507148, 0.507644, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_jeoey"]
+gradient = SubResource("Gradient_lhldj")
+
+[sub_resource type="Curve" id="Curve_18exw"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.761321), 0.0, 0.0, 0, 0, Vector2(0.245614, 0.961484), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ssxyx"]
+curve = SubResource("Curve_18exw")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wdheh"]
+particle_flag_align_y = true
+particle_flag_damping_as_friction = true
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 180.0
+flatness = 0.78
+initial_velocity_max = 1.0
+gravity = Vector3(0, 3, 0)
+damping_min = 68.911
+damping_max = 100.0
+scale_min = 0.2
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_ssxyx")
+color_initial_ramp = SubResource("GradientTexture1D_jeoey")
+alpha_curve = SubResource("CurveTexture_430qx")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vtvny"]
+render_priority = 0
+shader = ExtResource("1_jlqeh")
+
+[sub_resource type="SphereMesh" id="SphereMesh_rbg5o"]
+material = SubResource("ShaderMaterial_vtvny")
+radial_segments = 16
+rings = 8
+
+[node name="stepParticles" type="GPUParticles3D"]
+unique_name_in_owner = true
+emitting = false
+amount = 12
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+process_material = SubResource("ParticleProcessMaterial_wdheh")
+draw_pass_1 = SubResource("SphereMesh_rbg5o")

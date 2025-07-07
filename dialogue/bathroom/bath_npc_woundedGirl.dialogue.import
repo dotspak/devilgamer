@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bypaeih3gmyah"
+path="res://.godot/imported/bath_npc_woundedGirl.dialogue-414741f4428de8d5fad0093139d0e0fc.tres"
+
+[deps]
+
+source_file="res://dialogue/bathroom/bath_npc_woundedGirl.dialogue"
+dest_files=["res://.godot/imported/bath_npc_woundedGirl.dialogue-414741f4428de8d5fad0093139d0e0fc.tres"]
+
+[params]
+
+defaults=true

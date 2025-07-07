@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Troop" load_steps=7 format=3 uid="uid://i8l8l7plrnx5"]
+
+[ext_resource type="Script" uid="uid://dxu6s0qqy230l" path="res://src/units/enemySheet.gd" id="1_goagh"]
+[ext_resource type="Script" uid="uid://dqhtehax3cncp" path="res://src/battle/troop.gd" id="2_j26go"]
+[ext_resource type="Resource" uid="uid://b8jl1p6w1l11e" path="res://data/charsheets/enemies/enemy_gralokTest.tres" id="2_oup15"]
+[ext_resource type="Resource" uid="uid://uohjssavetk7" path="res://data/charsheets/enemies/enemy_nyxTest.tres" id="3_wypak"]
+[ext_resource type="Resource" uid="uid://bqg0vayc4uu77" path="res://data/charsheets/enemies/enemy_voidTest.tres" id="4_73416"]
+[ext_resource type="PackedScene" uid="uid://cqwn26sy2h8ci" path="res://data/battleEnvironments/testEnvironment.tscn" id="5_3o6l3"]
+
+[resource]
+script = ExtResource("2_j26go")
+enemies = Array[ExtResource("1_goagh")]([ExtResource("2_oup15"), ExtResource("3_wypak"), ExtResource("4_73416")])
+environment = ExtResource("5_3o6l3")

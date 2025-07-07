@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsxvy8e4e74c6"]
+
+[ext_resource type="Script" uid="uid://dsk6lc62ddkml" path="res://src/battle/hitscanAction.gd" id="1_gpgra"]
+[ext_resource type="PackedScene" uid="uid://dxoy5cl6ppri5" path="res://scenes/actions/tracer.tscn" id="2_1utog"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1utog"]
+radius = 0.1
+
+[node name="testHitScan" type="Node3D" node_paths=PackedStringArray("collider")]
+script = ExtResource("1_gpgra")
+shotNode = ExtResource("2_1utog")
+collider = NodePath("Area3D")
+metadata/_custom_type_script = "uid://dsk6lc62ddkml"
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("SphereShape3D_1utog")

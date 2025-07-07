@@ -1,0 +1,80 @@
+[gd_scene load_steps=15 format=3 uid="uid://bvxrq0wl04c0r"]
+
+[ext_resource type="Texture2D" uid="uid://dxaa0jwo45gdl" path="res://addons/kenney_particle_pack/circle_05.png" id="1_fe1wv"]
+[ext_resource type="Texture2D" uid="uid://bycvcxu7g1tis" path="res://addons/kenney_particle_pack/circle_01.png" id="2_0735o"]
+
+[sub_resource type="Gradient" id="Gradient_0735o"]
+colors = PackedColorArray(0.560293, 0.793307, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ruqw8"]
+gradient = SubResource("Gradient_0735o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_e3wan"]
+particle_flag_align_y = true
+direction = Vector3(0, 1, 0)
+spread = 20.0
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+scale_min = 0.8
+scale_max = 1.8
+color_ramp = SubResource("GradientTexture1D_ruqw8")
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_me4cc"]
+transparency = 1
+blend_mode = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_fe1wv")
+billboard_mode = 1
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_iihck"]
+material = SubResource("StandardMaterial3D_me4cc")
+
+[sub_resource type="Gradient" id="Gradient_ruqw8"]
+offsets = PackedFloat32Array(0, 0.144357, 0.43832, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3wan"]
+gradient = SubResource("Gradient_ruqw8")
+
+[sub_resource type="Curve" id="Curve_me4cc"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1.41132), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_iihck"]
+curve = SubResource("Curve_me4cc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n4esg"]
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_iihck")
+color_ramp = SubResource("GradientTexture1D_e3wan")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcjp6"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("2_0735o")
+
+[sub_resource type="QuadMesh" id="QuadMesh_s1cyh"]
+material = SubResource("StandardMaterial3D_kcjp6")
+orientation = 1
+
+[node name="waterSplash" type="GPUParticles3D"]
+emitting = false
+amount = 31
+sub_emitter = NodePath("GPUParticles3D")
+one_shot = true
+speed_scale = 2.0
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_e3wan")
+draw_pass_1 = SubResource("QuadMesh_iihck")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+emitting = false
+amount = 1
+lifetime = 0.7
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_n4esg")
+draw_pass_1 = SubResource("QuadMesh_s1cyh")

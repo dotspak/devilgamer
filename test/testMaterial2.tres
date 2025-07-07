@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://h6e8wtrfd8g6"]
+
+[ext_resource type="Texture2D" uid="uid://bhqaywwsoen5j" path="res://textures/tex_bathroom1.png" id="1_pv57e"]
+
+[resource]
+shading_mode = 0
+albedo_color = Color(2, 2, 0, 1)
+albedo_texture = ExtResource("1_pv57e")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2

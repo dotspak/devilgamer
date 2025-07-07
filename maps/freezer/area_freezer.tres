@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="Area" load_steps=11 format=3 uid="uid://c7jpqltt5m0cl"]
+
+[ext_resource type="AudioStream" uid="uid://emf1r0l5lng0" path="res://assets/audio/bgm/bgm_freezer.ogg" id="1_egm4w"]
+[ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="1_og3sf"]
+[ext_resource type="Resource" uid="uid://eie4joltmqk6" path="res://maps/bathroom/deadEndTest.tres" id="2_8s5mv"]
+[ext_resource type="PackedScene" uid="uid://cvcnwyr48tv74" path="res://maps/bathroom/door_bathroom.tscn" id="3_tqube"]
+[ext_resource type="Environment" uid="uid://dtka8i3ysfwmq" path="res://maps/freezer/env_freezer.tres" id="4_6fkhr"]
+[ext_resource type="Resource" uid="uid://c8daqlm1pufmj" path="res://maps/bathroom/map_bth_testAreaTrans_toBathroom.tres" id="5_6fkhr"]
+[ext_resource type="Resource" uid="uid://kf13p3t834jt" path="res://maps/bathroom/map_bth_3roomHall.tres" id="6_6fkhr"]
+[ext_resource type="Resource" uid="uid://crt4in306l6ij" path="res://maps/bathroom/map_bth_bridge1.tres" id="6_uog0y"]
+[ext_resource type="Resource" uid="uid://dl0blcfflv8jw" path="res://maps/bathroom/map_bth_largeSewerHall.tres" id="7_hgdef"]
+[ext_resource type="Script" uid="uid://cnrare6h4qlnf" path="res://src/world/area.gd" id="9_u1fxs"]
+
+[resource]
+script = ExtResource("9_u1fxs")
+areaName = "Freezer"
+areaDescription = "Time slows while air flows"
+environment = ExtResource("4_6fkhr")
+bgm = ExtResource("1_egm4w")
+door = ExtResource("3_tqube")
+roomPool = Array[ExtResource("1_og3sf")]([ExtResource("6_6fkhr"), ExtResource("6_uog0y"), ExtResource("7_hgdef")])
+requiredDeadEnds = Array[ExtResource("1_og3sf")]([ExtResource("5_6fkhr")])
+deadendPool = Array[ExtResource("1_og3sf")]([ExtResource("2_8s5mv")])
+metadata/_custom_type_script = "uid://cnrare6h4qlnf"

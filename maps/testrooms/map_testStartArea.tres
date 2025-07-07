@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RoomToAreaDef" load_steps=3 format=3 uid="uid://b2jn4hjim4duk"]
+
+[ext_resource type="PackedScene" uid="uid://bisj4as103o10" path="res://maps/testrooms/map_testStartArea.tscn" id="1_n4thd"]
+[ext_resource type="Script" uid="uid://c82dqjkn288c8" path="res://src/world/roomToAreaDef.gd" id="2_cmxbu"]
+
+[resource]
+script = ExtResource("2_cmxbu")
+toArea = "Bathroom"
+scene = ExtResource("1_n4thd")
+roomName = "start"
+description = "the starting room"
+chests = Array[String]([])
+npcs = Array[String]([])
+exits = Array[String]([])

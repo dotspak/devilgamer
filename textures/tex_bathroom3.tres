@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://15t7cnj1bew0"]
+
+[ext_resource type="Texture2D" uid="uid://caoi1xf67wmt7" path="res://textures/tex_bathroom3.png" id="1_ornut"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_ornut")
+metallic_specular = 0.0
+texture_filter = 2

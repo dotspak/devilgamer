@@ -1,0 +1,146 @@
+[gd_scene load_steps=13 format=3 uid="uid://btm6d7iylxhm1"]
+
+[ext_resource type="Script" uid="uid://hvj4x7fbgkfy" path="res://ui/cursor.gd" id="1_2h31w"]
+[ext_resource type="Texture2D" uid="uid://dwko0lq3esmvs" path="res://assets/ui/ui_cursor.png" id="1_7sfir"]
+[ext_resource type="Texture2D" uid="uid://ck6hwlv1p3lk8" path="res://assets/ui/ui_cursorGhost.png" id="3_ut58c"]
+
+[sub_resource type="Shader" id="Shader_yl56r"]
+code = "shader_type canvas_item;
+
+// Rotation parameters
+uniform float rotateRadius = 0.5;
+uniform float rotateSpeed = 1.0;
+
+// Abberation parameters
+uniform float abbAmount =  1.0;
+uniform sampler2D offsetTex : hint_default_white;
+
+void fragment() {
+	vec4 texColor = texture(TEXTURE, UV);
+	vec4 color = texColor;
+	float adjustAmount = abbAmount * texture(offsetTex, UV).r / 100.0;
+
+	color.r = texture(TEXTURE, vec2(UV.x + adjustAmount, UV.y)).r;
+	color.g = texture(TEXTURE, UV).g;
+	color.b = texture(TEXTURE, vec2(UV.x - adjustAmount, UV.y)).b;
+	color.a = COLOR.a;
+
+	COLOR = color;
+}
+
+void vertex() {
+	VERTEX += vec2(sin(TIME * rotateSpeed) * rotateRadius, cos(TIME * rotateSpeed)) * rotateRadius;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j7832"]
+shader = SubResource("Shader_yl56r")
+shader_parameter/rotateRadius = 1.5
+shader_parameter/rotateSpeed = 1.8
+shader_parameter/abbAmount = 1.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yhqig"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_i8tcn"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ycubp"]
+curve = SubResource("Curve_i8tcn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0uugp"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+color = Color(1, 0.176471, 0.156863, 1)
+alpha_curve = SubResource("CurveTexture_ycubp")
+
+[sub_resource type="Animation" id="Animation_8lst4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:material:shader_parameter/abbAmount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_4oeqd"]
+resource_name = "loop"
+length = 0.6
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.28, 0.36, 0.44, 0.52, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath(".:material:shader_parameter/abbAmount")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.23, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [2.0, 2.0, 5.0, 2.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3m8v5"]
+_data = {
+&"RESET": SubResource("Animation_8lst4"),
+&"loop": SubResource("Animation_4oeqd")
+}
+
+[node name="cursor" type="Container"]
+material = SubResource("ShaderMaterial_j7832")
+script = ExtResource("1_2h31w")
+
+[node name="holdTimer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+use_parent_material = true
+scale = Vector2(2, 2)
+texture = ExtResource("1_7sfir")
+hframes = 6
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_yhqig")
+rotation = -1.5708
+process_material = SubResource("ParticleProcessMaterial_0uugp")
+texture = ExtResource("3_ut58c")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_3m8v5")
+}
+autoplay = "loop"

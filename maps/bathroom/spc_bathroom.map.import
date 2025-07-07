@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cmp78seut0bs6"
+path="res://.godot/imported/spc_bathroom.map-321a80dfaadf2f59290c1947e0f27a2c.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/spc_bathroom.map"
+dest_files=["res://.godot/imported/spc_bathroom.map-321a80dfaadf2f59290c1947e0f27a2c.tres"]
+
+[params]
+

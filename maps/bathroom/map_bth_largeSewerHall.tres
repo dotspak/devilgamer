@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RoomDef" load_steps=3 format=3 uid="uid://dl0blcfflv8jw"]
+
+[ext_resource type="PackedScene" uid="uid://dp2k1ggqyos0v" path="res://maps/bathroom/map_bth_largeSewerHall.tscn" id="1_6skdc"]
+[ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="2_k4gum"]
+
+[resource]
+script = ExtResource("2_k4gum")
+scene = ExtResource("1_6skdc")
+roomName = "Large Sewer Hall"
+description = "A room with a large sewer pipe"
+chests = Array[String]([])
+npcs = Array[String]([])
+exits = Array[String](["largeSewer_exitA", "largeSewer_exitB"])

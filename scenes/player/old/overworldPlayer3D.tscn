@@ -1,0 +1,366 @@
+[gd_scene load_steps=33 format=3 uid="uid://dlia8dqajq27d"]
+
+[ext_resource type="Script" uid="uid://ba7haxj0qwe8a" path="res://src/player/old/ow_player3D.gd" id="1_65afq"]
+[ext_resource type="PackedScene" uid="uid://cvqrnsvfjebxj" path="res://assets/models/dummy/platformPack/Character/FBX/Character.fbx" id="1_c7p3q"]
+[ext_resource type="PackedScene" uid="uid://bebhesa7oipav" path="res://assets/models/dummy/psxGirl/psxGirl.fbx" id="2_xrra0"]
+[ext_resource type="Shader" uid="uid://ck783vxyjmm2d" path="res://shaders/psx/psx_lit.gdshader" id="3_lefep"]
+[ext_resource type="Texture2D" uid="uid://cyrgdiwsm2m44" path="res://assets/models/dummy/psxGirl/Hair_Brown.png" id="4_4os61"]
+[ext_resource type="Shader" uid="uid://c4u2ou740syo7" path="res://shaders/psx/psx_lit_metal.gdshader" id="5_0pk8q"]
+[ext_resource type="Texture2D" uid="uid://bwhtw8ta4pgwa" path="res://assets/models/dummy/psxGirl/Dress_Texture.png" id="5_s6mv2"]
+[ext_resource type="Texture2D" uid="uid://esxbyilhltya" path="res://assets/models/dummy/psxGirl/BaseBody.png" id="6_cf7dl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qotpw"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u6rwi"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/albedoTex = ExtResource("4_4os61")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="BoxMesh" id="BoxMesh_fsofv"]
+size = Vector3(0.1, 0.6, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g00qg"]
+render_priority = 0
+shader = ExtResource("5_0pk8q")
+shader_parameter/modulate_color = Color(0.195313, 0.0769059, 0.0666944, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_14wd0"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/albedoTex = ExtResource("5_s6mv2")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ylrgq"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/albedoTex = ExtResource("6_cf7dl")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aqpaw"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(0.117647, 0.513726, 0.827451, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1icq5"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6pgct"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2bh74"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(0.117647, 0.513726, 0.827451, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_566k7"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(0.117647, 0.513726, 0.827451, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkcq0"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pjrfr"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(0, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jivjs"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(0, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ydph"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(0, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_25642"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(0.117647, 0.513726, 0.827451, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_krrx6"]
+render_priority = 0
+shader = ExtResource("3_lefep")
+shader_parameter/modulate_color = Color(1, 1, 1, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/uv_offset = Vector2(0, 0)
+shader_parameter/uv_pan_velocity = Vector2(0, 0)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2tlvj"]
+radius = 0.951963
+height = 4.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2gtvf"]
+animation = &"Armature|Idle_1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yy6eb"]
+animation = &"Armature|Walk_1"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yh2el"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rnynx"]
+xfade_time = 0.4
+advance_mode = 2
+advance_condition = &"walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o8l6i"]
+xfade_time = 0.3
+advance_mode = 2
+advance_condition = &"idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_734nf"]
+states/Armature|Idle_1/node = SubResource("AnimationNodeAnimation_2gtvf")
+states/Armature|Idle_1/position = Vector2(446.016, 130)
+states/Armature|Walk_1/node = SubResource("AnimationNodeAnimation_yy6eb")
+states/Armature|Walk_1/position = Vector2(751.016, 130)
+states/End/position = Vector2(1022, 100)
+transitions = ["Start", "Armature|Idle_1", SubResource("AnimationNodeStateMachineTransition_yh2el"), "Armature|Idle_1", "Armature|Walk_1", SubResource("AnimationNodeStateMachineTransition_rnynx"), "Armature|Walk_1", "Armature|Idle_1", SubResource("AnimationNodeStateMachineTransition_o8l6i")]
+graph_offset = Vector2(60.016, -10)
+
+[node name="overworldPlayer3D" type="CharacterBody3D"]
+script = ExtResource("1_65afq")
+
+[node name="psxGirl" parent="." instance=ExtResource("2_xrra0")]
+
+[node name="Armature" parent="psxGirl" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+
+[node name="Skeleton3D" parent="psxGirl/Armature" index="0"]
+bones/1/position = Vector3(0.241642, 2.25397, 0)
+bones/1/rotation = Quaternion(0, 0, 0, 1)
+bones/2/rotation = Quaternion(7.12293e-10, -4.71275e-09, 0.149444, 0.98877)
+bones/3/rotation = Quaternion(-3.9861e-09, -1.6202e-08, -0.169882, 0.985464)
+bones/4/rotation = Quaternion(1.39877e-10, 2.12621e-08, 0.00657855, 0.999978)
+bones/8/rotation = Quaternion(0.984355, 0.00647576, -0.0011582, -0.176072)
+bones/10/rotation = Quaternion(0.999919, 0.00657815, -7.17622e-05, -0.0108752)
+bones/14/rotation = Quaternion(-0.830348, 0.101585, -0.0607892, 0.544525)
+bones/15/rotation = Quaternion(-0.49858, 0.0350738, -0.0212808, 0.865872)
+bones/16/rotation = Quaternion(-0.00976829, 0.0573865, 0.0550325, 0.996786)
+bones/17/rotation = Quaternion(0.118032, -0.065806, -0.0527907, 0.98942)
+bones/18/rotation = Quaternion(-0.457922, -0.0265496, -0.0494122, 0.887221)
+bones/20/position = Vector3(0.103074, 0.197215, -0.000721809)
+bones/20/rotation = Quaternion(-0.226374, 0.00529968, -0.043989, 0.973032)
+bones/22/rotation = Quaternion(-0.375224, 0.0929293, 0.0219432, 0.922003)
+bones/25/rotation = Quaternion(0.461056, -0.0254673, -0.0177638, 0.886828)
+bones/26/rotation = Quaternion(0.00649087, -0.0563962, 0.0555145, 0.996843)
+bones/27/rotation = Quaternion(-0.11476, 0.063766, -0.0595685, 0.989553)
+bones/28/rotation = Quaternion(0.459791, 0.0201639, -0.0269445, 0.887389)
+bones/30/position = Vector3(0.102871, 0.197214, 0.00650535)
+bones/30/rotation = Quaternion(0.228463, -0.00598346, -0.0313756, 0.973028)
+bones/32/rotation = Quaternion(0.373484, -0.0947222, 0.0422406, 0.921821)
+bones/32/scale = Vector3(1, 1, 1)
+bones/34/position = Vector3(-0.000610197, -0.00304985, -0.20608)
+bones/34/rotation = Quaternion(0.995039, -0.0993901, -0.00366957, 0.0025226)
+bones/35/rotation = Quaternion(0.00586999, 0.00131117, -0.0694923, 0.997564)
+bones/36/rotation = Quaternion(0.00127225, -8.20376e-08, -0.666219, 0.745755)
+bones/39/position = Vector3(0.00277085, -0.00304937, 0.206972)
+bones/39/rotation = Quaternion(0.994941, -0.0992068, 0.00125832, -0.0157578)
+bones/40/rotation = Quaternion(-0.00587001, -0.00131086, -0.0694923, 0.997564)
+bones/41/rotation = Quaternion(-0.00127195, 3.60246e-07, -0.666219, 0.745755)
+
+[node name="Body" parent="psxGirl/Armature/Skeleton3D" index="0"]
+visible = false
+surface_material_override/0 = SubResource("ShaderMaterial_qotpw")
+
+[node name="Hair" parent="psxGirl/Armature/Skeleton3D" index="1"]
+transform = Transform3D(1.02, 0, 0, 0, 1.02, 0, 0, 0, 1.02, 0, 0, 0)
+surface_material_override/0 = SubResource("ShaderMaterial_u6rwi")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="psxGirl/Armature/Skeleton3D/Hair" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.35, 0, 4.262)
+mesh = SubResource("BoxMesh_fsofv")
+surface_material_override/0 = SubResource("ShaderMaterial_g00qg")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="psxGirl/Armature/Skeleton3D/Hair" index="1"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0.35, 0, 4.262)
+mesh = SubResource("BoxMesh_fsofv")
+surface_material_override/0 = SubResource("ShaderMaterial_g00qg")
+
+[node name="Outfit" parent="psxGirl/Armature/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_14wd0")
+
+[node name="Shoes" parent="psxGirl/Armature/Skeleton3D" index="3"]
+visible = false
+
+[node name="OutfitBody" parent="psxGirl/Armature/Skeleton3D" index="4"]
+surface_material_override/0 = SubResource("ShaderMaterial_ylrgq")
+
+[node name="AnimationPlayer" parent="psxGirl" index="1"]
+autoplay = "Armature|Idle_1"
+speed_scale = 2.0
+
+[node name="bunnyGuy" parent="." instance=ExtResource("1_c7p3q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0394488, 0)
+visible = false
+
+[node name="Skeleton3D" parent="bunnyGuy/CharacterArmature" index="0"]
+bones/1/rotation = Quaternion(7.86114e-06, 0.702952, 0.711237, 7.76972e-06)
+bones/3/position = Vector3(2.15299e-05, 0.00590351, 0.0015489)
+bones/3/rotation = Quaternion(-3.5527e-15, 1.19209e-07, 1.26218e-29, 1)
+bones/3/scale = Vector3(1, 1, 1)
+bones/4/position = Vector3(-1.47984e-05, -0.00231248, -0.00181822)
+bones/4/rotation = Quaternion(-0.0507688, -2.6733e-07, -2.27517e-08, 0.99871)
+bones/5/position = Vector3(-1.79083e-13, 0.00314338, -2.42967e-10)
+bones/5/rotation = Quaternion(0.0736647, 4.20331e-07, 1.43155e-07, 0.997283)
+bones/5/scale = Vector3(1, 1, 1)
+bones/6/position = Vector3(1.96429e-16, 0.00298579, -1.75343e-10)
+bones/6/rotation = Quaternion(-0.0131587, -8.3226e-07, -2.94286e-09, 0.999913)
+bones/6/scale = Vector3(1, 1, 1)
+bones/7/position = Vector3(2.67862e-16, 0.00588069, 2.1697e-10)
+bones/7/rotation = Quaternion(-0.0270655, 6.77768e-07, -1.87204e-09, 0.999634)
+bones/7/scale = Vector3(1, 1, 1)
+bones/8/position = Vector3(1.15683e-14, 0.00133498, 3.0808e-11)
+bones/8/rotation = Quaternion(-0.000797497, -0.000274894, 4.95331e-07, 1)
+bones/8/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(0.00459294, 0.00695689, -0.00131812)
+bones/9/rotation = Quaternion(0.0947102, -0.0489339, -0.193507, 0.97529)
+bones/9/scale = Vector3(1, 1, 1)
+bones/10/position = Vector3(-1.41165e-09, 0.00340601, 3.28629e-11)
+bones/10/rotation = Quaternion(-0.227008, -0.0291532, -0.0115648, 0.973388)
+bones/10/scale = Vector3(1, 1, 1)
+bones/11/position = Vector3(1.53554e-09, 0.00694606, -4.10016e-10)
+bones/11/rotation = Quaternion(-0.54206, -0.118433, 0.180428, 0.812152)
+bones/11/scale = Vector3(1, 1, 1)
+bones/13/position = Vector3(-0.00458162, 0.00695689, -0.00131307)
+bones/13/scale = Vector3(1, 1, 1)
+bones/14/position = Vector3(-1.37404e-09, 0.003406, 1.03392e-10)
+bones/14/rotation = Quaternion(-0.232814, 0.0317647, 0.0110907, 0.971939)
+bones/14/scale = Vector3(1, 1, 1)
+bones/15/position = Vector3(-5.56046e-10, 0.00694606, 8.14908e-10)
+bones/15/rotation = Quaternion(-0.548791, 0.119929, -0.179437, 0.807619)
+bones/15/scale = Vector3(1, 1, 1)
+bones/17/position = Vector3(0.0013151, 0.00141128, 0.000147028)
+bones/17/rotation = Quaternion(-0.0730919, 0.0969464, -0.409369, 0.904254)
+bones/17/scale = Vector3(1, 1, 1)
+bones/18/position = Vector3(2.17234e-10, 0.00259532, 1.12344e-11)
+bones/18/rotation = Quaternion(-0.526786, -0.503609, -0.474157, 0.494014)
+bones/18/scale = Vector3(1, 1, 1)
+bones/19/position = Vector3(-1.14119e-11, 0.00528271, 3.40258e-10)
+bones/19/rotation = Quaternion(-0.0524961, 0.264644, -0.376535, 0.886244)
+bones/19/scale = Vector3(1, 1, 1)
+bones/20/position = Vector3(5.16248e-11, 0.00425347, -3.94448e-10)
+bones/20/rotation = Quaternion(0.0125379, 0.0181952, -0.00654308, 0.999735)
+bones/20/scale = Vector3(1, 1, 1)
+bones/22/position = Vector3(-0.00130234, 0.00141128, 0.00014703)
+bones/22/rotation = Quaternion(-0.0730916, -0.0969459, 0.409369, 0.904254)
+bones/22/scale = Vector3(1, 1, 1)
+bones/23/position = Vector3(2.10363e-10, 0.00259532, -2.88153e-12)
+bones/23/rotation = Quaternion(-0.526786, 0.503609, 0.474157, 0.494014)
+bones/23/scale = Vector3(1, 1, 1)
+bones/24/position = Vector3(-6.6724e-11, 0.00528271, 1.98925e-11)
+bones/24/rotation = Quaternion(-0.0524961, -0.264644, 0.376535, 0.886244)
+bones/25/position = Vector3(6.12844e-11, 0.00425347, -3.82004e-10)
+bones/25/rotation = Quaternion(0.0125379, -0.0181952, 0.00654308, 0.999735)
+bones/25/scale = Vector3(1, 1, 1)
+bones/27/rotation = Quaternion(0.975698, 0.0194106, 0.0014347, 0.218253)
+bones/27/scale = Vector3(1, 1, 1)
+bones/28/position = Vector3(7.951e-10, 0.00237297, 2.03768e-10)
+bones/28/rotation = Quaternion(0.393187, 0.00531241, 0.0181667, 0.919264)
+bones/28/scale = Vector3(1, 1, 1)
+bones/30/rotation = Quaternion(0.975698, -0.0194106, -0.00143403, 0.218252)
+bones/30/scale = Vector3(1, 1, 1)
+bones/31/position = Vector3(6.17329e-10, 0.00237297, 1.68072e-10)
+bones/31/rotation = Quaternion(0.393187, -0.00531233, -0.0181666, 0.919264)
+bones/31/scale = Vector3(1, 1, 1)
+bones/33/rotation = Quaternion(-3.5527e-15, 1.19209e-07, 2.52435e-29, 1)
+bones/33/scale = Vector3(1, 1, 1)
+bones/35/rotation = Quaternion(-7.86114e-06, 0.702952, 0.711237, -7.76973e-06)
+bones/37/rotation = Quaternion(-3.55272e-15, -5.96047e-07, 1.69407e-21, 1)
+bones/37/scale = Vector3(1, 1, 1)
+
+[node name="Body2" parent="bunnyGuy/CharacterArmature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_aqpaw")
+surface_material_override/1 = SubResource("ShaderMaterial_1icq5")
+surface_material_override/2 = SubResource("ShaderMaterial_6pgct")
+
+[node name="Ears" parent="bunnyGuy/CharacterArmature/Skeleton3D" index="1"]
+surface_material_override/0 = SubResource("ShaderMaterial_2bh74")
+
+[node name="Head2" parent="bunnyGuy/CharacterArmature/Skeleton3D" index="2"]
+surface_material_override/0 = SubResource("ShaderMaterial_566k7")
+surface_material_override/1 = SubResource("ShaderMaterial_mkcq0")
+surface_material_override/2 = SubResource("ShaderMaterial_pjrfr")
+surface_material_override/3 = SubResource("ShaderMaterial_jivjs")
+surface_material_override/4 = SubResource("ShaderMaterial_3ydph")
+
+[node name="Arms" parent="bunnyGuy/CharacterArmature/Skeleton3D" index="3"]
+surface_material_override/0 = SubResource("ShaderMaterial_25642")
+surface_material_override/1 = SubResource("ShaderMaterial_krrx6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CapsuleShape3D_2tlvj")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 3.5, 0)
+spring_length = 9.0
+margin = 0.1
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
+current = true
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../psxGirl")
+tree_root = SubResource("AnimationNodeStateMachine_734nf")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../psxGirl/AnimationPlayer")
+parameters/conditions/idle = false
+parameters/conditions/walking = false
+
+[editable path="psxGirl"]
+[editable path="bunnyGuy"]

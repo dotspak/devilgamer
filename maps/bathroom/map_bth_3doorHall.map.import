@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bxjw05vt1ik2w"
+path="res://.godot/imported/map_bth_3doorHall.map-ec86018d7e2ffbfe92f0614e5b6af587.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/map_bth_3doorHall.map"
+dest_files=["res://.godot/imported/map_bth_3doorHall.map-ec86018d7e2ffbfe92f0614e5b6af587.tres"]
+
+[params]
+

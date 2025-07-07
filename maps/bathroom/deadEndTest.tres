@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RoomDef" load_steps=3 format=3 uid="uid://eie4joltmqk6"]
+
+[ext_resource type="PackedScene" uid="uid://bebni5h4f4x6o" path="res://maps/testrooms/map_blockGeomTest.tscn" id="1_8uuyb"]
+[ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="2_eeaue"]
+
+[resource]
+script = ExtResource("2_eeaue")
+scene = ExtResource("1_8uuyb")
+roomName = "GeomRoom"
+description = "A room"
+chests = Array[String]([])
+npcs = Array[String]([])
+exits = Array[String](["exitPointer"])
+metadata/_custom_type_script = "uid://blggp4b1l6f6u"

@@ -1,0 +1,9 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://dkwpvdokmg4qj"]
+
+[ext_resource type="FontFile" uid="uid://du2e456mcmp41" path="res://assets/fonts/PixelRPG.ttf" id="1_enpsy"]
+
+[resource]
+line_spacing = 0.0
+font = ExtResource("1_enpsy")
+font_size = 6
+shadow_color = Color(0.498039, 0, 0, 1)

@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://b6u8eiile3qc6"]
+
+[ext_resource type="PackedScene" uid="uid://00a5f8cyweam" path="res://data/skills/anims/basicHeal.tscn" id="1_gpwxc"]
+[ext_resource type="Script" uid="uid://bai168s4murss" path="res://src/units/skill.gd" id="2_a3qjq"]
+
+[resource]
+script = ExtResource("2_a3qjq")
+name = "Lovealla"
+description = "Heals all allies."
+animation = ExtResource("1_gpwxc")
+skillTarget = 3
+rating = 3
+castTime = 2.0
+power = 10
+variance = 3
+stat = "MAG"
+isHeal = true
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 10
+critChance = 0.1
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0

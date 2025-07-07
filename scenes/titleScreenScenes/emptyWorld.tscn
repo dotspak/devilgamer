@@ -1,0 +1,273 @@
+[gd_scene load_steps=21 format=3 uid="uid://bdltea8cntyo3"]
+
+[ext_resource type="Texture2D" uid="uid://b8p3vqae8xelu" path="res://textures/tex_metal2.png" id="1_yisli"]
+[ext_resource type="Texture2D" uid="uid://bjiwfc4jahkw4" path="res://textures/norm_metal2.png" id="2_p1rk6"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="2_yisli"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_p1rk6"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_dvai5"]
+[ext_resource type="ArrayMesh" uid="uid://oks4x4k17ht1" path="res://assets/models/titleChair.obj" id="6_p1rk6"]
+
+[sub_resource type="Environment" id="Environment_whmlw"]
+background_mode = 1
+background_energy_multiplier = 0.0
+ambient_light_source = 1
+reflected_light_source = 1
+tonemap_mode = 3
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.102146, 0.109686, 0.135156, 1)
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 30.0
+volumetric_fog_albedo = Color(0.752344, 0.752344, 0.752344, 1)
+volumetric_fog_emission_energy = 5.41
+
+[sub_resource type="Animation" id="Animation_dvai5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../SpotLight3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-1.5708, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_p1rk6"]
+resource_name = "loop"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-1.39626, -1.39626, 0), Vector3(-1.74533, -1.74533, 0), Vector3(-1.39626, -1.39626, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_whmlw"]
+_data = {
+&"RESET": SubResource("Animation_dvai5"),
+&"loop": SubResource("Animation_p1rk6")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1rk6"]
+albedo_color = Color(0.400781, 0.400781, 0.400781, 1)
+albedo_texture = ExtResource("1_yisli")
+metallic_specular = 0.2
+roughness = 0.45
+normal_enabled = true
+normal_scale = 0.14
+normal_texture = ExtResource("2_p1rk6")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_yrq08"]
+material = SubResource("StandardMaterial3D_p1rk6")
+size = Vector3(300, 1, 300)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_whmlw"]
+cull_mode = 2
+albedo_color = Color(0.71, 0.768, 1, 1)
+albedo_texture = ExtResource("1_yisli")
+normal_enabled = true
+normal_scale = 0.27
+normal_texture = ExtResource("2_p1rk6")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+texture_filter = 0
+distance_fade_mode = 2
+distance_fade_max_distance = 18.0
+
+[sub_resource type="Animation" id="Animation_m1rud"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:distance_fade_max_distance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [18.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.71, 0.768, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_whmlw"]
+resource_name = "ditherLoop"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:surface_material_override/0:distance_fade_max_distance")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 20.0, 1.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:surface_material_override/0:albedo_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.71, 0.768, 1, 1), Color(0.71, 0.768, 1, 1), Color(1, 0.185262, 0.152428, 1), Color(0.71, 0.768, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yrq08"]
+_data = {
+&"RESET": SubResource("Animation_m1rud"),
+&"ditherLoop": SubResource("Animation_whmlw")
+}
+
+[sub_resource type="Resource" id="Resource_x12yn"]
+script = ExtResource("3_p1rk6")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Animation" id="Animation_i3lmu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hrl6s"]
+resource_name = "loop"
+length = 5.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bm2qf"]
+_data = {
+&"RESET": SubResource("Animation_i3lmu"),
+&"loop": SubResource("Animation_hrl6s")
+}
+
+[node name="deadWorld" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_whmlw")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 13.135, 0)
+light_color = Color(0.850187, 0.92499, 1, 1)
+light_energy = 16.0
+shadow_enabled = true
+spot_range = 18.746
+spot_attenuation = 0.48
+spot_angle = 13.66
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.160993, 0.974081, -0.158893, 0, 0.160993, 0.986956, 0.986956, -0.158893, 0.0259188, 0, 14.135, 0)
+light_color = Color(1, 0.748509, 0.57624, 1)
+light_energy = 11.13
+shadow_enabled = true
+spot_range = 17.5
+spot_attenuation = 0.22
+spot_angle = 13.66
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SpotLight3D2"]
+libraries = {
+&"": SubResource("AnimationLibrary_whmlw")
+}
+autoplay = "loop"
+speed_scale = 0.2
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+mesh = SubResource("BoxMesh_yrq08")
+
+[node name="TitleChair" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
+mesh = ExtResource("6_p1rk6")
+surface_material_override/0 = SubResource("StandardMaterial3D_whmlw")
+surface_material_override/1 = SubResource("StandardMaterial3D_whmlw")
+surface_material_override/2 = SubResource("StandardMaterial3D_whmlw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TitleChair"]
+libraries = {
+&"": SubResource("AnimationLibrary_yrq08")
+}
+autoplay = "ditherLoop"
+speed_scale = 0.03
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="PhantomCamera3D" type="Node3D" parent="Node3D"]
+transform = Transform3D(-0.196684, -0.475341, 0.857535, 0, 0.874619, 0.484811, -0.980467, 0.0953547, -0.172024, 4.60224, 3.71639, -4.23089)
+script = ExtResource("2_yisli")
+tween_resource = SubResource("Resource_x12yn")
+tween_on_load = false
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.196684, -0.475341, 0.857535, 0, 0.874619, 0.484811, -0.980467, 0.0953547, -0.172024, 4.60224, 3.71639, -4.23089)
+current = true
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("4_dvai5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bm2qf")
+}
+autoplay = "loop"
+speed_scale = 0.1

@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://b18ctbsdu8ath"]
+
+[ext_resource type="Texture2D" uid="uid://dwdsbrv4xqgwk" path="res://assets/battleSprites/puppets/noMan/noMan_body.png" id="1_hy0va"]
+[ext_resource type="Texture2D" uid="uid://bde3vqpqhv3kr" path="res://assets/battleSprites/puppets/noMan/noMan_lowerLimb.png" id="2_13yb1"]
+[ext_resource type="Texture2D" uid="uid://dsmw256m0aut" path="res://assets/battleSprites/puppets/noMan/noMan_upperLimb.png" id="3_0kegb"]
+[ext_resource type="Texture2D" uid="uid://dt6dyvepuh6l3" path="res://assets/battleSprites/puppets/noMan/noMan_head.png" id="4_4a2i7"]
+
+[node name="noMan" type="Node2D"]
+
+[node name="body" type="Sprite2D" parent="."]
+position = Vector2(0, 8)
+texture = ExtResource("1_hy0va")
+
+[node name="rightUpper2" type="Sprite2D" parent="."]
+position = Vector2(13, 18)
+texture = ExtResource("2_13yb1")
+
+[node name="rightUpper" type="Sprite2D" parent="."]
+position = Vector2(11, 0)
+texture = ExtResource("3_0kegb")
+
+[node name="leftLower" type="Sprite2D" parent="."]
+position = Vector2(-13, 18)
+texture = ExtResource("2_13yb1")
+flip_h = true
+
+[node name="leftUpper" type="Sprite2D" parent="."]
+position = Vector2(-11, 0)
+texture = ExtResource("3_0kegb")
+flip_h = true
+
+[node name="head" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+texture = ExtResource("4_4a2i7")

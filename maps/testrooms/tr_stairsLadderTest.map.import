@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://c4ykvds0hbdtg"
+path="res://.godot/imported/tr_stairsLadderTest.map-2fdf77210b563e0efc2ccfa914854689.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/tr_stairsLadderTest.map"
+dest_files=["res://.godot/imported/tr_stairsLadderTest.map-2fdf77210b563e0efc2ccfa914854689.tres"]
+
+[params]
+

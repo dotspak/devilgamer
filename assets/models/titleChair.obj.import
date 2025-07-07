@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://oks4x4k17ht1"
+path="res://.godot/imported/titleChair.obj-eda568447260ccbf077ad64a7b71fa5f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/titleChair.obj-eda568447260ccbf077ad64a7b71fa5f.mesh"]
+
+source_file="res://assets/models/titleChair.obj"
+dest_files=["res://.godot/imported/titleChair.obj-eda568447260ccbf077ad64a7b71fa5f.mesh", "res://.godot/imported/titleChair.obj-eda568447260ccbf077ad64a7b71fa5f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

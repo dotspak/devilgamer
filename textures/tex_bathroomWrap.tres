@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b0p26o30w1n8e"]
+
+[ext_resource type="Texture2D" uid="uid://cb7pakb27pfh8" path="res://textures/tex_bathroomWrap.png" id="1_8jydt"]
+
+[resource]
+albedo_texture = ExtResource("1_8jydt")
+metallic_specular = 0.0
+texture_filter = 2

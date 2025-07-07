@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://b5hqa6o13wpf5"
+path="res://.godot/imported/map_testStartDoor.map-0bce25c8e8f94211b6ed60717e3e2abf.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/map_testStartDoor.map"
+dest_files=["res://.godot/imported/map_testStartDoor.map-0bce25c8e8f94211b6ed60717e3e2abf.tres"]
+
+[params]
+

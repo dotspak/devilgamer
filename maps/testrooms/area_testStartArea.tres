@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Area" load_steps=5 format=3 uid="uid://ddjq7p38egyvw"]
+
+[ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="1_i43uo"]
+[ext_resource type="Resource" uid="uid://b2jn4hjim4duk" path="res://maps/testrooms/map_testStartArea.tres" id="2_84j10"]
+[ext_resource type="Script" uid="uid://cnrare6h4qlnf" path="res://src/world/area.gd" id="2_g2a6s"]
+[ext_resource type="Environment" uid="uid://dtka8i3ysfwmq" path="res://maps/freezer/env_freezer.tres" id="2_kb18t"]
+
+[resource]
+script = ExtResource("2_g2a6s")
+areaName = "Start"
+areaDescription = "the starting room"
+environment = ExtResource("2_kb18t")
+roomPool = Array[ExtResource("1_i43uo")]([ExtResource("2_84j10")])
+requiredDeadEnds = Array[ExtResource("1_i43uo")]([])
+deadendPool = Array[ExtResource("1_i43uo")]([])
+metadata/_custom_type_script = "uid://cnrare6h4qlnf"

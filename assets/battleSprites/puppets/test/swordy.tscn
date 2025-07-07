@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://1rewld6mq8sv"]
+
+[ext_resource type="Script" uid="uid://lew16ejh73qk" path="res://src/battle/battlePuppet.gd" id="1_3kpqt"]
+[ext_resource type="Texture2D" uid="uid://dyks14bmhpl36" path="res://assets/battleSprites/dummy_smt2.png" id="2_tgqak"]
+
+[node name="swordy" type="CanvasGroup"]
+script = ExtResource("1_3kpqt")
+
+[node name="DummySmt2" type="Sprite2D" parent="."]
+texture = ExtResource("2_tgqak")
+offset = Vector2(0, -50)

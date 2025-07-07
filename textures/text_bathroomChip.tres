@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cbbkbocrhst0y"]
+
+[ext_resource type="Texture2D" uid="uid://ogqva4q2s3rg" path="res://textures/text_bathroomChip.png" id="1_xrg46"]
+[ext_resource type="Texture2D" uid="uid://bu1a3m68jpfmg" path="res://textures/norm_bathroomChip2.png" id="2_yhi26"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_xrg46")
+metallic_specular = 0.0
+normal_enabled = true
+normal_scale = 1.59
+normal_texture = ExtResource("2_yhi26")
+texture_filter = 2

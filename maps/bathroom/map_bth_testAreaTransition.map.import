@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dh3ijaxaeik4"
+path="res://.godot/imported/map_bth_testAreaTransition.map-47f9a56360975173b81a197ce1701604.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/map_bth_testAreaTransition.map"
+dest_files=["res://.godot/imported/map_bth_testAreaTransition.map-47f9a56360975173b81a197ce1701604.tres"]
+
+[params]
+

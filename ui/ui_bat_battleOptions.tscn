@@ -1,0 +1,311 @@
+[gd_scene load_steps=10 format=3 uid="uid://b1edt4yudqfvc"]
+
+[ext_resource type="Script" uid="uid://ooelyletrm77" path="res://ui/ui_bat_battleOptions.gd" id="1_1xx07"]
+[ext_resource type="PackedScene" uid="uid://bxnobjvmn65wx" path="res://ui/ui_bat_skillButton.tscn" id="1_66bv0"]
+[ext_resource type="Texture2D" uid="uid://bcj23x6wpfhcf" path="res://assets/ui/spr_ui_deathSkull_back.png" id="3_ht4ei"]
+[ext_resource type="Texture2D" uid="uid://dkqsfdrmwrabn" path="res://assets/ui/spr_ui_deathSkull_front.png" id="4_7onu2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_10pxa"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fkh0r"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_bjmkr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:anchor_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:anchor_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_ch0q5"]
+resource_name = "show"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:anchor_left")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:anchor_right")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:anchor_top")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:anchor_bottom")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 0.1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4537e"]
+_data = {
+&"RESET": SubResource("Animation_bjmkr"),
+&"show": SubResource("Animation_ch0q5")
+}
+
+[node name="battleOptions" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 144.0
+offset_bottom = 224.0
+mouse_filter = 2
+script = ExtResource("1_1xx07")
+
+[node name="vbox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="infoBar" type="Control" parent="vbox"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="ATB" type="ProgressBar" parent="vbox/infoBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -8.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_10pxa")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fkh0r")
+max_value = 1.0
+show_percentage = false
+
+[node name="menuLabel" type="RichTextLabel" parent="vbox/infoBar/ATB"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 5.5
+offset_right = -8.0
+offset_bottom = -5.5
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[font_size=12][center]Skills"
+fit_content = true
+scroll_active = false
+
+[node name="info" type="RichTextLabel" parent="vbox/infoBar/ATB"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.333333
+anchor_right = 0.333334
+anchor_bottom = 0.208334
+offset_left = 8.0
+offset_right = -4.95911e-05
+bbcode_enabled = true
+text = "[bgcolor=000]MENU"
+fit_content = true
+metadata/_edit_use_anchors_ = true
+
+[node name="selectable" type="Control" parent="vbox"]
+clip_children = 1
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="backGround" type="ColorRect" parent="vbox/selectable"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="scroll" type="ScrollContainer" parent="vbox/selectable"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+follow_focus = true
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="options" type="VBoxContainer" parent="vbox/selectable/scroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="skilButton" parent="vbox/selectable/scroll/options" instance=ExtResource("1_66bv0")]
+layout_mode = 2
+
+[node name="skilButton2" parent="vbox/selectable/scroll/options" instance=ExtResource("1_66bv0")]
+layout_mode = 2
+
+[node name="skilButton3" parent="vbox/selectable/scroll/options" instance=ExtResource("1_66bv0")]
+layout_mode = 2
+
+[node name="skilButton4" parent="vbox/selectable/scroll/options" instance=ExtResource("1_66bv0")]
+layout_mode = 2
+
+[node name="skilButton5" parent="vbox/selectable/scroll/options" instance=ExtResource("1_66bv0")]
+layout_mode = 2
+
+[node name="skilButton6" parent="vbox/selectable/scroll/options" instance=ExtResource("1_66bv0")]
+layout_mode = 2
+
+[node name="deathOverlay" type="ColorRect" parent="vbox/selectable"]
+visible = false
+clip_children = 2
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="deathSkull" type="TextureProgressBar" parent="vbox/selectable/deathOverlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -72.0
+offset_right = 72.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(72, 72)
+value = 30.0
+fill_mode = 3
+texture_under = ExtResource("3_ht4ei")
+texture_progress = ExtResource("4_7onu2")
+texture_progress_offset = Vector2(24, 22)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="vbox/selectable/deathOverlay"]
+libraries = {
+&"": SubResource("AnimationLibrary_4537e")
+}
+
+[node name="selectableStorage" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

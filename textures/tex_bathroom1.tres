@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cij4ginkdg3jv"]
+
+[ext_resource type="Texture2D" uid="uid://bhqaywwsoen5j" path="res://textures/tex_bathroom1.png" id="1_4o1vj"]
+[ext_resource type="Texture2D" uid="uid://l330ux4tpou5" path="res://textures/norm_bathroom1.png" id="2_4b1ny"]
+
+[resource]
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("1_4o1vj")
+normal_enabled = true
+normal_scale = 3.0
+normal_texture = ExtResource("2_4b1ny")
+texture_filter = 2
+disable_receive_shadows = true

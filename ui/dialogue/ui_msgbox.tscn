@@ -1,0 +1,100 @@
+[gd_scene load_steps=9 format=3 uid="uid://nvo27ucb7ytf"]
+
+[ext_resource type="Shader" uid="uid://cgoa181d3u6xp" path="res://shaders/textBox.tres" id="1_yjfm0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ne1bp"]
+bg_color = Color(0, 0, 0, 0.764706)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vwb5s"]
+shader = ExtResource("1_yjfm0")
+shader_parameter/speed = 0.6
+shader_parameter/radius = 4.0
+
+[sub_resource type="Gradient" id="Gradient_yjfm0"]
+offsets = PackedFloat32Array(0.903529, 1)
+colors = PackedColorArray(1, 0.561333, 0.53, 0.784314, 1, 0.483192, 0.405361, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vwb5s"]
+gradient = SubResource("Gradient_yjfm0")
+width = 128
+height = 128
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kwnp8"]
+shader = ExtResource("1_yjfm0")
+shader_parameter/speed = 0.3
+shader_parameter/radius = 2.0
+
+[sub_resource type="Gradient" id="Gradient_kwnp8"]
+offsets = PackedFloat32Array(0.828235, 1)
+colors = PackedColorArray(0.745, 1, 0.66, 0.784314, 0.718773, 1, 0.676189, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_devfy"]
+gradient = SubResource("Gradient_kwnp8")
+width = 128
+height = 128
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="black" type="Panel" parent="."]
+clip_children = 2
+layout_mode = 0
+anchor_left = 0.142857
+anchor_top = 0.714286
+anchor_right = 0.857143
+anchor_bottom = 0.968254
+theme_override_styles/panel = SubResource("StyleBoxFlat_ne1bp")
+metadata/_edit_use_anchors_ = true
+
+[node name="red" type="TextureRect" parent="black"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_vwb5s")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_vwb5s")
+
+[node name="green" type="TextureRect" parent="black"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_kwnp8")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_devfy")
+
+[node name="ColorRect" type="ColorRect" parent="black"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.662745)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 144.0
+offset_top = 376.0
+offset_right = 744.0
+offset_bottom = 472.0
+theme_override_font_sizes/font_size = 20
+text = "Big bomba becoming a slow munchie he he he ha"

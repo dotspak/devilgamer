@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dic45r3ic2kpf"
+path="res://.godot/imported/map_bth_bridge1.3.map-6d6c4cdfa98568dfbece78d9fc757343.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/autosave/map_bth_bridge1.3.map"
+dest_files=["res://.godot/imported/map_bth_bridge1.3.map-6d6c4cdfa98568dfbece78d9fc757343.tres"]
+
+[params]
+

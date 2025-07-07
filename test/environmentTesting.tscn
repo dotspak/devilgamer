@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5qkp68ttryac"]
+
+[ext_resource type="PackedScene" uid="uid://cm1qrmroln5o6" path="res://scenes/player/owPlayer3D.tscn" id="1_bvoi1"]
+[ext_resource type="PackedScene" uid="uid://dnhqx604sbfxq" path="res://maps/bathroom/map_bth_bridge1.tscn" id="2_f1dlp"]
+[ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="3_2ru7c"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="player" parent="." instance=ExtResource("1_bvoi1")]
+
+[node name="bathroom_bridge1" parent="." instance=ExtResource("2_f1dlp")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("3_2ru7c")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.720297, 0.693666, 0, -0.693666, 0.720297, -4.41904, 15.4251, -4.02536)
+light_color = Color(1, 0.989859, 0.512027, 1)
+light_energy = 13.475
+spot_range = 28.6124
+spot_attenuation = 0.32
+spot_angle = 15.4688

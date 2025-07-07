@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://fsxhkuatwkew"
+path="res://.godot/imported/tr_blockGeomTest.1.map-f555488a4b903c5e87009f358f2e0ca3.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/autosave/tr_blockGeomTest.1.map"
+dest_files=["res://.godot/imported/tr_blockGeomTest.1.map-f555488a4b903c5e87009f358f2e0ca3.tres"]
+
+[params]
+

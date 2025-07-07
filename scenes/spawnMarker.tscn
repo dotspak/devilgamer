@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://v8k4bj362adl"]
+
+[ext_resource type="PackedScene" uid="uid://cpxm6gwsd3rxk" path="res://icons/exitPointer.fbx" id="1_535mx"]
+
+[sub_resource type="GDScript" id="GDScript_535mx"]
+script/source = "extends Marker3D
+class_name ExitPointer
+
+func _ready() -> void: visible = false
+func _unhandled_input(_event: InputEvent) -> void: if GameManager.DEBUG_MODE:  if Input.is_action_just_pressed(\"DEBUG_SHOW_EXIT_DIR\"): visible = !visible
+"
+
+[sub_resource type="Gradient" id="Gradient_qq1wg"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.526718)
+colors = PackedColorArray(0.60102, 1, 0.436659, 1, 1, 0.560237, 0.997798, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_v3vkp"]
+gradient = SubResource("Gradient_qq1wg")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_535mx"]
+depth_draw_mode = 1
+no_depth_test = true
+shading_mode = 0
+albedo_texture = SubResource("GradientTexture1D_v3vkp")
+
+[node name="spawnMarker" type="Marker3D"]
+script = SubResource("GDScript_535mx")
+
+[node name="model" parent="." instance=ExtResource("1_535mx")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1, 0)
+
+[node name="Cone" parent="model" index="0"]
+transform = Transform3D(-4.37114e-06, 100, 0, -100, -4.37114e-06, 0, 0, 0, 100, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_535mx")
+
+[editable path="model"]

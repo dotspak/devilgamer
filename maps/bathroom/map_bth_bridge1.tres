@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="RoomDef" load_steps=3 format=3 uid="uid://crt4in306l6ij"]
+
+[ext_resource type="PackedScene" uid="uid://dnhqx604sbfxq" path="res://maps/bathroom/map_bth_bridge1.tscn" id="1_e7lea"]
+[ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="1_r7baa"]
+
+[resource]
+script = ExtResource("1_r7baa")
+scene = ExtResource("1_e7lea")
+roomName = "Pipe Bridge"
+description = "Room in the bathroom area with a nice bridge and a pipe area"
+chests = Array[String](["chest1"])
+npcs = Array[String]([])
+exits = Array[String](["pipeBridge_exitA", "pipeBridge_exitB"])

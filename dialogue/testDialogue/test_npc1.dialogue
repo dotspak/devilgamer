@@ -1,0 +1,27 @@
+~ binky
+Binky: Hey man its me, bobby!
+Binky: How's it going for you?
+- Great
+	Binky: I'm really glad to hear that!
+- Not Great
+	Binky: That's too bad man.
+Binky: Honestly it didn't matter either way.
+Binky: I'm taking all of your money.
+(You lost $7.)
+=> END
+
+~ tinky
+%5
+	Tinky: You got randomized option 1!
+		It's more common than the other options.
+%4
+	Tinky: You got randomized option 2!
+		It's a little bit more rare.
+%
+	Tinky: You got the extremely rare option 3!
+		Nice job bro!
+=> END
+
+~ rinky
+Rinky: [[Hi|Hello|Howdy]], this is some dialogue.
+=> END

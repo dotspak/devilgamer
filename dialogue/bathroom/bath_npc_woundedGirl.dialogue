@@ -1,0 +1,12 @@
+~ start
+if !GameManager.check_flag("bathHurtGirl")
+	do GameManager.set_flag("bathHurtGirl", "Wounded Girl")
+{{GameManager.check_flag("bathHurtGirl")}}: ...[wait=0.5]Oh, is someone there?
+{{GameManager.check_flag("bathHurtGirl")}}: Please let me know you're present...
+- Calmly greet her
+	{{GameManager.check_flag("bathHurtGirl")}}: Ah yes, finally.
+	{{GameManager.check_flag("bathHurtGirl")}}: Someone has come to save me.
+- Scream at her
+	{{GameManager.check_flag("bathHurtGirl")}}: AAAAH!
+do GameManager.set_flag("bathHurtGirl", "Milda")
+=> END

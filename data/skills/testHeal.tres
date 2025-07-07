@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://h5l1w6jk4qv8"]
+
+[ext_resource type="Script" uid="uid://bai168s4murss" path="res://src/units/skill.gd" id="1_dmtvu"]
+[ext_resource type="PackedScene" uid="uid://00a5f8cyweam" path="res://data/skills/anims/basicHeal.tscn" id="1_o41kw"]
+
+[resource]
+script = ExtResource("1_dmtvu")
+name = "Love"
+description = "Heals an ally."
+animation = ExtResource("1_o41kw")
+skillTarget = 2
+rating = 3
+castTime = 2.0
+power = 10
+variance = 3
+stat = "MAG"
+isHeal = true
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 10
+critChance = 0.1
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0

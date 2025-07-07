@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ActorSheet" load_steps=6 format=3 uid="uid://f1prwjpg6hkq"]
+
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/models/dummy/sophia_skin/sophia_skin.tscn" id="1_1pdja"]
+[ext_resource type="Script" uid="uid://bgyd1lpjgbgi1" path="res://src/units/actorSheet.gd" id="1_ktnhy"]
+[ext_resource type="Script" uid="uid://bai168s4murss" path="res://src/units/skill.gd" id="2_2rxni"]
+[ext_resource type="Resource" uid="uid://h5l1w6jk4qv8" path="res://data/skills/testHeal.tres" id="3_yuj1m"]
+[ext_resource type="Resource" uid="uid://b6u8eiile3qc6" path="res://data/skills/testAllHeal.tres" id="4_j68io"]
+
+[resource]
+script = ExtResource("1_ktnhy")
+model = ExtResource("1_1pdja")
+name = "Garran"
+description = ""
+stats = {
+"AGI": 10,
+"DEF": 5,
+"MAG": 1,
+"STR": 2,
+"VIG": 5
+}
+baseElement = 6
+skillList = Array[ExtResource("2_2rxni")]([ExtResource("3_yuj1m"), ExtResource("4_j68io")])

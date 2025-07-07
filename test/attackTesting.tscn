@@ -1,0 +1,221 @@
+[gd_scene load_steps=20 format=3 uid="uid://46y2558njyn5"]
+
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
+[ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="2_ehm7b"]
+[ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="2_pouwe"]
+[ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="3_m1h02"]
+[ext_resource type="PackedScene" uid="uid://cuj3d2gat756e" path="res://assets/models/dummy/platformPack/Enemies/FBX/Skull.fbx" id="5_c8vym"]
+[ext_resource type="PackedScene" uid="uid://c7pe7gnr78btu" path="res://scenes/actions/fireball.tscn" id="5_f1few"]
+[ext_resource type="PackedScene" uid="uid://dsxvy8e4e74c6" path="res://scenes/actions/testHitScan.tscn" id="5_f2bor"]
+[ext_resource type="PackedScene" uid="uid://cgrfhurn5js3g" path="res://assets/models/dummy/platformPack/Enemies/FBX/Crab.fbx" id="5_nxrn8"]
+[ext_resource type="PackedScene" uid="uid://ily3ofojqmll" path="res://assets/models/dummy/platformPack/Enemies/FBX/Enemy.fbx" id="6_57tpm"]
+
+[sub_resource type="GDScript" id="GDScript_qwub3"]
+script/source = "extends Node3D
+
+func _ready() -> void:
+	GameManager.show_battle_ui()
+"
+
+[sub_resource type="Environment" id="Environment_nxrn8"]
+background_mode = 1
+background_color = Color(0.6, 0.653333, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2y1j"]
+albedo_texture = ExtResource("1_ehm7b")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_f2bor"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ehm7b"]
+points = PackedVector3Array(-10, -0.5, -10, -10, 0.5, -10, 10, -0.5, -10, -10, -0.5, 10, -10, 0.5, 10, 10, 0.5, -10, 10, -0.5, 10, 10, 0.5, 10)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ehm7b"]
+radius = 0.85
+height = 1.7
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_yxqvu"]
+radius = 0.75
+height = 1.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nxrn8"]
+radius = 1.5
+height = 3.5
+
+[sub_resource type="GDScript" id="GDScript_ehm7b"]
+script/source = "extends Node3D
+
+@export var target : CharacterBody3D
+@export var action : PackedScene
+
+func _on_timer_timeout() -> void:
+	var shot : Action_Homing = action.instantiate()
+	shot.spawn(target)
+	add_child(shot)
+"
+
+[sub_resource type="GDScript" id="GDScript_7sknq"]
+script/source = "extends Node3D
+
+@export var target : CharacterBody3D
+@export var action : PackedScene
+
+func _on_timer_timeout() -> void:
+	var shot : Action_HitScan = action.instantiate()
+	add_child(shot)
+	shot.spawn(target)
+"
+
+[node name="testAttacks" type="Node3D"]
+script = SubResource("GDScript_qwub3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_nxrn8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.790688, -0.256312, 0.555982, 0, 0.908143, 0.418661, -0.612219, -0.33103, 0.718058, 5.56273, 5.33486, 6.80086)
+current = true
+
+[node name="floor" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_y2y1j")
+mesh = SubResource("BoxMesh_f2bor")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_ehm7b")
+
+[node name="crab" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.6, -7.03831)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("3_m1h02")
+mesh = NodePath("Crab/MonsterArmature/Skeleton3D/Crab")
+targetPosition = NodePath("targetPos")
+metadata/_custom_type_script = "uid://dhrqews2wqm0v"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="crab"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_ehm7b")
+
+[node name="mover" type="Node" parent="crab" node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_pouwe")
+characterBody = NodePath("..")
+
+[node name="Crab" parent="crab" instance=ExtResource("5_nxrn8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0906441, 0)
+
+[node name="Skeleton3D" parent="crab/Crab/MonsterArmature" index="0"]
+bones/1/position = Vector3(-7.80307e-20, 0.000898253, 0.00500828)
+bones/3/position = Vector3(0, 0, 0.00483194)
+bones/5/rotation = Quaternion(1.94769e-19, 3.54715e-10, -0.00264005, 0.999997)
+bones/7/position = Vector3(-0.00501702, 0.00397942, 0.00448326)
+bones/7/rotation = Quaternion(0, 0, 0, 1)
+bones/9/position = Vector3(0.00501702, 0.00397942, 0.00448326)
+bones/9/rotation = Quaternion(0, 0, 0, 1)
+
+[node name="targetPos" type="Marker3D" parent="crab"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="monster" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -7.03831)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("3_m1h02")
+mesh = NodePath("Enemy/MonsterArmature/Skeleton3D/Enemy_Body")
+targetPosition = NodePath("targetPos")
+metadata/_custom_type_script = "uid://dhrqews2wqm0v"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="monster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("CapsuleShape3D_yxqvu")
+
+[node name="mover" type="Node" parent="monster" node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_pouwe")
+characterBody = NodePath("..")
+
+[node name="Enemy" parent="monster" instance=ExtResource("6_57tpm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.974227, 0)
+
+[node name="targetPos" type="Marker3D" parent="monster"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+
+[node name="skull" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 3.5, -7.038)
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("3_m1h02")
+mesh = NodePath("Skull/MonsterArmature/Skeleton3D/Skull")
+targetPosition = NodePath("targetPos")
+metadata/_custom_type_script = "uid://dhrqews2wqm0v"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="skull"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+shape = SubResource("CapsuleShape3D_nxrn8")
+
+[node name="mover" type="Node" parent="skull" node_paths=PackedStringArray("characterBody")]
+script = ExtResource("2_pouwe")
+characterBody = NodePath("..")
+
+[node name="Skull" parent="skull" instance=ExtResource("5_c8vym")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.865396, 0)
+
+[node name="Skeleton3D" parent="skull/Skull/MonsterArmature" index="0"]
+bones/1/position = Vector3(-7.80307e-20, 0.00147259, 0.00500828)
+bones/3/position = Vector3(0, 0, 0.00483194)
+bones/5/rotation = Quaternion(1.94769e-19, 3.54715e-10, -0.00264005, 0.999997)
+
+[node name="targetPos" type="Marker3D" parent="skull"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="homingEmitter" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 5)
+script = SubResource("GDScript_ehm7b")
+target = NodePath("../crab")
+action = ExtResource("5_f1few")
+
+[node name="Sprite3D" type="Sprite3D" parent="homingEmitter"]
+modulate = Color(0.179401, 1, 0, 1)
+pixel_size = 0.05
+billboard = 1
+texture = ExtResource("2_ehm7b")
+
+[node name="Timer" type="Timer" parent="homingEmitter"]
+wait_time = 2.0
+
+[node name="hitscanEmitter" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 5)
+script = SubResource("GDScript_7sknq")
+target = NodePath("../monster")
+action = ExtResource("5_f2bor")
+
+[node name="Sprite3D" type="Sprite3D" parent="hitscanEmitter"]
+modulate = Color(1, 0.528112, 0.404796, 1)
+pixel_size = 0.05
+billboard = 1
+texture = ExtResource("2_ehm7b")
+
+[node name="Timer" type="Timer" parent="hitscanEmitter"]
+wait_time = 2.5
+
+[node name="skillshotEmitter" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 5)
+
+[node name="Sprite3D" type="Sprite3D" parent="skillshotEmitter"]
+modulate = Color(0.315368, 1, 0.982093, 1)
+pixel_size = 0.05
+billboard = 1
+texture = ExtResource("2_ehm7b")
+
+[connection signal="timeout" from="homingEmitter/Timer" to="homingEmitter" method="_on_timer_timeout"]
+[connection signal="timeout" from="hitscanEmitter/Timer" to="hitscanEmitter" method="_on_timer_timeout"]
+
+[editable path="crab/Crab"]
+[editable path="monster/Enemy"]
+[editable path="skull/Skull"]

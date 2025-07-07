@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://jptoa10ebvn8"]
+
+[ext_resource type="Texture2D" uid="uid://cnp4w6whahl3m" path="res://textures/tex_frostedCube.png" id="1_2qasg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjdsc"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0.267662, 0.357322, 1, 1)
+albedo_texture = ExtResource("1_2qasg")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_xrduw"]
+material = SubResource("StandardMaterial3D_bjdsc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xd68h"]
+transparency = 1
+blend_mode = 1
+shading_mode = 0
+albedo_color = Color(0.27, 0.355167, 1, 0.392157)
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_1qmot"]
+material = SubResource("StandardMaterial3D_xd68h")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_xrduw")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_1qmot")

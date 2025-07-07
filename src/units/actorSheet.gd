@@ -1,0 +1,2 @@
+extends CharSheet
+class_name ActorSheet

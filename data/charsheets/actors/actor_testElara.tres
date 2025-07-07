@@ -1,0 +1,142 @@
+[gd_resource type="Resource" script_class="ActorSheet" load_steps=11 format=3 uid="uid://bhb8g21gvgb6u"]
+
+[ext_resource type="Script" uid="uid://bgyd1lpjgbgi1" path="res://src/units/actorSheet.gd" id="1_fogqg"]
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/models/dummy/sophia_skin/sophia_skin.tscn" id="1_gh3iu"]
+[ext_resource type="Script" uid="uid://bai168s4murss" path="res://src/units/skill.gd" id="2_2uq8v"]
+[ext_resource type="PackedScene" uid="uid://da6kw6vyjbftt" path="res://data/skills/anims/basicSlash.tscn" id="3_e2tol"]
+[ext_resource type="PackedScene" uid="uid://qdv2f16odqc6" path="res://data/skills/anims/basicFire.tscn" id="4_gj4ta"]
+
+[sub_resource type="Resource" id="Resource_xtbbw"]
+script = ExtResource("2_2uq8v")
+name = "Blaze"
+description = "Basic fire attack."
+animation = ExtResource("4_gj4ta")
+skillTarget = 0
+rating = 8
+castTime = 2.0
+power = 5
+variance = 3
+stat = "STR"
+isHeal = false
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 2
+critChance = 0.1
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0
+
+[sub_resource type="Resource" id="Resource_vdmrv"]
+script = ExtResource("2_2uq8v")
+name = "Aqua"
+description = "Basic water attack."
+animation = ExtResource("3_e2tol")
+skillTarget = 0
+rating = 1
+castTime = 2.0
+power = 5
+variance = 3
+stat = "STR"
+isHeal = false
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 3
+critChance = 1.0
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0
+
+[sub_resource type="Resource" id="Resource_ffpfa"]
+script = ExtResource("2_2uq8v")
+name = "Jolt"
+description = "Basic electric attack."
+animation = ExtResource("3_e2tol")
+skillTarget = 0
+rating = 5
+castTime = 2.0
+power = 5
+variance = 3
+stat = "STR"
+isHeal = false
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 4
+critChance = 0.1
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0
+
+[sub_resource type="Resource" id="Resource_fe085"]
+script = ExtResource("2_2uq8v")
+name = "Holy"
+description = "Basic holy attack."
+animation = ExtResource("3_e2tol")
+skillTarget = 0
+rating = 10
+castTime = 2.0
+power = 5
+variance = 3
+stat = "STR"
+isHeal = false
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 5
+critChance = 0.1
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0
+
+[sub_resource type="Resource" id="Resource_lxm1i"]
+script = ExtResource("2_2uq8v")
+name = "Vile"
+description = "Basic vile attack."
+animation = ExtResource("3_e2tol")
+skillTarget = 0
+rating = 4
+castTime = 2.0
+power = 5
+variance = 3
+stat = "STR"
+isHeal = false
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 6
+critChance = 0.1
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0
+
+[resource]
+script = ExtResource("1_fogqg")
+model = ExtResource("1_gh3iu")
+name = "Elara"
+description = ""
+stats = {
+"AGI": 10,
+"DEF": 1,
+"MAG": 3,
+"STR": 4,
+"VIG": 4
+}
+baseElement = 4
+skillList = Array[ExtResource("2_2uq8v")]([SubResource("Resource_xtbbw"), SubResource("Resource_vdmrv"), SubResource("Resource_ffpfa"), SubResource("Resource_fe085"), SubResource("Resource_lxm1i"), SubResource("Resource_lxm1i")])

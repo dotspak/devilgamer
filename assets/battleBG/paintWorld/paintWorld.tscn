@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://dlkstvvqc3efa"]
+
+[ext_resource type="Texture2D" uid="uid://bjqkvv3376m8d" path="res://assets/battleBG/paintWorld/paintBG.png" id="1_pid21"]
+
+[sub_resource type="Gradient" id="Gradient_jl1vb"]
+offsets = PackedFloat32Array(0, 0.326772, 0.682415, 1)
+colors = PackedColorArray(0.576471, 0.415686, 0.415686, 1, 0.262745, 0.580392, 0.627451, 1, 0.427451, 0.521569, 0.564706, 1, 0.694118, 0.270588, 0.360784, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n3345"]
+gradient = SubResource("Gradient_jl1vb")
+
+[sub_resource type="Gradient" id="Gradient_hlv23"]
+offsets = PackedFloat32Array(0, 0.360892, 0.799213, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2h3ud"]
+gradient = SubResource("Gradient_hlv23")
+
+[sub_resource type="Curve" id="Curve_c0ad2"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.408861, 0.964801), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_gx6qp"]
+curve = SubResource("Curve_c0ad2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_addxl"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(170, 100, 1)
+radial_velocity_min = 92.56
+radial_velocity_max = 109.66
+scale_max = 4.0
+scale_curve = SubResource("CurveTexture_gx6qp")
+color_ramp = SubResource("GradientTexture1D_2h3ud")
+color_initial_ramp = SubResource("GradientTexture1D_n3345")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[node name="paintenvironment" type="Node2D"]
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(275, 0)
+autoscroll = Vector2(30, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D"]
+visible = false
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="PaintBg" type="Sprite2D" parent="Parallax2D"]
+modulate = Color(1, 1, 1, 0.5)
+scale = Vector2(1, 1.04918)
+texture = ExtResource("1_pid21")
+centered = false
+
+[node name="Parallax2D2" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.7, 0.7)
+repeat_size = Vector2(0, 183)
+autoscroll = Vector2(0, 25)
+
+[node name="ColorRect" type="ColorRect" parent="Parallax2D2"]
+visible = false
+offset_right = 320.0
+offset_bottom = 240.0
+
+[node name="PaintBg" type="Sprite2D" parent="Parallax2D2"]
+modulate = Color(1, 1, 1, 0.5)
+scale = Vector2(1, 1.04918)
+texture = ExtResource("1_pid21")
+centered = false
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(128, 96)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_addxl")
+preprocess = 1.0
+speed_scale = 0.1
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+z_index = 2
+position = Vector2(128, 96)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_addxl")
+preprocess = 1.0
+speed_scale = 0.3

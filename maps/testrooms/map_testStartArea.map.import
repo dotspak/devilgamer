@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://v4cw671qof7"
+path="res://.godot/imported/map_testStartArea.map-72acff9cdba0486add0b1e15438ad076.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/map_testStartArea.map"
+dest_files=["res://.godot/imported/map_testStartArea.map-72acff9cdba0486add0b1e15438ad076.tres"]
+
+[params]
+

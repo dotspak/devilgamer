@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://c0t7qbud74mgv"]
+
+[ext_resource type="Script" uid="uid://ogss7gxc2gnd" path="res://src/units/skillAnim.gd" id="1_tw3o5"]
+[ext_resource type="Texture2D" uid="uid://qyoabgki0g24" path="res://battleAnimations/bAnim_basicSlashYellow.png" id="2_54oej"]
+
+[sub_resource type="Animation" id="Animation_16u3x"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_8lw7i"]
+resource_name = "spawn"
+length = 0.75
+step = 0.15
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.45),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"trigger_dmg"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0u0yh"]
+_data = {
+&"RESET": SubResource("Animation_16u3x"),
+&"spawn": SubResource("Animation_8lw7i")
+}
+
+[node name="SkillAnim" type="Node3D"]
+script = ExtResource("1_tw3o5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_0u0yh")
+}
+
+[node name="Sprite2D" type="Sprite3D" parent="."]
+offset = Vector2(0, 16)
+pixel_size = 0.0625
+billboard = 1
+texture_filter = 0
+texture = ExtResource("2_54oej")
+hframes = 5

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://daops85ak8v21"
+path="res://.godot/imported/tr_blockGeomTest.map-ee0a021bf2d2d66b285f916670876a31.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/tr_blockGeomTest.map"
+dest_files=["res://.godot/imported/tr_blockGeomTest.map-ee0a021bf2d2d66b285f916670876a31.tres"]
+
+[params]
+

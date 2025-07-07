@@ -1,0 +1,13 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cdqrlh45p86gd"]
+
+[ext_resource type="Shader" uid="uid://qqmyy4kv5o7o" path="res://shaders/water.tres" id="1_r66h6"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_r66h6")
+shader_parameter/WaveStrength = 0.4
+shader_parameter/WaveSpeed = 0.1
+shader_parameter/waveColor = Color(0.0893096, 0.198632, 0.225, 1)
+shader_parameter/color = Color(0.202392, 0.322707, 0.545313, 1)
+shader_parameter/texturescale = 1.0
+shader_parameter/alpha = 1.0

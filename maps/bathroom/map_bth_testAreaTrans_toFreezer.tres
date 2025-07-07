@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="RoomToAreaDef" load_steps=3 format=3 uid="uid://cn3eikwntalv6"]
+
+[ext_resource type="PackedScene" uid="uid://cmwoe8bsmg5bb" path="res://maps/bathroom/map_bth_testAreaTrans_toFreezer.tscn" id="1_fxtbu"]
+[ext_resource type="Script" uid="uid://c82dqjkn288c8" path="res://src/world/roomToAreaDef.gd" id="2_4gnov"]
+
+[resource]
+script = ExtResource("2_4gnov")
+toArea = "Freezer"
+scene = ExtResource("1_fxtbu")
+roomName = "Area Exit"
+description = "A room"
+chests = Array[String]([])
+npcs = Array[String]([])
+exits = Array[String](["freezerExit_exit"])

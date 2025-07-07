@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://dgl74tamqgd60"]
+
+[ext_resource type="Script" uid="uid://dmul16di32xhw" path="res://ui/dialogue/ui_popup_balloon.gd" id="1_kn7r4"]
+[ext_resource type="Shader" uid="uid://cgoa181d3u6xp" path="res://shaders/textBox.tres" id="2_n078x"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ckqx8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="Animation" id="Animation_kn7r4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ckqx8"]
+resource_name = "show"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(0.5, 0.5, 2),
+"update": 0,
+"values": [Vector2(1.1, 0), Vector2(0.8, 1.3), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.514468, 0.46941, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n078x"]
+_data = {
+&"RESET": SubResource("Animation_kn7r4"),
+&"show": SubResource("Animation_ckqx8")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wxyin"]
+shader = ExtResource("2_n078x")
+shader_parameter/speed = 1.0
+shader_parameter/radius = 10.0
+
+[node name="BalloonPopup" type="Sprite3D"]
+cast_shadow = 0
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+texture = SubResource("ViewportTexture_ckqx8")
+script = ExtResource("1_kn7r4")
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SubViewport")
+libraries = {
+&"": SubResource("AnimationLibrary_n078x")
+}
+autoplay = "show"
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(512, 256)
+
+[node name="Control" type="VBoxContainer" parent="SubViewport"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.5
+offset_top = 16.0
+offset_right = 66.5
+offset_bottom = 118.0
+grow_horizontal = 2
+pivot_offset = Vector2(96, 64)
+metadata/_edit_use_anchors_ = true
+
+[node name="key" type="RichTextLabel" parent="SubViewport/Control"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[shake][font_size=48][bgcolor=black][font_size=32][[/font_size][color=dodger_blue]F[/color][font_size=32]][/font_size]"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bgThing2" type="ColorRect" parent="SubViewport/Control/key"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_wxyin")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.533333)
+
+[node name="Label" type="RichTextLabel" parent="SubViewport/Control"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+bbcode_enabled = true
+text = "[shake][font_size=48][bgcolor=black]talk"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="bgThing" type="ColorRect" parent="SubViewport/Control/Label"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_wxyin")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.533333)

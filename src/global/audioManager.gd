@@ -1,0 +1,62 @@
+extends Node
+
+@onready var bgmPlayer : AudioStreamPlayer = %BGM
+var bgmVolume : float = 1.0
+var bgmPitch : float = 1.0
+
+var talkSounds : Dictionary[String, Node] = {"talkSounds" : null}
+var uiSounds : Dictionary[String, Node] = {"uiSounds" : null}
+
+# load in all sounds into the dictionaries
+func _ready():
+	var maxSize : float = [
+		%talkSounds.get_child_count(), 
+		%uiSounds.get_child_count()].max()
+	
+	# loads all sounds in one loop
+	for i : int in maxSize:
+		# load ui sounds
+		if i < %uiSounds.get_child_count():
+			uiSounds[%uiSounds.get_child(i).name] = %uiSounds.get_child(i)
+		
+		# load talk sounds
+		if i < %talkSounds.get_child_count():
+			talkSounds[%talkSounds.get_child(i).name] = %talkSounds.get_child(i)
+
+
+func play_bgm(bgm : AudioStream, volume : float = 1.0, pitch : float = 1.0, fadeIn : float = 0.0, altPlayer : AudioStreamPlayer = null) -> void:
+	if bgmPlayer : bgmPlayer.stop()
+	bgmPlayer = %BGM if !altPlayer else altPlayer
+	bgmPlayer.stream = bgm
+	bgmPlayer.pitch_scale = pitch
+	bgmVolume = volume
+	bgmPitch = pitch
+	bgmPlayer.volume_linear = 0
+	await fade_bgm(fadeIn, false)
+
+
+# fades in or out the bgm. assumes a bgm is currently playing, so should be used
+# after play_bgm has already been triggered
+func fade_bgm(duration : float = 1.0, fadeOut : bool = true) -> void:
+	if !bgmPlayer: return
+	var TW = create_tween()
+	var val : Array = [bgmVolume, 0] if fadeOut else [0, bgmVolume] # 0 = start volume, 1 = end
+	bgmPlayer.volume_linear = val[0]
+	TW.tween_property(bgmPlayer, "volume_linear", val[1], duration).from(val[0])
+	if !fadeOut: bgmPlayer.play()
+	await TW.finished
+	if fadeOut: bgmPlayer.stream_paused = true
+
+
+# plays a sound from a given sfx bank. Should only be called from the more specific helper functions
+func play_sfx(sfx : String, bank : Dictionary, pitch : float) -> void:
+	if !bank.has(sfx):
+		printerr("sound not found ", sfx, " in ", bank)
+		return
+	bank[sfx].pitch_scale = pitch
+	bank[sfx].play()
+
+
+# play a sound of a given category
+func play_ui_sfx(sfx : String, pitch : float = 1.0) -> void: if uiSounds.has(sfx): play_sfx(sfx, uiSounds, pitch)
+func play_talk_sfx(sfx : String, pitch : float = 1.0) -> void: if talkSounds.has(sfx): play_sfx(sfx, talkSounds, pitch)

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2w4m1xm2t66p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vpq3q"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_vpq3q"]
+material = SubResource("StandardMaterial3D_vpq3q")
+size = Vector3(8, 8, 8)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3uj3h"]
+resource_local_to_scene = true
+cull_mode = 2
+depth_draw_mode = 1
+shading_mode = 0
+proximity_fade_enabled = true
+proximity_fade_distance = 10.0
+distance_fade_mode = 3
+distance_fade_max_distance = 4.0
+
+[node name="areaWall" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.5, 3.5)
+mesh = SubResource("BoxMesh_vpq3q")
+surface_material_override/0 = SubResource("StandardMaterial3D_3uj3h")

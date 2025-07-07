@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Skill" load_steps=3 format=3 uid="uid://b7pvrawmyhxid"]
+
+[ext_resource type="PackedScene" uid="uid://da6kw6vyjbftt" path="res://data/skills/anims/basicSlash.tscn" id="1_b1x15"]
+[ext_resource type="Script" uid="uid://bai168s4murss" path="res://src/units/skill.gd" id="1_th0ft"]
+
+[resource]
+script = ExtResource("1_th0ft")
+name = "Attack"
+description = "A medium attack"
+animation = ExtResource("1_b1x15")
+skillTarget = 0
+rating = 3
+castTime = 2.0
+power = 5
+variance = 3
+stat = "STR"
+isHeal = false
+drain = 0.0
+accuracy = 0.95
+elemChance = 0.3
+element = 0
+critChance = 0.1
+selfPOW = 0
+selfRES = 0
+selfSPD = 0
+targetPOW = 0
+targetRES = 0
+targetSPD = 0

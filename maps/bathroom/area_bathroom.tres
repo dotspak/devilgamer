@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Area" load_steps=12 format=3 uid="uid://cc7qwvkq76da0"]
+
+[ext_resource type="AudioStream" uid="uid://cqxdp0i1hq6j" path="res://assets/audio/bgm/bgm_bathhouse.ogg" id="1_bcc2x"]
+[ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="1_p08qg"]
+[ext_resource type="Resource" uid="uid://eie4joltmqk6" path="res://maps/bathroom/deadEndTest.tres" id="2_fi2yj"]
+[ext_resource type="PackedScene" uid="uid://cvcnwyr48tv74" path="res://maps/bathroom/door_bathroom.tscn" id="3_c70nk"]
+[ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="4_fi2yj"]
+[ext_resource type="Resource" uid="uid://cn3eikwntalv6" path="res://maps/bathroom/map_bth_testAreaTrans_toFreezer.tres" id="6_bcc2x"]
+[ext_resource type="Resource" uid="uid://crt4in306l6ij" path="res://maps/bathroom/map_bth_bridge1.tres" id="6_c70nk"]
+[ext_resource type="Resource" uid="uid://dl0blcfflv8jw" path="res://maps/bathroom/map_bth_largeSewerHall.tres" id="6_cb07n"]
+[ext_resource type="Resource" uid="uid://bhmay2ry0co1e" path="res://maps/bathroom/map_bth_testAreaTrans_toStart.tres" id="6_s8ob7"]
+[ext_resource type="Resource" uid="uid://kf13p3t834jt" path="res://maps/bathroom/map_bth_3roomHall.tres" id="7_s8ob7"]
+[ext_resource type="Script" uid="uid://cnrare6h4qlnf" path="res://src/world/area.gd" id="7_yjsob"]
+
+[resource]
+script = ExtResource("7_yjsob")
+areaName = "Bathroom"
+areaDescription = "Built to cleanse, left to rot."
+environment = ExtResource("4_fi2yj")
+bgm = ExtResource("1_bcc2x")
+door = ExtResource("3_c70nk")
+roomPool = Array[ExtResource("1_p08qg")]([ExtResource("7_s8ob7"), ExtResource("6_c70nk"), ExtResource("6_cb07n")])
+requiredDeadEnds = Array[ExtResource("1_p08qg")]([ExtResource("6_bcc2x"), ExtResource("6_s8ob7")])
+deadendPool = Array[ExtResource("1_p08qg")]([ExtResource("2_fi2yj")])
+metadata/_custom_type_script = "uid://cnrare6h4qlnf"

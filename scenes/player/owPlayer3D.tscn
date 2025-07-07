@@ -1,0 +1,397 @@
+[gd_scene load_steps=49 format=3 uid="uid://cm1qrmroln5o6"]
+
+[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/models/dummy/sophia_skin/sophia_skin.tscn" id="1_65jk6"]
+[ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
+[ext_resource type="Script" uid="uid://c2fnpvd1bhjyl" path="res://src/statemachine/state_machine.gd" id="2_vphkp"]
+[ext_resource type="Script" uid="uid://xs22arln5yl1" path="res://src/player/states/player_idle.gd" id="3_6ixtw"]
+[ext_resource type="Script" uid="uid://be8qp318axhou" path="res://src/player/states/player_run.gd" id="4_brycn"]
+[ext_resource type="Script" uid="uid://dr4ts4v5wjgg1" path="res://src/player/states/player_jump.gd" id="5_4oxs8"]
+[ext_resource type="Script" uid="uid://xy5iuv8cthwv" path="res://src/player/states/player_fall.gd" id="6_d25kf"]
+[ext_resource type="Script" uid="uid://dd71lmtnt0cjl" path="res://src/player/states/player_onLedge.gd" id="7_mkkme"]
+[ext_resource type="Script" uid="uid://da0kwmm3h2sw2" path="res://src/player/states/player_jumpToLedge.gd" id="8_wh7nt"]
+[ext_resource type="Script" uid="uid://csg1e40swxygu" path="res://src/player/states/player_climb.gd" id="9_em25i"]
+[ext_resource type="Script" uid="uid://c3i0t5p8rl76g" path="res://src/player/states/player_state.gd" id="10_4vs3c"]
+[ext_resource type="Texture2D" uid="uid://cgxdu0e7ow4n0" path="res://addons/kenney_particle_pack/trace_01.png" id="10_bytr5"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="10_h8a1l"]
+[ext_resource type="Shader" uid="uid://ckfvmlysydrct" path="res://shaders/puffShader.tres" id="11_em25i"]
+[ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="11_ratpf"]
+[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_4vs3c"]
+[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_sws5g"]
+[ext_resource type="AudioStream" uid="uid://ck1qbquxscbox" path="res://addons/kenney impact sounds/footstep_concrete_004.ogg" id="18_sws5g"]
+[ext_resource type="AudioStream" uid="uid://cfxhmfmss3rcv" path="res://assets/audio/sfx/SE_voidOut.ogg" id="19_5g6mi"]
+[ext_resource type="AudioStream" uid="uid://bknwuu8umhweb" path="res://assets/audio/sfx/SE_respawn.ogg" id="20_cj0gn"]
+
+[sub_resource type="Resource" id="Resource_5g6mi"]
+script = ExtResource("16_sws5g")
+duration = 0.2
+transition = 1
+ease = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_h8a1l"]
+
+[sub_resource type="Resource" id="Resource_h8a1l"]
+script = ExtResource("16_sws5g")
+duration = 0.2
+transition = 1
+ease = 2
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r7bod"]
+
+[sub_resource type="Curve" id="Curve_34kbm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_00srj"]
+curve = SubResource("Curve_34kbm")
+
+[sub_resource type="Curve" id="Curve_h8a1l"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, -360), 0.0, 0.0, 0, 0, Vector2(1, 360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4vs3c"]
+curve = SubResource("Curve_h8a1l")
+
+[sub_resource type="Gradient" id="Gradient_em25i"]
+offsets = PackedFloat32Array(0.220472, 1)
+colors = PackedColorArray(0.507148, 0.507644, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_34kbm"]
+gradient = SubResource("Gradient_em25i")
+
+[sub_resource type="Curve" id="Curve_e65bt"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.68331), 0.0, 0.0, 0, 0, Vector2(0.742015, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c2eaf"]
+curve = SubResource("Curve_e65bt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_04fde"]
+particle_flag_align_y = true
+emission_shape = 2
+emission_sphere_radius = 0.4
+angle_min = -720.0
+angle_max = 720.0
+angle_curve = SubResource("CurveTexture_4vs3c")
+direction = Vector3(0, 0, 0)
+spread = 0.0
+initial_velocity_min = -1.5
+initial_velocity_max = 1.5
+radial_velocity_min = 0.999978
+radial_velocity_max = 1.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.3
+scale_max = 0.4
+scale_curve = SubResource("CurveTexture_c2eaf")
+color_initial_ramp = SubResource("GradientTexture1D_34kbm")
+alpha_curve = SubResource("CurveTexture_00srj")
+turbulence_noise_strength = 11.1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_em25i"]
+render_priority = 0
+shader = ExtResource("11_em25i")
+
+[sub_resource type="SphereMesh" id="SphereMesh_34kbm"]
+material = SubResource("ShaderMaterial_em25i")
+radial_segments = 16
+rings = 8
+
+[sub_resource type="Curve" id="Curve_kbbve"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.494737, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_rmnbx"]
+curve = SubResource("Curve_kbbve")
+
+[sub_resource type="Gradient" id="Gradient_b4jol"]
+interpolation_color_space = 2
+colors = PackedColorArray(0.933333, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5payy"]
+gradient = SubResource("Gradient_b4jol")
+
+[sub_resource type="Curve" id="Curve_cifge"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 0), 0.0, 0.0, 0, 0, Vector2(0.375439, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ifxb6"]
+curve = SubResource("Curve_cifge")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uomwf"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(1, 1, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.5
+emission_ring_cone_angle = 90.0
+direction = Vector3(0, 1, 0)
+spread = 30.0
+initial_velocity_min = 0.4
+initial_velocity_max = 0.4
+gravity = Vector3(0, 60, 0)
+radial_accel_min = -0.100002
+radial_accel_max = 0.0999978
+scale_curve = SubResource("CurveTexture_ifxb6")
+color = Color(1, 1, 1, 0.117647)
+color_initial_ramp = SubResource("GradientTexture1D_5payy")
+alpha_curve = SubResource("CurveTexture_rmnbx")
+hue_variation_min = -0.01
+hue_variation_max = 0.00999998
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gfai1"]
+transparency = 1
+blend_mode = 1
+cull_mode = 2
+shading_mode = 0
+albedo_color = Color(1, 0.964705, 0.156937, 1)
+albedo_texture = ExtResource("10_bytr5")
+
+[sub_resource type="QuadMesh" id="QuadMesh_mi51i"]
+material = SubResource("StandardMaterial3D_gfai1")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_h8a1l"]
+top_radius = 10.0
+bottom_radius = 2.0
+height = 10.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4vs3c"]
+radius = 12.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_lo5xy"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bu0r1"]
+height = 1.6
+
+[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("sounds", "castPosition", "targetArea") groups=["player"]]
+collision_layer = 18
+collision_mask = 5
+script = ExtResource("1_yhvw8")
+sounds = {
+"respawn": NodePath("sounds/respawn"),
+"step": NodePath("sounds/footstep"),
+"void": NodePath("sounds/voidOut")
+}
+castPosition = NodePath("SophiaSkin/actionCast")
+targetArea = NodePath("SophiaSkin/targetArea")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("2_vphkp")
+initial_state = NodePath("idle")
+
+[node name="idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_6ixtw")
+
+[node name="run" type="Node" parent="StateMachine"]
+script = ExtResource("4_brycn")
+
+[node name="jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_4oxs8")
+
+[node name="fall" type="Node" parent="StateMachine"]
+script = ExtResource("6_d25kf")
+
+[node name="onLedge" type="Node" parent="StateMachine"]
+script = ExtResource("7_mkkme")
+
+[node name="jumpToLedge" type="Node" parent="StateMachine"]
+script = ExtResource("8_wh7nt")
+
+[node name="climb" type="Node" parent="StateMachine"]
+script = ExtResource("9_em25i")
+
+[node name="gameFreeze" type="Node" parent="StateMachine"]
+script = ExtResource("10_4vs3c")
+metadata/_custom_type_script = "uid://c3i0t5p8rl76g"
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+light_color = Color(1, 0.944116, 0.861228, 1)
+omni_range = 6.0
+
+[node name="cameras" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="cameras"]
+unique_name_in_owner = true
+physics_interpolation_mode = 1
+transform = Transform3D(-1, 6.56153e-07, -2.4488e-06, 0, 0.965926, 0.258819, 2.53518e-06, 0.258819, -0.965926, -1.46928e-05, 3.05291, -5.79556)
+current = true
+
+[node name="PhantomCameraHost" type="Node" parent="cameras/Camera3D"]
+unique_name_in_owner = true
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("10_h8a1l")
+
+[node name="AudioListener3D" type="AudioListener3D" parent="cameras/Camera3D"]
+current = true
+
+[node name="mainCam" type="Node3D" parent="cameras" node_paths=PackedStringArray("follow_target")]
+unique_name_in_owner = true
+transform = Transform3D(-1, 6.56153e-07, -2.4488e-06, 0, 0.965926, 0.258819, 2.53518e-06, 0.258819, -0.965926, -1.46928e-05, 3.05291, -5.79556)
+script = ExtResource("15_4vs3c")
+priority = 1
+follow_mode = 6
+follow_target = NodePath("../..")
+tween_resource = SubResource("Resource_5g6mi")
+follow_offset = Vector3(0, 1.5, 0)
+follow_damping = true
+follow_damping_value = Vector3(0.05, 0.05, 0.05)
+follow_distance = 6.0
+vertical_rotation_offset = 0.261799
+horizontal_rotation_offset = 3.14159
+spring_length = 6.0
+shape = SubResource("SphereShape3D_h8a1l")
+
+[node name="lockCam" type="Node3D" parent="cameras"]
+unique_name_in_owner = true
+top_level = true
+script = ExtResource("15_4vs3c")
+follow_mode = 3
+tween_resource = SubResource("Resource_h8a1l")
+follow_offset = Vector3(0, 1.5, 0)
+follow_damping_value = Vector3(0.3, 0.3, 0.3)
+follow_distance = 3.0
+auto_follow_distance = true
+auto_follow_distance_min = 5.0
+auto_follow_distance_max = 10.0
+spring_length = 3.0
+metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="cameraPivot" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.965925, -0.258819, 0, 0.258819, 0.965925, 0, 1.5, 0)
+
+[node name="cameraSmooth" type="Node3D" parent="cameraPivot"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 0)
+
+[node name="SpringArm3D" type="SpringArm3D" parent="cameraPivot/cameraSmooth"]
+transform = Transform3D(-1, 0, -8.74228e-08, 1.77636e-15, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("SphereShape3D_r7bod")
+spring_length = 6.0
+
+[node name="SophiaSkin" parent="." instance=ExtResource("1_65jk6")]
+unique_name_in_owner = true
+
+[node name="stepParticles" type="GPUParticles3D" parent="SophiaSkin"]
+unique_name_in_owner = true
+amount = 12
+lifetime = 0.4
+explosiveness = 0.14
+process_material = SubResource("ParticleProcessMaterial_04fde")
+draw_pass_1 = SubResource("SphereMesh_34kbm")
+
+[node name="fallingParticles" type="GPUParticles3D" parent="SophiaSkin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
+emitting = false
+lifetime = 0.3
+speed_scale = 3.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_uomwf")
+draw_pass_1 = SubResource("QuadMesh_mi51i")
+
+[node name="ledgeDetectors" type="Node3D" parent="SophiaSkin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+
+[node name="ledgeRayVert" type="RayCast3D" parent="SophiaSkin/ledgeDetectors"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0.8)
+target_position = Vector3(0, -1.9, 0)
+debug_shape_custom_color = Color(3.22476e-06, 0.775259, 0.140685, 1)
+
+[node name="ledgeRayHori" type="RayCast3D" parent="SophiaSkin/ledgeDetectors"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
+target_position = Vector3(0, 0, 1.5)
+debug_shape_custom_color = Color(3.22476e-06, 0.775259, 0.140685, 1)
+
+[node name="ledgeRayAnti" type="RayCast3D" parent="SophiaSkin/ledgeDetectors"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+target_position = Vector3(0, 0, 1.3)
+hit_from_inside = true
+debug_shape_custom_color = Color(0.775259, 0, 0.0185816, 1)
+
+[node name="stairDetectors" type="Node3D" parent="SophiaSkin"]
+
+[node name="stairRayDown" type="RayCast3D" parent="SophiaSkin/stairDetectors"]
+unique_name_in_owner = true
+target_position = Vector3(0, -0.75, 0)
+
+[node name="stairRayAhead" type="RayCast3D" parent="SophiaSkin/stairDetectors"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.75)
+target_position = Vector3(0, -0.5, 0)
+
+[node name="actionCast" type="Marker3D" parent="SophiaSkin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.25)
+
+[node name="targetArea" type="Area3D" parent="SophiaSkin"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
+collision_layer = 0
+collision_mask = 16
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SophiaSkin/targetArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, 4)
+visible = false
+mesh = SubResource("CylinderMesh_h8a1l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SophiaSkin/targetArea"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("SphereShape3D_4vs3c")
+debug_color = Color(0.941173, 1, 0, 0.42)
+
+[node name="head" type="Area3D" parent="." groups=["player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head"]
+shape = SubResource("SphereShape3D_lo5xy")
+debug_color = Color(0.0816668, 0, 0.7, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("CapsuleShape3D_bu0r1")
+debug_color = Color(0, 0.995982, 1, 1)
+
+[node name="ledgePoint" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+billboard = 1
+texture = ExtResource("11_ratpf")
+
+[node name="jumpCheck" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -2, 0)
+debug_shape_custom_color = Color(1, 0.461015, 0.673447, 1)
+debug_shape_thickness = 5
+
+[node name="basicAttackCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.3
+one_shot = true
+
+[node name="sounds" type="Node3D" parent="."]
+
+[node name="footstep" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("18_sws5g")
+volume_db = 30.0
+unit_size = 30.0
+max_db = 6.0
+bus = &"SFX"
+
+[node name="voidOut" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("19_5g6mi")
+volume_db = -6.0
+pitch_scale = 0.9
+bus = &"SFX"
+
+[node name="respawn" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("20_cj0gn")
+volume_db = -6.0

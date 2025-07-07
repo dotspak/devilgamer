@@ -1,0 +1,20 @@
+[gd_scene load_steps=8 format=3 uid="uid://bdoymr4ik3ipc"]
+
+[ext_resource type="Script" uid="uid://kjou0ho8hg8j" path="res://src/world/areaInstance.gd" id="1_8wbrp"]
+[ext_resource type="PackedScene" uid="uid://dnhqx604sbfxq" path="res://maps/bathroom/map_bth_bridge1.tscn" id="2_l2y2w"]
+[ext_resource type="PackedScene" uid="uid://bebni5h4f4x6o" path="res://maps/testrooms/map_blockGeomTest.tscn" id="3_7oib3"]
+[ext_resource type="PackedScene" uid="uid://cwnvg85n0irc6" path="res://maps/bathroom/map_bth_3roomHall.tscn" id="4_gewom"]
+[ext_resource type="PackedScene" uid="uid://cvcnwyr48tv74" path="res://maps/bathroom/door_bathroom.tscn" id="4_vkila"]
+[ext_resource type="PackedScene" uid="uid://dp2k1ggqyos0v" path="res://maps/bathroom/map_bth_largeSewerHall.tscn" id="5_dxkbe"]
+[ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="5_r7f36"]
+
+[node name="bathroomArea" type="Node3D"]
+script = ExtResource("1_8wbrp")
+areaName = "The Bathhouse"
+areaDescription = "the water flows by while the light grows dark"
+doorScene = ExtResource("4_vkila")
+roomScenes = Array[PackedScene]([ExtResource("2_l2y2w"), ExtResource("4_gewom"), ExtResource("5_dxkbe")])
+deadEnds = Array[PackedScene]([ExtResource("3_7oib3")])
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("5_r7f36")

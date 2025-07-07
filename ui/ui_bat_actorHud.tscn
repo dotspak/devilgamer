@@ -1,0 +1,384 @@
+[gd_scene load_steps=30 format=3 uid="uid://dcmh2ym2mquds"]
+
+[ext_resource type="Script" uid="uid://cfsfpaghsdolu" path="res://ui/ui_bat_actor_hud.gd" id="1_821kj"]
+[ext_resource type="Shader" uid="uid://40o1o5kr6hpi" path="res://shaders/enemyShader.gdshader" id="1_rd1mn"]
+[ext_resource type="Texture2D" uid="uid://btry0750g047n" path="res://assets/ui/actorhud/ui_actorHudBack.png" id="2_250nf"]
+[ext_resource type="Texture2D" uid="uid://bl8tgew0l4sam" path="res://ui/trippyGrad.tres" id="2_qa6vl"]
+[ext_resource type="Texture2D" uid="uid://c7mnpnv8hraql" path="res://assets/ui/spr_ui_wavey.png" id="3_i0tnd"]
+[ext_resource type="Texture2D" uid="uid://bpkoyun81fxnq" path="res://assets/ui/actorhud/ui_actorHudProgress.png" id="3_u1441"]
+[ext_resource type="Texture2D" uid="uid://bar7s4fdab3ao" path="res://assets/ui/actorhud/ui_actorHudRing2.png" id="4_812hr"]
+[ext_resource type="Texture2D" uid="uid://dsfvkggmpnt6x" path="res://assets/ui/actorhud/ui_actorHudMask.png" id="4_iv81w"]
+[ext_resource type="Texture2D" uid="uid://1xphjrgdjymu" path="res://assets/ui/actorhud/ui_actorHudRing1.png" id="5_x6mkc"]
+[ext_resource type="FontFile" uid="uid://b7d30k2o7t2kq" path="res://assets/fonts/fakeReceipt.otf" id="10_686wr"]
+[ext_resource type="Texture2D" uid="uid://cickma02n07t" path="res://assets/portraits/port_hud_epia.png" id="10_k3e1m"]
+[ext_resource type="Texture2D" uid="uid://benu55pogpa16" path="res://assets/ui/ui_elementIcons_16x.png" id="11_owdg2"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hd6k5"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_qah1g"]
+offsets = PackedFloat32Array(0.536471, 0.668235)
+colors = PackedColorArray(0.279195, 0.22815, 0.45, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_621rs"]
+gradient = SubResource("Gradient_qah1g")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fisw"]
+shader = ExtResource("1_rd1mn")
+shader_parameter/line_colour = Color(0, 0, 0, 1)
+shader_parameter/line_thickness = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6hxux"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_bmo1d"]
+offsets = PackedFloat32Array(0, 0.288889, 0.795062, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fyi1b"]
+gradient = SubResource("Gradient_bmo1d")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2bdad"]
+particle_flag_align_y = true
+particle_flag_disable_z = true
+direction = Vector3(-1, 1, 0)
+spread = 40.0
+initial_velocity_min = 60.0
+initial_velocity_max = 100.0
+radial_velocity_min = 4.99998
+radial_velocity_max = 9.99998
+gravity = Vector3(0, 0, 0)
+scale_min = 0.02
+scale_max = 0.2
+color_ramp = SubResource("GradientTexture1D_fyi1b")
+color_initial_ramp = ExtResource("2_qa6vl")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8q62f"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_5xd5j"]
+offsets = PackedFloat32Array(0.315294, 0.778824)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lwidl"]
+gradient = SubResource("Gradient_5xd5j")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ims0j"]
+font_size = 12
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1wnbh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgajh"]
+resource_local_to_scene = true
+atlas = ExtResource("11_owdg2")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="Animation" id="Animation_ndlgb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bar/pivot/ring2:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bar/pivot/ring:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bar/pivot:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_xv1a8"]
+resource_name = "ringwipe"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bar/pivot/ring2:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [6.28319, 6.45772, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("bar/pivot/ring:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [6.28319, 6.45772, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("bar/pivot:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mhab0"]
+_data = {
+&"RESET": SubResource("Animation_ndlgb"),
+&"ringwipe": SubResource("Animation_xv1a8")
+}
+
+[node name="actorHud" type="Control"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 3
+anchor_right = 0.107143
+anchor_bottom = 0.190476
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_821kj")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_hd6k5")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -20.0
+offset_right = 24.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_621rs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -296.0
+offset_top = -216.0
+offset_right = 1168.0
+offset_bottom = 896.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_right = 16.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+snap_2d_transforms_to_pixel = true
+snap_2d_vertices_to_pixel = true
+size = Vector2i(128, 128)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="particleRing" type="CanvasGroup" parent="SubViewportContainer/SubViewport"]
+material = SubResource("ShaderMaterial_8fisw")
+position = Vector2(16, 0)
+
+[node name="atbParticle" type="GPUParticles2D" parent="SubViewportContainer/SubViewport/particleRing"]
+unique_name_in_owner = true
+material = SubResource("CanvasItemMaterial_6hxux")
+position = Vector2(51, 41)
+amount = 300
+texture = ExtResource("3_i0tnd")
+lifetime = 0.5
+preprocess = 1.0
+speed_scale = 0.4
+local_coords = true
+draw_order = 0
+process_material = SubResource("ParticleProcessMaterial_2bdad")
+
+[node name="bar" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 2.78125
+anchor_top = 2.77083
+anchor_right = 3.78063
+anchor_bottom = 3.77021
+offset_left = -267.0
+offset_top = -266.0
+offset_right = 170.06
+offset_bottom = 171.06
+scale = Vector2(0.18, 0.18)
+metadata/_edit_use_anchors_ = true
+
+[node name="pivot" type="Control" parent="bar"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+pivot_offset = Vector2(266.5, 266.5)
+
+[node name="ring2" type="TextureRect" parent="bar/pivot"]
+modulate = Color(0.361166, 0.344683, 0.697656, 1)
+layout_mode = 0
+offset_left = -148.0
+offset_top = -149.0
+offset_right = 681.0
+offset_bottom = 680.0
+pivot_offset = Vector2(414.5, 414.5)
+texture = ExtResource("4_812hr")
+
+[node name="ring" type="TextureRect" parent="bar/pivot"]
+modulate = Color(0.361166, 0.344683, 0.697656, 1)
+layout_mode = 0
+offset_left = -148.0
+offset_top = -149.0
+offset_right = 681.0
+offset_bottom = 680.0
+pivot_offset = Vector2(414.5, 414.5)
+texture = ExtResource("5_x6mkc")
+
+[node name="drainDelay" type="TextureProgressBar" parent="bar/pivot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 492.0
+offset_bottom = 492.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 5
+radial_initial_angle = 200.0
+radial_fill_degrees = 290.0
+texture_under = ExtResource("2_250nf")
+texture_progress = ExtResource("3_u1441")
+tint_under = Color(0, 1.5, 2, 1)
+tint_progress = Color(10, 10, 10, 1)
+
+[node name="mainHP" type="TextureProgressBar" parent="bar/pivot"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 492.0
+offset_bottom = 492.0
+grow_horizontal = 2
+grow_vertical = 2
+value = 30.0
+fill_mode = 5
+radial_initial_angle = 200.0
+radial_fill_degrees = 290.0
+texture_progress = ExtResource("3_u1441")
+tint_progress = Color(0.4, 1.5, 2, 1)
+
+[node name="mask" type="Sprite2D" parent="bar/pivot"]
+clip_children = 1
+position = Vector2(271.944, 171)
+texture = ExtResource("4_iv81w")
+
+[node name="portrait" type="TextureRect" parent="bar/pivot/mask"]
+offset_left = -411.111
+offset_top = -254.0
+offset_right = 246.889
+offset_bottom = -64.0
+scale = Vector2(1, 2.724)
+texture = ExtResource("10_k3e1m")
+
+[node name="grad" type="TextureRect" parent="bar/pivot/mask"]
+material = SubResource("CanvasItemMaterial_8q62f")
+offset_left = -202.0
+offset_top = 149.0
+offset_right = 198.0
+offset_bottom = 285.0
+texture = SubResource("GradientTexture2D_lwidl")
+
+[node name="hpText" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_top = 56.0
+offset_right = 96.0
+offset_bottom = 82.0
+theme_override_fonts/normal_font = ExtResource("10_686wr")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[shake rate=10.0 level=5 connected=1][outline_size=10][center][color=333]0[color=26d]9[color=26d]9"
+
+[node name="name" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.08333
+anchor_bottom = 1.16667
+text = "Epia"
+label_settings = SubResource("LabelSettings_ims0j")
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="status" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+material = SubResource("CanvasItemMaterial_1wnbh")
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_left = 88.0
+offset_top = 4.95911e-05
+offset_right = 104.0
+offset_bottom = 16.0
+texture = SubResource("AtlasTexture_cgajh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="drainTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_mhab0")
+}
+
+[connection signal="timeout" from="drainTimer" to="." method="_on_drain_timer_timeout"]
