@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv3cbfnj53xo0"
-path.s3tc="res://.godot/imported/fireRing.png-d7e75841edd1c791cb6219daa26c6eee.s3tc.ctex"
+path.s3tc="res://.godot/imported/fireRing.png-f181e66d0d46426cb6d70d6ffa192a5d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://battleAnimations/fireRing.png"
-dest_files=["res://.godot/imported/fireRing.png-d7e75841edd1c791cb6219daa26c6eee.s3tc.ctex"]
+source_file="res://assets/battleAnimations/fireRing.png"
+dest_files=["res://.godot/imported/fireRing.png-f181e66d0d46426cb6d70d6ffa192a5d.s3tc.ctex"]
 
 [params]
 

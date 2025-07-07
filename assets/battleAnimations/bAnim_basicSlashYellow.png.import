@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhwjfu3s8bury"
-path.s3tc="res://.godot/imported/bAnim_basicSlash.png-3511e0cebf6309aa0f619f40aa86fa0b.s3tc.ctex"
+uid="uid://qyoabgki0g24"
+path.s3tc="res://.godot/imported/bAnim_basicSlashYellow.png-4d7d4f4480c3bd49003a0d222d3d0592.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://battleAnimations/bAnim_basicSlash.png"
-dest_files=["res://.godot/imported/bAnim_basicSlash.png-3511e0cebf6309aa0f619f40aa86fa0b.s3tc.ctex"]
+source_file="res://assets/battleAnimations/bAnim_basicSlashYellow.png"
+dest_files=["res://.godot/imported/bAnim_basicSlashYellow.png-4d7d4f4480c3bd49003a0d222d3d0592.s3tc.ctex"]
 
 [params]
 

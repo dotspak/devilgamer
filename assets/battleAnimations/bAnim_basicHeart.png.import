@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqc6uiwoxxxhs"
-path.s3tc="res://.godot/imported/bAnim_basicHeart.png-47a9563d83775d9c1981fa743b7e20e1.s3tc.ctex"
+path.s3tc="res://.godot/imported/bAnim_basicHeart.png-22f098249b9e1828cfe3655027f4fb54.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://battleAnimations/bAnim_basicHeart.png"
-dest_files=["res://.godot/imported/bAnim_basicHeart.png-47a9563d83775d9c1981fa743b7e20e1.s3tc.ctex"]
+source_file="res://assets/battleAnimations/bAnim_basicHeart.png"
+dest_files=["res://.godot/imported/bAnim_basicHeart.png-22f098249b9e1828cfe3655027f4fb54.s3tc.ctex"]
 
 [params]
 
