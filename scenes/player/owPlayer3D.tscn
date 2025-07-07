@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene load_steps=51 format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/models/dummy/sophia_skin/sophia_skin.tscn" id="1_65jk6"]
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_sws5g"]
 [ext_resource type="AudioStream" uid="uid://ck1qbquxscbox" path="res://addons/kenney impact sounds/footstep_concrete_004.ogg" id="18_sws5g"]
 [ext_resource type="AudioStream" uid="uid://cfxhmfmss3rcv" path="res://assets/audio/sfx/SE_voidOut.ogg" id="19_5g6mi"]
+[ext_resource type="AudioStream" uid="uid://b6d2ekmk5xlhs" path="res://assets/audio/sfx/SE_waterStep.ogg" id="19_xyfrb"]
 [ext_resource type="AudioStream" uid="uid://bknwuu8umhweb" path="res://assets/audio/sfx/SE_respawn.ogg" id="20_cj0gn"]
 
 [sub_resource type="Resource" id="Resource_5g6mi"]
@@ -161,6 +162,9 @@ radius = 12.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lo5xy"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_xyfrb"]
+height = 0.5
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bu0r1"]
 height = 1.6
 
@@ -171,7 +175,8 @@ script = ExtResource("1_yhvw8")
 sounds = {
 "respawn": NodePath("sounds/respawn"),
 "step": NodePath("sounds/footstep"),
-"void": NodePath("sounds/voidOut")
+"void": NodePath("sounds/voidOut"),
+"waterStep": NodePath("sounds/waterStep")
 }
 castPosition = NodePath("SophiaSkin/actionCast")
 targetArea = NodePath("SophiaSkin/targetArea")
@@ -347,12 +352,23 @@ shape = SubResource("SphereShape3D_4vs3c")
 debug_color = Color(0.941173, 1, 0, 0.42)
 
 [node name="head" type="Area3D" parent="." groups=["player"]]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="head"]
 shape = SubResource("SphereShape3D_lo5xy")
-debug_color = Color(0.0816668, 0, 0.7, 1)
+debug_color = Color(0, 0.891678, 1, 1)
+
+[node name="feet" type="Area3D" parent="." groups=["player"]]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="feet"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+shape = SubResource("CylinderShape3D_xyfrb")
+debug_color = Color(0.937906, 0.253437, 1, 1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
@@ -381,10 +397,13 @@ one_shot = true
 
 [node name="footstep" type="AudioStreamPlayer3D" parent="sounds"]
 stream = ExtResource("18_sws5g")
-volume_db = 30.0
-unit_size = 30.0
-max_db = 6.0
+volume_db = 40.0
 bus = &"SFX"
+
+[node name="waterStep" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("19_xyfrb")
+volume_db = -15.0
+bus = &"reverbSFX"
 
 [node name="voidOut" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("19_5g6mi")
@@ -395,3 +414,8 @@ bus = &"SFX"
 [node name="respawn" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("20_cj0gn")
 volume_db = -6.0
+
+[connection signal="area_entered" from="head" to="." method="_on_head_area_entered"]
+[connection signal="area_exited" from="head" to="." method="_on_head_area_exited"]
+[connection signal="area_entered" from="feet" to="." method="_on_feet_area_entered"]
+[connection signal="area_exited" from="feet" to="." method="_on_feet_area_exited"]

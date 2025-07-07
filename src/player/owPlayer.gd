@@ -72,7 +72,7 @@ var canGrabLedge : bool = true
 var lastSafePosition : Vector3 = Vector3.ZERO
 
 var inWater : bool = false
-var headUnderwater : bool = false
+var headInWater : bool = false
 
 # stair detection variables
 const MAX_STEP_HEIGHT : float = 0.5
@@ -156,10 +156,10 @@ func _physics_process(delta: float) -> void:
 				skillTarget = get_closest_target()
 	
 	if !movementAllowed: velocity = lerp(velocity, Vector3.ZERO, stopMoveWeight)
-	
+
 	# checks when the player is on the floor
 	if is_on_floor():
-		if jumpCheck.is_colliding() && !headUnderwater: 
+		if jumpCheck.is_colliding() && !is_head_underwater(): 
 			lastSafePosition = global_position
 		
 		lastFrameOnFloor = Engine.get_physics_frames()
@@ -354,14 +354,8 @@ func respawn() -> void:
 	mainCam.follow_damping = true
 
 
-func is_head_underwater(water : Node3D) -> bool:
-	headUnderwater = $head.global_position.y <= water.global_position.y
-	return headUnderwater
-
-
-func is_underwater(water : Node3D) -> bool:
-	inWater = global_position.y <= water.global_position.y
-	return inWater
+func is_head_underwater() -> bool: return is_underwater() && headInWater
+func is_underwater() -> bool: return inWater
 
 func freeze() -> void:
 	stateMachine.transition_to("gameFreeze")
@@ -459,3 +453,35 @@ func lock_off() -> void:
 	lockCam.priority = 0
 	
 	GameManager.exit_focus_ui()
+
+
+func _on_feet_area_entered(area : Area3D) -> void:
+	if area is WaterArea3D:
+		print("player has entered water")
+		inWater = true
+
+
+func _on_feet_area_exited(area : Area3D) -> void:
+	if area is WaterArea3D:
+		for a in %feet.get_overlapping_areas():
+			if a is WaterArea3D: return
+		
+		print("player has left water")
+		inWater = false
+
+
+func _on_head_area_entered(area : Area3D) -> void:
+	if area is WaterArea3D:
+		print("player head has entered water")
+		headInWater = true
+		GameManager.handle_water_change(area.get_water_color())
+
+
+func _on_head_area_exited(area:Area3D) -> void:
+	if area is WaterArea3D:
+		for a in %head.get_overlapping_areas():
+			if a is WaterArea3D: return
+		
+		print("head has left water")
+		headInWater = false
+		GameManager.handle_water_exit()

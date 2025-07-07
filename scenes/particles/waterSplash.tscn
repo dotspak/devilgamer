@@ -1,7 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://bvxrq0wl04c0r"]
+[gd_scene load_steps=16 format=3 uid="uid://bvxrq0wl04c0r"]
 
 [ext_resource type="Texture2D" uid="uid://dxaa0jwo45gdl" path="res://addons/kenney_particle_pack/circle_05.png" id="1_fe1wv"]
 [ext_resource type="Texture2D" uid="uid://bycvcxu7g1tis" path="res://addons/kenney_particle_pack/circle_01.png" id="2_0735o"]
+[ext_resource type="AudioStream" uid="uid://b6d2ekmk5xlhs" path="res://assets/audio/sfx/SE_waterStep.ogg" id="3_ruqw8"]
 
 [sub_resource type="Gradient" id="Gradient_0735o"]
 colors = PackedColorArray(0.560293, 0.793307, 1, 1, 0, 0, 0, 1)
@@ -78,3 +79,9 @@ lifetime = 0.7
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_n4esg")
 draw_pass_1 = SubResource("QuadMesh_s1cyh")
+
+[node name="SeWaterSplash" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_ruqw8")
+volume_db = -10.0
+autoplay = true
+bus = &"reverbSFX"

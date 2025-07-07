@@ -1,4 +1,4 @@
-[gd_scene load_steps=201 format=4 uid="uid://dnhqx604sbfxq"]
+[gd_scene load_steps=202 format=4 uid="uid://dnhqx604sbfxq"]
 
 [ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_drwxu"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_eef4w"]
@@ -621,7 +621,7 @@ subdivide_width = 100
 subdivide_depth = 100
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c3xxh"]
-size = Vector3(200, 1, 200)
+size = Vector3(200, 69, 200)
 
 [sub_resource type="Curve" id="Curve_kiapq"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.29484, 1), 0.0, 0.0, 0, 0, Vector2(0.577396, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -713,6 +713,9 @@ rings = 4
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_53fbd"]
 radius = 2.0
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_53fbd"]
+size = Vector3(200, 1, 200)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_uejp2"]
 
@@ -1243,8 +1246,9 @@ script = ExtResource("8_c3xxh")
 metadata/_custom_type_script = "uid://bum83qjydbkg7"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="enviro/water/splash"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34.75, 0)
 shape = SubResource("BoxShape3D_c3xxh")
-debug_color = Color(0.689743, 0.7, 0, 0.42)
+debug_color = Color(0, 0.0999999, 1, 1)
 
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="enviro"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2, 3.4, 69.8)
@@ -1339,8 +1343,8 @@ metadata/_custom_type_script = "uid://c0muddf08l6bb"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="KillPlane"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8, 0, 12.5)
-shape = SubResource("BoxShape3D_c3xxh")
-debug_color = Color(0.689743, 0.7, 0, 0.42)
+shape = SubResource("BoxShape3D_53fbd")
+debug_color = Color(0.965826, 1, 0.321476, 1)
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, -14.5, 26.5)

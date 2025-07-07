@@ -54,6 +54,11 @@ func exit() -> void:
 func footsteps(delta : float) -> void:
     stepTimer += delta
     if stepTimer > 0.28:
-        player.sounds["step"].pitch_scale = randf_range(0.9, 1.1)
-        player.sounds["step"].play()
-        stepTimer = 0
+        if player.is_underwater():
+            player.sounds["waterStep"].pitch_scale = randf_range(0.9, 1.1)
+            player.sounds["waterStep"].play()
+            stepTimer = 0
+        else:
+            player.sounds["step"].pitch_scale = randf_range(0.9, 1.1)
+            player.sounds["step"].play()
+            stepTimer = 0
