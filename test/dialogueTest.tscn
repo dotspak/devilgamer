@@ -1,6 +1,5 @@
-[gd_scene load_steps=19 format=3 uid="uid://bctq4y64ff6kn"]
+[gd_scene load_steps=18 format=3 uid="uid://bctq4y64ff6kn"]
 
-[ext_resource type="PackedScene" uid="uid://cm1qrmroln5o6" path="res://scenes/player/owPlayer3D.tscn" id="1_fmbjk"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="2_f5nsq"]
 [ext_resource type="Script" uid="uid://06h4bswwg3ul" path="res://src/interactable.gd" id="3_35y5e"]
 [ext_resource type="Resource" uid="uid://dckm60bb0yagx" path="res://dialogue/testDialogue/test_npc1.dialogue" id="4_35y5e"]
@@ -43,13 +42,13 @@ albedo_color = Color(0.779784, 0.70439, 1, 1)
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
 
-[sub_resource type="Sky" id="Sky_f5nsq"]
+[sub_resource type="Sky" id="Sky_rp6ir"]
 sky_material = SubResource("ProceduralSkyMaterial_35y5e")
 
 [sub_resource type="Environment" id="Environment_rp6ir"]
 background_mode = 1
 background_color = Color(0.559094, 0.557206, 0.959375, 1)
-sky = SubResource("Sky_f5nsq")
+sky = SubResource("Sky_rp6ir")
 tonemap_mode = 2
 glow_enabled = true
 
@@ -58,9 +57,6 @@ glow_enabled = true
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
 shadow_enabled = true
-
-[node name="player" parent="." instance=ExtResource("1_fmbjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0.5, 0.75)
 
 [node name="floor" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_rp6ir")

@@ -167,6 +167,7 @@ func handle_water_change(color : Color = Color.ALICE_BLUE) -> void:
 
 # removes visual effects changes when exiting water
 func handle_water_exit() -> void:
+	hide_breath_bar()
 	var waterOverlay : Control = %waterOverlay
 	var TW : Tween = create_tween()
 	TW.tween_property(waterOverlay, "modulate:a", 0, 0.2).from(WATERALPHA)
@@ -314,6 +315,37 @@ func hide_battle_ui() -> void:
 	anim.play_backwards("displayBattleHUD")
 	await anim.animation_finished
 	%battleHud.hide()
+
+
+func change_max_breath(val : float) -> void: 
+	%airProgress.max_value = val
+	$UI/breathBar.hide()
+	
+func update_breath_bar(val : float) -> void:
+	%airProgress.value = max(val, 0.0000001)
+	if %airProgress.max_value - val >= 1.0:
+		if !$UI/breathBar.visible:
+			show_breath_bar()
+
+
+func show_breath_bar() -> void:
+	var container : Control = $UI/breathBar
+	container.show()
+	var TW : Tween = create_tween().set_parallel()
+
+	TW.tween_property(container, "position:y", 0, 0.2).from(-20).set_trans(Tween.TRANS_BACK)
+	TW.tween_property(container, "modulate:a", 1, 0.2).from(0)
+	await TW.finished
+
+
+func hide_breath_bar() -> void:
+	var container : Control = $UI/breathBar
+	var TW : Tween = create_tween().set_parallel()
+
+	TW.tween_property(container, "position:y", -20, 0.2)
+	TW.tween_property(container, "modulate:a", 0, 0.2)
+	await TW.finished
+	container.hide()
 
 
 func add_ui(node : Node) -> void: $UI.add_child(node)

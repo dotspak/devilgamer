@@ -29,6 +29,11 @@ func _ready():
 	interactArea.body_exited.connect(hide_interact_bubble)
 
 
+# overwrite this function to make more complex cutscenes.
+func init_cutscene() -> void:
+	await display_dialogue()
+
+
 func orient_player_to_interaction() -> void:
 	if !GameManager.player: return
 	
@@ -42,8 +47,15 @@ func run_interaction() -> void:
 	interactionBegin.emit()
 	GameManager.hide_battle_ui()
 
-	# face the player to the npc
-	orient_player_to_interaction()
+	# runs the cutscene
+	await init_cutscene()
+
+	interactionFinished.emit()
+	GameManager.show_battle_ui() 
+
+
+func display_dialogue(facePlayer : bool = true) -> void:
+	if facePlayer: orient_player_to_interaction()
 
 	# creates the camera that shows player and npc
 	var camera : PhantomCamera3D = CameraManager.create_conversation_camera(self)
@@ -62,8 +74,6 @@ func run_interaction() -> void:
 	CameraManager.enable_main_cam()
 	GameManager.player.enable_input()
 	camera.queue_free()
-	interactionFinished.emit()
-	GameManager.show_battle_ui()
 
 
 func display_interact_bubble(body : Node3D) -> void:

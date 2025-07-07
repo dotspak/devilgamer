@@ -49,6 +49,7 @@ const maxPitch : float = 50
 @onready var stairRayAhead : RayCast3D = %stairRayAhead
 
 @onready var basicAttackCooldown : Timer = %basicAttackCooldown
+#@onready var breathTimer : Timer = %breathTimer
 
 @onready var pCamHost : PhantomCameraHost = %PhantomCameraHost
 @onready var mainCam : PhantomCamera3D = %mainCam
@@ -73,6 +74,17 @@ var lastSafePosition : Vector3 = Vector3.ZERO
 
 var inWater : bool = false
 var headInWater : bool = false
+var maxBreath : float = 20 :
+	set(val):
+		maxBreath = val
+		breathTimer = maxBreath
+		print("updating max breath")
+		GameManager.change_max_breath(maxBreath)
+
+var breathTimer : float = 0 :
+	set(val):
+		breathTimer = val
+		GameManager.update_breath_bar(breathTimer)
 
 # stair detection variables
 const MAX_STEP_HEIGHT : float = 0.5
@@ -84,9 +96,12 @@ var currentLadder : Area3D = null
 var targetIndicator : Node3D = null
 var isLockedOn : bool = false
 
+
 func _ready() -> void:
 	if get_tree().debug_collisions_hint: %ledgePoint.show()
 	else: %ledgePoint.hide()
+
+	GameManager.change_max_breath(maxBreath)
 
 	mainCam.priority = 1
 	lockCam.priority = 0
@@ -154,6 +169,13 @@ func _physics_process(delta: float) -> void:
 			if !targetBodies.has(skillTarget):
 				print("looking for new target")
 				skillTarget = get_closest_target()
+		
+		# handle drowning logic
+		if headInWater:
+			breathTimer -= delta
+			if breathTimer <= 0:
+				breathTimer = INF
+				respawn()
 	
 	if !movementAllowed: velocity = lerp(velocity, Vector3.ZERO, stopMoveWeight)
 
@@ -474,6 +496,7 @@ func _on_head_area_entered(area : Area3D) -> void:
 	if area is WaterArea3D:
 		print("player head has entered water")
 		headInWater = true
+		breathTimer = maxBreath
 		GameManager.handle_water_change(area.get_water_color())
 
 

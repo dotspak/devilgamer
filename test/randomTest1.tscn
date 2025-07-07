@@ -1,0 +1,121 @@
+[gd_scene load_steps=18 format=3 uid="uid://dgf7ieml1tky6"]
+
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_gjpta"]
+[ext_resource type="Script" uid="uid://bum83qjydbkg7" path="res://src/waterArea3D.gd" id="2_0aefn"]
+[ext_resource type="Shader" uid="uid://qqmyy4kv5o7o" path="res://shaders/water.tres" id="2_x1j1m"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x1j1m"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_f5nsq"]
+sky_material = SubResource("ProceduralSkyMaterial_x1j1m")
+
+[sub_resource type="Environment" id="Environment_mkxj7"]
+background_mode = 1
+background_color = Color(0.559094, 0.557206, 0.959375, 1)
+sky = SubResource("Sky_f5nsq")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_35y5e"]
+albedo_texture = ExtResource("1_gjpta")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ci7hy"]
+material = SubResource("StandardMaterial3D_35y5e")
+size = Vector3(20, 1, 40)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0aefn"]
+points = PackedVector3Array(10, 0.5, 20, 10, -0.5, 20, 10, 0.5, -20, -10, 0.5, 20, -10, -0.5, 20, 10, -0.5, -20, -10, 0.5, -20, -10, -0.5, -20)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mqenx"]
+size = Vector3(1, 5, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_be56c"]
+albedo_color = Color(0.232813, 0.232813, 0.232813, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gieag"]
+size = Vector3(1, 5, 4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ywmvu"]
+size = Vector3(1, 5, 10)
+
+[sub_resource type="PrismMesh" id="PrismMesh_lxdyf"]
+left_to_right = 0.0
+size = Vector3(9, 5, 4)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mkxj7"]
+render_priority = 0
+shader = ExtResource("2_x1j1m")
+shader_parameter/WaveStrength = 0.1
+shader_parameter/WaveSpeed = 0.02
+shader_parameter/waveColor = Color(0.876691, 1, 0.982025, 1)
+shader_parameter/color = Color(0.229935, 0.852795, 1, 1)
+shader_parameter/texturescale = 1.0
+shader_parameter/alpha = 0.1
+
+[sub_resource type="BoxMesh" id="BoxMesh_15d66"]
+lightmap_size_hint = Vector2i(69, 96)
+material = SubResource("ShaderMaterial_mkxj7")
+size = Vector3(4, 4.5, 9)
+subdivide_width = 4
+subdivide_height = 4
+subdivide_depth = 4
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gjpta"]
+size = Vector3(4, 4.5, 8)
+
+[node name="RandomTest1" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mkxj7")
+
+[node name="floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ci7hy")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_0aefn")
+
+[node name="waterbox" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6.25)
+
+[node name="wall" type="CSGMesh3D" parent="waterbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 3, -5)
+use_collision = true
+mesh = SubResource("BoxMesh_mqenx")
+material = SubResource("StandardMaterial3D_be56c")
+
+[node name="wall2" type="CSGMesh3D" parent="waterbox"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.25, 3, -9.5)
+use_collision = true
+mesh = SubResource("BoxMesh_gieag")
+material = SubResource("StandardMaterial3D_be56c")
+
+[node name="wall3" type="CSGMesh3D" parent="waterbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 3, -5)
+use_collision = true
+mesh = SubResource("BoxMesh_ywmvu")
+material = SubResource("StandardMaterial3D_be56c")
+
+[node name="ramp" type="CSGMesh3D" parent="waterbox"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0.25, 3, -4.5)
+use_collision = true
+mesh = SubResource("PrismMesh_lxdyf")
+material = SubResource("StandardMaterial3D_be56c")
+
+[node name="water" type="MeshInstance3D" parent="waterbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.75, -4.5)
+mesh = SubResource("BoxMesh_15d66")
+skeleton = NodePath("../..")
+
+[node name="WaterArea3D" type="Area3D" parent="waterbox/water"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, -2.5, 4.5)
+script = ExtResource("2_0aefn")
+metadata/_custom_type_script = "uid://bum83qjydbkg7"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="waterbox/water/WaterArea3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 2.5, -4)
+shape = SubResource("BoxShape3D_gjpta")
