@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bf50s1a1ettqj"]
 
 [ext_resource type="Script" uid="uid://c7c0vui0cvtay" path="res://src/global/audioManager.gd" id="1_turgw"]
-[ext_resource type="AudioStream" uid="uid://dgwpnc8moyl0t" path="res://assets/audio/voiceSFX/se_talk_defTalk.wav" id="2_a02mn"]
+[ext_resource type="AudioStream" uid="uid://mas57o4ri2uq" path="res://assets/audio/voiceSFX/TALK_def.ogg" id="2_mohs4"]
 [ext_resource type="AudioStream" uid="uid://clin8uuam2g5q" path="res://addons/kenney_interface_sounds/click_002.wav" id="4_thxen"]
 [ext_resource type="AudioStream" uid="uid://3u8mu3kahwj5" path="res://assets/audio/sfx/SE_confirm.wav" id="5_thxen"]
 [ext_resource type="AudioStream" uid="uid://t30a7867qhxu" path="res://assets/audio/sfx/SE_cancel.wav" id="6_khqfk"]
@@ -13,11 +13,13 @@ script = ExtResource("1_turgw")
 unique_name_in_owner = true
 
 [node name="def" type="AudioStreamPlayer" parent="talkSounds"]
-stream = ExtResource("2_a02mn")
+stream = ExtResource("2_mohs4")
+volume_db = -5.0
 bus = &"talkSFX"
 
 [node name="object" type="AudioStreamPlayer" parent="talkSounds"]
-stream = ExtResource("4_thxen")
+stream = ExtResource("2_mohs4")
+volume_db = -5.0
 bus = &"talkSFX"
 
 [node name="uiSounds" type="Node" parent="."]

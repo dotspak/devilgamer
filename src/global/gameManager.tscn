@@ -712,7 +712,7 @@ _data = {
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_kv0tk")
-areas = Array[ExtResource("2_oucsi")]([ExtResource("5_va82q"), ExtResource("4_d6bmg"), ExtResource("3_y5kg3")])
+areas = Array[ExtResource("2_oucsi")]([ExtResource("4_d6bmg"), ExtResource("5_va82q"), ExtResource("3_y5kg3")])
 
 [node name="world" type="CanvasLayer" parent="."]
 layer = 5

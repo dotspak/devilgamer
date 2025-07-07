@@ -38,7 +38,7 @@ runtime/balloon_path="res://ui/dialogue/ui_msgBox2.tscn"
 
 window/size/viewport_width=896
 window/size/viewport_height=504
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [dotnet]

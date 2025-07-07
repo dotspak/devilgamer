@@ -22,6 +22,8 @@ func _ready():
 		# load talk sounds
 		if i < %talkSounds.get_child_count():
 			talkSounds[%talkSounds.get_child(i).name] = %talkSounds.get_child(i)
+	
+	print("Loaded all sounds: \n", talkSounds, "\n", uiSounds)
 
 
 func play_bgm(bgm : AudioStream, volume : float = 1.0, pitch : float = 1.0, fadeIn : float = 0.0, altPlayer : AudioStreamPlayer = null) -> void:

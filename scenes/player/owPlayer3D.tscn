@@ -174,7 +174,7 @@ collision_mask = 5
 script = ExtResource("1_yhvw8")
 sounds = {
 "respawn": NodePath("sounds/respawn"),
-"step": NodePath("sounds/footstep"),
+"step": NodePath("sounds/foot"),
 "void": NodePath("sounds/voidOut"),
 "waterStep": NodePath("sounds/waterStep")
 }
@@ -395,12 +395,12 @@ one_shot = true
 
 [node name="sounds" type="Node3D" parent="."]
 
-[node name="footstep" type="AudioStreamPlayer3D" parent="sounds"]
+[node name="foot" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("18_sws5g")
-volume_db = 40.0
-bus = &"SFX"
+volume_db = -10.0
+bus = &"reverbSFX"
 
-[node name="waterStep" type="AudioStreamPlayer3D" parent="sounds"]
+[node name="waterStep" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("19_xyfrb")
 volume_db = -15.0
 bus = &"reverbSFX"

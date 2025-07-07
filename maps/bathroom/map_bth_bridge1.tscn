@@ -725,7 +725,8 @@ noise = SubResource("FastNoiseLite_uejp2")
 
 [sub_resource type="FogMaterial" id="FogMaterial_ldve1"]
 density = 8.0
-emission = Color(0.227844, 0.295313, 0.22772, 1)
+albedo = Color(0.310387, 0.308299, 0.471094, 1)
+emission = Color(0.0701633, 0.251836, 0.295313, 1)
 height_falloff = 0.120742
 edge_fade = 0.131951
 density_texture = SubResource("NoiseTexture3D_x1t4m")
@@ -1229,7 +1230,7 @@ omni_range = 32.0
 [node name="mainlight3" type="OmniLight3D" parent="enviro"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3, 36)
 light_color = Color(0.686275, 0.890196, 1, 1)
-light_energy = 16.0
+light_energy = 4.339
 omni_range = 32.0
 
 [node name="water" type="MeshInstance3D" parent="enviro"]
@@ -1347,6 +1348,6 @@ shape = SubResource("BoxShape3D_53fbd")
 debug_color = Color(0.965826, 1, 0.321476, 1)
 
 [node name="FogVolume" type="FogVolume" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, -14.5, 26.5)
-size = Vector3(146.75, 15.3, 209)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, -31.1, 26.5)
+size = Vector3(146.75, 57.5, 209)
 material = SubResource("FogMaterial_ldve1")

@@ -210,19 +210,11 @@ func smooth_hide_responses() -> void:
 
 func _on_dialogue_label_spoke(letter : String, _letter_index : int, _speed : float) -> void:
 	var sound : String = "def" if !AudioManager.talkSounds.has(dialogue_line.character) else dialogue_line.character
-	if dialogue_line.character == "":
+	if dialogue_line.character == "": 
 		sound = "object"
-
-	#var sound : AudioStreamPlayer = (
-		#AudioManager.talkingReferences["def"] 
-		#if !AudioManager.talkingReferences.has(dialogue_line.character)
-		#else AudioManager.talkingReferences[dialogue_line.character])
-	
-	#if dialogue_line.character == "":
-		#sound = AudioManager.talkingReferences["object"]
-
+		
 	if !letter in [".", " ", ",", "!", "?"]:
 		if dialogue_line.character != "":
 			AudioManager.play_talk_sfx(sound, randf_range(0.85, 1.15))
-			#sound.pitch_scale = randf_range(0.85, 1.15)
-		#sound.play()
+		elif sound == "object":
+			AudioManager.play_talk_sfx(sound, randf_range(0.75, 0.79))
