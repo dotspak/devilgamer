@@ -30,9 +30,6 @@ var player : OWPlayer :
 		print("Player set to: ", player)
 		playerChanged.emit(val)
 
-var battleScene : BattleScene3D = null
-var activeParty : Array[ActorSheet]
-
 # World Management ----------------------------
 @export var areas : Array[Area]
 var generatedAreas : Dictionary[String, AreaDef] = {}

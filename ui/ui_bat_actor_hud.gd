@@ -12,7 +12,7 @@ const HP_TIME : float = 0.03
 @onready var atbParticle : GPUParticles2D = %atbParticle
 
 var curHP : int = 999
-var actor : Actor :
+var actor : Node :
 	set(a):
 		actor = a
 		$name.text = actor.charSheet.name
@@ -25,33 +25,33 @@ var actor : Actor :
 
 		# setup signals
 		actor.hpChanged.connect(_hp_changed)
-		actor.elemChanged.connect(_elem_changed)	
+		#actor.elemChanged.connect(_elem_changed)	
 		actor.finishedDying.connect(switch_to_dead_mode)
 		actor.revived.connect(switch_to_normal_mode)
-		actor.phaseChanged.connect(_on_phase_change)
+		#actor.phaseChanged.connect(_on_phase_change)
 
 func _process(_delta: float) -> void:
 	set_hp_text()
-	if actor:
-		if actor.phase != Unit.Phase.QUEUED:
-			var ratio : float = actor.battleTimer.time_left / actor.battleTimer.wait_time
-			atbParticle.amount_ratio = 1 - ratio
+	# if actor:
+	# 	if actor.phase != Unit.Phase.QUEUED:
+	# 		var ratio : float = actor.battleTimer.time_left / actor.battleTimer.wait_time
+	# 		atbParticle.amount_ratio = 1 - ratio
 		
 
-func _on_phase_change(phase : Unit.Phase) -> void:
-	anim.play("ringwipe")
-	await get_tree().create_timer(0.5).timeout
+# func _on_phase_change(phase : Unit.Phase) -> void:
+# 	anim.play("ringwipe")
+# 	await get_tree().create_timer(0.5).timeout
 
-	var TW : Tween = create_tween()
-	TW.tween_property(atbParticle, "speed_scale", 1.4, 0.5)
-	match actor.phase:
-		Unit.Phase.WAITING: atbParticle.self_modulate = Color.WHITE
-		Unit.Phase.CASTING: atbParticle.self_modulate = Color.CADET_BLUE
-		Unit.Phase.QUEUED: atbParticle.amount_ratio = 0
-		Unit.Phase.SELECTING: atbParticle.self_modulate = Color.YELLOW
-		Unit.Phase.DEAD: atbParticle.self_modulate = Color.DARK_ORCHID
-	TW.tween_property(atbParticle, "speed_scale", 0.4, 0.5)
-	await TW.finished
+# 	var TW : Tween = create_tween()
+# 	TW.tween_property(atbParticle, "speed_scale", 1.4, 0.5)
+# 	match actor.phase:
+# 		Unit.Phase.WAITING: atbParticle.self_modulate = Color.WHITE
+# 		Unit.Phase.CASTING: atbParticle.self_modulate = Color.CADET_BLUE
+# 		Unit.Phase.QUEUED: atbParticle.amount_ratio = 0
+# 		Unit.Phase.SELECTING: atbParticle.self_modulate = Color.YELLOW
+# 		Unit.Phase.DEAD: atbParticle.self_modulate = Color.DARK_ORCHID
+# 	TW.tween_property(atbParticle, "speed_scale", 0.4, 0.5)
+# 	await TW.finished
 
 # logic for when the actor's HP changed
 func _hp_changed(HP : float) -> void:
@@ -92,6 +92,6 @@ func damage_anim() -> void:
 	await TW.finished
 
 
-func _elem_changed(elem : Element.Elements) -> void: elemIcon.texture.region.position.x = elem * 6
+#func _elem_changed(elem : Element.Elements) -> void: elemIcon.texture.region.position.x = elem * 6
 func switch_to_dead_mode() -> void: pass
 func switch_to_normal_mode() -> void: pass

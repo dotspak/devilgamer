@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=50 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://knqf3kp1d0ak" path="res://assets/particles/pe_messy.png" id="10_c2bp1"]
 [ext_resource type="Shader" uid="uid://cgoa181d3u6xp" path="res://shaders/textBox.tres" id="11_ofr1g"]
 [ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="12_qfiq7"]
-[ext_resource type="PackedScene" uid="uid://mahlbmatlqf2" path="res://ui/ui_mcPortrait.tscn" id="13_qfiq7"]
 [ext_resource type="AudioStream" uid="uid://cabmnix1qrru8" path="res://assets/audio/bgs/bgs_static.ogg" id="15_ofr1g"]
 
 [sub_resource type="Curve" id="Curve_hc8e2"]
@@ -1071,10 +1070,6 @@ visible = false
 layout_mode = 2
 
 [node name="epiaHud" parent="UI/battleHud/MarginContainer/actorHuds" instance=ExtResource("10_bdi3q")]
-layout_mode = 2
-
-[node name="mcPortrait" parent="UI/battleHud/MarginContainer/actorHuds" instance=ExtResource("13_qfiq7")]
-visible = false
 layout_mode = 2
 
 [node name="bossBar" type="Control" parent="UI"]
