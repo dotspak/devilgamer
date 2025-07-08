@@ -177,7 +177,7 @@ default_value = 0.4
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_toon, specular_toon;
 
 uniform float WaveStrength = 0.40000000596046;
 uniform float WaveSpeed = 0.10000000149012;
@@ -388,7 +388,8 @@ void fragment() {
 
 }
 "
-modes/cull = 2
+modes/diffuse = 3
+modes/specular = 1
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_xw8xi")
 nodes/vertex/2/position = Vector2(-800, 160)
 nodes/vertex/3/node = SubResource("VisualShaderNodeUVFunc_243dc")

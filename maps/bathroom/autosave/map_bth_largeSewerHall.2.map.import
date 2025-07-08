@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cggckpctvfq7m"
+path="res://.godot/imported/map_bth_largeSewerHall.2.map-325bec1b324c13020d3cd9e15df2ccbf.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/autosave/map_bth_largeSewerHall.2.map"
+dest_files=["res://.godot/imported/map_bth_largeSewerHall.2.map-325bec1b324c13020d3cd9e15df2ccbf.tres"]
+
+[params]
+

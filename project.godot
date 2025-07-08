@@ -220,6 +220,7 @@ textures/default_filters/use_nearest_mipmap_filter=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 textures/decals/filter=2
 textures/light_projectors/filter=2
+environment/volumetric_fog/use_filter=0
 
 [shader_globals]
 

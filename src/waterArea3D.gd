@@ -4,6 +4,7 @@ class_name WaterArea3D
 @export var splash_effect : PackedScene = preload("res://scenes/particles/waterSplash.tscn")
 
 func _ready() -> void: 
+	collision_mask = 22
 	body_entered.connect(_on_body_entered)
 
 
@@ -28,4 +29,5 @@ func get_water_color() -> Color:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D || body is RigidBody3D: 
+		print("yump")
 		water_splash(body.global_position)
