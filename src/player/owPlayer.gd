@@ -49,7 +49,6 @@ const maxPitch : float = 50
 @onready var stairRayAhead : RayCast3D = %stairRayAhead
 
 @onready var basicAttackCooldown : Timer = %basicAttackCooldown
-#@onready var breathTimer : Timer = %breathTimer
 
 @onready var pCamHost : PhantomCameraHost = %PhantomCameraHost
 @onready var mainCam : PhantomCamera3D = %mainCam
@@ -71,7 +70,10 @@ var gravity : float = -40
 var airTimer : float = 0
 var canGrabLedge : bool = true
 
-var lastSafePosition : Vector3 = Vector3.ZERO
+var lastSafePosition : Vector3 = Vector3.ZERO :
+	set(val):
+		if headInWater: return
+		lastSafePosition = val
 
 var inWater : bool = false
 var headInWater : bool = false

@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://deitn0biuaaf6"
+path="res://.godot/imported/map_bth_pool1.1.map-78a1b3fdb20493cc8324464c9c999a63.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/autosave/map_bth_pool1.1.map"
+dest_files=["res://.godot/imported/map_bth_pool1.1.map-78a1b3fdb20493cc8324464c9c999a63.tres"]
+
+[params]
+

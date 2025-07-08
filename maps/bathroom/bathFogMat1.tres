@@ -1,0 +1,15 @@
+[gd_resource type="FogMaterial" load_steps=3 format=3 uid="uid://b4j2e2017rnxx"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uejp2"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_x1t4m"]
+seamless_blend_skirt = 1.0
+noise = SubResource("FastNoiseLite_uejp2")
+
+[resource]
+density = 8.0
+albedo = Color(0.310387, 0.308299, 0.471094, 1)
+emission = Color(0.0701633, 0.251836, 0.295313, 1)
+height_falloff = 0.120742
+edge_fade = 0.131951
+density_texture = SubResource("NoiseTexture3D_x1t4m")

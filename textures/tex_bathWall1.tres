@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://1h2ut3uo1je5"]
+
+[ext_resource type="Texture2D" uid="uid://dwwampblr81im" path="res://textures/tex_bathWall1.png" id="1_571hn"]
+[ext_resource type="Texture2D" uid="uid://ci8ycj6gs1hpy" path="res://textures/norm_bathWall1.png" id="2_rpcmh"]
+
+[resource]
+diffuse_mode = 3
+albedo_texture = ExtResource("1_571hn")
+metallic = 0.68
+metallic_specular = 0.96
+roughness = 0.77
+normal_enabled = true
+normal_scale = 2.63
+normal_texture = ExtResource("2_rpcmh")
+texture_filter = 2

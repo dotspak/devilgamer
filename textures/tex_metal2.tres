@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://bjiwfc4jahkw4" path="res://textures/norm_metal2.png" id="2_3fuws"]
 
 [resource]
+diffuse_mode = 3
 albedo_texture = ExtResource("1_7gxnf")
 metallic = 0.73
-metallic_specular = 0.97
-roughness = 0.71
+metallic_specular = 1.0
+roughness = 0.46
 normal_enabled = true
 normal_scale = 1.6
 normal_texture = ExtResource("2_3fuws")

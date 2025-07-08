@@ -16,9 +16,13 @@ func water_splash(pos : Vector3) -> void:
 
 	
 func get_water_color() -> Color:
-	var plane : MeshInstance3D = get_parent()
-	if plane and plane.material_override is ShaderMaterial:
-		return plane.material_override.get_shader_parameter("color")
+	var water : Node3D = get_parent()
+	var mat : Material = null
+	if water is MeshInstance3D: mat = water.get_active_material(0)
+	elif water is CSGBox3D: mat = water.material
+
+	if water && mat && mat is ShaderMaterial:
+		return mat.get_shader_parameter("color")
 	return Color.ALICE_BLUE
 
 

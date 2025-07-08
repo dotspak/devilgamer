@@ -1,4 +1,4 @@
-[gd_scene load_steps=202 format=4 uid="uid://dnhqx604sbfxq"]
+[gd_scene load_steps=200 format=4 uid="uid://dnhqx604sbfxq"]
 
 [ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_drwxu"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_eef4w"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c54uxkb2kkknm" path="res://scenes/exitPointer.tscn" id="17_aruku"]
 [ext_resource type="Script" uid="uid://06h4bswwg3ul" path="res://src/interactable.gd" id="17_t5x2d"]
 [ext_resource type="Resource" uid="uid://bypaeih3gmyah" path="res://dialogue/bathroom/bath_npc_woundedGirl.dialogue" id="18_2lw2u"]
+[ext_resource type="Material" uid="uid://b4j2e2017rnxx" path="res://maps/bathroom/bathFogMat1.tres" id="22_4y6fo"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_tm08v"]
 _surfaces = [{
@@ -717,20 +718,6 @@ radius = 2.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_53fbd"]
 size = Vector3(200, 1, 200)
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_uejp2"]
-
-[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_x1t4m"]
-seamless_blend_skirt = 1.0
-noise = SubResource("FastNoiseLite_uejp2")
-
-[sub_resource type="FogMaterial" id="FogMaterial_ldve1"]
-density = 8.0
-albedo = Color(0.310387, 0.308299, 0.471094, 1)
-emission = Color(0.0701633, 0.251836, 0.295313, 1)
-height_falloff = 0.120742
-edge_fade = 0.131951
-density_texture = SubResource("NoiseTexture3D_x1t4m")
-
 [node name="bathroom_bridge1" type="Node3D" node_paths=PackedStringArray("chests", "npcs", "exits")]
 script = ExtResource("1_drwxu")
 roomName = "Pipe Bridge"
@@ -1350,4 +1337,4 @@ debug_color = Color(0.965826, 1, 0.321476, 1)
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, -31.1, 26.5)
 size = Vector3(146.75, 57.5, 209)
-material = SubResource("FogMaterial_ldve1")
+material = ExtResource("22_4y6fo")

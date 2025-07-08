@@ -5,8 +5,10 @@
 
 [resource]
 diffuse_mode = 3
-specular_mode = 1
 albedo_texture = ExtResource("1_4o1vj")
+metallic = 0.09
+metallic_specular = 0.0
+roughness = 0.27
 normal_enabled = true
 normal_scale = 3.0
 normal_texture = ExtResource("2_4b1ny")
