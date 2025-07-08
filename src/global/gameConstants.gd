@@ -1,3 +1,4 @@
+@icon("res://icons/gameConstants.svg")
 extends Node
 
 # elemental effects

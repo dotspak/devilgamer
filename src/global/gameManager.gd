@@ -1,3 +1,4 @@
+@icon("res://icons/gameManager.svg")
 # gameManager.gd ------------------------------------
 # stores global values and references, ie) party info,
 # current scene, if in battle, etc.

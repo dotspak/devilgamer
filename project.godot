@@ -22,10 +22,10 @@ buses/default_bus_layout="uid://ep0h8ybs1rmn"
 
 [autoload]
 
-GameManager="*res://src/global/gameManager.tscn"
 GameConstants="*res://src/global/gameConstants.gd"
-DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+GameManager="*res://src/global/gameManager.tscn"
 AudioManager="*res://src/global/audioManager.tscn"
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneManager="*res://src/global/sceneManager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 CameraManager="*res://src/global/cameraManager.tscn"

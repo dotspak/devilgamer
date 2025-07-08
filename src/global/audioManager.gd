@@ -1,3 +1,4 @@
+@icon("res://icons/audioManager.svg")
 extends Node
 
 @onready var bgmPlayer : AudioStreamPlayer = %BGM
