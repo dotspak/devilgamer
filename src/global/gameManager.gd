@@ -36,7 +36,7 @@ var player : OWPlayer :
 var generatedAreas : Dictionary[String, AreaDef] = {}
 var startingArea : String = ""
 
-const WATERALPHA : float = 0.5
+const WATERALPHA : float = 0.3
 var isUnderwater : bool = false
 
 signal playerChanged(player : OWPlayer)
@@ -161,8 +161,9 @@ func fadein_screen(time : float = 1.0, color : Color = Color.BLACK) -> void:
 func handle_water_change(color : Color = Color.ALICE_BLUE) -> void:
 	var waterOverlay : Control = %waterOverlay
 	var TW : Tween = create_tween()
-	waterOverlay.get_node("color").color = color
-	TW.tween_property(waterOverlay, "modulate:a", WATERALPHA, 0.2).from(0.0)
+	%wavy.material.set_shader_parameter("color", Vector4(color.r, color.g, color.b, 0))
+	TW.tween_property(%wavy.material, "shader_parameter/color", Vector4(color.r, color.g, color.b, WATERALPHA), 0.2)
+	waterOverlay.show()
 	await TW.finished
 
 
@@ -171,8 +172,11 @@ func handle_water_exit() -> void:
 	hide_breath_bar()
 	var waterOverlay : Control = %waterOverlay
 	var TW : Tween = create_tween()
-	TW.tween_property(waterOverlay, "modulate:a", 0, 0.2).from(WATERALPHA)
+	var color : Vector4 = %wavy.material.get_shader_parameter("color")
+	color.w = 0
+	TW.tween_property(%wavy.material, "shader_parameter/color", color, 0.2)
 	await TW.finished
+	waterOverlay.hide()
 
 
 # --------------------------------------------------------------------

@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=64 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -8,7 +8,9 @@
 [ext_resource type="Resource" uid="uid://c7jpqltt5m0cl" path="res://maps/freezer/area_freezer.tres" id="5_va82q"]
 [ext_resource type="Shader" uid="uid://ipqynyjtfkkj" path="res://shaders/crtShader.gdshader" id="7_dmym8"]
 [ext_resource type="Material" uid="uid://dr52yj2jvqaa7" path="res://shaders/psx/post_process/dither-banding_mat.tres" id="7_qbj2a"]
+[ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="7_s6qcl"]
 [ext_resource type="Texture2D" uid="uid://dfmamnkm6o5lp" path="res://assets/particles/pe_box1.png" id="8_dmym8"]
+[ext_resource type="Shader" uid="uid://cbldjuh3xpygm" path="res://shaders/waveShader.gdshader" id="8_uc4fk"]
 [ext_resource type="AudioStream" uid="uid://efj5ex35psoa" path="res://assets/audio/sfx/SE_areaIntro2.ogg" id="9_be743"]
 [ext_resource type="PackedScene" uid="uid://dcmh2ym2mquds" path="res://ui/ui_bat_actorHud.tscn" id="10_bdi3q"]
 [ext_resource type="Texture2D" uid="uid://knqf3kp1d0ak" path="res://assets/particles/pe_messy.png" id="10_c2bp1"]
@@ -16,6 +18,31 @@
 [ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="12_qfiq7"]
 [ext_resource type="Texture2D" uid="uid://dugjrfbjh3gge" path="res://assets/particles/pe_bubbleLayer.png" id="14_qfiq7"]
 [ext_resource type="AudioStream" uid="uid://cabmnix1qrru8" path="res://assets/audio/bgs/bgs_static.ogg" id="15_ofr1g"]
+
+[sub_resource type="Gradient" id="Gradient_s6qcl"]
+colors = PackedColorArray(0.620382, 0.673866, 0.955469, 1, 1, 1, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_uc4fk"]
+noise_type = 2
+frequency = 0.0248
+fractal_type = 2
+fractal_octaves = 2
+fractal_lacunarity = 2.24
+fractal_gain = 0.4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_s6qcl"]
+width = 128
+height = 128
+seamless = true
+color_ramp = SubResource("Gradient_s6qcl")
+noise = SubResource("FastNoiseLite_uc4fk")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6qcl"]
+shader = ExtResource("8_uc4fk")
+shader_parameter/color = Color(0.483, 0.0107614, 0, 1)
+shader_parameter/noise = SubResource("NoiseTexture2D_s6qcl")
+shader_parameter/speed = Vector2(0.03, 0.07)
+shader_parameter/waveStrength = 5.0
 
 [sub_resource type="Curve" id="Curve_hc8e2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.233415, 1), 0.0, 0.0, 0, 0, Vector2(0.749386, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -745,7 +772,7 @@ _data = {
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_kv0tk")
-areas = Array[ExtResource("2_oucsi")]([ExtResource("4_d6bmg"), ExtResource("5_va82q"), ExtResource("3_y5kg3")])
+areas = Array[ExtResource("2_oucsi")]([ExtResource("5_va82q"), ExtResource("4_d6bmg"), ExtResource("3_y5kg3")])
 
 [node name="world" type="CanvasLayer" parent="."]
 layer = 5
@@ -780,7 +807,7 @@ layer = 6
 
 [node name="waterOverlay" type="Control" parent="FX"]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -790,7 +817,19 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
+[node name="TextureRect" type="TextureRect" parent="FX/waterOverlay"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_s6qcl")
+stretch_mode = 1
+
 [node name="color" type="ColorRect" parent="FX/waterOverlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -801,6 +840,7 @@ mouse_filter = 2
 color = Color(0.414682, 0.433296, 1, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="FX/waterOverlay"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -827,6 +867,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="wavy" type="ColorRect" parent="FX/waterOverlay"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_s6qcl")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="AreaIntro" type="CanvasLayer" parent="."]
 layer = 99
