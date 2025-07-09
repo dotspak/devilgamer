@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cotfrplx8bc7"]
+
+[ext_resource type="Texture2D" uid="uid://dvq5x1hxh4e7h" path="res://textures/tex_glass1.png" id="1_6c0cn"]
+
+[resource]
+transparency = 1
+blend_mode = 1
+albedo_texture = ExtResource("1_6c0cn")
+texture_filter = 2
+disable_receive_shadows = true
+proximity_fade_enabled = true

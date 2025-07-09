@@ -716,12 +716,12 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_2lw2u")
 size = Vector2(0.2, 4)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gp402"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x1t4m"]
 render_priority = 0
 shader = ExtResource("10_c3xxh")
 
 [sub_resource type="SphereMesh" id="SphereMesh_idkm6"]
-material = SubResource("ShaderMaterial_gp402")
+material = SubResource("ShaderMaterial_x1t4m")
 radial_segments = 12
 rings = 8
 
@@ -730,7 +730,7 @@ _limits = [0.0, 2.0, 0.0, 1.0]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.53317, 1.37453), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="CurveTexture" id="CurveTexture_7kv8t"]
+[sub_resource type="CurveTexture" id="CurveTexture_ldve1"]
 curve = SubResource("Curve_idkm6")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kndry"]
@@ -747,16 +747,16 @@ radial_accel_max = 4.0
 tangential_accel_min = 4.0
 tangential_accel_max = 10.0
 scale_min = 0.2
-scale_curve = SubResource("CurveTexture_7kv8t")
+scale_curve = SubResource("CurveTexture_ldve1")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kndry"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uxs5m"]
 vertex_color_use_as_albedo = true
 albedo_color = Color(1, 0.204355, 0.786317, 1)
 emission_enabled = true
 emission = Color(0.400414, 0, 1, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kiapq"]
-material = SubResource("StandardMaterial3D_kndry")
+material = SubResource("StandardMaterial3D_uxs5m")
 size = Vector3(0.1, 0.1, 0.1)
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2lw2u"]

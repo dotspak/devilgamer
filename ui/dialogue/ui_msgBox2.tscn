@@ -506,6 +506,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="bgThing" type="ColorRect" parent="Balloon/hbox/vbox/CharacterLabel"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_xvnxq")
 layout_mode = 1
@@ -531,6 +532,7 @@ seconds_per_step = 0.04
 seconds_per_pause_step = 0.2
 
 [node name="bgThing" type="ColorRect" parent="Balloon/hbox/vbox/DialogueLabel"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_5dsq5")
 layout_mode = 1
@@ -552,8 +554,9 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/hbox/ResponsesMenu"]
 layout_mode = 2
+mouse_filter = 1
 theme = ExtResource("5_yg76j")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 20
 text = "Response example"
 script = SubResource("GDScript_60y7i")
 

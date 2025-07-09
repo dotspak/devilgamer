@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://ctcxpyjx1is8s"]
+[gd_scene load_steps=12 format=3 uid="uid://ctcxpyjx1is8s"]
 
 [ext_resource type="Script" uid="uid://cyoexpvuqvp4v" path="res://src/titleScreen.gd" id="1_atem8"]
 [ext_resource type="Texture2D" uid="uid://duotreltf5fr7" path="res://assets/portraits/port_save_epia.png" id="2_uxtqq"]
 [ext_resource type="Texture2D" uid="uid://detqh05jlnc2h" path="res://assets/portraits/port_save_dummy.png" id="3_imref"]
 [ext_resource type="AudioStream" uid="uid://cbk7b2bfuxryp" path="res://assets/audio/bgm/titleDummy.wav" id="3_iul6a"]
+[ext_resource type="Theme" uid="uid://bhb2c5sdcwdru" path="res://ui/defaultTheme.tres" id="4_imref"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iul6a"]
 bg_color = Color(0, 0, 0, 1)
@@ -27,12 +28,6 @@ height = 32
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atem8"]
-bg_color = Color(0.196339, 0.201766, 0.232813, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpt7i"]
-bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uxtqq"]
 bg_color = Color(0, 0, 0, 1)
@@ -300,28 +295,15 @@ alignment = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0.145098, 0.141176, 0.207843, 1)
-theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_vpt7i")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/hover = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vpt7i")
+theme = ExtResource("4_imref")
 text = "create"
 
 [node name="reset" type="Button" parent="MarginContainer/filePage/titleOptions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0.280533, 0.272, 0.4, 1)
+theme = ExtResource("4_imref")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_vpt7i")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/hover = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vpt7i")
 disabled = true
 text = "kill world"
 
@@ -329,14 +311,8 @@ text = "kill world"
 unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 24)
 layout_mode = 2
-theme_override_colors/font_disabled_color = Color(0.145098, 0.141176, 0.207843, 1)
+theme = ExtResource("4_imref")
 theme_override_font_sizes/font_size = 16
-theme_override_styles/focus = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_vpt7i")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/hover = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_atem8")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vpt7i")
 text = "options"
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]

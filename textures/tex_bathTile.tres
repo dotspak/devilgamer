@@ -9,6 +9,6 @@ albedo_color = Color(0.1696, 0.2597, 0.53, 0.101961)
 albedo_texture = ExtResource("1_lcfsb")
 metallic_specular = 0.0
 emission_enabled = true
-emission = Color(1, 0.974811, 0.772186, 1)
+emission = Color(2, 1.4, 0.772, 1)
 emission_energy_multiplier = 1.82
 texture_filter = 2

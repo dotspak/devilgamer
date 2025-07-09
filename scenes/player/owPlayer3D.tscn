@@ -216,7 +216,8 @@ metadata/_custom_type_script = "uid://c3i0t5p8rl76g"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 light_color = Color(1, 0.944116, 0.861228, 1)
 light_volumetric_fog_energy = 0.0
-omni_range = 10.0
+omni_range = 30.0
+omni_attenuation = 2.0
 
 [node name="cameras" type="Node3D" parent="."]
 

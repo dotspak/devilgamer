@@ -6,7 +6,7 @@
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atem8"]
-bg_color = Color(0.196339, 0.201766, 0.232813, 1)
+bg_color = Color(0.280533, 0.272, 0.4, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3n0o"]
 bg_color = Color(0.5, 0, 0, 1)
@@ -25,7 +25,7 @@ content_margin_bottom = 0.0
 [resource]
 default_font = ExtResource("1_xgmaa")
 default_font_size = 12
-Button/colors/font_disabled_color = Color(0.145098, 0.141176, 0.207843, 1)
+Button/colors/font_disabled_color = Color(0.179716, 0.17425, 0.25625, 1)
 Button/font_sizes/font_size = 16
 Button/styles/disabled = SubResource("StyleBoxFlat_vpt7i")
 Button/styles/focus = SubResource("StyleBoxFlat_atem8")
