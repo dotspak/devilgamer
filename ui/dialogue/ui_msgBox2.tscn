@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://cgoa181d3u6xp" path="res://shaders/textBox.tres" id="2_lxr41"]
 [ext_resource type="Script" uid="uid://bb52rsfwhkxbn" path="res://addons/dialogue_manager/dialogue_responses_menu.gd" id="3_5dsq5"]
 [ext_resource type="Texture2D" uid="uid://dwko0lq3esmvs" path="res://assets/ui/ui_cursor.png" id="5_60y7i"]
+[ext_resource type="Theme" uid="uid://bhb2c5sdcwdru" path="res://ui/defaultTheme.tres" id="5_yg76j"]
 
 [sub_resource type="Gradient" id="Gradient_extct"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -97,19 +98,12 @@ shader = ExtResource("2_lxr41")
 shader_parameter/speed = 1.0
 shader_parameter/radius = 10.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_abonc"]
-content_margin_left = 10.0
-content_margin_top = 8.0
-content_margin_right = 10.0
-content_margin_bottom = 8.0
-bg_color = Color(0.388261, 0.382743, 0.654688, 1)
+[sub_resource type="GDScript" id="GDScript_60y7i"]
+script/source = "extends Button
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_grt5q"]
-content_margin_left = 10.0
-content_margin_top = 4.0
-content_margin_right = 10.0
-content_margin_bottom = 4.0
-bg_color = Color(0, 0, 0, 1)
+func _on_focus_entered() -> void: AudioManager.play_ui_sfx(\"cursor\")
+func _on_pressed() -> void: AudioManager.play_ui_sfx(\"confirm\")
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lxr41"]
 shader = ExtResource("2_lxr41")
@@ -558,13 +552,13 @@ response_template = NodePath("ResponseExample")
 
 [node name="ResponseExample" type="Button" parent="Balloon/hbox/ResponsesMenu"]
 layout_mode = 2
-theme_override_constants/outline_size = 4
-theme_override_styles/focus = SubResource("StyleBoxFlat_abonc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_abonc")
-theme_override_styles/normal = SubResource("StyleBoxFlat_grt5q")
+theme = ExtResource("5_yg76j")
+theme_override_font_sizes/font_size = 16
 text = "Response example"
+script = SubResource("GDScript_60y7i")
 
 [node name="bgThing" type="ColorRect" parent="Balloon/hbox/ResponsesMenu/ResponseExample"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_lxr41")
 layout_mode = 1
@@ -610,3 +604,5 @@ autoplay = "display"
 [connection signal="spoke" from="Balloon/hbox/vbox/DialogueLabel" to="." method="_on_dialogue_label_spoke"]
 [connection signal="response_selected" from="Balloon/hbox/ResponsesMenu" to="." method="_on_responses_menu_response_selected"]
 [connection signal="visibility_changed" from="Balloon/hbox/ResponsesMenu" to="Balloon" method="_on_responses_menu_visibility_changed"]
+[connection signal="focus_entered" from="Balloon/hbox/ResponsesMenu/ResponseExample" to="Balloon/hbox/ResponsesMenu/ResponseExample" method="_on_focus_entered"]
+[connection signal="pressed" from="Balloon/hbox/ResponsesMenu/ResponseExample" to="Balloon/hbox/ResponsesMenu/ResponseExample" method="_on_pressed"]

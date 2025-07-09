@@ -18,7 +18,7 @@ const minPitch : float = -89.9
 const maxPitch : float = 50
 
 @export_category("Camera Controls")
-@export_range(0,1) var mouseSensitivity : float = 0.05
+@export_range(0,1) var camSensitivity : float = 0.05
 
 @export_group("Movement")
 @export var speed : float = 8
@@ -117,18 +117,17 @@ func _ready() -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if inputAllowed:
 		# handles mouse camera control
-		if useMouseInput:
-			if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
-				if inputAllowed:
-					var camRotation : Vector3 = mainCam.get_third_person_rotation_degrees()
+		if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			if inputAllowed:
+				var camRotation : Vector3 = mainCam.get_third_person_rotation_degrees()
 
-					camRotation.x -= event.relative.y * mouseSensitivity
-					camRotation.x = clampf(camRotation.x, minPitch, maxPitch)
-					
-					camRotation.y -= event.relative.x * mouseSensitivity
-					camRotation.y = wrapf(camRotation.y, minYaw, maxYaw)
+				camRotation.x -= event.relative.y * camSensitivity
+				camRotation.x = clampf(camRotation.x, minPitch, maxPitch)
+				
+				camRotation.y -= event.relative.x * camSensitivity
+				camRotation.y = wrapf(camRotation.y, minYaw, maxYaw)
 
-					mainCam.set_third_person_rotation_degrees(camRotation)
+				mainCam.set_third_person_rotation_degrees(camRotation)
 
 		# handles camera lock on/centering camera
 		if Input.is_action_just_pressed("center_camera"): center_camera()
@@ -177,6 +176,21 @@ func _physics_process(delta: float) -> void:
 		
 		# handle drowning logic
 		if headInWater: breathTimer -= delta
+
+		# controller camera
+		var lookX : float = Input.get_action_strength("look_right") - Input.get_action_strength("look_left")
+		var lookY : float = Input.get_action_strength("look_down") - Input.get_action_strength("look_up")
+
+		if abs(lookX) > 0.05 || abs(lookY) > 0.05:
+			var camRotation : Vector3 = mainCam.get_third_person_rotation_degrees()
+
+			camRotation.x -= lookY * camSensitivity * 35
+			camRotation.x = clampf(camRotation.x, minPitch, maxPitch)
+			
+			camRotation.y -= lookX * camSensitivity * 35
+			camRotation.y = wrapf(camRotation.y, minYaw, maxYaw)
+
+			mainCam.set_third_person_rotation_degrees(camRotation)
 	
 	if !movementAllowed: velocity = lerp(velocity, Vector3.ZERO, stopMoveWeight)
 

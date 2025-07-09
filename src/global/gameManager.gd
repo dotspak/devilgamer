@@ -284,6 +284,7 @@ func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, titl
 
 func _start_balloon(balloon: Node, resource: DialogueResource, title: String, extra_game_states: Array) -> void:
 	dialogueWindow.add_child(balloon)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if balloon.has_method(&"start"):
 		balloon.start(resource, title, extra_game_states)

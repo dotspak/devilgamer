@@ -32,13 +32,13 @@ func ledge_input() -> void:
     player.movement_input()
 
     # fall off the ledge
-    if player.moveInput == Vector2.DOWN:
+    if player.moveInput == Vector2.DOWN || Input.is_action_just_pressed("ui_cancel"):
         acceptInput = false
         player.velocity += -player.model.basis.z.normalized() * 4
         stateMachine.transition_to("fall")
 
     # climb up the ledge
-    elif player.moveInput == Vector2.UP:
+    elif player.moveInput == Vector2.UP || Input.is_action_just_pressed("confirm"):
         acceptInput = false
         
         var finalPos : Vector3 = player.ledgeRayVert.get_collision_point()

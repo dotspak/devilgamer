@@ -772,7 +772,7 @@ _data = {
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_kv0tk")
-areas = Array[ExtResource("2_oucsi")]([ExtResource("5_va82q"), ExtResource("4_d6bmg"), ExtResource("3_y5kg3")])
+areas = Array[ExtResource("2_oucsi")]([ExtResource("3_y5kg3"), ExtResource("4_d6bmg"), ExtResource("5_va82q")])
 
 [node name="world" type="CanvasLayer" parent="."]
 layer = 5
@@ -1102,6 +1102,7 @@ theme_override_constants/separation = 8
 [node name="Button" type="Button" parent="UI/battleHud/actions/panel/MarginContainer/actionBox"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_60syl")
 text = " M.Gun"
 icon = ExtResource("12_qfiq7")
@@ -1111,6 +1112,7 @@ expand_icon = true
 [node name="Button2" type="Button" parent="UI/battleHud/actions/panel/MarginContainer/actionBox"]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
+theme_override_font_sizes/font_size = 12
 theme_override_styles/normal = SubResource("StyleBoxFlat_bpcc3")
 text = "Blaze"
 icon = ExtResource("12_qfiq7")
