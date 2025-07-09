@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://c744hg2vgt1e1"]
+[gd_scene load_steps=36 format=4 uid="uid://c744hg2vgt1e1"]
 
 [ext_resource type="Script" uid="uid://gt6undmvkqi1" path="res://src/world/roomToArea.gd" id="1_hgaol"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_cwofs"]
@@ -135,6 +135,15 @@ proximity_fade_enabled = true
 proximity_fade_distance = 5.0
 distance_fade_max_distance = 4.0
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_hgaol"]
+
+[sub_resource type="NoiseTexture3D" id="NoiseTexture3D_cwofs"]
+noise = SubResource("FastNoiseLite_hgaol")
+
+[sub_resource type="FogMaterial" id="FogMaterial_vptat"]
+emission = Color(1, 1, 1, 1)
+density_texture = SubResource("NoiseTexture3D_cwofs")
+
 [node name="testBathTransition" type="Node3D" node_paths=PackedStringArray("spawnPoint", "transitionTrigger", "exits")]
 script = ExtResource("1_hgaol")
 toArea = "Start"
@@ -243,3 +252,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.5, 4.5, 0)
 light_color = Color(1, 0.513029, 0.953494, 1)
 light_energy = 16.0
 omni_range = 10.274
+
+[node name="FogVolume" type="FogVolume" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 5, 0)
+size = Vector3(10, 10, 10)
+material = SubResource("FogMaterial_vptat")
