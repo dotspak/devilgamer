@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://d0ntg81tj2v3e"
+path="res://.godot/imported/map_materialTest.1.map-c63160e0ecdcb382df2871a9ffcf8c64.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/autosave/map_materialTest.1.map"
+dest_files=["res://.godot/imported/map_materialTest.1.map-c63160e0ecdcb382df2871a9ffcf8c64.tres"]
+
+[params]
+
