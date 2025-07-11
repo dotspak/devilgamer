@@ -228,8 +228,15 @@ func move(delta : float) -> void:
 	velocity = velocity.move_toward(moveDir * speed, (
 		accel * accel_idleScale if moveInput == Vector2.ZERO else accel)* delta)
 	
-	var angle : float = Vector3.BACK.signed_angle_to(lastMoveDir, Vector3.UP)
-	model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
+	if !skillTarget:
+		var angle : float = Vector3.BACK.signed_angle_to(lastMoveDir, Vector3.UP)
+		model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
+	elif velocity != Vector3.ZERO:
+		var targetPos : Vector2 = Vector2(skillTarget.global_position.x, skillTarget.global_position.z)
+		var playerPos : Vector2 = Vector2(global_position.x, global_position.z)
+		var dir : Vector2 = -(playerPos - targetPos)
+		var angle : float = atan2(dir.x, dir.y)
+		model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
 
 
 func is_surface_too_steep(normal : Vector3) -> bool: return normal.angle_to(Vector3.UP) > floor_max_angle
@@ -477,6 +484,7 @@ func lock_on() -> void:
 	if !isLockedOn: GameManager.enter_focus_ui()
 	
 	isLockedOn = true
+	model.set_look_target(skillTarget)
 	show_target_indicator()
 
 	lockCam.priority = 1
@@ -491,6 +499,7 @@ func lock_off() -> void:
 	if !isLockedOn: return
 
 	isLockedOn = false
+	model.clear_look_target()
 	hide_target_indicator()
 
 	mainCam.priority = 1

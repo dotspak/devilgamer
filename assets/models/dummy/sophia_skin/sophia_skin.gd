@@ -10,6 +10,7 @@ var run_tilt = 0.0 : set = _set_run_tilt
 @onready var blink_timer = %BlinkTimer
 @onready var closed_eyes_timer = %ClosedEyesTimer
 @onready var eye_mat = $sophia/rig/Skeleton3D/Sophia.get("surface_material_override/2")
+@onready var lookAt : LookAtModifier3D = $sophia/rig/Skeleton3D/LookAtModifier3D
 
 func _ready():
 	blink_timer.connect("timeout", func():
@@ -21,6 +22,9 @@ func _ready():
 		eye_mat.set("uv1_offset", Vector3.ZERO)
 		blink_timer.start(randf_range(1.0, 4.0))
 		)
+
+func set_look_target(target : Node3D) -> void: lookAt.target_node = target.get_path()
+func clear_look_target() -> void: lookAt.target_node = ""
 
 func set_blink(state : bool):
 	if blink == state: return
