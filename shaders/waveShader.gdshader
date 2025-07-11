@@ -9,8 +9,8 @@ uniform float waveStrength = 2;
 
 void fragment() {
 	vec2 uv = UV + speed * TIME;
-	vec2 n = texture(noise, uv).rg; 
-	
+	vec2 n = texture(noise, uv).rg;
+
 	COLOR = texture(SCREEN, SCREEN_UV + n * (waveStrength / 100.0));
 	COLOR *= color + vec4(n.x, n.y, 1, 0);
 }

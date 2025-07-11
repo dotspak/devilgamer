@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://5lxth85oco32"]
+
+[ext_resource type="PackedScene" uid="uid://dqyargaxncw1v" path="res://assets/models/player/epiaModel.glb" id="1_54w00"]
+[ext_resource type="Material" uid="uid://c1483auw5xds7" path="res://scenes/player/mat_playerPlating.tres" id="2_6o6pb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o6pb"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyyk8"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="model" type="Node3D"]
+
+[node name="epiaModel" parent="." instance=ExtResource("1_54w00")]
+
+[node name="eyes" parent="epiaModel" index="7"]
+surface_material_override/0 = SubResource("StandardMaterial3D_6o6pb")
+
+[node name="hand" parent="epiaModel" index="8"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vyyk8")
+
+[node name="handPlate" parent="epiaModel" index="9"]
+surface_material_override/0 = ExtResource("2_6o6pb")
+
+[node name="horns" parent="epiaModel" index="10"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vyyk8")
+
+[node name="hornPlate" parent="epiaModel" index="11"]
+surface_material_override/0 = ExtResource("2_6o6pb")
+
+[editable path="epiaModel"]

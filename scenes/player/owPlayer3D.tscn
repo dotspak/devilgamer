@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene load_steps=52 format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/models/dummy/sophia_skin/sophia_skin.tscn" id="1_65jk6"]
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="11_ratpf"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_4vs3c"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_sws5g"]
+[ext_resource type="PackedScene" uid="uid://5lxth85oco32" path="res://scenes/player/player_model.tscn" id="17_1lueo"]
 [ext_resource type="AudioStream" uid="uid://ck1qbquxscbox" path="res://addons/kenney impact sounds/footstep_concrete_004.ogg" id="18_sws5g"]
 [ext_resource type="AudioStream" uid="uid://cfxhmfmss3rcv" path="res://assets/audio/sfx/SE_voidOut.ogg" id="19_5g6mi"]
 [ext_resource type="AudioStream" uid="uid://b6d2ekmk5xlhs" path="res://assets/audio/sfx/SE_waterStep.ogg" id="19_xyfrb"]
@@ -214,6 +215,7 @@ metadata/_custom_type_script = "uid://c3i0t5p8rl76g"
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
 light_color = Color(1, 0.944116, 0.861228, 1)
 light_volumetric_fog_energy = 0.0
 omni_range = 30.0
@@ -224,7 +226,7 @@ omni_attenuation = 2.0
 [node name="Camera3D" type="Camera3D" parent="cameras"]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
-transform = Transform3D(-1, 6.56152e-07, -2.4488e-06, 0, 0.965926, 0.258819, 2.53518e-06, 0.258819, -0.965926, -1.71416e-05, 3.31173, -6.76148)
+transform = Transform3D(-1, 6.56153e-07, -2.4488e-06, 0, 0.965926, 0.258819, 2.53518e-06, 0.258819, -0.965926, -1.46928e-05, 3.05291, -5.79556)
 current = true
 
 [node name="PhantomCameraHost" type="Node" parent="cameras/Camera3D"]
@@ -238,7 +240,7 @@ current = true
 
 [node name="mainCam" type="Node3D" parent="cameras" node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
-transform = Transform3D(-1, 6.56152e-07, -2.4488e-06, 0, 0.965926, 0.258819, 2.53518e-06, 0.258819, -0.965926, -1.71416e-05, 3.31173, -6.76148)
+transform = Transform3D(-1, 6.56153e-07, -2.4488e-06, 0, 0.965926, 0.258819, 2.53518e-06, 0.258819, -0.965926, -1.46928e-05, 3.05291, -5.79556)
 script = ExtResource("15_4vs3c")
 priority = 1
 follow_mode = 6
@@ -247,10 +249,10 @@ tween_resource = SubResource("Resource_5g6mi")
 follow_offset = Vector3(0, 1.5, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.05, 0.05, 0.05)
-follow_distance = 7.0
+follow_distance = 6.0
 vertical_rotation_offset = 0.261799
 horizontal_rotation_offset = 3.14159
-spring_length = 7.0
+spring_length = 6.0
 shape = SubResource("SphereShape3D_h8a1l")
 
 [node name="lockCam" type="Node3D" parent="cameras"]
@@ -283,6 +285,9 @@ spring_length = 6.0
 
 [node name="SophiaSkin" parent="." instance=ExtResource("1_65jk6")]
 unique_name_in_owner = true
+
+[node name="model" parent="SophiaSkin" instance=ExtResource("17_1lueo")]
+visible = false
 
 [node name="stepParticles" type="GPUParticles3D" parent="SophiaSkin"]
 unique_name_in_owner = true
