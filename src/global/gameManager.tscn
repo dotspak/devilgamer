@@ -986,8 +986,9 @@ metadata/_edit_lock_ = true
 [node name="topBar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
+offset_top = -40.0
 offset_right = 896.0
-offset_bottom = 32.0
+offset_bottom = -8.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/topBar"]
@@ -1004,9 +1005,9 @@ expand_mode = 1
 [node name="bottombar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = 472.0
+offset_top = 512.0
 offset_right = 896.0
-offset_bottom = 504.0
+offset_bottom = 544.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/bottombar"]
@@ -1130,12 +1131,11 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 344.0
+offset_top = 376.0
+offset_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 32
 
 [node name="actorHuds" type="HBoxContainer" parent="UI/battleHud/MarginContainer"]
 layout_direction = 2

@@ -113,12 +113,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0906441, 0)
 
 [node name="Skeleton3D" parent="crab/Crab/MonsterArmature" index="0"]
 bones/1/position = Vector3(-7.80307e-20, 0.000898253, 0.00500828)
-bones/3/position = Vector3(0, 0, 0.00483194)
-bones/5/rotation = Quaternion(1.94769e-19, 3.54715e-10, -0.00264005, 0.999997)
-bones/7/position = Vector3(-0.00501702, 0.00397942, 0.00448326)
+bones/4/position = Vector3(0, 0.00516586, 0)
+bones/5/position = Vector3(0, 0.00390075, 0)
+bones/5/rotation = Quaternion(0, 0, 0, 1)
+bones/7/position = Vector3(-0.00501702, 0.00391603, 0.00448326)
 bones/7/rotation = Quaternion(0, 0, 0, 1)
-bones/9/position = Vector3(0.00501702, 0.00397942, 0.00448326)
+bones/7/scale = Vector3(1, 1, 1)
+bones/9/position = Vector3(0.00501702, 0.00391603, 0.00448326)
 bones/9/rotation = Quaternion(0, 0, 0, 1)
+bones/9/scale = Vector3(1, 1, 1)
 
 [node name="targetPos" type="Marker3D" parent="crab"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -142,6 +145,16 @@ characterBody = NodePath("..")
 
 [node name="Enemy" parent="monster" instance=ExtResource("6_57tpm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.974227, 0)
+
+[node name="Skeleton3D" parent="monster/Enemy/MonsterArmature" index="0"]
+bones/1/position = Vector3(-7.80307e-20, 0.000898253, 0.00500828)
+bones/4/position = Vector3(0, 0.00516586, 0)
+bones/5/position = Vector3(0, 0.00390075, 0)
+bones/5/rotation = Quaternion(0, 0, 0, 1)
+bones/7/position = Vector3(-0.00430698, 0.00469323, 0.00506212)
+bones/7/rotation = Quaternion(0, 0, 0, 1)
+bones/9/position = Vector3(0.00430698, 0.00469323, 0.00506212)
+bones/9/rotation = Quaternion(0, 0, 0, 1)
 
 [node name="targetPos" type="Marker3D" parent="monster"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
@@ -168,8 +181,9 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.865396, 0)
 
 [node name="Skeleton3D" parent="skull/Skull/MonsterArmature" index="0"]
 bones/1/position = Vector3(-7.80307e-20, 0.00147259, 0.00500828)
-bones/3/position = Vector3(0, 0, 0.00483194)
-bones/5/rotation = Quaternion(1.94769e-19, 3.54715e-10, -0.00264005, 0.999997)
+bones/4/position = Vector3(0, 0.00516586, 0)
+bones/5/position = Vector3(0, 0.00390075, 0)
+bones/5/rotation = Quaternion(0, 0, 0, 1)
 
 [node name="targetPos" type="Marker3D" parent="skull"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)

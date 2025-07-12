@@ -228,14 +228,16 @@ func move(delta : float) -> void:
 	velocity = velocity.move_toward(moveDir * speed, (
 		accel * accel_idleScale if moveInput == Vector2.ZERO else accel)* delta)
 	
+	var angle : float = 0
 	if !skillTarget:
-		var angle : float = Vector3.BACK.signed_angle_to(lastMoveDir, Vector3.UP)
+		angle = Vector3.BACK.signed_angle_to(lastMoveDir, Vector3.UP)
 		model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
 	elif velocity != Vector3.ZERO:
 		var targetPos : Vector2 = Vector2(skillTarget.global_position.x, skillTarget.global_position.z)
 		var playerPos : Vector2 = Vector2(global_position.x, global_position.z)
-		var dir : Vector2 = -(playerPos - targetPos)
-		var angle : float = atan2(dir.x, dir.y)
+		var dir : Vector2 = (targetPos - playerPos).normalized()
+		var blendedDir : Vector2 = dir.lerp(moveInput, 0.45).normalized()
+		angle = atan2(blendedDir.x, blendedDir.y)
 		model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
 
 
