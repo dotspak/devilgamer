@@ -563,6 +563,7 @@ func lock_off() -> void:
 	isLockedOn = false
 	model.clear_look_target()
 	hide_target_indicator()
+	reset_camera()
 
 	mainCam.priority = 1
 	lockCam.priority = 0
