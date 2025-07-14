@@ -268,15 +268,15 @@ func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> 
 	var spawnPos : Vector3 = Vector3.ZERO
 	var spawnRot : Basis = Basis.IDENTITY
 
-	var enteringRoom : RoomInstance = null
+	var enteringRoom : RoomToArea = null
 	if areaInstance.areaTransitionRooms.has(from):
 		enteringRoom = areaInstance.areaTransitionRooms[from]
 
 	if from == "pool": # coming from a shadow pool
 		pass
 	elif from != "": # coming from a previous area
-		spawnPos = enteringRoom.spawnPoint.global_position
-		spawnRot = enteringRoom.spawnPoint.global_transform.basis
+		spawnPos = enteringRoom.playerWalkToPos.global_position
+		#spawnRot = enteringRoom.playerWalkToPos.global_transform.basis
 	
 	print("successfully loaded ", to, "!")
 
@@ -288,15 +288,22 @@ func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> 
 		yaw = atan2(forward.x, forward.z)
 
 	spawn_player(spawnPos, yaw)
-
-	if enteringRoom: enteringRoom.enter_room()
-	else: areaInstance.generatedRooms[0].enter_room()
-
 	CameraManager.enable_main_cam()
+	player.camera_to_front()
+
+	if enteringRoom:
+		CameraManager.set_active_cam(enteringRoom.areaCam)
+		enteringRoom.enter_room()
+		enteringRoom.transitionTrigger.monitoring = false
+		player.move_to_position(enteringRoom.spawnPoint.global_position)
+	else:
+		areaInstance.generatedRooms[0].enter_room()
 
 	# play the area intro
 	await areaInstance.area_intro(color)
-
+	if player.movingToTarget: await player.movedToPosition
+	
+	if enteringRoom: enteringRoom.transitionTrigger.monitoring = true
 	areaLoaded.emit()
 	player.enable_input()
 

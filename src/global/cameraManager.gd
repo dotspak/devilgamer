@@ -9,7 +9,8 @@ extends Node
 var currentCam : PhantomCamera3D
 
 func set_active_cam(cam : PhantomCamera3D, duration : float = 1.0) -> void:
-	currentCam =  cam
+	if currentCam: currentCam.priority = 0
+	currentCam = cam
 	currentCam.priority = 2
 	currentCam.tween_duration = duration
 

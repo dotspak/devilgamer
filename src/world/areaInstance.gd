@@ -18,14 +18,16 @@ func area_intro(color : Color = Color.WHITE) -> void:
 
 	GameManager.show_battle_ui()
 	GameManager.animate_intro_text(defintion.areaName, defintion.areaDescription)
+	CameraManager.enable_main_cam()
 
 	# play the bgm
 	await get_tree().create_timer(1).timeout
 	if defintion.bgm: AudioManager.play_bgm(defintion.bgm, 1, 1, AREA_FADE_TIME)
 
 
-func transition_to_area(area : String) -> void:
+func transition_to_area(area : String, playerPos : Vector3) -> void:
 	print("transitioning to area: ", area)
+	GameManager.player.move_to_position(playerPos)
 	GameManager.hide_battle_ui()
 	AudioManager.fade_bgm(AREA_FADE_TIME)
 	await GameManager.fadeout_screen(AREA_FADE_TIME, Color.WHITE, GameManager.fadeTargets.AREA)

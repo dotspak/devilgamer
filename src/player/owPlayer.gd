@@ -91,6 +91,16 @@ var breathTimer : float = 0 :
 		if breathTimer <= 0:
 			respawn()
 
+# custscene handlers
+var cutsceneTarget : Vector3 = Vector3.ZERO
+var movingToTarget : bool = false :
+	set(val):
+		if movingToTarget && !val: 
+			stateMachine.transition_to("idle")
+			movedToPosition.emit()
+		movingToTarget = val
+var cutsceneStopDistance : float = 0.1
+
 # stair detection variables
 const MAX_STEP_HEIGHT : float = 0.5
 var snappedToStairsLastFrame : bool = false
@@ -101,6 +111,8 @@ var currentLadder : Area3D = null
 var targetIndicator : Node3D = null
 var isLockedOn : bool = false
 
+
+signal movedToPosition
 
 func _ready() -> void:
 	if get_tree().debug_collisions_hint: %ledgePoint.show()
@@ -194,6 +206,28 @@ func _physics_process(delta: float) -> void:
 	
 	if !movementAllowed: velocity = lerp(velocity, Vector3.ZERO, stopMoveWeight)
 
+	if movingToTarget:
+		model.move()
+		var toTarget : Vector3 = cutsceneTarget - global_position
+		toTarget.y = 0
+
+		if toTarget.length() <= cutsceneStopDistance:
+			movingToTarget = false
+			velocity = Vector3.ZERO
+			enable_input()
+			return
+		
+		if toTarget.length_squared() > 0.01:
+			var angle : float = Vector3.BACK.signed_angle_to(toTarget.normalized(), Vector3.UP)
+			model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
+		
+		moveDir = toTarget.normalized()
+		moveDir.y = 0
+		move(delta)
+		lastMoveDir = toTarget.normalized()
+		move_and_slide()
+		return
+
 	# checks when the player is on the floor
 	if is_on_floor():
 		if jumpCheck.is_colliding() && !is_head_underwater(): 
@@ -229,16 +263,17 @@ func move(delta : float) -> void:
 		accel * accel_idleScale if moveInput == Vector2.ZERO else accel)* delta)
 	
 	var angle : float = 0
-	if !skillTarget:
-		angle = Vector3.BACK.signed_angle_to(lastMoveDir, Vector3.UP)
-		model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
-	elif velocity != Vector3.ZERO:
-		var targetPos : Vector2 = Vector2(skillTarget.global_position.x, skillTarget.global_position.z)
-		var playerPos : Vector2 = Vector2(global_position.x, global_position.z)
-		var dir : Vector2 = (targetPos - playerPos).normalized()
-		var blendedDir : Vector2 = dir.lerp(moveInput, 0.45).normalized()
-		angle = atan2(blendedDir.x, blendedDir.y)
-		model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
+	if !movingToTarget:
+		if  !skillTarget:
+			angle = Vector3.BACK.signed_angle_to(lastMoveDir, Vector3.UP)
+			model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
+		elif velocity != Vector3.ZERO:
+			var targetPos : Vector2 = Vector2(skillTarget.global_position.x, skillTarget.global_position.z)
+			var playerPos : Vector2 = Vector2(global_position.x, global_position.z)
+			var dir : Vector2 = (targetPos - playerPos).normalized()
+			var blendedDir : Vector2 = dir.lerp(moveInput, 0.45).normalized()
+			angle = atan2(blendedDir.x, blendedDir.y)
+			model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
 
 
 func is_surface_too_steep(normal : Vector3) -> bool: return normal.angle_to(Vector3.UP) > floor_max_angle
@@ -360,9 +395,34 @@ func get_ledge_point() -> Vector3:
 func jump_check() -> bool: return !jumpCheck.is_colliding() && Vector2(velocity.x, velocity.z).length() >= 6
 func apply_gravity(delta : float) -> void: velocity.y += gravity * delta
 
-# just has lock on logic for now, need to re-add camera center
+
 func center_camera() -> void:
+	if reset_camera(): AudioManager.play_ui_sfx("resetCam")
 	skillTarget = get_closest_target()
+
+
+func reset_camera() -> bool:
+	var current_quat := mainCam.get_third_person_quaternion()
+	var model_quat := model.basis.get_rotation_quaternion()
+	var flip_quat := Quaternion(Vector3.UP, deg_to_rad(180))
+	var target_quat := model_quat * flip_quat
+
+	if current_quat.is_equal_approx(target_quat): return false
+
+	var TW := create_tween()
+	TW.tween_method(
+		func(weight: float) -> void:
+			var slerped := current_quat.slerp(target_quat, weight)
+			mainCam.set_third_person_quaternion(slerped),
+		0.0, 1.0, 0.2
+	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	return true
+
+
+func camera_to_front() -> void:
+	var facing : float = model.global_rotation.y
+	var targetRot : Vector3 = Vector3(-15, rad_to_deg(facing), 0)
+	mainCam.set_third_person_rotation_degrees(targetRot)
 
 
 func land() -> void:
@@ -424,11 +484,11 @@ func un_freeze() -> void:
 	set_process(true)
 
 
-func disable_input() -> void:
+func disable_input(haltPlayer : bool = true) -> void:
 	inputAllowed = false
 	moveDir = Vector3.ZERO
 	moveInput = Vector2.ZERO
-	velocity = Vector3.ZERO
+	if haltPlayer: velocity = Vector3.ZERO
 
 
 func enable_input() -> void:
@@ -541,3 +601,12 @@ func _on_head_area_exited(area:Area3D) -> void:
 		print("head has left water")
 		headInWater = false
 		GameManager.handle_water_exit()
+
+
+func move_to_position(targetPos : Vector3, stopDistance : float = 0.1) -> void:
+	cutsceneTarget = targetPos
+	cutsceneStopDistance = stopDistance
+	movingToTarget = true
+	disable_input(false)
+
+	stateMachine.transition_to("gameFreeze")
