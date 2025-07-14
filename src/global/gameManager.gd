@@ -36,6 +36,8 @@ var player : OWPlayer :
 var generatedAreas : Dictionary[String, AreaDef] = {}
 var startingArea : String = ""
 
+@onready var fadeAnim : AnimationPlayer = %fadeAnims
+
 const WATERALPHA : float = 0.3
 var isUnderwater : bool = false
 
@@ -139,22 +141,59 @@ func despawn_cursor(path : NodePath) -> void:
 		path = ""
 
 
-# fades the screen to black for the given amount of time
-func fadeout_screen(time : float = 1.0, color : Color = Color.BLACK) -> void:
-	var fadeRect : ColorRect = %fader
-	fadeRect.color = color
+# fades the screen to the passed color for the given amount of time using the passed fader
+enum fadeTargets {DEF, AREA}
+var prevObject : Dictionary
+func fadeout_screen(time : float = 1.0, color : Color = Color.BLACK, fader : fadeTargets = fadeTargets.DEF) -> void:
+	var fadeObject : Dictionary = get_fade_object(fader)
 	var fadeTween : Tween = create_tween()
-	fadeTween.tween_property(fadeRect, "modulate:a", 1.0, time).from(0.0)
+	prevObject = fadeObject
+	fadeObject.node.color = color
+
+	if fadeObject.node == %fader:
+		fadeTween.tween_property(
+			fadeObject.node, "modulate:a", 1.0, time).from(0)
+	else:
+		fadeTween.tween_property(
+			fadeObject.node.material, "shader_parameter/progress", fadeObject.end, time).from(fadeObject.start)
+
 	await fadeTween.finished
 
 
 # fades the screen back in from black for the given amount of time
-func fadein_screen(time : float = 1.0, color : Color = Color.BLACK) -> void:
-	var fadeRect : ColorRect = %fader
-	fadeRect.color = color
+func fadein_screen(time : float = 1.0, color : Color = Color.BLACK, fader : fadeTargets = fadeTargets.DEF) -> void:
+	var fadeObject : Dictionary = get_fade_object(fader)
 	var fadeTween : Tween = create_tween()
-	fadeTween.tween_property(fadeRect, "modulate:a", 0.0, time).from(1.0)
+	fadeObject.node.color = color
+
+	if fadeObject.node == %fader:
+		fadeTween.tween_property(
+			fadeObject.node, "modulate:a", 0, time).from(1.0)
+	else: 
+		fadeTween.tween_property(
+			fadeObject.node.material, "shader_parameter/progress", fadeObject.start, time).from(fadeObject.end)
+
+	if prevObject:
+		if prevObject.node == %fader:
+			prevObject.node.modulate.a = 0
+		else:
+			prevObject.node.material.set_shader_parameter("progress", prevObject.start)
+
 	await fadeTween.finished
+
+
+func get_fade_object(fader : fadeTargets) -> Dictionary:
+	var object : Dictionary = {"node" : null, "start" : 0, "end" : 1.0}
+	match(fader):
+		fadeTargets.AREA:
+			object.node = %areaFader
+			object.start = -0.5
+			object.end = 4
+		_: object.node = %fader
+	
+	if fader != fadeTargets.DEF:
+		object.node.material.set_shader_parameter("progress", object.start)
+	return object
 
 
 # handles visual effect changes when entering water
@@ -214,7 +253,7 @@ func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> 
 	if currentArea: currentArea.queue_free()
 
 	player.disable_input()
-	await fadeout_screen(0, color)
+	#await fadeout_screen(0, color, GameManager.fadeTargets.AREA)
 	
 	var areaInstance : AreaInstance = AreaInstance.new(generatedAreas[to])
 	currentArea = areaInstance
