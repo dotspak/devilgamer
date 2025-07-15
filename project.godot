@@ -14,7 +14,7 @@ config/name="Devilgamer"
 config/tags=PackedStringArray("main", "rpg")
 run/main_scene="uid://2obewctec8iv"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="uid://b8qxwebwe1odo"
+config/icon="uid://bckdxeqa5ykr3"
 
 [audio]
 
@@ -238,6 +238,7 @@ locale/translations_pot_files=PackedStringArray("res://dialogue/testDialogue/tes
 
 [physics]
 
+3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
 
 [rendering]

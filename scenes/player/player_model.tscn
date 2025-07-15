@@ -1,8 +1,7 @@
-[gd_scene load_steps=16 format=3 uid="uid://5lxth85oco32"]
+[gd_scene load_steps=11 format=3 uid="uid://5lxth85oco32"]
 
 [ext_resource type="PackedScene" uid="uid://bcr4tskr0sk5j" path="res://assets/models/player/epiaModel2.glb" id="1_54w00"]
 [ext_resource type="Shader" uid="uid://ck783vxyjmm2d" path="res://shaders/psx/psx_lit.gdshader" id="2_vyyk8"]
-[ext_resource type="PackedScene" uid="uid://c7hh6f4g1me6u" path="res://assets/models/player/epiaModel2short.glb" id="3_vyyk8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6o6pb"]
 albedo_color = Color(0.346094, 0.346094, 0.346094, 1)
@@ -38,21 +37,6 @@ shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_pan_velocity = Vector2(0, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwyi2"]
-albedo_color = Color(0.369531, 0.369531, 0.369531, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1uftg"]
-albedo_color = Color(0.48716, 0.482926, 1, 1)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lhdc"]
-albedo_color = Color(0, 0, 0, 1)
-metallic = 1.0
-metallic_specular = 1.0
-roughness = 0.0
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tiweb"]
-albedo_color = Color(1, 0.421546, 0, 1)
-
 [node name="model" type="Node3D"]
 
 [node name="epiaModel2" parent="." instance=ExtResource("1_54w00")]
@@ -83,31 +67,4 @@ surface_material_override/0 = SubResource("StandardMaterial3D_mj8wc")
 visible = false
 surface_material_override/0 = SubResource("ShaderMaterial_vyyk8")
 
-[node name="epiaModel2short" parent="." instance=ExtResource("3_vyyk8")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0, 0, 0)
-visible = false
-
-[node name="body" parent="epiaModel2short" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_lwyi2")
-
-[node name="armL" parent="epiaModel2short" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_lwyi2")
-
-[node name="hair" parent="epiaModel2short" index="3"]
-surface_material_override/0 = SubResource("StandardMaterial3D_1uftg")
-
-[node name="horns" parent="epiaModel2short" index="4"]
-material_override = SubResource("StandardMaterial3D_4lhdc")
-
-[node name="legs" parent="epiaModel2short" index="5"]
-surface_material_override/0 = SubResource("StandardMaterial3D_tiweb")
-
-[node name="armCorrupt" parent="epiaModel2short" index="6"]
-material_override = SubResource("StandardMaterial3D_4lhdc")
-
-[node name="armR" parent="epiaModel2short" index="7"]
-visible = false
-surface_material_override/0 = SubResource("StandardMaterial3D_lwyi2")
-
 [editable path="epiaModel2"]
-[editable path="epiaModel2short"]
