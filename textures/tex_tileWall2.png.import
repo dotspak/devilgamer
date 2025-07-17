@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbepb0u73mfll"
-path.s3tc="res://.godot/imported/flame_06.png-c8cccb4524fa3ff51c3ed8b9505ad525.s3tc.ctex"
+uid="uid://b7lsexfvc265t"
+path.s3tc="res://.godot/imported/tex_tileWall2.png-10fc0b41e99299febc7c73d914db1244.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/kenney_particle_pack/flame_06.png"
-dest_files=["res://.godot/imported/flame_06.png-c8cccb4524fa3ff51c3ed8b9505ad525.s3tc.ctex"]
+source_file="res://textures/tex_tileWall2.png"
+dest_files=["res://.godot/imported/tex_tileWall2.png-10fc0b41e99299febc7c73d914db1244.s3tc.ctex"]
 
 [params]
 

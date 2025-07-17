@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://dv0qhysub3bd5"
+path="res://.godot/imported/map_hub_elevator.6.map-7c472c5b2ea6d6b09079ce84aab1333e.tres"
+
+[deps]
+
+source_file="res://maps/hub/autosave/map_hub_elevator.6.map"
+dest_files=["res://.godot/imported/map_hub_elevator.6.map-7c472c5b2ea6d6b09079ce84aab1333e.tres"]
+
+[params]
+
