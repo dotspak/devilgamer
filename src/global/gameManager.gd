@@ -18,8 +18,14 @@ var KEY_ITEMS : Dictionary[String, Dictionary]
 var CHESTS : Dictionary[String, Dictionary]
 
 # returns if the flag has been triggered or not. If the flag doesn't exist, it hasn't been triggered.
-func check_flag(flag : String): return false if !FLAGS.has(flag) else FLAGS[flag]
-func set_flag(flag : String, val) -> void: FLAGS[flag] = val
+func check_flag(flag : String):
+	var result = false if !FLAGS.has(flag) else FLAGS[flag]
+	print(flag, " : ", str(result))
+	return result
+
+func set_flag(flag : String, val) -> void:
+	print(flag, " set to : ", str(val)) 
+	FLAGS[flag] = val
 
 # returns the dictionary reference to the key item. If it returns empty dictionary, item is not acquired or was lost.
 func check_keyItem(keyItem : String) -> Dictionary: return {} if !KEY_ITEMS.has(keyItem) else KEY_ITEMS[keyItem]
@@ -61,6 +67,11 @@ func _process(_delta : float) -> void:
 			print("DEBUG MODE: ", DEBUG_MODE)
 		if Input.is_action_just_pressed("OPEN_CONSOLE"):
 			$debugConsole.visible = !$debugConsole.visible
+			if $debugConsole.visible:
+				Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+				player.inputAllowed = false
+			else:
+				player.inputAllowed = true
 
 	if Input.is_action_just_pressed("window_toggle"):
 		toggle_fullscreen()

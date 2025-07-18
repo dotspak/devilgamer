@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://hy1d7sm50ndi"]
+[gd_scene load_steps=105 format=4 uid="uid://hy1d7sm50ndi"]
 
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_an2i1"]
 [ext_resource type="Script" uid="uid://ddevalla0qd0v" path="res://src/world/elevator.gd" id="1_fmnji"]
@@ -15,6 +15,10 @@
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="13_fmnji"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="14_uqqxe"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="15_fmnji"]
+[ext_resource type="AudioStream" uid="uid://cfsk40lt5ge7l" path="res://assets/audio/sfx/SE_elevatorOpen.ogg" id="16_4jp2c"]
+[ext_resource type="AudioStream" uid="uid://blnhu0gjpx20p" path="res://assets/audio/sfx/SE_elevatorClose.ogg" id="17_vmobx"]
+[ext_resource type="AudioStream" uid="uid://0kd0fpelpu0x" path="res://assets/audio/sfx/SE_elevatorChime.ogg" id="18_hxmut"]
+[ext_resource type="AudioStream" uid="uid://o7jetndhnt5n" path="res://assets/audio/bgs/bgs_elevatorShaft.ogg" id="18_vmobx"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3d5m3"]
 _surfaces = [{
@@ -421,6 +425,78 @@ tracks/6/keys = {
 "update": 0,
 "values": [75.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("openSFX:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("closeSFX:playing")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("shaft:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("shaft:volume_db")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-10.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("shaft:pitch_scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.6]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("chime:playing")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_uqqxe"]
 resource_name = "doorClose"
@@ -510,6 +586,18 @@ tracks/6/keys = {
 "update": 0,
 "values": [75.0, 100.0]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("closeSFX:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_d5vcm"]
 resource_name = "doorOpen"
@@ -587,12 +675,162 @@ tracks/5/keys = {
 "update": 1,
 "values": [false, true, true, false]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("openSFX:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hxmut"]
+resource_name = "doorOpenExtended"
+length = 4.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FuncGodotMap/entity_1_func_detail:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(3.3, 3.7),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-1, 2.75, 2.75), Vector3(-3.5, 2.75, 2.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("FuncGodotMap/entity_2_func_detail:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(3.3, 3.7),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(1, 2.75, 2.75), Vector3(3.5, 2.75, 2.75)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("sparks1:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(3.3, 3.35, 3.65, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("sparks1:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.3, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 2.75), Vector3(-2.25, 0, 2.75)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("sparks2:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.3, 3.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 2.75), Vector3(2.25, 0, 2.75)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("sparks2:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(3.3, 3.35, 3.65, 3.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("openSFX:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(3.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("shaft:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 2.45),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("shaft:volume_db")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 1, 1.6, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [-30.0, -10.0, -10.0, -30.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("shaft:pitch_scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(1, 1.6, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.6, 1.6, 1.0]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("chime:playing")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jfvn8"]
 _data = {
 &"RESET": SubResource("Animation_jy5sq"),
 &"doorClose": SubResource("Animation_uqqxe"),
-&"doorOpen": SubResource("Animation_d5vcm")
+&"doorOpen": SubResource("Animation_d5vcm"),
+&"doorOpenExtended": SubResource("Animation_hxmut")
 }
 
 [sub_resource type="Curve" id="Curve_g7jq0"]
@@ -667,6 +905,7 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [node name="wallElevator" type="CharacterBody3D" node_paths=PackedStringArray("interactArea", "cameraOverride")]
 script = ExtResource("1_fmnji")
+ID = null
 interactArea = NodePath("Area3D")
 usePlayerPopup = true
 customTypeText = "Use"
@@ -967,3 +1206,24 @@ metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
 [node name="playerPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.75)
+
+[node name="openSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_4jp2c")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="closeSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_vmobx")
+volume_db = -10.0
+bus = &"SFX"
+
+[node name="chime" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_hxmut")
+bus = &"reverbSFX"
+
+[node name="shaft" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_vmobx")
+volume_db = -10.0
+pitch_scale = 1.6
+bus = &"SFX"
+parameters/looping = true

@@ -2,11 +2,13 @@
 extends Interactable
 class_name Elevator
 
+@export var ID : String = ""
+
 @onready var animator : AnimationPlayer = $AnimationPlayer
 @onready var playerPos : Marker3D = $playerPos
 
 func enter_elevator() -> void:
-    animator.play("doorOpen")
+    animator.play("doorOpenExtended")
     await animator.animation_finished
 
     GameManager.player.move_to_position(global_position)
@@ -25,7 +27,7 @@ func enter_elevator() -> void:
 func exit_elevator() -> void:
     CameraManager.set_active_cam(cameraOverride, 0)
     GameManager.fadein_screen(0.5, GameConstants.ELEVATOR_FADE_COLOR)
-    animator.play("doorOpen")
+    animator.play("doorOpenExtended")
     await animator.animation_finished
 
     GameManager.player.move_to_position(playerPos.global_position)

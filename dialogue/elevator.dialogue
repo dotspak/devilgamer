@@ -1,4 +1,7 @@
 ~ start
+if !GameManager.check_flag(ID)
+	do GameManager.set_flag(ID, true)
+	Discovered Elevator {{ID}}!
 Get on the elevator?
 - Use
 	=> elevatorEnter

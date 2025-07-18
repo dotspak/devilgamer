@@ -1,5 +1,7 @@
 extends Node3D
 
+var audio : AudioStream = load("res://assets/audio/bgm/bgm_elevator.ogg")
+
 @onready var animator : AnimationPlayer = $AnimationPlayer
 @onready var menu : Control = $elevatorMenu
 
@@ -15,6 +17,7 @@ func _ready():
     remove_child(menu)
     GameManager.add_ui(menu)
     CameraManager.set_active_cam($PhantomCamera3D, 0)
+    AudioManager.play_bgm(audio, 1, 1, 1)
     await GameManager.fadein_screen(0.5, GameConstants.ELEVATOR_FADE_COLOR)
 
 
@@ -43,7 +46,10 @@ func menu_fade_out() -> void:
     TW.tween_property(menu, "modulate:a", 0, 0.5)
     TW.finished.connect(menu.queue_free)
 
-func trigger_exit() -> void: exitTriggered = true
+func trigger_exit() -> void: 
+    if exitTriggered: return
+    AudioManager.fade_bgm(2.0)
+    exitTriggered = true
 
 
 func exit_elevator() -> void: 

@@ -82,6 +82,7 @@ radius = 3.25
 
 [node name="wallElevator" parent="." instance=ExtResource("1_tsgxi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9)
+ID = "TestRoom"
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
 script = ExtResource("2_aaywo")
