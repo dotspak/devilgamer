@@ -111,7 +111,6 @@ var currentLadder : Area3D = null
 var targetIndicator : Node3D = null
 var isLockedOn : bool = false
 
-
 signal movedToPosition
 
 func _ready() -> void:

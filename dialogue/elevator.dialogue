@@ -1,0 +1,16 @@
+~ start
+Get on the elevator?
+- Use
+	=> elevatorEnter
+- Leave
+=> END
+
+~ elevatorEnter
+do enter_elevator()
+=> END
+
+~ creator
+???: Welcome to my elevator room.
+???: I, am the creator of the elevator.
+???: With my glorious creation, I may travel the world at my leisure.
+???: Please try out my elevator when you have a chance.

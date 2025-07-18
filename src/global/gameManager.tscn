@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=70 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://ddjq7p38egyvw" path="res://maps/testrooms/area_testStartArea.tres" id="3_y5kg3"]
 [ext_resource type="Resource" uid="uid://cc7qwvkq76da0" path="res://maps/bathroom/area_bathroom.tres" id="4_d6bmg"]
 [ext_resource type="Resource" uid="uid://c7jpqltt5m0cl" path="res://maps/freezer/area_freezer.tres" id="5_va82q"]
+[ext_resource type="PackedScene" uid="uid://c8ki5xbsikw7" path="res://src/global/debugConsole.tscn" id="6_xx4xr"]
 [ext_resource type="Shader" uid="uid://ipqynyjtfkkj" path="res://shaders/crtShader.gdshader" id="7_dmym8"]
 [ext_resource type="Material" uid="uid://dr52yj2jvqaa7" path="res://shaders/psx/post_process/dither-banding_mat.tres" id="7_qbj2a"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="7_s6qcl"]
@@ -834,6 +835,9 @@ _data = {
 [node name="GameManager" type="Node"]
 script = ExtResource("1_kv0tk")
 areas = Array[ExtResource("2_oucsi")]([ExtResource("3_y5kg3"), ExtResource("4_d6bmg"), ExtResource("5_va82q")])
+
+[node name="debugConsole" parent="." instance=ExtResource("6_xx4xr")]
+visible = false
 
 [node name="world" type="CanvasLayer" parent="."]
 layer = 5

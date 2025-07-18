@@ -11,3 +11,5 @@ const DEF_SCALE : float = 0.5
 # buffs
 const MAX_BUFF : int = 10
 const BUFF_SCALE : float = 0.2
+
+const ELEVATOR_FADE_COLOR : Color = Color.NAVY_BLUE

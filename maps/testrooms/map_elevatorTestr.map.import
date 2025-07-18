@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cfb4p1ujfs66d"
+path="res://.godot/imported/map_elevatorTestr.map-19ec894d4943df70c2c5676d7360803e.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/map_elevatorTestr.map"
+dest_files=["res://.godot/imported/map_elevatorTestr.map-19ec894d4943df70c2c5676d7360803e.tres"]
+
+[params]
+

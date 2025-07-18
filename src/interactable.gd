@@ -10,12 +10,17 @@ var popup : InteractPopup
 		interactArea = val
 		interactArea.add_to_group("interactable")
 @export var popupPos : Marker3D
+@export var usePlayerPopup : bool = false
 
 @export_group("Cutscene details")
 @export var interactableType : InteractPopup.MODES = InteractPopup.MODES.TALK
 @export var customTypeText : String = ""
 @export var dialogueResource : DialogueResource
 @export var startingTitle : String = "start"
+@export var cameraOverride : PhantomCamera3D
+
+@export_group("Cutscene Data")
+@export var states : Array[Node] = []
 
 signal interactionBegin
 signal interactionFinished
@@ -50,6 +55,7 @@ func run_interaction() -> void:
 	# runs the cutscene
 	await init_cutscene()
 
+	print("finished interaction")
 	interactionFinished.emit()
 	GameManager.show_battle_ui() 
 
@@ -58,12 +64,14 @@ func display_dialogue(facePlayer : bool = true) -> void:
 	if facePlayer: orient_player_to_interaction()
 
 	# creates the camera that shows player and npc
-	var camera : PhantomCamera3D = CameraManager.create_conversation_camera(self)
+	var camera : PhantomCamera3D
+	if !cameraOverride: camera = CameraManager.create_conversation_camera(self)
+	else: camera = cameraOverride
 	CameraManager.set_active_cam(camera)
 
 	# run the dialogue of the npc
 	if dialogueResource:
-		GameManager.create_dialogue_window(dialogueResource, startingTitle)
+		GameManager.create_dialogue_window(dialogueResource, startingTitle, [self] + states)
 		GameManager.player.disable_input()
 		await DialogueManager.dialogue_ended
 	else:
@@ -73,13 +81,14 @@ func display_dialogue(facePlayer : bool = true) -> void:
 	# final scene clean up
 	CameraManager.enable_main_cam()
 	GameManager.player.enable_input()
-	camera.queue_free()
+	if !cameraOverride: camera.queue_free()
 
 
 func display_interact_bubble(body : Node3D) -> void:
 	if body is OWPlayer && body.is_on_floor():
 		popup = POPUP_SCENE.instantiate()
-		popupPos.add_child(popup)
+		if !usePlayerPopup: popupPos.add_child(popup)
+		else: GameManager.player.targetPosition.add_child(popup)
 		popup.set_mode(interactableType, customTypeText.to_lower())
 
 

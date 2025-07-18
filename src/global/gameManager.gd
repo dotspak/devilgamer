@@ -59,6 +59,8 @@ func _process(_delta : float) -> void:
 		if Input.is_action_just_pressed("ENTER_DEBUG"): 
 			DEBUG_MODE = !DEBUG_MODE
 			print("DEBUG MODE: ", DEBUG_MODE)
+		if Input.is_action_just_pressed("OPEN_CONSOLE"):
+			$debugConsole.visible = !$debugConsole.visible
 
 	if Input.is_action_just_pressed("window_toggle"):
 		toggle_fullscreen()
@@ -89,6 +91,7 @@ func fetch_scene() -> void:
 
 # adds the passed scene as a child to the sceneview and stores the reference to it
 func set_current_scene(scene : Node) -> void: 
+	if currentScene: currentScene.queue_free()
 	sceneView.add_child(scene)
 	currentScene = scene
 
@@ -125,6 +128,7 @@ func instance_player() -> OWPlayer:
 
 
 func spawn_player(spawnPos : Vector3 = Vector3.ZERO, spawnRot : float = 0) -> OWPlayer:
+	player.show()
 	player.velocity = Vector3.ZERO
 	player.global_position = spawnPos
 	player.model.rotation = Vector3(0, spawnRot, 0)
@@ -249,15 +253,11 @@ func change_area_fade() -> void:
 # loads the passed area (to) coming from the previous area (from)
 func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> void:
 	print("attempting to load ", to, ", from ", from)
-	if currentScene: currentScene.queue_free()
-	if currentArea: currentArea.queue_free()
-
 	player.disable_input()
-	#await fadeout_screen(0, color, GameManager.fadeTargets.AREA)
 	
 	var areaInstance : AreaInstance = AreaInstance.new(generatedAreas[to])
-	currentArea = areaInstance
 	set_current_scene(areaInstance)
+	currentArea = areaInstance
 
 	if !areaInstance.is_node_ready():
 		await areaInstance.ready
@@ -276,7 +276,6 @@ func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> 
 		pass
 	elif from != "": # coming from a previous area
 		spawnPos = enteringRoom.playerWalkToPos.global_position
-		#spawnRot = enteringRoom.playerWalkToPos.global_transform.basis
 	
 	print("successfully loaded ", to, "!")
 
@@ -306,6 +305,13 @@ func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> 
 	if enteringRoom: enteringRoom.transitionTrigger.monitoring = true
 	areaLoaded.emit()
 	player.enable_input()
+	player.un_freeze()
+
+
+func load_elevator() -> void:
+	var elevatorScene : Node3D = load("res://maps/hub/map_hub_elevator.tscn").instantiate()
+	set_current_scene(elevatorScene)
+
 
 
 # --------------------------------------------------------------------
@@ -314,7 +320,7 @@ func create_dialogue_window(resource: DialogueResource, title: String = "", extr
 	var balloon_path: String = "res://ui/dialogue/ui_msgBox2.tscn"
 	if not ResourceLoader.exists(balloon_path):
 		balloon_path = "res://ui/dialogue/ui_msgBox2.tscn"
-	return show_dialogue_balloon_scene(balloon_path, resource, title, extra_game_states)
+	return DialogueManager.show_dialogue_balloon_scene(balloon_path, resource, title, extra_game_states)
 
 
 func show_dialogue_balloon_scene(balloon_scene, resource: DialogueResource, title: String = "", extra_game_states: Array = []) -> Node:

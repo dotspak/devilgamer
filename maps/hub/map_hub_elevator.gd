@@ -14,8 +14,8 @@ func _ready():
 
     remove_child(menu)
     GameManager.add_ui(menu)
-
     CameraManager.set_active_cam($PhantomCamera3D, 0)
+    await GameManager.fadein_screen(0.5, GameConstants.ELEVATOR_FADE_COLOR)
 
 
 func _process(_delta: float) -> void:
@@ -30,7 +30,7 @@ func _process(_delta: float) -> void:
         else:
             if !animator.is_playing():
                 checkForSkip = true
-                create_tween().tween_property(menu, "modulate:a", 0, 0.5)
+                menu_fade_out()
                 animator.play("move")
 
                 await animator.animation_finished
@@ -38,12 +38,18 @@ func _process(_delta: float) -> void:
                 walkout_anim()
 
 
+func menu_fade_out() -> void:
+    var TW : Tween = create_tween()
+    TW.tween_property(menu, "modulate:a", 0, 0.5)
+    TW.finished.connect(menu.queue_free)
+
 func trigger_exit() -> void: exitTriggered = true
 
 
 func exit_elevator() -> void: 
     isExiting = true
-    await GameManager.fadeout_screen(2.0, Color.WHITE, GameManager.fadeTargets.AREA)
+    await GameManager.fadeout_screen(2.0, GameConstants.ELEVATOR_FADE_COLOR, GameManager.fadeTargets.AREA)
+    GameManager.load_area(GameManager.startingArea, "", GameConstants.ELEVATOR_FADE_COLOR)
     queue_free()
     
 
