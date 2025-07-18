@@ -1638,10 +1638,11 @@ point_count = 3
 curve = SubResource("Curve_2djxj")
 
 [sub_resource type="Gradient" id="Gradient_3gqpm"]
-colors = PackedColorArray(1, 0.998587, 0.418185, 1, 1, 0.70817, 0.0438088, 1)
+colors = PackedColorArray(0.8, 0.2, 1.5, 1, 0.252, 0.266, 1.5, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_w72b2"]
 gradient = SubResource("Gradient_3gqpm")
+use_hdr = true
 
 [sub_resource type="Curve" id="Curve_ijx1c"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.497596, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -1868,7 +1869,7 @@ bus = &"reverbSFX"
 
 [node name="chime" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("25_6y1db")
-bus = &"reverbSFX"
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1962,13 +1963,13 @@ text = "Frozen God"
 alignment = 2
 
 [node name="tubes" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(1.65637, 0, -3.63981, 0, 4, 0, 3.63981, 0, 1.65637, 0, 7, 0)
+transform = Transform3D(-3.21809, 0, 2.36356, 0, 4, 0, -2.36356, 0, -3.21809, 0, 7, 0)
 
 [node name="BézierCurve_002" parent="tubes" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ltdxl")
 
 [node name="tubes2" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(-2.88926, 0, 2.76477, 0, 4, 0, -2.76477, 0, -2.88926, 0, -9, 0)
+transform = Transform3D(3.8656, 0, -0.999942, 0, 4, 0, 0.999942, 0, 3.8656, 0, -9, 0)
 
 [node name="BézierCurve_002" parent="tubes2" index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, -100, 0, 100, -4.37114e-06, 0, 0.977458, 0)
@@ -2263,6 +2264,7 @@ spot_angle_attenuation = 0.287175
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="lights"]
 transform = Transform3D(0.996195, 0.0818996, 0.029809, 0, 0.34202, -0.939693, -0.0871558, 0.936117, 0.340719, 0, -3, 0)
+light_color = Color(0.124552, 0.200056, 0.767969, 1)
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -5.5, 0)
@@ -2288,14 +2290,14 @@ rotateBias = 25.0
 tubes = [NodePath("../tubes"), NodePath("../tubes2")]
 
 [node name="tube2" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.6899, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.02891, 0)
 material_override = SubResource("StandardMaterial3D_8wxx3")
 material_overlay = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
 
 [node name="tube1" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.31013, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.9711, 0)
 material_override = SubResource("StandardMaterial3D_8wxx3")
 material_overlay = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
