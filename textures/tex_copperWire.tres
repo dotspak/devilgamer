@@ -1,8 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b77vfnj63dlxr"]
+[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://b77vfnj63dlxr"]
 
 [ext_resource type="Texture2D" uid="uid://csr5eeiphahrf" path="res://textures/tex_copperWire.png" id="1_rrsy1"]
+[ext_resource type="Texture2D" uid="uid://7vwl5nnpiube" path="res://textures/norm_copperWire.png" id="2_8juqr"]
+[ext_resource type="Texture2D" uid="uid://wo0t22pqxrbu" path="res://textures/rough_metal3.png" id="3_caj6g"]
 
 [resource]
+diffuse_mode = 3
+specular_mode = 2
 albedo_texture = ExtResource("1_rrsy1")
-metallic_specular = 0.0
+metallic = 0.82
+metallic_specular = 0.96
+roughness_texture = ExtResource("3_caj6g")
+normal_enabled = true
+normal_scale = 0.3
+normal_texture = ExtResource("2_8juqr")
 texture_filter = 2

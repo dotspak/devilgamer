@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://45jlkpu7s0y2"]
+
+[ext_resource type="Texture2D" uid="uid://bleubl58icxtv" path="res://textures/tex_bathStallDoor.png" id="1_uk4y8"]
+
+[resource]
+albedo_texture = ExtResource("1_uk4y8")
+metallic_specular = 0.0
+texture_filter = 2

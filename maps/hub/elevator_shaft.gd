@@ -3,6 +3,9 @@ extends Node3D
 
 @export var scrollSpeed : float = 2
 @export var segmentHeight : float = 20.0
+@export var rotateBias : float = 10
+@export var defaultCamPos : float = 3.0
+@export var tubes : Array[Node3D] = []
 
 var segments : Array[MeshInstance3D] = []
 
@@ -16,6 +19,9 @@ func _process(delta):
         if s.position.y >= segmentHeight:
             var lowestY : float = get_lowest_seg_y()
             s.position.y = lowestY - segmentHeight
+    
+    for t in tubes: 
+        if t: t.rotate_y(deg_to_rad(scrollSpeed * delta * rotateBias))
 
 
 func get_lowest_seg_y() -> float:

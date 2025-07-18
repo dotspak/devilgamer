@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bleubl58icxtv"
-path.s3tc="res://.godot/imported/tex_bathStallDoor.png-ad3ba4dd05989b0d39f2dd54d60ae997.s3tc.ctex"
+uid="uid://ckpa1f2bhm5wm"
+path.s3tc="res://.godot/imported/disp_metal3.png-8178d0c71ff3af19df3f2388c97ac2ee.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/tex_bathStallDoor.png"
-dest_files=["res://.godot/imported/tex_bathStallDoor.png-ad3ba4dd05989b0d39f2dd54d60ae997.s3tc.ctex"]
+source_file="res://textures/disp_metal3.png"
+dest_files=["res://.godot/imported/disp_metal3.png-8178d0c71ff3af19df3f2388c97ac2ee.s3tc.ctex"]
 
 [params]
 

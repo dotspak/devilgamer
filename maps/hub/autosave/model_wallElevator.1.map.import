@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://3sucdcp6es6a"
+path="res://.godot/imported/model_wallElevator.1.map-b71eab6144a14782bbd6d8ecf5bc4c28.tres"
+
+[deps]
+
+source_file="res://maps/hub/autosave/model_wallElevator.1.map"
+dest_files=["res://.godot/imported/model_wallElevator.1.map-b71eab6144a14782bbd6d8ecf5bc4c28.tres"]
+
+[params]
+

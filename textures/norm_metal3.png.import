@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bleubl58icxtv"
-path.s3tc="res://.godot/imported/tex_bathStallDoor.png-ad3ba4dd05989b0d39f2dd54d60ae997.s3tc.ctex"
+uid="uid://c8iq1jd4sd0kr"
+path.s3tc="res://.godot/imported/norm_metal3.png-a96d26e037f8a53dbf0575e9ffdda08f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://textures/tex_bathStallDoor.png"
-dest_files=["res://.godot/imported/tex_bathStallDoor.png-ad3ba4dd05989b0d39f2dd54d60ae997.s3tc.ctex"]
+source_file="res://textures/norm_metal3.png"
+dest_files=["res://.godot/imported/norm_metal3.png-a96d26e037f8a53dbf0575e9ffdda08f.s3tc.ctex"]
 
 [params]
 
@@ -20,12 +20,12 @@ compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
+roughness/mode=1
+roughness/src_normal="res://textures/norm_metal3.png"
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
