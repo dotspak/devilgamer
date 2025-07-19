@@ -181,9 +181,10 @@ func _physics_process(delta: float) -> void:
 			var targetBodies : Array[Node3D] = targetArea.get_overlapping_bodies()
 			targetBodies.erase(self)
 
-			if !targetBodies.has(skillTarget):
-				print("looking for new target")
-				skillTarget = get_closest_target()
+			if skillTarget:
+				if !targetBodies.has(skillTarget):
+					print("looking for new target")
+					skillTarget = get_closest_target()
 		
 		# handle drowning logic
 		if headInWater: breathTimer -= delta
@@ -610,3 +611,7 @@ func move_to_position(targetPos : Vector3, stopDistance : float = 0.1) -> void:
 	disable_input(false)
 
 	stateMachine.transition_to("gameFreeze")
+
+
+func kill() -> void:
+	GameManager.game_over()

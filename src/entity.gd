@@ -21,6 +21,8 @@ var usingSkill : bool = false
 var movementAllowed : bool = true
 var stopMoveWeight : float = 0.3
 
+var dead : bool = false
+
 func _ready():
 	if stats:
 		stats.hpChanged.connect(should_entity_die)
@@ -142,5 +144,9 @@ func should_entity_die(hp : float) -> bool:
 	return false
 
 
-func kill() -> void: 
-	print(name + " YOU SHOULD DIE NOW!")
+func kill() -> void:
+	print(name + " died")
+	set_process(false)
+	set_physics_process(false)
+	dead = true
+	queue_free()

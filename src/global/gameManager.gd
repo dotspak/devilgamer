@@ -410,3 +410,7 @@ func play_static(duration : float = 0.5) -> void:
 	anim.speed_scale = time
 	anim.play("static")
 	await anim.animation_finished
+
+
+func game_over() -> void:
+	print("GAME OVER!")

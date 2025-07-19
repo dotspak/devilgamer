@@ -34,6 +34,9 @@ CameraManager="*res://src/global/cameraManager.tscn"
 [dialogue_manager]
 
 runtime/balloon_path="res://ui/dialogue/ui_msgBox2.tscn"
+editor/new_file_template="~ start
+Dummy, dummy, dummy!
+=> END"
 
 [display]
 
