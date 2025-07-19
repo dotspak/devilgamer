@@ -13,10 +13,17 @@ const DMG_NUM : PackedScene = preload("res://ui/ui_dmgpopup.tscn")
 @export var targetPosition : Marker3D
 @export var targetArea : Area3D
 
+@export_group("Components")
+@export var stats : StatComponent
+
 var cooldowns : Array[Timer] = []
 var usingSkill : bool = false
 var movementAllowed : bool = true
 var stopMoveWeight : float = 0.3
+
+func _ready():
+	if stats:
+		stats.hpChanged.connect(should_entity_die)
 
 func display_damage_num(dmg : float, isHeal : bool = false, isCrit : bool = false, isWeak : bool = false, isRes : bool = false) -> void:
 	var num : Sprite3D = DMG_NUM.instantiate()
@@ -99,3 +106,35 @@ func get_closest_target() -> Node3D:
 				closest = body
 
 	return closest
+
+
+# deals damage to the entity.
+func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.dmgType = Skill.dmgType.PHYS) -> void:
+	var dmgReduction : float = 0.0
+	match dmgType:
+		Skill.dmgType.PHYS: dmgReduction = stats.get_stat(StatComponent.STATS.DEF)
+		Skill.dmgType.MAG: dmgReduction = stats.get_stat(StatComponent.STATS.MDF)
+		Skill.dmgType.TRUE: dmgReduction = 0
+	
+	var crit : bool = randf_range(0, 1) <= casterStats.calc_crit_chance()
+	if crit: baseDMG *= casterStats.get_rate(StatComponent.RATES.CDMG)
+	
+	var finalDMG = max((baseDMG * 1.5) - dmgReduction, 0)
+	display_damage_num(finalDMG, false, crit, false, false)
+	stats.HP -= finalDMG
+
+
+func heal_damage(baseHeal : float) -> void:
+	display_damage_num(baseHeal, true)
+	stats.HP += baseHeal
+
+
+func should_entity_die(hp : float) -> bool:
+	if hp <= 0:
+		kill()
+		return true
+	return false
+
+
+func kill() -> void: 
+	print(name + " YOU SHOULD DIE NOW!")

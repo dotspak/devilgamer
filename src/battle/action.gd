@@ -5,6 +5,8 @@
 extends Node3D
 class_name Action
 
+@export var skill : Skill
+
 @export_group("Node References")
 @export var collider : Area3D
 
@@ -14,7 +16,6 @@ class_name Action
 
 var caster : Node3D
 var target : CharacterBody3D
-var skill : Resource
 
 signal actionFinished
 
