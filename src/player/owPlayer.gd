@@ -36,7 +36,6 @@ const maxPitch : float = 50
 @onready var stateMachine : StateMachine = %StateMachine
 
 @onready var camera : Camera3D = %Camera3D
-@onready var model : Node3D = %SophiaSkin
 @onready var jumpCheck : RayCast3D = %jumpCheck
 
 @onready var stepParticles : GPUParticles3D = %stepParticles

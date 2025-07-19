@@ -12,6 +12,7 @@ const DMG_NUM : PackedScene = preload("res://ui/ui_dmgpopup.tscn")
 @export var mesh : MeshInstance3D
 @export var targetPosition : Marker3D
 @export var targetArea : Area3D
+@export var model : Node3D
 
 @export_group("Components")
 @export var stats : StatComponent
@@ -23,9 +24,11 @@ var stopMoveWeight : float = 0.3
 
 var dead : bool = false
 
+signal entityDeath
+
 func _ready():
-	if stats:
-		stats.hpChanged.connect(should_entity_die)
+	if stats: stats.hpChanged.connect(should_entity_die)
+
 
 func display_damage_num(dmg : float, isHeal : bool = false, isCrit : bool = false, isWeak : bool = false, isRes : bool = false) -> void:
 	var num : Sprite3D = DMG_NUM.instantiate()
@@ -126,6 +129,8 @@ func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.D
 		(GameConstants.DEF_SCALE + dmgReduction)), 0)
 	finalDMG = roundf(finalDMG)
 	
+	if model.has_method("damage_flash"):
+		model.damage_flash()
 	display_damage_num(finalDMG, false, crit, false, false)
 	stats.HP -= finalDMG
 
@@ -146,6 +151,7 @@ func should_entity_die(hp : float) -> bool:
 
 func kill() -> void:
 	print(name + " died")
+	entityDeath.emit()
 	set_process(false)
 	set_physics_process(false)
 	dead = true

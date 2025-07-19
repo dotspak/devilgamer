@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://46y2558njyn5"]
+[gd_scene load_steps=13 format=3 uid="uid://46y2558njyn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
 [ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="2_pouwe"]
 [ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="3_m1h02"]
+[ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="4_f1few"]
 [ext_resource type="PackedScene" uid="uid://cuj3d2gat756e" path="res://assets/models/dummy/platformPack/Enemies/FBX/Skull.fbx" id="5_c8vym"]
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="7_nxrn8"]
 
@@ -51,18 +52,21 @@ mesh = SubResource("BoxMesh_f2bor")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_ehm7b")
 
-[node name="skull" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition", "stats")]
+[node name="skull" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition", "model", "stats")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.75, -7.038)
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("3_m1h02")
 mesh = NodePath("Skull/MonsterArmature/Skeleton3D/Skull")
 targetPosition = NodePath("targetPos")
+model = NodePath("Skull")
 stats = NodePath("StatComponent")
 metadata/_custom_type_script = "uid://dhrqews2wqm0v"
 
-[node name="Skull" parent="skull" instance=ExtResource("5_c8vym")]
+[node name="Skull" parent="skull" node_paths=PackedStringArray("meshRoot") instance=ExtResource("5_c8vym")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.865396, 0)
+script = ExtResource("4_f1few")
+meshRoot = NodePath("MonsterArmature/Skeleton3D")
 
 [node name="Skeleton3D" parent="skull/Skull/MonsterArmature" index="0"]
 bones/1/position = Vector3(-7.80307e-20, 0.00147259, 0.00500828)

@@ -24,6 +24,9 @@ func _ready():
 	collider.collision_layer = 8
 	collider.collision_mask = 16
 	collider.body_entered.connect(_on_action_collision)
+	if target:
+		if target is Entity:
+			target.entityDeath.connect(stop)
 
 
 func _on_action_collision(body : Node3D) -> void:
