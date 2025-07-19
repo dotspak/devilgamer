@@ -1,8 +1,8 @@
 ~ start
 if !GameFlags.check_elevator(ID)
-	do GameFlags.unlock_elevator(ID)
-	do AudioManager.play_jingle("elevatorChime")
-	Discovered Elevator [color=a7a5ff]{{ID}}[/color]!
+	do unlock_elevator()
+	[color=a7a5ff]{{ID}}[/color] is now available!
+	=> END
 Ride the elevator?
 - Ride => elevatorEnter
 - Do not

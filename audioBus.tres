@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://ep0h8ybs1rmn"]
+[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://ep0h8ybs1rmn"]
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_pxty1"]
 resource_name = "Reverb"
@@ -7,12 +7,19 @@ room_size = 0.43
 [sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_pxty1"]
 resource_name = "LowPassFilter"
 
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_o2afx"]
+resource_name = "Reverb"
+room_size = 0.47
+damping = 0.43
+dry = 0.87
+wet = 0.27
+
 [resource]
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false
 bus/1/bypass_fx = false
-bus/1/volume_db = 0.0
+bus/1/volume_db = -0.923751
 bus/1/send = &"Master"
 bus/2/name = &"BGM"
 bus/2/solo = false
@@ -24,15 +31,29 @@ bus/3/name = &"talkSFX"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
-bus/3/volume_db = -1.71923
+bus/3/volume_db = -2.3125
 bus/3/send = &"Master"
 bus/4/name = &"reverbSFX"
 bus/4/solo = false
 bus/4/mute = false
 bus/4/bypass_fx = false
-bus/4/volume_db = 0.0
-bus/4/send = &"SFX"
+bus/4/volume_db = -1.71701
+bus/4/send = &"Master"
 bus/4/effect/0/effect = SubResource("AudioEffectReverb_pxty1")
 bus/4/effect/0/enabled = true
 bus/4/effect/1/effect = SubResource("AudioEffectLowPassFilter_pxty1")
 bus/4/effect/1/enabled = true
+bus/5/name = &"BGS"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = -0.130497
+bus/5/send = &"Master"
+bus/6/name = &"reverbBGS"
+bus/6/solo = false
+bus/6/mute = false
+bus/6/bypass_fx = false
+bus/6/volume_db = -0.923751
+bus/6/send = &"Master"
+bus/6/effect/0/effect = SubResource("AudioEffectReverb_o2afx")
+bus/6/effect/0/enabled = true

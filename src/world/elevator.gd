@@ -7,6 +7,14 @@ class_name Elevator
 @onready var animator : AnimationPlayer = $AnimationPlayer
 @onready var playerPos : Marker3D = $playerPos
 
+signal elevatorUnlocked(id : String)
+
+func _ready():
+    super()
+    if GameFlags.check_elevator(ID): customTypeText = "Ride"
+    else: customTypeText = "Unlock"
+
+
 func enter_elevator() -> void:
     animator.play("doorOpenExtended")
     await animator.animation_finished
@@ -37,3 +45,10 @@ func exit_elevator() -> void:
     GameManager.player.camera_to_front()
     CameraManager.enable_main_cam()
     await animator.animation_finished
+
+
+func unlock_elevator() -> void:
+    GameFlags.unlock_elevator(ID)
+    $chime.play()
+    customTypeText = "ride"
+    elevatorUnlocked.emit(ID)

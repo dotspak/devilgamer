@@ -13,22 +13,7 @@ const PLAYER_SCENE : PackedScene = preload("res://scenes/player/owPlayer3D.tscn"
 var DEBUG_MODE : bool = false
 
 # Flow Control --------------------------
-var FLAGS : Dictionary[String, Variant] = {}
-var KEY_ITEMS : Dictionary[String, Dictionary]
 var CHESTS : Dictionary[String, Dictionary]
-
-# returns if the flag has been triggered or not. If the flag doesn't exist, it hasn't been triggered.
-func check_flag(flag : String):
-	var result = false if !FLAGS.has(flag) else FLAGS[flag]
-	print(flag, " : ", str(result))
-	return result
-
-func set_flag(flag : String, val) -> void:
-	print(flag, " set to : ", str(val)) 
-	FLAGS[flag] = val
-
-# returns the dictionary reference to the key item. If it returns empty dictionary, item is not acquired or was lost.
-func check_keyItem(keyItem : String) -> Dictionary: return {} if !KEY_ITEMS.has(keyItem) else KEY_ITEMS[keyItem]
 
 # Character Control --------------------------
 var player : OWPlayer :
