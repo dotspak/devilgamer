@@ -5,26 +5,18 @@ extends Node
 var bgmVolume : float = 1.0
 var bgmPitch : float = 1.0
 
-var talkSounds : Dictionary[String, Node] = {"talkSounds" : null}
-var uiSounds : Dictionary[String, Node] = {"uiSounds" : null}
+var library : Dictionary[String, Dictionary]
 
-# load in all sounds into the dictionaries
-func _ready():
-	var maxSize : float = [
-		%talkSounds.get_child_count(), 
-		%uiSounds.get_child_count()].max()
+func _ready(): load_sfx_library()
+func load_sfx_library() -> void:
+	for n : Node in get_children():
+		if n.get_class() != "Node": continue
+
+		library[n.name] = {}
+		for sound in n.get_children():
+			library[n.name][sound.name] = sound
 	
-	# loads all sounds in one loop
-	for i : int in maxSize:
-		# load ui sounds
-		if i < %uiSounds.get_child_count():
-			uiSounds[%uiSounds.get_child(i).name] = %uiSounds.get_child(i)
-		
-		# load talk sounds
-		if i < %talkSounds.get_child_count():
-			talkSounds[%talkSounds.get_child(i).name] = %talkSounds.get_child(i)
-	
-	print("Loaded all sounds: \n", talkSounds, "\n", uiSounds)
+	print("loaded all sounds successfully:\n", library)
 
 
 func play_bgm(bgm : AudioStream, volume : float = 1.0, pitch : float = 1.0, fadeIn : float = 0.0, altPlayer : AudioStreamPlayer = null) -> void:
@@ -51,6 +43,12 @@ func fade_bgm(duration : float = 1.0, fadeOut : bool = true) -> void:
 	if fadeOut: bgmPlayer.stream_paused = true
 
 
+# play a sound of a given category
+func play_ui_sfx(sfx : String, pitch : float = 1.0) -> void: if library["uiSounds"].has(sfx): play_sfx(sfx, library["uiSounds"], pitch)
+func play_talk_sfx(sfx : String, pitch : float = 1.0) -> void: if library["talkSounds"].has(sfx): play_sfx(sfx, library["talkSounds"], pitch)
+func play_jingle(sfx : String, pitch : float = 1.0) -> void: if library["jingles"].has(sfx): play_sfx(sfx, library["jingles"], pitch)
+
+
 # plays a sound from a given sfx bank. Should only be called from the more specific helper functions
 func play_sfx(sfx : String, bank : Dictionary, pitch : float) -> void:
 	if !bank.has(sfx):
@@ -58,8 +56,3 @@ func play_sfx(sfx : String, bank : Dictionary, pitch : float) -> void:
 		return
 	bank[sfx].pitch_scale = pitch
 	bank[sfx].play()
-
-
-# play a sound of a given category
-func play_ui_sfx(sfx : String, pitch : float = 1.0) -> void: if uiSounds.has(sfx): play_sfx(sfx, uiSounds, pitch)
-func play_talk_sfx(sfx : String, pitch : float = 1.0) -> void: if talkSounds.has(sfx): play_sfx(sfx, talkSounds, pitch)

@@ -24,6 +24,7 @@ buses/default_bus_layout="uid://ep0h8ybs1rmn"
 
 GameConstants="*res://src/global/gameConstants.gd"
 GameManager="*res://src/global/gameManager.tscn"
+GameFlags="*res://src/global/flags.gd"
 AudioManager="*res://src/global/audioManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneManager="*res://src/global/sceneManager.gd"

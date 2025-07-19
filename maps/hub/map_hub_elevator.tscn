@@ -1,4 +1,4 @@
-[gd_scene load_steps=208 format=4 uid="uid://c4ib3qirvq1ib"]
+[gd_scene load_steps=207 format=4 uid="uid://c4ib3qirvq1ib"]
 
 [ext_resource type="Script" uid="uid://dv88c4mwxsfuj" path="res://maps/hub/map_hub_elevator.gd" id="1_notqu"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_vxu5d"]
@@ -7,12 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://c57g2qhwvjrc3" path="res://assets/audio/sfx/SE_largeMetalThud.ogg" id="3_yu8sa"]
 [ext_resource type="Material" uid="uid://d4nf1lh6djnei" path="res://textures/tex_carpet1.tres" id="5_8wxx3"]
 [ext_resource type="Material" uid="uid://c0j8d0mx2casc" path="res://textures/tex_metal2.tres" id="5_hvxx7"]
-[ext_resource type="Texture2D" uid="uid://b7lsexfvc265t" path="res://textures/tex_tileWall2.png" id="6_o4klg"]
 [ext_resource type="Material" uid="uid://dh5qsnqbe3ga" path="res://textures/tex_metal3.tres" id="7_2rf1k"]
 [ext_resource type="Material" uid="uid://nc21s1vjsihl" path="res://textures/tex_bathTile.tres" id="7_3gqpm"]
 [ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/models/dummy/sophia_skin/sophia_skin.tscn" id="7_o4klg"]
 [ext_resource type="Material" uid="uid://c4l8yf5l8furj" path="res://textures/tex_tileWall1.tres" id="8_ev24r"]
-[ext_resource type="Texture2D" uid="uid://dc0llh0vx252a" path="res://textures/norm_tileWall1.png" id="9_rnj50"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="9_uwm38"]
 [ext_resource type="Texture2D" uid="uid://cvwhygiv1pynr" path="res://addons/kenney_particle_pack/flare_01.png" id="10_8wxx3"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="10_rnj50"]
@@ -25,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://dcfti1vgeyyoj" path="res://assets/models/tubes.fbx" id="24_6y1db"]
 [ext_resource type="Texture2D" uid="uid://csr5eeiphahrf" path="res://textures/tex_copperWire.png" id="25_1x7m1"]
 [ext_resource type="AudioStream" uid="uid://0kd0fpelpu0x" path="res://assets/audio/sfx/SE_elevatorChime.ogg" id="25_6y1db"]
+[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="26_1x7m1"]
 
 [sub_resource type="Animation" id="Animation_ev24r"]
 length = 0.001
@@ -1110,18 +1109,6 @@ _surfaces = [{
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_6y1db"]
 data = PackedVector3Array(-3.25, 16.75, -8, -3.25, -16.75, -8, 3.25, -16.75, -8, -3.25, 16.75, -8, 3.25, -16.75, -8, 3.25, 16.75, -8, -3.25, 16.75, -8, -3.25, 16.75, -3, -3.25, -16.75, -3, -3.25, 16.75, -8, -3.25, -16.75, -3, -3.25, -16.75, -8, 3.25, -16.75, -8, -3.25, -16.75, -8, -3.25, -16.75, -3, 3.25, -16.75, -8, -3.25, -16.75, -3, 3.25, -16.75, -3, 3.25, 16.75, -8, 3.25, 16.75, -3, -3.25, 16.75, -3, 3.25, 16.75, -8, -3.25, 16.75, -3, -3.25, 16.75, -8, 3.25, 16.75, -8, 3.25, -16.75, -8, 3.25, -16.75, -3, 3.25, 16.75, -8, 3.25, -16.75, -3, 3.25, 16.75, -3, -3.25, 16.75, -3, 3.25, 16.75, -3, 3.25, -16.75, -3, -3.25, 16.75, -3, 3.25, -16.75, -3, -3.25, -16.75, -3, -9.75, 16.75, -8, -9.75, -16.75, -8, -3.25, -16.75, -8, -9.75, 16.75, -8, -3.25, -16.75, -8, -3.25, 16.75, -8, -9.75, 16.75, -8, -9.75, 16.75, 8, -9.75, -16.75, 8, -9.75, 16.75, -8, -9.75, -16.75, 8, -9.75, -16.75, -8, -3.25, -16.75, -8, -9.75, -16.75, -8, -9.75, -16.75, 8, -3.25, -16.75, -8, -9.75, -16.75, 8, -3.25, -16.75, 8, -3.25, 16.75, -8, -3.25, 16.75, 8, -9.75, 16.75, 8, -3.25, 16.75, -8, -9.75, 16.75, 8, -9.75, 16.75, -8, -3.25, 16.75, -8, -3.25, -16.75, -8, -3.25, -16.75, 8, -3.25, 16.75, -8, -3.25, -16.75, 8, -3.25, 16.75, 8, -9.75, 16.75, 8, -3.25, 16.75, 8, -3.25, -16.75, 8, -9.75, 16.75, 8, -3.25, -16.75, 8, -9.75, -16.75, 8, -3.25, 16.75, 3, -3.25, -16.75, 3, 3.25, -16.75, 3, -3.25, 16.75, 3, 3.25, -16.75, 3, 3.25, 16.75, 3, -3.25, 16.75, 3, -3.25, 16.75, 8, -3.25, -16.75, 8, -3.25, 16.75, 3, -3.25, -16.75, 8, -3.25, -16.75, 3, 3.25, -16.75, 3, -3.25, -16.75, 3, -3.25, -16.75, 8, 3.25, -16.75, 3, -3.25, -16.75, 8, 3.25, -16.75, 8, 3.25, 16.75, 3, 3.25, 16.75, 8, -3.25, 16.75, 8, 3.25, 16.75, 3, -3.25, 16.75, 8, -3.25, 16.75, 3, 3.25, 16.75, 3, 3.25, -16.75, 3, 3.25, -16.75, 8, 3.25, 16.75, 3, 3.25, -16.75, 8, 3.25, 16.75, 8, -3.25, 16.75, 8, 3.25, 16.75, 8, 3.25, -16.75, 8, -3.25, 16.75, 8, 3.25, -16.75, 8, -3.25, -16.75, 8, 3.25, 16.75, -8, 3.25, -16.75, -8, 9.75, -16.75, -8, 3.25, 16.75, -8, 9.75, -16.75, -8, 9.75, 16.75, -8, 3.25, 16.75, -8, 3.25, 16.75, 8, 3.25, -16.75, 8, 3.25, 16.75, -8, 3.25, -16.75, 8, 3.25, -16.75, -8, 9.75, -16.75, -8, 3.25, -16.75, -8, 3.25, -16.75, 8, 9.75, -16.75, -8, 3.25, -16.75, 8, 9.75, -16.75, 8, 9.75, 16.75, -8, 9.75, 16.75, 8, 3.25, 16.75, 8, 9.75, 16.75, -8, 3.25, 16.75, 8, 3.25, 16.75, -8, 9.75, 16.75, -8, 9.75, -16.75, -8, 9.75, -16.75, 8, 9.75, 16.75, -8, 9.75, -16.75, 8, 9.75, 16.75, 8, 3.25, 16.75, 8, 9.75, 16.75, 8, 9.75, -16.75, 8, 3.25, 16.75, 8, 9.75, -16.75, 8, 3.25, -16.75, 8)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wxx3"]
-transparency = 1
-cull_mode = 1
-albedo_texture = ExtResource("6_o4klg")
-normal_enabled = true
-normal_scale = 0.6
-normal_texture = ExtResource("9_rnj50")
-uv1_scale = Vector3(20, 10, 1)
-texture_filter = 2
-proximity_fade_distance = 40.0
-distance_fade_max_distance = 50.0
-
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_6y1db"]
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
 op_type = 2
@@ -1193,10 +1180,12 @@ parameter_name = "WaveSpeed"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5w6nj"]
 noise_type = 2
-frequency = 0.0285
+frequency = 0.0144
 cellular_distance_function = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wjwk1"]
+width = 256
+height = 256
 seamless = true
 noise = SubResource("FastNoiseLite_5w6nj")
 
@@ -1225,6 +1214,11 @@ parameter_name = "texturescale"
 default_value_enabled = true
 default_value = 1.0
 
+[sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_yu8sa"]
+parameter_name = "Vector2Parameter"
+default_value_enabled = true
+default_value = Vector2(4, 8)
+
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_feaji"]
 output_port_for_preview = 0
 default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
@@ -1244,7 +1238,7 @@ input_name = "time"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_jpoff"]
 noise_type = 2
-frequency = 0.0285
+frequency = 0.0149
 fractal_type = 0
 cellular_distance_function = 1
 cellular_jitter = -0.525
@@ -1299,7 +1293,7 @@ default_value = 0.4
 
 [sub_resource type="VisualShader" id="VisualShader_dimva"]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_front, diffuse_toon, specular_toon;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform float WaveStrength = 0.40000000596046;
 uniform float WaveSpeed = 0.10000000149012;
@@ -1307,7 +1301,7 @@ uniform sampler2D tex_vtx_4;
 uniform sampler2D depth_tex_frg_16 : hint_depth_texture;
 uniform vec4 waveColor : source_color = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 uniform vec4 color : source_color = vec4(0.473625, 0.626326, 1.000000, 1.000000);
-uniform float texturescale = 1.0;
+uniform vec2 Vector2Parameter = vec2(4.000000, 8.000000);
 uniform sampler2D tex_frg_3;
 uniform sampler2D tex_frg_9;
 uniform float alpha = 1.0;
@@ -1426,13 +1420,13 @@ void fragment() {
 	vec4 n_out2p0 = color;
 
 
-// FloatParameter:35
-	float n_out35p0 = texturescale;
+// Vector2Parameter:36
+	vec2 n_out36p0 = Vector2Parameter;
 
 
 // UVFunc:34
 	vec2 n_in34p2 = vec2(0.00000, 0.00000);
-	vec2 n_out34p0 = (UV - n_in34p2) * vec2(n_out35p0) + n_in34p2;
+	vec2 n_out34p0 = (UV - n_in34p2) * n_out36p0 + n_in34p2;
 
 
 // ParameterRef:31
@@ -1510,9 +1504,7 @@ void fragment() {
 
 }
 "
-modes/cull = 1
-modes/diffuse = 3
-modes/specular = 1
+graph_offset = Vector2(-472.624, -328.697)
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_7lda0")
 nodes/vertex/2/position = Vector2(-800, 160)
 nodes/vertex/3/node = SubResource("VisualShaderNodeUVFunc_mjh68")
@@ -1599,22 +1591,27 @@ nodes/fragment/34/node = SubResource("VisualShaderNodeUVFunc_xxovs")
 nodes/fragment/34/position = Vector2(-440, 100)
 nodes/fragment/35/node = SubResource("VisualShaderNodeFloatParameter_yvcwu")
 nodes/fragment/35/position = Vector2(-720, 100)
-nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 5, 0, 3, 0, 6, 0, 5, 2, 7, 0, 9, 0, 8, 0, 7, 2, 3, 0, 10, 0, 9, 0, 10, 1, 10, 0, 11, 0, 12, 0, 0, 1, 13, 0, 0, 3, 14, 0, 15, 1, 11, 0, 15, 0, 15, 0, 4, 1, 15, 0, 0, 5, 16, 0, 17, 0, 4, 0, 18, 1, 18, 0, 0, 0, 17, 0, 23, 0, 25, 0, 26, 0, 17, 0, 26, 2, 26, 0, 27, 0, 27, 0, 19, 0, 19, 0, 21, 0, 14, 0, 22, 1, 28, 0, 18, 0, 17, 0, 28, 1, 29, 0, 27, 1, 30, 0, 26, 1, 31, 0, 5, 1, 32, 0, 33, 0, 33, 0, 7, 1, 23, 0, 24, 1, 21, 0, 24, 0, 24, 0, 22, 0, 22, 0, 28, 0, 35, 0, 34, 1, 34, 0, 5, 0, 34, 0, 7, 0)
+nodes/fragment/36/node = SubResource("VisualShaderNodeVec2Parameter_yu8sa")
+nodes/fragment/36/position = Vector2(-860, 260)
+nodes/fragment/connections = PackedInt32Array(2, 0, 4, 0, 5, 0, 3, 0, 6, 0, 5, 2, 7, 0, 9, 0, 8, 0, 7, 2, 3, 0, 10, 0, 9, 0, 10, 1, 10, 0, 11, 0, 12, 0, 0, 1, 13, 0, 0, 3, 14, 0, 15, 1, 11, 0, 15, 0, 15, 0, 4, 1, 15, 0, 0, 5, 16, 0, 17, 0, 4, 0, 18, 1, 18, 0, 0, 0, 17, 0, 23, 0, 25, 0, 26, 0, 17, 0, 26, 2, 26, 0, 27, 0, 27, 0, 19, 0, 19, 0, 21, 0, 14, 0, 22, 1, 28, 0, 18, 0, 17, 0, 28, 1, 29, 0, 27, 1, 30, 0, 26, 1, 31, 0, 5, 1, 32, 0, 33, 0, 33, 0, 7, 1, 23, 0, 24, 1, 21, 0, 24, 0, 24, 0, 22, 0, 22, 0, 28, 0, 34, 0, 5, 0, 34, 0, 7, 0, 36, 0, 34, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_y6gdt"]
 render_priority = 1
 shader = SubResource("VisualShader_dimva")
-shader_parameter/WaveStrength = 0.1
-shader_parameter/WaveSpeed = 0.01
-shader_parameter/waveColor = Color(0.361166, 0.344683, 0.697656, 1)
-shader_parameter/color = Color(0, 0, 0, 1)
-shader_parameter/texturescale = 3.0
-shader_parameter/alpha = 1.0
+shader_parameter/WaveStrength = 0.7
+shader_parameter/WaveSpeed = 0.1
+shader_parameter/waveColor = Color(1.2, 0.5, 2, 1)
+shader_parameter/color = Color(0.254976, 0.270485, 0.572656, 1)
+shader_parameter/Vector2Parameter = Vector2(5, 10)
+shader_parameter/alpha = 0.5
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_vaieh"]
+flip_faces = true
 top_radius = 7.0
 bottom_radius = 7.0
-height = 40.0
+height = 20.7
+radial_segments = 16
+rings = 16
 cap_top = false
 cap_bottom = false
 
@@ -1688,7 +1685,6 @@ albedo_texture = ExtResource("10_8wxx3")
 heightmap_deep_parallax = true
 heightmap_min_layers = 8
 heightmap_max_layers = 32
-refraction_enabled = true
 refraction_scale = 1.0
 billboard_mode = 3
 billboard_keep_scale = true
@@ -1963,13 +1959,13 @@ text = "Frozen God"
 alignment = 2
 
 [node name="tubes" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(-3.21809, 0, 2.36356, 0, 4, 0, -2.36356, 0, -3.21809, 0, 7, 0)
+transform = Transform3D(-3.96628, 0, 0.455938, 0, 4, 0, -0.455938, 0, -3.96628, 0, 7, 0)
 
 [node name="BézierCurve_002" parent="tubes" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ltdxl")
 
 [node name="tubes2" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(3.8656, 0, -0.999942, 0, 4, 0, 0.999942, 0, 3.8656, 0, -9, 0)
+transform = Transform3D(3.85214, 0, 1.04915, 0, 4, 0, -1.04915, 0, 3.85214, 0, -9, 0)
 
 [node name="BézierCurve_002" parent="tubes2" index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, -100, 0, 100, -4.37114e-06, 0, 0.977458, 0)
@@ -2264,7 +2260,8 @@ spot_angle_attenuation = 0.287175
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="lights"]
 transform = Transform3D(0.996195, 0.0818996, 0.029809, 0, 0.34202, -0.939693, -0.0871558, 0.936117, 0.340719, 0, -3, 0)
-light_color = Color(0.124552, 0.200056, 0.767969, 1)
+light_color = Color(0.361166, 0.344683, 0.697656, 1)
+shadow_enabled = true
 
 [node name="floor" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -5.5, 0)
@@ -2284,22 +2281,26 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_6y1db")
 
 [node name="elevatorShaft" type="Node3D" parent="." node_paths=PackedStringArray("tubes")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 script = ExtResource("13_8wxx3")
 rotateBias = 25.0
 tubes = [NodePath("../tubes"), NodePath("../tubes2")]
 
 [node name="tube2" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.02891, 0)
-material_override = SubResource("StandardMaterial3D_8wxx3")
-material_overlay = SubResource("ShaderMaterial_y6gdt")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -36.7638, -5.19846e-07)
+material_override = SubResource("ShaderMaterial_y6gdt")
+mesh = SubResource("CylinderMesh_vaieh")
+skeleton = NodePath("../..")
+
+[node name="tube3" type="MeshInstance3D" parent="elevatorShaft"]
+transform = Transform3D(0.0162672, 0, -0.999867, 0, 1, 0, 0.999867, 0, 0.0162672, 0, 3.2483, 0)
+material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
 
 [node name="tube1" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.9711, 0)
-material_override = SubResource("StandardMaterial3D_8wxx3")
-material_overlay = SubResource("ShaderMaterial_y6gdt")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -16.7517, 0)
+material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
 
@@ -2346,13 +2347,23 @@ draw_pass_1 = SubResource("QuadMesh_w33tk")
 
 [node name="FogVolume" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, 16.75, 0.875)
+visible = false
 size = Vector3(14.5, 8, 15.25)
 material = SubResource("FogMaterial_uhj3u")
 
 [node name="FogVolume2" type="FogVolume" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.25, -8, 0.875)
+visible = false
 size = Vector3(14.5, 8, 15.25)
 material = SubResource("FogMaterial_uhj3u")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.577858, 0, 0.816138, 0, 1, 0, -0.816138, 0, 0.577858, 4, 3, 12)
+
+[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("26_1x7m1")
 
 [editable path="tubes"]
 [editable path="tubes2"]

@@ -699,10 +699,10 @@ tracks/0/path = NodePath("FuncGodotMap/entity_1_func_detail:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(3.3, 3.7),
-"transitions": PackedFloat32Array(0.5, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.3, 3.7),
+"transitions": PackedFloat32Array(2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0.5, 1),
 "update": 0,
-"values": [Vector3(-1, 2.75, 2.75), Vector3(-3.5, 2.75, 2.75)]
+"values": [Vector3(-1, 2.75, 2.75), Vector3(-1.02, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-1.05, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-1.02, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-1.05, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-1.02, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-1.05, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-1.02, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-1.05, 2.75, 2.75), Vector3(-1, 2.75, 2.75), Vector3(-3.5, 2.75, 2.75)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -711,10 +711,10 @@ tracks/1/path = NodePath("FuncGodotMap/entity_2_func_detail:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(3.3, 3.7),
-"transitions": PackedFloat32Array(0.5, 1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.3, 3.7),
+"transitions": PackedFloat32Array(2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 0.5, 1),
 "update": 0,
-"values": [Vector3(1, 2.75, 2.75), Vector3(3.5, 2.75, 2.75)]
+"values": [Vector3(1, 2.75, 2.75), Vector3(0.98, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(1.02, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(0.98, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(1.02, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(0.98, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(1.02, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(0.98, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(1.02, 2.75, 2.75), Vector3(1, 2.75, 2.75), Vector3(3.5, 2.75, 2.75)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -905,7 +905,6 @@ metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [node name="wallElevator" type="CharacterBody3D" node_paths=PackedStringArray("interactArea", "cameraOverride")]
 script = ExtResource("1_fmnji")
-ID = null
 interactArea = NodePath("Area3D")
 usePlayerPopup = true
 customTypeText = "Use"

@@ -1,11 +1,11 @@
 ~ start
-if !GameManager.check_flag(ID)
-	do GameManager.set_flag(ID, true)
-	Discovered Elevator {{ID}}!
-Get on the elevator?
-- Use
-	=> elevatorEnter
-- Leave
+if !GameFlags.check_elevator(ID)
+	do GameFlags.unlock_elevator(ID)
+	do AudioManager.play_jingle("elevatorChime")
+	Discovered Elevator [color=a7a5ff]{{ID}}[/color]!
+Ride the elevator?
+- Ride => elevatorEnter
+- Do not
 => END
 
 ~ elevatorEnter

@@ -214,7 +214,7 @@ func smooth_hide_responses() -> void:
 
 
 func _on_dialogue_label_spoke(letter : String, _letter_index : int, _speed : float) -> void:
-	var sound : String = "def" if !AudioManager.talkSounds.has(dialogue_line.character) else dialogue_line.character
+	var sound : String = "def" if !AudioManager.library["talkSounds"].has(dialogue_line.character) else dialogue_line.character
 	if dialogue_line.character == "": 
 		sound = "object"
 		

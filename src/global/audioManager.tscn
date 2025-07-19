@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bf50s1a1ettqj"]
+[gd_scene load_steps=9 format=3 uid="uid://bf50s1a1ettqj"]
 
 [ext_resource type="Script" uid="uid://c7c0vui0cvtay" path="res://src/global/audioManager.gd" id="1_turgw"]
 [ext_resource type="AudioStream" uid="uid://yv4wkbu6u4dl" path="res://assets/audio/voiceSFX/TALK_def2.ogg" id="2_mohs4"]
@@ -7,6 +7,7 @@
 [ext_resource type="AudioStream" uid="uid://3u8mu3kahwj5" path="res://assets/audio/sfx/SE_confirm.wav" id="5_thxen"]
 [ext_resource type="AudioStream" uid="uid://t30a7867qhxu" path="res://assets/audio/sfx/SE_cancel.wav" id="6_khqfk"]
 [ext_resource type="AudioStream" uid="uid://bkr8g7vmfnaab" path="res://addons/kenney_interface_sounds/minimize_008.wav" id="7_khqfk"]
+[ext_resource type="AudioStream" uid="uid://0kd0fpelpu0x" path="res://assets/audio/sfx/SE_elevatorChime.ogg" id="8_s5rre"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_turgw")
@@ -44,6 +45,12 @@ bus = &"SFX"
 stream = ExtResource("7_khqfk")
 volume_db = -15.0
 bus = &"SFX"
+
+[node name="jingles" type="Node" parent="."]
+
+[node name="elevatorChime" type="AudioStreamPlayer" parent="jingles"]
+stream = ExtResource("8_s5rre")
+bus = &"reverbSFX"
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
