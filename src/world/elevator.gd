@@ -11,8 +11,9 @@ signal elevatorUnlocked(id : String)
 
 func _ready():
     super()
-    if GameFlags.check_elevator(ID): customTypeText = "Ride"
-    else: customTypeText = "Unlock"
+    if !Engine.is_editor_hint():
+        if GameFlags.check_elevator(ID): customTypeText = "Ride"
+        else: customTypeText = "Unlock"
 
 
 func enter_elevator() -> void:
