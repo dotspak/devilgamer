@@ -27,6 +27,7 @@ func _ready():
 
 func _on_action_collision(body : Node3D) -> void:
 	if body == target:
+		entity_hit(target)
 		stop()
 
 
@@ -37,12 +38,13 @@ func spawn(t : CharacterBody3D, c : Node3D = null) -> void:
 
 # called whenever the action should end, usually on collision.
 func stop() -> void:
-	# random chance for everything for now
-	if target is Entity: target.display_damage_num(randi_range(5, 20), 
-		randf_range(0, 1)<=0.1, 
-		randf_range(0, 1)<=0.1)
 	actionFinished.emit()
 	queue_free()
+
+
+func entity_hit(entity : Entity) -> void:
+	if entity.stats:
+		entity.take_damage(skill.calc_damage(caster), caster.stats, skill.dmgType)
 
 
 func trigger_collideFX() -> void: add_child(collideFX.instantiate())

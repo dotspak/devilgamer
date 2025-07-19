@@ -109,19 +109,25 @@ func get_closest_target() -> Node3D:
 
 
 # deals damage to the entity.
-func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.dmgType = Skill.dmgType.PHYS) -> void:
+func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.DMG_TYPES = Skill.DMG_TYPES.PHYS) -> void:
 	var dmgReduction : float = 0.0
 	match dmgType:
-		Skill.dmgType.PHYS: dmgReduction = stats.get_stat(StatComponent.STATS.DEF)
-		Skill.dmgType.MAG: dmgReduction = stats.get_stat(StatComponent.STATS.MDF)
-		Skill.dmgType.TRUE: dmgReduction = 0
+		Skill.DMG_TYPES.PHYS: dmgReduction = stats.get_stat(StatComponent.STATS.DEF)
+		Skill.DMG_TYPES.MAG: dmgReduction = stats.get_stat(StatComponent.STATS.MDF)
+		Skill.DMG_TYPES.TRUE: dmgReduction = 0
 	
 	var crit : bool = randf_range(0, 1) <= casterStats.calc_crit_chance()
-	if crit: baseDMG *= casterStats.get_rate(StatComponent.RATES.CDMG)
+	if crit: baseDMG *= casterStats.get_rate(StatComponent.RATES.CRITDMG)
 	
-	var finalDMG = max((baseDMG * 1.5) - dmgReduction, 0)
+	var finalDMG = max(baseDMG * (
+		GameConstants.DEF_SCALE / 
+		(GameConstants.DEF_SCALE + dmgReduction)), 0)
+	finalDMG = roundf(finalDMG)
+	
 	display_damage_num(finalDMG, false, crit, false, false)
 	stats.HP -= finalDMG
+
+	print(name + " took " + str(int(finalDMG)) + " DMG!")
 
 
 func heal_damage(baseHeal : float) -> void:

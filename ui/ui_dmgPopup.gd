@@ -16,7 +16,7 @@ func display_dmg(dmg : float, isHeal : bool = false, isCrit : bool = false, isWe
 	elif isRes: text += "resist\n"
 
 	# add dmg number
-	text += str(ceili(dmg))
+	text += str(int(dmg))
 
 	label.text = text
 

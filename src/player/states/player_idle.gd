@@ -16,4 +16,4 @@ func physics_update(delta : float) -> void:
 
     # handle attack inputs
     if player.can_basic_attack(): player.use_basic_attack()
-    elif player.should_use_skill(): player.use_action(preload("res://scenes/actions/machineGun.tscn"))
+    elif player.should_use_skill(): player.use_action(preload("res://scenes/actions/fireball.tscn"))
