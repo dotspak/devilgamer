@@ -1,3 +1,4 @@
+@icon("res://icons/component.png")
 extends Node
 class_name StatComponent
 
