@@ -13,6 +13,7 @@ const DMG_NUM : PackedScene = preload("res://ui/ui_dmgpopup.tscn")
 @export var targetPosition : Marker3D
 @export var targetArea : Area3D
 @export var model : Node3D
+@export var modelController : EntityModelController
 
 @export_group("Components")
 @export var stats : StatComponent
@@ -27,6 +28,7 @@ var dead : bool = false
 signal entityDeath
 
 func _ready():
+	if modelController: entityDeath.connect(modelController.create_death_effect)
 	if stats: stats.hpChanged.connect(should_entity_die)
 
 
@@ -129,8 +131,8 @@ func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.D
 		(GameConstants.DEF_SCALE + dmgReduction)), 0)
 	finalDMG = roundf(finalDMG)
 	
-	if model.has_method("damage_flash"):
-		model.damage_flash()
+	if modelController:
+		modelController.damage_flash()
 	display_damage_num(finalDMG, false, crit, false, false)
 	stats.HP -= finalDMG
 
@@ -152,7 +154,6 @@ func should_entity_die(hp : float) -> bool:
 func kill() -> void:
 	print(name + " died")
 	entityDeath.emit()
-	set_process(false)
-	set_physics_process(false)
 	dead = true
+	if modelController: await modelController.startedDeathAnim
 	queue_free()

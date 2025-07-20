@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cp024rrv7vw4u"]
+
+[resource]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0.63, 0.180136, 0.544805, 1)
+distance_fade_max_distance = 6.0
