@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=71 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dugjrfbjh3gge" path="res://assets/particles/pe_bubbleLayer.png" id="14_qfiq7"]
 [ext_resource type="AudioStream" uid="uid://cabmnix1qrru8" path="res://assets/audio/bgs/bgs_static.ogg" id="15_ofr1g"]
 [ext_resource type="Shader" uid="uid://h7ksbluwgx4e" path="res://shaders/transition.gdshader" id="17_jf5ue"]
+[ext_resource type="Texture2D" uid="uid://b8p3vqae8xelu" path="res://textures/tex_metal2.png" id="19_60syl"]
 
 [sub_resource type="Gradient" id="Gradient_s6qcl"]
 colors = PackedColorArray(0.620382, 0.673866, 0.955469, 1, 1, 1, 1, 1)
@@ -756,7 +757,7 @@ _data = {
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qbj2a"]
 shader = ExtResource("7_dmym8")
 shader_parameter/resolution = Vector2(768, 432)
-shader_parameter/scan_line_amount = 0.0
+shader_parameter/scan_line_amount = 0.01
 shader_parameter/warp_amount = 0.0
 shader_parameter/noise_amount = 0.0
 shader_parameter/noise_darknesss = 1.0
@@ -766,9 +767,9 @@ shader_parameter/grille_size = 1.0
 shader_parameter/vignette_amount = 0.1
 shader_parameter/vignette_intensity = 1.0
 shader_parameter/aberation_amount = 0.5
-shader_parameter/roll_line_amount = 0.0
-shader_parameter/roll_speed = 0.3
-shader_parameter/scan_line_strength = -8.0
+shader_parameter/roll_line_amount = 0.01
+shader_parameter/roll_speed = 0.8
+shader_parameter/scan_line_strength = -12.0
 shader_parameter/pixel_strength = -4.0
 
 [sub_resource type="Animation" id="Animation_be743"]
@@ -851,6 +852,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+stretch_shrink = 2
 mouse_target = true
 
 [node name="viewport" type="SubViewport" parent="world/container"]
@@ -859,7 +861,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(896, 504)
+size = Vector2i(448, 252)
 size_2d_override = Vector2i(640, 360)
 size_2d_override_stretch = true
 render_target_update_mode = 4
@@ -1051,9 +1053,8 @@ metadata/_edit_lock_ = true
 [node name="topBar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = -40.0
 offset_right = 896.0
-offset_bottom = -8.0
+offset_bottom = 32.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/topBar"]
@@ -1070,9 +1071,9 @@ expand_mode = 1
 [node name="bottombar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = 512.0
+offset_top = 472.0
 offset_right = 896.0
-offset_bottom = 544.0
+offset_bottom = 504.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/bottombar"]
@@ -1460,6 +1461,12 @@ libraries = {
 
 [node name="CRT" type="CanvasLayer" parent="."]
 layer = 121
+
+[node name="TexMetal2" type="Sprite2D" parent="CRT"]
+visible = false
+position = Vector2(446.5, 249)
+scale = Vector2(7.00781, 3.90625)
+texture = ExtResource("19_60syl")
 
 [node name="overlay" type="ColorRect" parent="CRT"]
 material = SubResource("ShaderMaterial_qbj2a")
