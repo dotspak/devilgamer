@@ -3,10 +3,10 @@
 # as the active one, and can control the player's cameras.
 extends Node
 
-@onready var playerMainCam = GameManager.player.mainCam
-@onready var playerLockCam = GameManager.player.lockCam
-
+var playerMainCam : PhantomCamera3D
+var playerLockCam : PhantomCamera3D
 var currentCam : PhantomCamera3D
+
 
 func set_active_cam(cam : PhantomCamera3D, duration : float = 1.0) -> void:
 	if currentCam: currentCam.priority = 0
@@ -21,6 +21,8 @@ func set_active_cam(cam : PhantomCamera3D, duration : float = 1.0) -> void:
 
 
 func enable_main_cam(duration : float = -1.0) -> void:
+	if !playerMainCam: return
+
 	if currentCam: currentCam.priority = 0
 	playerMainCam.priority = 1
 	playerLockCam.priority = 0
@@ -34,6 +36,8 @@ func enable_main_cam(duration : float = -1.0) -> void:
 
 
 func enable_lock_cam(duration : float = -1.0) -> void:
+	if !playerLockCam: return
+
 	if currentCam: currentCam.priority = 0
 	playerMainCam.priority = 0
 	playerLockCam.priority = 1
