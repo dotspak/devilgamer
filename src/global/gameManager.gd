@@ -41,8 +41,8 @@ func _ready() -> void:
 	%battleHud.hide()
 	DEBUG_MODE = OS.is_debug_build()
 
-	#instance_player()
-	#spawn_player()
+	instance_player()
+	spawn_player()
 
 
 func _process(_delta : float) -> void:

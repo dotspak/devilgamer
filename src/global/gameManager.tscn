@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=73 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -13,11 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://dfmamnkm6o5lp" path="res://assets/particles/pe_box1.png" id="8_dmym8"]
 [ext_resource type="Shader" uid="uid://cbldjuh3xpygm" path="res://shaders/waveShader.gdshader" id="8_uc4fk"]
 [ext_resource type="AudioStream" uid="uid://efj5ex35psoa" path="res://assets/audio/sfx/SE_areaIntro2.ogg" id="9_be743"]
-[ext_resource type="PackedScene" uid="uid://dcmh2ym2mquds" path="res://ui/ui_bat_actorHud.tscn" id="10_bdi3q"]
 [ext_resource type="Texture2D" uid="uid://knqf3kp1d0ak" path="res://assets/particles/pe_messy.png" id="10_c2bp1"]
 [ext_resource type="Shader" uid="uid://cgoa181d3u6xp" path="res://shaders/textBox.tres" id="11_ofr1g"]
 [ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="12_qfiq7"]
 [ext_resource type="Texture2D" uid="uid://dugjrfbjh3gge" path="res://assets/particles/pe_bubbleLayer.png" id="14_qfiq7"]
+[ext_resource type="PackedScene" uid="uid://c8xwgmnwg56he" path="res://ui/battle/ui_actorHud1.tscn" id="15_60syl"]
 [ext_resource type="AudioStream" uid="uid://cabmnix1qrru8" path="res://assets/audio/bgs/bgs_static.ogg" id="15_ofr1g"]
 [ext_resource type="Shader" uid="uid://h7ksbluwgx4e" path="res://shaders/transition.gdshader" id="17_jf5ue"]
 [ext_resource type="Texture2D" uid="uid://b8p3vqae8xelu" path="res://textures/tex_metal2.png" id="19_60syl"]
@@ -363,16 +363,19 @@ content_margin_top = 2.0
 content_margin_right = 4.0
 content_margin_bottom = 2.0
 bg_color = Color(0, 0, 0, 1)
+expand_margin_bottom = 2.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c2bp1"]
 bg_color = Color(0.384314, 0.0196078, 0, 1)
+expand_margin_top = 2.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qbj2a"]
+blend_mode = 3
 
 [sub_resource type="Gradient" id="Gradient_dmym8"]
 colors = PackedColorArray(0.900781, 0.900781, 0.900781, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_be743"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_60syl"]
 gradient = SubResource("Gradient_dmym8")
 
 [sub_resource type="Curve" id="Curve_ofr1g"]
@@ -380,7 +383,7 @@ _limits = [0.0, 1.2, 0.0, 1.0]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.302211, 1), 0.0, 0.0, 0, 0, Vector2(0.7543, 0.758491), 0.0, 0.0, 0, 0, Vector2(1, 1.2), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="CurveTexture" id="CurveTexture_qfiq7"]
+[sub_resource type="CurveTexture" id="CurveTexture_bpcc3"]
 curve = SubResource("Curve_ofr1g")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uc4fk"]
@@ -393,8 +396,8 @@ tangential_accel_min = -30.0
 tangential_accel_max = 30.0
 scale_min = 0.6
 scale_max = 1.5
-scale_curve = SubResource("CurveTexture_qfiq7")
-color_initial_ramp = SubResource("GradientTexture1D_be743")
+scale_curve = SubResource("CurveTexture_bpcc3")
+color_initial_ramp = SubResource("GradientTexture1D_60syl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bdi3q"]
 shader = ExtResource("11_ofr1g")
@@ -418,6 +421,14 @@ colors = PackedColorArray(0, 0.133297, 0.611719, 1, 0.817964, 0.826262, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_s6qcl"]
 gradient = SubResource("Gradient_uc4fk")
+
+[sub_resource type="Curve" id="Curve_12fmu"]
+_limits = [0.0, 1.2, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.302211, 1), 0.0, 0.0, 0, 0, Vector2(0.7543, 0.758491), 0.0, 0.0, 0, 0, Vector2(1, 1.2), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_qfiq7"]
+curve = SubResource("Curve_12fmu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jf5ue"]
 particle_flag_disable_z = true
@@ -475,86 +486,62 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("battleHud/actions:position")
+tracks/3/path = NodePath("battleHud:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(24, 344)]
+"values": [Color(1, 1, 1, 1)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("battleHud/MarginContainer/actorHuds:position")
+tracks/4/path = NodePath("%battleHud:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("bossBar/centerContainer:position")
+tracks/5/path = NodePath("focusBars:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [false]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("battleHud:position")
+tracks/6/path = NodePath("%battleHud:theme_override_constants/margin_top")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
+"update": 1,
+"values": [24]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("battleHud:modulate")
+tracks/7/path = NodePath("%battleHud:theme_override_constants/margin_bottom")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("%battleHud:visible")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
-}
-tracks/9/type = "value"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("focusBars:visible")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"values": [24]
 }
 
 [sub_resource type="Animation" id="Animation_qbj2a"]
@@ -564,38 +551,50 @@ step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("battleHud:position")
+tracks/0/path = NodePath("battleHud:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(0, 20), Vector2(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("battleHud:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("%battleHud:visible")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%battleHud:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.01),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%battleHud:theme_override_constants/margin_top")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 24]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("%battleHud:theme_override_constants/margin_bottom")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 24]
 }
 
 [sub_resource type="Animation" id="Animation_bdi3q"]
@@ -641,50 +640,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("battleHud/actions:position")
+tracks/3/path = NodePath("focusBars:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(-2, 1),
-"update": 0,
-"values": [Vector2(24, 344), Vector2(24, 312)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("battleHud/MarginContainer/actorHuds:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, -40)]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("bossBar/centerContainer:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(0.5, 1),
-"update": 0,
-"values": [Vector2(0, 0), Vector2(0, 32)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("focusBars:visible")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
 "times": PackedFloat32Array(0, 0.01),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%battleHud:theme_override_constants/margin_top")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [24, 48]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("%battleHud:theme_override_constants/margin_bottom")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [24, 48]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qbj2a"]
@@ -835,7 +822,7 @@ _data = {
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_kv0tk")
-areas = Array[ExtResource("2_oucsi")]([ExtResource("3_y5kg3"), ExtResource("4_d6bmg"), ExtResource("5_va82q")])
+areas = Array[ExtResource("2_oucsi")]([ExtResource("5_va82q"), ExtResource("3_y5kg3"), ExtResource("4_d6bmg")])
 
 [node name="debugConsole" parent="." instance=ExtResource("6_xx4xr")]
 visible = false
@@ -1053,8 +1040,9 @@ metadata/_edit_lock_ = true
 [node name="topBar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
+offset_top = -40.0
 offset_right = 896.0
-offset_bottom = 32.0
+offset_bottom = -8.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/topBar"]
@@ -1071,9 +1059,9 @@ expand_mode = 1
 [node name="bottombar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = 472.0
+offset_top = 512.0
 offset_right = 896.0
-offset_bottom = 504.0
+offset_bottom = 544.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/bottombar"]
@@ -1088,23 +1076,24 @@ texture = SubResource("GradientTexture2D_uc4fk")
 expand_mode = 1
 flip_v = true
 
-[node name="battleHud" type="Control" parent="UI"]
+[node name="battleHud" type="MarginContainer" parent="UI"]
 unique_name_in_owner = true
 visible = false
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
 
 [node name="actions" type="VBoxContainer" parent="UI/battleHud"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 344.0
-offset_right = 152.0
-offset_bottom = 480.0
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
 
 [node name="Control" type="Control" parent="UI/battleHud/actions"]
 custom_minimum_size = Vector2(0, 24)
@@ -1124,6 +1113,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="bgThing" type="ColorRect" parent="UI/battleHud/actions/Control/Label"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_jf5ue")
 layout_mode = 1
@@ -1187,57 +1177,35 @@ alignment = 2
 expand_icon = true
 
 [node name="bgThing" type="ColorRect" parent="UI/battleHud/actions/panel"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_jf5ue")
 layout_mode = 2
 color = Color(0, 0, 0, 0.533333)
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/battleHud"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 376.0
-offset_bottom = -32.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_right = 24
-
-[node name="actorHuds" type="HBoxContainer" parent="UI/battleHud/MarginContainer"]
+[node name="actorHuds" type="VBoxContainer" parent="UI/battleHud"]
 layout_direction = 2
 layout_mode = 2
+size_flags_horizontal = 8
 mouse_filter = 2
-theme_override_constants/separation = 24
+theme_override_constants/separation = 8
 alignment = 2
 
-[node name="partnerHud" parent="UI/battleHud/MarginContainer/actorHuds" instance=ExtResource("10_bdi3q")]
-visible = false
+[node name="epiaHud" parent="UI/battleHud/actorHuds" instance=ExtResource("15_60syl")]
 layout_mode = 2
 
-[node name="epiaHud" parent="UI/battleHud/MarginContainer/actorHuds" instance=ExtResource("10_bdi3q")]
-layout_mode = 2
-
-[node name="bossBar" type="Control" parent="UI"]
+[node name="bossBar" type="CenterContainer" parent="UI/battleHud"]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
+size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="centerContainer" type="CenterContainer" parent="UI/bossBar"]
-layout_mode = 0
-offset_right = 896.0
-offset_bottom = 64.0
-mouse_filter = 2
-
-[node name="Control" type="Control" parent="UI/bossBar/centerContainer"]
+[node name="Control" type="Control" parent="UI/battleHud/bossBar"]
 custom_minimum_size = Vector2(600, 16)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="UI/bossBar/centerContainer/Control"]
+[node name="Panel" type="Panel" parent="UI/battleHud/bossBar/Control"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1251,13 +1219,15 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qbj2a")
 
-[node name="bossProgress" type="ProgressBar" parent="UI/bossBar/centerContainer/Control"]
+[node name="bossProgress" type="ProgressBar" parent="UI/battleHud/bossBar/Control"]
 unique_name_in_owner = true
 clip_children = 2
-layout_mode = 2
-anchor_left = -0.00666667
-anchor_right = 0.993333
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_bdi3q")
 theme_override_styles/fill = SubResource("StyleBoxFlat_c2bp1")
@@ -1265,7 +1235,7 @@ value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/bossBar/centerContainer/Control/bossProgress"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/battleHud/bossBar/Control/bossProgress"]
 material = SubResource("CanvasItemMaterial_qbj2a")
 position = Vector2(300, 8)
 amount = 200
@@ -1273,7 +1243,7 @@ texture = ExtResource("10_c2bp1")
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_uc4fk")
 
-[node name="bgThing" type="ColorRect" parent="UI/bossBar/centerContainer/Control"]
+[node name="bgThing" type="ColorRect" parent="UI/battleHud/bossBar/Control"]
 visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_bdi3q")
@@ -1286,7 +1256,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.533333)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/bossBar/centerContainer/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/battleHud/bossBar/Control"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

@@ -14,6 +14,7 @@ config/name="Devilgamer"
 config/tags=PackedStringArray("main", "rpg")
 run/main_scene="uid://2obewctec8iv"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="uid://bckdxeqa5ykr3"
 
 [audio]
