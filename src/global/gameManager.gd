@@ -430,6 +430,7 @@ func display_menu() -> void:
 		enter_focus_ui()
 		%mainMenu.display()
 	else:
-		player.un_freeze()
-		exit_focus_ui()
-		%mainMenu.undisplay()
+		if !%mainMenu.isFullMenu:
+			player.un_freeze()
+			exit_focus_ui()
+			%mainMenu.undisplay()

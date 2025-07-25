@@ -1277,6 +1277,7 @@ vertical_alignment = 2
 
 [node name="mainMenu" parent="UI" instance=ExtResource("17_bpcc3")]
 unique_name_in_owner = true
+z_index = 1
 
 [node name="breathBar" type="Control" parent="UI"]
 visible = false

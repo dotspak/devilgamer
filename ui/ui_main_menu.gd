@@ -12,38 +12,71 @@ class_name MainMenu
 
 const BG : String = "[bgcolor=000]"
 
+var isFullMenu : bool = false
+var transitioning : bool = false
+
+var phoneOption : Button = null
+
 func _ready() -> void:
 	hide()
 
-	var buttonEffect : Callable = func(butonName : String): buttonLabel.text = BG + "> " + butonName
+	var buttonEffect : Callable = func(button : Node): 
+		phoneOption = button
+		buttonLabel.text = BG + "> " + button.name
+	
 	for n : Button in %selectables.get_children():
-		n.focus_entered.connect(buttonEffect.bind(n.name))
-		n.mouse_entered.connect(buttonEffect.bind(n.name))
+		n.focus_entered.connect(buttonEffect.bind(n))
+		n.mouse_entered.connect(buttonEffect.bind(n))
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("ui_left"):
+	if !transitioning:
+		# fun animations
+		if Input.is_action_just_pressed("ui_left"):
+			anim.stop(true)
+			anim.play("tapLeft")
+		if Input.is_action_just_pressed("ui_right"): 
+			anim.stop(true)
+			anim.play("tapRight")
+		if Input.is_action_just_pressed("ui_up"): 
+			anim.stop(true)
+			anim.play("tapUp")
+		if Input.is_action_just_pressed("ui_down"): 
+			anim.stop(true)
+			anim.play("tapDown")
+
+		# transition logic
+		if !isFullMenu:
+			if Input.is_action_just_pressed("ui_accept"):
+				isFullMenu = true
+				phoneOption.release_focus()
+				play_transition("fullScreenZoom")
+		else:
+			if Input.is_action_just_pressed("ui_cancel"):
+				await play_transition("fullScreenZoom", true)
+				phoneOption.grab_focus()
+				isFullMenu = false
+
+
+func play_transition(animation : String = "show", backwards : bool = false) -> void:
+	if anim.has_animation(animation):
+		transitioning = true
+		set_process_unhandled_input(false)
 		anim.stop(true)
-		anim.play("tapLeft")
-	if Input.is_action_just_pressed("ui_right"): 
-		anim.stop(true)
-		anim.play("tapRight")
-	if Input.is_action_just_pressed("ui_up"): 
-		anim.stop(true)
-		anim.play("tapUp")
-	if Input.is_action_just_pressed("ui_down"): 
-		anim.stop(true)
-		anim.play("tapDown")
+		if backwards: anim.play_backwards(animation)
+		else: anim.play(animation)
+
+		await anim.animation_finished
+		set_process_unhandled_input(true)
+		transitioning = false
 
 
 func display() -> void:
-	anim.play("show")
 	CameraManager.enable_menu_cam()
-	await anim.animation_finished
+	await play_transition("show")
 	%items.grab_focus()
 
 
 func undisplay() -> void:
 	CameraManager.enable_main_cam()
-	anim.play_backwards("show")
-	await anim.animation_finished
+	await play_transition("show", true)
