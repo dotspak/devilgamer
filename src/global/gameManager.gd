@@ -70,7 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_cancel"): Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if %mainMenu.visible:
-		%mainMenu.phoneScreen.push_input(event)
+		%mainMenu.phoneScreen.push_input(event, true)
 
 
 func toggle_fullscreen():

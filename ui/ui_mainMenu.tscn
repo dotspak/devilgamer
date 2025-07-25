@@ -1,10 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://bqtekbtr1dcki"]
+[gd_scene load_steps=30 format=4 uid="uid://bqtekbtr1dcki"]
 
 [ext_resource type="Script" uid="uid://3uko58l4fto4" path="res://ui/ui_main_menu.gd" id="1_hr2vd"]
 [ext_resource type="Shader" uid="uid://h7ksbluwgx4e" path="res://shaders/transition.gdshader" id="1_iesq4"]
 [ext_resource type="PackedScene" uid="uid://ciigmn6lqd8b4" path="res://assets/models/menuPhone.glb" id="1_u0fhu"]
 [ext_resource type="Texture2D" uid="uid://l52rmg8tge65" path="res://assets/ui/wallpapers/ui_wallpaper_water.png" id="2_8jqnp"]
 [ext_resource type="Texture2D" uid="uid://bh0rtqd76opm2" path="res://assets/ui/ui_phoneIcons.png" id="2_x2yb0"]
+[ext_resource type="Texture2D" uid="uid://j81q6p62p7lu" path="res://assets/models/menuPhone_phoneTextures.png" id="3_mgjvc"]
 
 [sub_resource type="Animation" id="Animation_8jqnp"]
 length = 0.001
@@ -129,6 +130,34 @@ tracks/9/keys = {
 "values": [Vector3(0, 0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_mgjvc"]
+resource_name = "flipToFull"
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.19919),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(300, 0), Vector2(300, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_hr2vd"]
 resource_name = "show"
 length = 0.5
@@ -218,6 +247,47 @@ tracks/6/keys = {
 "values": [false, true, true]
 }
 
+[sub_resource type="Animation" id="Animation_gpgro"]
+resource_name = "tapDown"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node3D/menuPhone:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0.0174533, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node3D/menuPhone/dpad:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.0872665, 0, 0), Vector3(0.0872665, 0, 0), Vector3(0, 0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node3D/menuPhone/dpad:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.02), Vector3(0, 0, 0.02), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_iesq4"]
 resource_name = "tapLeft"
 length = 0.2
@@ -274,75 +344,6 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.0872665, 0), Vector3(0, 0.0872665, 0), Vector3(0, 0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_mgjvc"]
-resource_name = "flipToFull"
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../..:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.19919),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(300, 0), Vector2(300, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_gpgro"]
-resource_name = "tapDown"
-length = 0.2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node3D/menuPhone:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0), Vector3(0.0174533, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Node3D/menuPhone/dpad:rotation")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0.0872665, 0, 0), Vector3(0.0872665, 0, 0), Vector3(0, 0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Node3D/menuPhone/dpad:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 0, 0.02), Vector3(0, 0, 0.02), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_iftem"]
@@ -407,18 +408,6 @@ shader_parameter/clock_feather = 0.0
 shader_parameter/progress = 0.0
 shader_parameter/progress_bias = Vector2(0, 1)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_u0fhu"]
-viewport_path = NodePath("phoneScreenViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x2yb0"]
-resource_local_to_scene = true
-shading_mode = 0
-albedo_texture = SubResource("ViewportTexture_u0fhu")
-uv1_scale = Vector3(2.15, 1.725, 2)
-uv1_offset = Vector3(0.5, -0.8, 0)
-uv1_triplanar = true
-texture_filter = 0
-
 [sub_resource type="Environment" id="Environment_u0fhu"]
 glow_intensity = 0.0
 fog_mode = 1
@@ -430,6 +419,59 @@ volumetric_fog_density = 0.6431
 adjustment_enabled = true
 adjustment_brightness = 0.8
 adjustment_contrast = 1.1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_me60o"]
+resource_name = "plastic1"
+cull_mode = 2
+albedo_color = Color(0.74117, 0.71372, 0.545098, 1)
+albedo_texture = ExtResource("3_mgjvc")
+texture_filter = 2
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_qamid"]
+_surfaces = [{
+"aabb": AABB(0.0497379, -0.465531, 0.0138383, 0.0791448, 0.0513174, 0.0230928),
+"format": 34359742465,
+"index_count": 66,
+"index_data": PackedByteArray("CQACAA0ACQABAAIAAwABAAkAAgAKAA0AAgAEAAoABgAKAAQAAAANAAoABgAAAAoADQAOAAkAAwAJAA4ACwANAAAADQALAA4ABgAPAAAACwAAAA8ABgAIAA8ADwAIAAcADwAHAAsAAwAOAAwADgALAAwADAALAAcAAwAMAAUADAAHAAUA"),
+"lods": [0.0175948, PackedByteArray("CQABAAIAAwABAAkAAgAKAAkAAgAEAAoABgAKAAQABgAAAAoAAAAJAAoABgAIAAAAAAAIAAcACwAJAAAAAAAHAAsAAwAJAAwACQALAAwADAALAAcAAwAMAAUADAAHAAUA"), 0.0386144, PackedByteArray("AAABAAIAAwABAAAAAgAEAAAAAwAAAAUABgAAAAQAAAAHAAUABgAIAAAAAAAIAAcA")],
+"name": "plastic1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 16,
+"vertex_data": PackedByteArray("1aJiPdsT1L4URRc91aJiPSFa7r4KumI88blLPQR9674KumI8MH/8PSFa7r4KumI88blLPfjw1r4KumI80fkDPgR9674KumI81aJiPdsT1L4KumI80fkDPvjw1r4KumI8MH/8PdsT1L4KumI81aJiPSFa7r4URRc98blLPfjw1r4URRc90fkDPvjw1r4URRc90fkDPgR9674URRc98blLPQR9674URRc9MH/8PSFa7r4URRc9MH/8PdsT1L4URRc9")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_6o8y6"]
+resource_name = "menuPhone_Cube_016"
+_surfaces = [{
+"aabb": AABB(0.0497379, -0.465531, 0.0138383, 0.0791448, 0.0513174, 0.0230928),
+"attribute_data": PackedByteArray("+wfnPniOkz77B+c+6Fe3PvZj5j5gcbM+29DuPuhXtz72Y+Y+AHWXPuF07z5gcbM++wfnPniOkz7hdO8+AHWXPtvQ7j54jpM++wfnPuhXtz72Y+Y+AHWXPuF07z5gcbM+4XTvPgB1lz6MpFk/1EjBPoykWT+gevI+PPZWP3alxj6u5Xw/dqXGPq7lfD/+He0+9mPmPmBxsz7b0O4+6Fe3PtvQ7j54jpM+PPZWP/4d7T5cN3o/oHryPlw3ej/USME+"),
+"format": 34359742487,
+"index_count": 66,
+"index_data": PackedByteArray("CQACABIAAgAKABIACQABAAIAAgAEAAoAAwABAAkABgAKAAQAAwAJABMABgAAAAoAAwATAAsABgAUAAAAAwALAAUABgAIABQACwAHAAUAFAAIAAcACwAMAAcAFAAHAAwAFQAWAA4AFQAQABYAFgAQABEAEAAVAA0ADQAVAA8AEAANABcA"),
+"lods": [0.0175948, PackedByteArray("CQABAAIAAwABAAkAAgAKAAkAAwAJAAsAAgAEAAoAAwALAAUABgAKAAQACwAHAAUABgAAAAoACwAMAAcAAAAHAAwABgAIAAAAAAAIAAcADQAOAA8AEAAOAA0ADgAQABEA"), 0.0386144, PackedByteArray("AAABAAIAAwABAAAAAgAEAAAAAwAAAAUABgAAAAQAAAAHAAUABgAIAAAAAAAIAAcA")],
+"material": SubResource("StandardMaterial3D_me60o"),
+"name": "plastic1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("1aJiPdsT1L4URRc91aJiPSFa7r4KumI88blLPQR9674KumI8MH/8PSFa7r4KumI88blLPfjw1r4KumI80fkDPgR9674KumI81aJiPdsT1L4KumI80fkDPvjw1r4KumI8MH/8PdsT1L4KumI81aJiPSFa7r4URRc98blLPfjw1r4URRc90fkDPgR9674URRc90fkDPvjw1r4URRc91aJiPdsT1L4URRc91aJiPSFa7r4URRc98blLPfjw1r4URRc90fkDPvjw1r4URRc90fkDPgR9674URRc98blLPQR9674URRc9MH/8PSFa7r4URRc9MH/8PdsT1L4URRc98blLPQR9674URRc9MH/8PSFa7r4URRc9MH/8PdsT1L4URRc94GjSt////z+BWn0l////v30lgVr///+/faV9Jf///799JX2l////v4HagVr///+/gVqB2v///7+B2n2l////v32lgdr///+/4GgsSP///z8sSB6X////P9K34Gj///8/0rcel////z/gaNK38NhkyuBoLEjw2Jq1LEgelwG22cvStx6XSugAm9K34GhK6P7kLEjgaP///z8elyxI////Px6X0rf///8/LEjgaAG2JbQelyxINeuG0x6X0rc163is")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_qamid")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gpgro"]
+viewport_path = NodePath("phoneScreenViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iftem"]
+resource_local_to_scene = true
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_gpgro")
+uv1_scale = Vector3(2.1, 1.7, 1)
+uv1_offset = Vector3(0.495, 0.22, 0)
+uv1_triplanar = true
+texture_filter = 0
 
 [sub_resource type="Gradient" id="Gradient_iesq4"]
 offsets = PackedFloat32Array(0.481567, 0.64977)
@@ -486,6 +528,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 40.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 16
@@ -503,20 +547,9 @@ own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(300, 504)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Node3D" type="Node3D" parent="MarginContainer/SubViewportContainer/SubViewport"]
-
-[node name="menuPhone" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D" instance=ExtResource("1_u0fhu")]
-
-[node name="screen" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D/menuPhone" index="1"]
-surface_material_override/0 = SubResource("StandardMaterial3D_x2yb0")
-
-[node name="epiPhone" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D/menuPhone" index="2"]
-visible = false
-
-[node name="dpad" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D/menuPhone" index="16"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, -0.1, 0.75)
@@ -530,6 +563,33 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D"]
 environment = SubResource("Environment_u0fhu")
+
+[node name="screen" type="MeshInstance3D" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.00621738)
+mesh = SubResource("ArrayMesh_6o8y6")
+skeleton = NodePath("")
+
+[node name="menuPhone" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D" instance=ExtResource("1_u0fhu")]
+
+[node name="phone" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D/menuPhone" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_me60o")
+
+[node name="screen" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D/menuPhone" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_iftem")
+
+[node name="OmniLight3D" type="SpotLight3D" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(-0.5373, 0, -0.843391, 0, 1, 0, 0.843391, 0, -0.5373, -0.75, 0, -0.09)
+light_color = Color(0.361166, 0.344683, 0.697656, 1)
+light_energy = 16.0
+spot_range = 1.275
+spot_attenuation = -0.11
+spot_angle = 51.5518
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="MarginContainer/SubViewportContainer/SubViewport/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+light_color = Color(0.361166, 0.344683, 0.697656, 1)
+light_energy = 2.935
+omni_range = 0.767
 
 [node name="phoneScreenViewport" type="SubViewport" parent="."]
 unique_name_in_owner = true
@@ -694,7 +754,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 10
 bbcode_enabled = true
-text = "Its time to fight, are you ready to act?"
+text = "Current objective goes here!"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
