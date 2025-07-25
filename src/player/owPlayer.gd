@@ -52,6 +52,7 @@ const maxPitch : float = 50
 @onready var pCamHost : PhantomCameraHost = %PhantomCameraHost
 @onready var mainCam : PhantomCamera3D = %mainCam
 @onready var lockCam : PhantomCamera3D = %lockCam
+@onready var menuCam : PhantomCamera3D = %menuCam
 
 var isRespawning : bool = false
 var inputAllowed : bool = true

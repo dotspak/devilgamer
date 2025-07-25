@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=74 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dugjrfbjh3gge" path="res://assets/particles/pe_bubbleLayer.png" id="14_qfiq7"]
 [ext_resource type="PackedScene" uid="uid://c8xwgmnwg56he" path="res://ui/battle/ui_actorHud1.tscn" id="15_60syl"]
 [ext_resource type="AudioStream" uid="uid://cabmnix1qrru8" path="res://assets/audio/bgs/bgs_static.ogg" id="15_ofr1g"]
+[ext_resource type="PackedScene" uid="uid://bqtekbtr1dcki" path="res://ui/ui_mainMenu.tscn" id="17_bpcc3"]
 [ext_resource type="Shader" uid="uid://h7ksbluwgx4e" path="res://shaders/transition.gdshader" id="17_jf5ue"]
 [ext_resource type="Texture2D" uid="uid://b8p3vqae8xelu" path="res://textures/tex_metal2.png" id="19_60syl"]
 
@@ -1273,6 +1274,9 @@ text = "[bgcolor=000]BOSS"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
+
+[node name="mainMenu" parent="UI" instance=ExtResource("17_bpcc3")]
+unique_name_in_owner = true
 
 [node name="breathBar" type="Control" parent="UI"]
 visible = false

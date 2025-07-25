@@ -61,10 +61,16 @@ func _process(_delta : float) -> void:
 	if Input.is_action_just_pressed("window_toggle"):
 		toggle_fullscreen()
 
+	if Input.is_action_just_pressed("open_menu"):
+		display_menu()
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"): Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"): Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	if %mainMenu.visible:
+		%mainMenu.phoneScreen.push_input(event)
 
 
 func toggle_fullscreen():
@@ -122,6 +128,7 @@ func instance_player() -> OWPlayer:
 	player = p
 	CameraManager.playerMainCam = player.mainCam
 	CameraManager.playerLockCam = player.lockCam
+	CameraManager.playerMenuCam = player.menuCam
 	return player
 
 
@@ -414,5 +421,15 @@ func play_static(duration : float = 0.5) -> void:
 	await anim.animation_finished
 
 
-func game_over() -> void:
-	print("GAME OVER!")
+func game_over() -> void: print("GAME OVER!")
+
+func display_menu() -> void:
+	if !%mainMenu.visible:
+		player.freeze()
+		show_battle_ui()
+		enter_focus_ui()
+		%mainMenu.display()
+	else:
+		player.un_freeze()
+		exit_focus_ui()
+		%mainMenu.undisplay()

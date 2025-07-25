@@ -6,3 +6,4 @@ func _ready() -> void:
 	var terminal : Control = $terminal
 	remove_child(terminal)
 	GameManager.add_ui(terminal)
+

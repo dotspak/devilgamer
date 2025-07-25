@@ -5,6 +5,7 @@ extends Node
 
 var playerMainCam : PhantomCamera3D
 var playerLockCam : PhantomCamera3D
+var playerMenuCam : PhantomCamera3D
 var currentCam : PhantomCamera3D
 
 
@@ -26,6 +27,7 @@ func enable_main_cam(duration : float = -1.0) -> void:
 	if currentCam: currentCam.priority = 0
 	playerMainCam.priority = 1
 	playerLockCam.priority = 0
+	playerMenuCam.priority = 0
 
 	var prevDuration : float = playerMainCam.tween_duration
 	if duration >= 0:
@@ -41,6 +43,7 @@ func enable_lock_cam(duration : float = -1.0) -> void:
 	if currentCam: currentCam.priority = 0
 	playerMainCam.priority = 0
 	playerLockCam.priority = 1
+	playerMenuCam.priority = 0
 
 	var prevDuration : float = playerLockCam.tween_duration
 	if duration >= 0:
@@ -48,6 +51,14 @@ func enable_lock_cam(duration : float = -1.0) -> void:
 
 	await playerLockCam.tween_completed
 	playerLockCam.tween_duration = prevDuration
+
+
+func enable_menu_cam() -> void:
+	playerMainCam.priority = 0
+	playerLockCam.priority = 0
+	playerMenuCam.priority = 1
+
+	await playerMenuCam.tween_completed
 
 
 func create_conversation_camera(npc : Node3D, margin : float = 2.5, sideOffset : float = 1.5, verticalBiasFactor : float = 0.7) -> Node3D:
