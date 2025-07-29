@@ -66,6 +66,6 @@ func play_sfx(sfx : String, bank : Dictionary, pitch : float, mood : String = ""
 	var sound : AudioStreamPlayer = bank[sfx]["sound"]
 	var defaultPitch : float = bank[sfx]["pitch"]
 
-	sound.pitch_scale = defaultPitch * pitch
+	sound.pitch_scale = max(defaultPitch * pitch, 0.01)
 	if sound is TalkObject: sound.talk_sound(mood)
 	else: sound.play()

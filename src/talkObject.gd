@@ -1,9 +1,12 @@
+@tool
 @icon("res://icons/talkObject.png")
 extends AudioStreamPlayer
 class_name TalkObject
 
 var test : Dictionary[String, TalkObject]
 
+@export_tool_button("Test Sound") var button = func() -> void:
+    talk_sound("")
 @export var talkSounds : Array[AudioStream] = []
 @export var pitchRange : Vector2 = Vector2(0.85, 1.15)
 var moods : Dictionary[String, TalkObject]

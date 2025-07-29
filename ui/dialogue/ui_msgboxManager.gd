@@ -225,10 +225,8 @@ func _on_dialogue_label_spoke(letter : String, _letter_index : int, _speed : flo
 	var mood : String = dialogue_line.get_tag_value("mood")
 	if !letter in [".", " ", ",", "!", "?"]:
 		if dialogue_line.character != "":
-			var audioPlayer : AudioStreamPlayer = AudioManager.library["talkSounds"][dialogue_line.character]["sound"]
+			var audioPlayer : AudioStreamPlayer = AudioManager.library["talkSounds"][sound]["sound"]
 			if audioPlayer is TalkObject: randPitch = randf_range(audioPlayer.pitchRange.x, audioPlayer.pitchRange.y)
 			else: randPitch = randf_range(0.85, 1.15)
-		elif sound == "object":
-			randPitch = randf_range(0.75, 0.79)
 		
 		AudioManager.play_talk_sfx(sound, randPitch, mood)
