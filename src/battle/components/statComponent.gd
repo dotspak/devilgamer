@@ -28,7 +28,6 @@ enum RATES{REGEN, CRIT, CRITDMG, EVA, DRAIN}
 var entity : Entity
 var HP : float = stats[STATS.MHP] :
 	set(val):
-		if get_parent().dead: return
 		HP = val
 		hpChanged.emit(HP)
 

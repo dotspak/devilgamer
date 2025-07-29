@@ -124,7 +124,7 @@ nodes/fragment/connections = PackedInt32Array(3, 0, 2, 0, 4, 0, 5, 0, 5, 0, 3, 2
 render_priority = 0
 shader = SubResource("VisualShader_rvx43")
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_gnbsw"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_2q8il"]
 
 [sub_resource type="Animation" id="Animation_efir6"]
 length = 0.001
@@ -203,7 +203,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_jmcrh")
 transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0, 0, 0)
 material_override = ExtResource("4_efir6")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_gnbsw")
+mesh = SubResource("ImmediateMesh_2q8il")
 skeleton = NodePath("../../..")
 script = ExtResource("5_gnbsw")
 fromWidth = 0.2

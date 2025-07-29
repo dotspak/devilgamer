@@ -61,9 +61,6 @@ func _process(_delta : float) -> void:
 	if Input.is_action_just_pressed("window_toggle"):
 		toggle_fullscreen()
 
-	if Input.is_action_just_pressed("open_menu"):
-		display_menu()
-
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"): Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

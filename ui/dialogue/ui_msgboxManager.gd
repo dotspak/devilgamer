@@ -104,7 +104,7 @@ func apply_dialogue_line() -> void:
 
 	character_label.visible = not dialogue_line.character.is_empty()
 
-	var characterAlias : String = dialogue_line.get_tag_value("alias")
+	var characterAlias : String = dialogue_line.get_tag_value("alias").capitalize()
 	character_label.text = tr(dialogue_line.character, "dialogue")
 	if characterAlias != "": character_label.text = tr(characterAlias, "dialogue")
 
@@ -197,6 +197,7 @@ func smooth_show_responses() -> void:
 
 	await TW.finished
 
+
 func smooth_hide_responses() -> void:
 	if !responses_menu.visible: return
 	
@@ -222,7 +223,7 @@ func _on_dialogue_label_spoke(letter : String, _letter_index : int, _speed : flo
 		sound = "object"
 		
 	var randPitch : float = 0
-	var mood : String = dialogue_line.get_tag_value("mood")
+	var mood : String = dialogue_line.get_tag_value("mood").to_lower()
 	if !letter in [".", " ", ",", "!", "?"]:
 		if dialogue_line.character != "":
 			var audioPlayer : AudioStreamPlayer = AudioManager.library["talkSounds"][sound]["sound"]

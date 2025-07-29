@@ -53,7 +53,7 @@ shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_pan_velocity = Vector2(0, 0)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_7hcii"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_jr77v"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6uxv"]
 albedo_color = Color(0.103906, 0.103906, 0.103906, 1)
@@ -187,7 +187,7 @@ surface_material_override/2 = SubResource("ShaderMaterial_vxo8u")
 transform = Transform3D(1.40029e-07, -0.614012, 0.789297, 1, 1.94707e-07, -2.5942e-08, -1.37753e-07, 0.789297, 0.614012, 4.37114e-08, 1, -1.39091e-08)
 material_override = ExtResource("2_l4y8v")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_7hcii")
+mesh = SubResource("ImmediateMesh_jr77v")
 skeleton = NodePath("../../../..")
 script = ExtResource("3_ex6r1")
 fromWidth = 1.5
