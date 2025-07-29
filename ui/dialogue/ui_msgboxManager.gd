@@ -103,7 +103,10 @@ func apply_dialogue_line() -> void:
 	balloon.grab_focus()
 
 	character_label.visible = not dialogue_line.character.is_empty()
+
+	var characterAlias : String = dialogue_line.get_tag_value("alias")
 	character_label.text = tr(dialogue_line.character, "dialogue")
+	if characterAlias != "": character_label.text = tr(characterAlias, "dialogue")
 
 	responses_menu.hide()
 	responses_menu.responses = dialogue_line.responses

@@ -27,7 +27,7 @@ Rinky: [[Hi|Hello|Howdy]], this is some dialogue.
 => END
 
 ~ jerry
-TestJerry: Omg its me, TestJerry.
+TestJerry: [#alias=???] Omg its me, TestJerry.
 TestJerry: I have randomized talk sounds for testing!
 TestJerry: So cool, huh?
 TestJerry: [#mood=grumpy] I'm grumpy here cause I have moods >:(.
