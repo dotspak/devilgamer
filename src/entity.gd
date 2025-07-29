@@ -44,24 +44,20 @@ func display_damage_num(dmg : float, isHeal : bool = false, isCrit : bool = fals
 # (for now is just a basic check)
 func should_use_skill(_skill = null) -> bool:
 	if !usingSkill:
-		return cooldowns.is_empty() && skillTarget
+		return cooldowns.is_empty()
 	return false
 
 
 # this code will later be used to use any action from a skill, for testing
 # it only currently uses the basic fireball.
 func use_action(scene : PackedScene) -> void:
-	stop_movement(0.6)
 	usingSkill = true
 
 	var action : Action = scene.instantiate()
-	action.spawn(skillTarget, self)
+	action.spawn(self, skillTarget)
 	add_sibling(action)
-	action.global_position = castPosition.global_position
-	action.actionFinished.connect(func(): 
-		movementAllowed = true
-		usingSkill = false
-	)
+	action.global_transform = castPosition.global_transform
+	action.skillLockFinished.connect(func(): usingSkill = false)
 
 	var cooldownTimer : Timer = Timer.new()
 	add_child(cooldownTimer)

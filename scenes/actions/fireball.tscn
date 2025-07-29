@@ -1,6 +1,6 @@
-[gd_scene load_steps=37 format=3 uid="uid://c7pe7gnr78btu"]
+[gd_scene load_steps=38 format=3 uid="uid://c7pe7gnr78btu"]
 
-[ext_resource type="Script" uid="uid://buggd2ahjcuyq" path="res://src/battle/homingAction.gd" id="1_uvv5x"]
+[ext_resource type="Script" uid="uid://cxd1ydxs472kg" path="res://src/battle/action.gd" id="1_ssc76"]
 [ext_resource type="Shader" uid="uid://cabkxa2y2kkhc" path="res://scenes/actions/fireballShader.tres" id="2_8gall"]
 [ext_resource type="Script" uid="uid://bxyodm8bmqbuu" path="res://src/battle/skill.gd" id="2_ssc76"]
 [ext_resource type="Texture2D" uid="uid://gustxudoq0pv" path="res://textures/tex_noise1.png" id="4_8gall"]
@@ -8,9 +8,15 @@
 [ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="5_8gall"]
 [ext_resource type="Texture2D" uid="uid://dfmamnkm6o5lp" path="res://assets/particles/pe_box1.png" id="6_abdn7"]
 [ext_resource type="Script" uid="uid://c1f0esp0hdccy" path="res://addons/Trail3D.gd" id="6_ssc76"]
+[ext_resource type="Script" uid="uid://do2a4kt4aroht" path="res://src/battle/actionMods/mod_homing.gd" id="9_bqk1o"]
 
 [sub_resource type="Resource" id="Resource_bqk1o"]
 script = ExtResource("2_ssc76")
+name = "Ball"
+description = "Dummy description goes here!"
+cooldown = 1.0
+skillLock = 0.5
+selfTarget = false
 castType = 1
 dmgType = 1
 variance = 3.0
@@ -22,6 +28,9 @@ critRate = 0.0
 critDmg = 0.0
 drainRate = 0.0
 metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s0vri"]
+radius = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_abdn7"]
 render_priority = 0
@@ -135,7 +144,7 @@ shader = SubResource("VisualShader_g66xh")
 
 [sub_resource type="SphereMesh" id="SphereMesh_d3sno"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_mq3v5"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_bqk1o"]
 
 [sub_resource type="Curve" id="Curve_abdn7"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -193,9 +202,6 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_abdn7")
 size = Vector2(0.3, 0.3)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_s0vri"]
-radius = 0.4
-
 [sub_resource type="Animation" id="Animation_8gall"]
 length = 0.001
 tracks/0/type = "value"
@@ -235,13 +241,16 @@ _data = {
 &"spin": SubResource("Animation_abdn7")
 }
 
-[node name="fireballAttack" type="Node3D" node_paths=PackedStringArray("collider")]
-script = ExtResource("1_uvv5x")
-speed = 15.0
-lockDur = 0.6
+[node name="fireballAttack" type="Area3D"]
+script = ExtResource("1_ssc76")
 skill = SubResource("Resource_bqk1o")
-collider = NodePath("Area3D")
-metadata/_custom_type_script = "uid://buggd2ahjcuyq"
+timeout = 2.0
+metadata/_custom_type_script = "uid://cxd1ydxs472kg"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.646326)
+shape = SubResource("SphereShape3D_s0vri")
+debug_color = Color(0, 0.6, 0.7, 1)
 
 [node name="Node3D" type="Node3D" parent="."]
 
@@ -262,7 +271,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.262123, 0, 0.965034, 0, 1, 0, -0.965034, 0, -0.262123, 0, 0, 0)
 material_override = ExtResource("5_8gall")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_mq3v5")
+mesh = SubResource("ImmediateMesh_bqk1o")
 skeleton = NodePath("../..")
 script = ExtResource("6_ssc76")
 fromWidth = 1.0
@@ -279,15 +288,13 @@ speed_scale = 1.3
 process_material = SubResource("ParticleProcessMaterial_y6t2m")
 draw_pass_1 = SubResource("QuadMesh_8gall")
 
-[node name="Area3D" type="Area3D" parent="."]
-collision_layer = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_s0vri")
-debug_color = Color(0, 0.6, 0.7, 1)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_ssc76")
 }
 autoplay = "spin"
+
+[node name="homingMod" type="Node" parent="."]
+script = ExtResource("9_bqk1o")
+moveSpeed = 30.0
+metadata/_custom_type_script = "uid://bb7bbdkd8x6lt"

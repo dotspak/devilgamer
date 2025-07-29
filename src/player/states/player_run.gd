@@ -41,10 +41,7 @@ func physics_update(delta : float) -> void:
 	else:
 		ledgeTimer = max(ledgeTimer - delta, 0)
 	
-	if player.can_basic_attack():
-		player.use_basic_attack()
-	elif player.should_use_skill():
-		player.use_action(preload("res://scenes/actions/fireball.tscn"))
+	if player.should_use_skill(): player.use_action(preload("res://scenes/actions/fireball.tscn"))
 
 
 func exit() -> void: 

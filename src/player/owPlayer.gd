@@ -491,28 +491,7 @@ func disable_input(haltPlayer : bool = true) -> void:
 	if haltPlayer: velocity = Vector3.ZERO
 
 
-func enable_input() -> void:
-	inputAllowed = true
-
-
-func can_basic_attack() -> bool:
-	if inputAllowed:
-		if Input.is_action_just_pressed("basic_attack"):
-			return !usingSkill && basicAttackCooldown.is_stopped()
-	return false
-
-
-func use_basic_attack() -> void:
-	stop_movement()
-	var attack : Action = preload("res://scenes/actions/basicAttack.tscn").instantiate()
-	castPosition.add_child(attack)
-	attack.trigger_skill_shot(self)
-	usingSkill = true
-	basicAttackCooldown.start()
-	attack.actionFinished.connect(func(): 
-		movementAllowed = true
-		usingSkill = false
-	)
+func enable_input() -> void: inputAllowed = true
 
 
 # checks if the player can cast the passed skill 

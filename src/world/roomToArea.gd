@@ -18,7 +18,7 @@ func _ready() -> void:
 				areaCam = n
 	
 	if transitionTrigger:
-		transitionTrigger.body_entered.connect(_transition_entered)
+		transitionTrigger.body_entered.connect(_transition_entered) 
 
 
 func _transition_entered(body : Node3D) -> void:

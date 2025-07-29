@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://cvayjaj7gt8m"]
 
-[ext_resource type="Script" uid="uid://btt68s0sqrigi" path="res://src/battle/skillshotAction.gd" id="1_v4i0t"]
+[ext_resource type="Script" uid="uid://cxd1ydxs472kg" path="res://src/battle/action.gd" id="1_jr77v"]
 [ext_resource type="ArrayMesh" uid="uid://t0nutn1wswk4" path="res://assets/models/swordDummy.obj" id="2_2cg41"]
 [ext_resource type="Script" uid="uid://bxyodm8bmqbuu" path="res://src/battle/skill.gd" id="2_jr77v"]
 [ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="2_l4y8v"]
@@ -11,6 +11,11 @@
 
 [sub_resource type="Resource" id="Resource_7hcii"]
 script = ExtResource("2_jr77v")
+name = "Ball"
+description = "Dummy description goes here!"
+cooldown = 1.0
+skillLock = 0.5
+selfTarget = false
 castType = 0
 dmgType = 0
 variance = 3.0
@@ -48,7 +53,7 @@ shader_parameter/uv_scale = Vector2(1, 1)
 shader_parameter/uv_offset = Vector2(0, 0)
 shader_parameter/uv_pan_velocity = Vector2(0, 0)
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_vxo8u"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_7hcii"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v6uxv"]
 albedo_color = Color(0.103906, 0.103906, 0.103906, 1)
@@ -152,13 +157,10 @@ _data = {
 &"swing": SubResource("Animation_rp74o")
 }
 
-[node name="basicAttack" type="Node3D" node_paths=PackedStringArray("animator", "collider")]
-script = ExtResource("1_v4i0t")
-animationName = "swing"
-animator = NodePath("AnimationPlayer")
+[node name="basicAttack" type="Area3D"]
+script = ExtResource("1_jr77v")
 skill = SubResource("Resource_7hcii")
-collider = NodePath("Area3D")
-metadata/_custom_type_script = "uid://btt68s0sqrigi"
+metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 
 [node name="Area3D" type="Area3D" parent="."]
 
@@ -185,7 +187,7 @@ surface_material_override/2 = SubResource("ShaderMaterial_vxo8u")
 transform = Transform3D(1.40029e-07, -0.614012, 0.789297, 1, 1.94707e-07, -2.5942e-08, -1.37753e-07, 0.789297, 0.614012, 4.37114e-08, 1, -1.39091e-08)
 material_override = ExtResource("2_l4y8v")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_vxo8u")
+mesh = SubResource("ImmediateMesh_7hcii")
 skeleton = NodePath("../../../..")
 script = ExtResource("3_ex6r1")
 fromWidth = 1.5

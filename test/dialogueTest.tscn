@@ -59,6 +59,9 @@ background_color = Color(0.559094, 0.557206, 0.959375, 1)
 sky = SubResource("Sky_f5nsq")
 tonemap_mode = 2
 glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/3 = 0.5
+glow_levels/4 = 0.2
 
 [node name="Node3D" type="Node3D"]
 

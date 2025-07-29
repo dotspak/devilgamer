@@ -11,9 +11,10 @@ enum DMG_TYPES {PHYS, MAG, TRUE}
 
 @export_group("Cooldowns")
 @export var cooldown : float = 1.0
-@export var moveLock : float = 0.5
+@export var skillLock : float = 0.5
 
 @export_group("Damage")
+@export var selfTarget : bool = false
 @export var castType : DMG_TYPES = DMG_TYPES.PHYS
 @export var dmgType : DMG_TYPES = DMG_TYPES.PHYS
 @export var variance : float = 3.0
