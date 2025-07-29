@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bf50s1a1ettqj"]
+[gd_scene load_steps=21 format=3 uid="uid://bf50s1a1ettqj"]
 
 [ext_resource type="Script" uid="uid://c7c0vui0cvtay" path="res://src/global/audioManager.gd" id="1_turgw"]
 [ext_resource type="AudioStream" uid="uid://yv4wkbu6u4dl" path="res://assets/audio/voiceSFX/TALK_def2.ogg" id="2_mohs4"]
@@ -6,12 +6,20 @@
 [ext_resource type="Script" uid="uid://jvvmknmqbywi" path="res://src/talkObject.gd" id="4_cbkp8"]
 [ext_resource type="AudioStream" uid="uid://clin8uuam2g5q" path="res://addons/kenney_interface_sounds/click_002.wav" id="4_thxen"]
 [ext_resource type="AudioStream" uid="uid://dwlv1buotuxcl" path="res://assets/audio/voiceSFX/TALK_monolith1.ogg" id="5_655yq"]
+[ext_resource type="AudioStream" uid="uid://dqbb8vih2ccix" path="res://assets/audio/voiceSFX/TALK_atlas4.ogg" id="5_qs554"]
 [ext_resource type="AudioStream" uid="uid://3u8mu3kahwj5" path="res://assets/audio/sfx/SE_confirm.wav" id="5_thxen"]
+[ext_resource type="AudioStream" uid="uid://btgvxcmocat3w" path="res://assets/audio/voiceSFX/TALK_atlas1.ogg" id="6_3kdwd"]
 [ext_resource type="AudioStream" uid="uid://6x4b7cpwt3a6" path="res://assets/audio/voiceSFX/TALK_monolith2.ogg" id="6_7ncvr"]
 [ext_resource type="AudioStream" uid="uid://t30a7867qhxu" path="res://assets/audio/sfx/SE_cancel.wav" id="6_khqfk"]
+[ext_resource type="AudioStream" uid="uid://c3bfjxmf5e56u" path="res://assets/audio/voiceSFX/TALK_atlas2.ogg" id="7_c0p1h"]
 [ext_resource type="AudioStream" uid="uid://cu50v662d6v5k" path="res://assets/audio/voiceSFX/TALK_monolith3.ogg" id="7_e1wsp"]
 [ext_resource type="AudioStream" uid="uid://bkr8g7vmfnaab" path="res://addons/kenney_interface_sounds/minimize_008.wav" id="7_khqfk"]
+[ext_resource type="AudioStream" uid="uid://dlcb2d0xf7kty" path="res://assets/audio/voiceSFX/TALK_atlas3.ogg" id="8_rbis1"]
 [ext_resource type="AudioStream" uid="uid://0kd0fpelpu0x" path="res://assets/audio/sfx/SE_elevatorChime.ogg" id="8_s5rre"]
+[ext_resource type="AudioStream" uid="uid://bufi6h0tp77rh" path="res://assets/audio/voiceSFX/TALK_atlas5.ogg" id="9_rm15o"]
+[ext_resource type="AudioStream" uid="uid://dj402lh5ertpy" path="res://assets/audio/voiceSFX/TALK_atlas6.ogg" id="10_5hw30"]
+[ext_resource type="AudioStream" uid="uid://c7iudciyd34pd" path="res://assets/audio/voiceSFX/TALK_atlas7.ogg" id="11_w5w26"]
+[ext_resource type="AudioStream" uid="uid://bvan4dllnxgnk" path="res://assets/audio/voiceSFX/TALK_atlas8.ogg" id="12_dtkv8"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_turgw")
@@ -21,33 +29,72 @@ unique_name_in_owner = true
 
 [node name="def" type="AudioStreamPlayer" parent="talkSounds"]
 volume_db = -5.0
+bus = &"talkSFX"
 script = ExtResource("4_cbkp8")
 talkSounds = Array[AudioStream]([ExtResource("2_thxen")])
 metadata/_custom_type_script = "uid://jvvmknmqbywi"
 
+[node name="low" type="AudioStreamPlayer" parent="talkSounds/def"]
+pitch_scale = 0.659028
+bus = &"talkSFX"
+script = ExtResource("4_cbkp8")
+talkSounds = Array[AudioStream]([ExtResource("2_thxen")])
+pitchRange = Vector2(0.7, 0.85)
+metadata/_custom_type_script = "uid://jvvmknmqbywi"
+
+[node name="high" type="AudioStreamPlayer" parent="talkSounds/def"]
+pitch_scale = 1.05537
+bus = &"talkSFX"
+script = ExtResource("4_cbkp8")
+talkSounds = Array[AudioStream]([ExtResource("2_thxen")])
+pitchRange = Vector2(1, 1.2)
+metadata/_custom_type_script = "uid://jvvmknmqbywi"
+
 [node name="object" type="AudioStreamPlayer" parent="talkSounds"]
 volume_db = -5.0
+bus = &"talkSFX"
 script = ExtResource("4_cbkp8")
 talkSounds = Array[AudioStream]([ExtResource("2_mohs4")])
 pitchRange = Vector2(0.75, 0.79)
 metadata/_custom_type_script = "uid://jvvmknmqbywi"
 
 [node name="TestJerry" type="AudioStreamPlayer" parent="talkSounds"]
+stream = ExtResource("8_rbis1")
+pitch_scale = 0.939953
+bus = &"talkSFX"
+script = ExtResource("4_cbkp8")
+talkSounds = Array[AudioStream]([ExtResource("6_3kdwd"), ExtResource("7_c0p1h"), ExtResource("8_rbis1"), ExtResource("5_qs554"), ExtResource("9_rm15o"), ExtResource("10_5hw30"), ExtResource("11_w5w26"), ExtResource("12_dtkv8")])
+pitchRange = Vector2(0.4, 1.4)
+metadata/_custom_type_script = "uid://jvvmknmqbywi"
+
+[node name="grumpy" type="AudioStreamPlayer" parent="talkSounds/TestJerry"]
+stream = ExtResource("6_3kdwd")
+pitch_scale = 0.490546
+bus = &"talkSFX"
+script = ExtResource("4_cbkp8")
+talkSounds = Array[AudioStream]([ExtResource("6_3kdwd")])
+pitchRange = Vector2(0.3, 0.6)
+metadata/_custom_type_script = "uid://jvvmknmqbywi"
+
+[node name="Monolith" type="AudioStreamPlayer" parent="talkSounds"]
+bus = &"talkSFX"
 script = ExtResource("4_cbkp8")
 talkSounds = Array[AudioStream]([ExtResource("5_655yq"), ExtResource("6_7ncvr"), ExtResource("7_e1wsp")])
 metadata/_custom_type_script = "uid://jvvmknmqbywi"
 
-[node name="grumpy" type="AudioStreamPlayer" parent="talkSounds/TestJerry"]
+[node name="grumpy" type="AudioStreamPlayer" parent="talkSounds/Monolith"]
 stream = ExtResource("7_e1wsp")
 pitch_scale = 0.659028
+bus = &"talkSFX"
 script = ExtResource("4_cbkp8")
 talkSounds = Array[AudioStream]([ExtResource("5_655yq"), ExtResource("6_7ncvr"), ExtResource("7_e1wsp")])
 pitchRange = Vector2(0.6, 0.7)
 metadata/_custom_type_script = "uid://jvvmknmqbywi"
 
-[node name="happy" type="AudioStreamPlayer" parent="talkSounds/TestJerry"]
+[node name="happy" type="AudioStreamPlayer" parent="talkSounds/Monolith"]
 stream = ExtResource("6_7ncvr")
 pitch_scale = 1.05537
+bus = &"talkSFX"
 script = ExtResource("4_cbkp8")
 talkSounds = Array[AudioStream]([ExtResource("7_e1wsp"), ExtResource("6_7ncvr")])
 pitchRange = Vector2(1, 1.2)
