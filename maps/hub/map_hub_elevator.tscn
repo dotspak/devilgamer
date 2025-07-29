@@ -2196,13 +2196,13 @@ text = "Frozen God"
 alignment = 2
 
 [node name="tubes" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(2.28697, 0, -3.27237, 0, 4, 0, 3.27237, 0, 2.28697, 0, 7, 0)
+transform = Transform3D(3.07366, 0, -2.54778, 0, 4, 0, 2.54778, 0, 3.07366, 0, 7, 0)
 
 [node name="BézierCurve_002" parent="tubes" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ltdxl")
 
 [node name="tubes2" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(-3.33844, 0, 2.18946, 0, 4, 0, -2.18946, 0, -3.33844, 0, -9, 0)
+transform = Transform3D(-3.79991, 0, 1.22459, 0, 4, 0, -1.22459, 0, -3.79991, 0, -9, 0)
 
 [node name="BézierCurve_002" parent="tubes2" index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, -100, 0, 100, -4.37114e-06, 0, 0.977458, 0)
@@ -2438,7 +2438,6 @@ mesh = SubResource("ArrayMesh_oujap")
 shape = SubResource("ConcavePolygonShape3D_5lxxe")
 
 [node name="SophiaSkin" parent="elevator" instance=ExtResource("7_o4klg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_04xm0")
@@ -2508,19 +2507,19 @@ rotateBias = 25.0
 tubes = [NodePath("../tubes"), NodePath("../tubes2")]
 
 [node name="tube2" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -13.688, -5.19846e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.3196, -5.19846e-07)
 material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
 
 [node name="tube3" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(0.0162672, 0, -0.999867, 0, 1, 0, 0.999867, 0, 0.0162672, 0, -33.688, 0)
+transform = Transform3D(0.0162672, 0, -0.999867, 0, 1, 0, 0.999867, 0, 0.0162672, 0, -2.6804, 0)
 material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
 
 [node name="tube1" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.48326, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22.6804, 0)
 material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
@@ -2579,7 +2578,7 @@ size = Vector3(14.5, 8, 15.25)
 material = SubResource("FogMaterial_uhj3u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.577858, 0, 0.816138, 0, 1, 0, -0.816138, 0, 0.577858, 4, 3, 12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 12)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300

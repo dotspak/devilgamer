@@ -16,7 +16,9 @@ func _ready() -> void:
 		for n : Node in get_children(true):
 			if n is PhantomCamera3D:
 				areaCam = n
-	transitionTrigger.body_entered.connect(_transition_entered)
+	
+	if transitionTrigger:
+		transitionTrigger.body_entered.connect(_transition_entered)
 
 
 func _transition_entered(body : Node3D) -> void:

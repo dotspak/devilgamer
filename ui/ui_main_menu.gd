@@ -30,6 +30,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
+	if !visible: return
 	if !transitioning:
 		# fun animations
 		if Input.is_action_just_pressed("ui_left"):

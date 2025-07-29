@@ -1,0 +1,68 @@
+~ start
+Dummy, dummy, dummy!
+=> END
+
+# clerk scene when first entering area
+~ ClerkOpening
+do GameFlags.set_flag("clerkStarter", true)
+???: Hmmmm? Did I hear a new customer appear?
+???: Please come to the front desk and check in.
+
+# intial cutscene with clerk
+~ FrontDeskClerk
+if GameFlags.check_flag("metClerk")
+	=> clerk2
+Clerk: Welcome to Monolith's Residence, Itera's finest devil-first hotel.
+Clerk: Will you be staying with us today?
+Clerk: A night's stay is [color=0f0]$100[color=fff].
+
+Mercury: Who the hell can afford that kind of a rate?
+
+Clerk: I apologize for the inconvenience maam, but the price reflects the quality!
+Clerk: I implore you to reconsider your decision.[wait=1]
+
+# to be replaced with phone take out
+
+Clerk: (Yes, hello?)
+Clerk: (What? Are you serious?)
+Clerk: [next=auto](You didn't even tell me-)
+Clerk: (...)
+Clerk: (I understand.)[wait=0.5]
+
+# to be replace with phone put away
+
+Clerk: My apologies.
+Clerk: You two are miss [color=ff0]Epia[/color] and mr [color=ff0]Mercury[/color], correct?
+
+Mercury: ...huh?
+Mercury: Where did you hear those names?
+
+Clerk: Ah, master [color=ff0]Monolith[/color] informed me.
+Clerk: He has been expecting you.
+
+Mercury: Who is this [color=ff0]Monolith[/color]?
+Mercury: And who is Epia? Is that the girl's name?
+
+Clerk: What, you are not aware?
+Clerk: I didn't realize you weren't properly acquainted.
+Clerk: Typically people travelling together are properly aquainted.
+
+Mercury: I'm not one to get buddy buddy with corpses typically.
+Mercury: They're just here for me to use.
+
+Clerk: ...I see.
+Clerk: Well in any case, sir Monolith is waiting for you inside.
+Clerk: I assume you won't need it, but take this key card just in case.
+Clerk: Sir Monolith does not appreciate visitors without one.
+
+You got a {[color=f4f]Key Card[/color]}!
+
+Clerk: Oh my name is Geligar by the way.
+Geligar: Please come see me if you need any assistance.
+do GameFlags.set_flag("metClerk", true)
+
+
+# default interaction after meeting the clerk.
+~ clerk2
+Geligar: Welcome back.
+=> END!

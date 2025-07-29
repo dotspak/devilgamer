@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dngp7fndjqmcv"]
+
+[ext_resource type="Texture2D" uid="uid://bet6vha6tp1y" path="res://textures/tex_vines1.png" id="1_vn4jw"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_vn4jw")
+metallic_specular = 0.0
+texture_filter = 2

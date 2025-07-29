@@ -823,7 +823,7 @@ _data = {
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_kv0tk")
-areas = Array[ExtResource("2_oucsi")]([ExtResource("5_va82q"), ExtResource("3_y5kg3"), ExtResource("4_d6bmg")])
+areas = Array[ExtResource("2_oucsi")]([ExtResource("3_y5kg3"), ExtResource("5_va82q"), ExtResource("4_d6bmg")])
 
 [node name="debugConsole" parent="." instance=ExtResource("6_xx4xr")]
 visible = false
@@ -840,7 +840,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
-stretch_shrink = 2
 mouse_target = true
 
 [node name="viewport" type="SubViewport" parent="world/container"]
@@ -849,7 +848,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(448, 252)
+size = Vector2i(896, 504)
 size_2d_override = Vector2i(640, 360)
 size_2d_override_stretch = true
 render_target_update_mode = 4

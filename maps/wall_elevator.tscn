@@ -1226,3 +1226,10 @@ volume_db = -10.0
 pitch_scale = 1.6
 bus = &"SFX"
 parameters/looping = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 2.25)
+light_color = Color(1, 0.632876, 0.569963, 1)
+light_energy = 17.375
+light_volumetric_fog_energy = 0.0
+omni_attenuation = 2.0
