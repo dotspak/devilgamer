@@ -22,6 +22,7 @@ var cooldowns : Array[Timer] = []
 var usingSkill : bool = false
 var movementAllowed : bool = true
 var stopMoveWeight : float = 0.3
+var selectedAction : PackedScene = load("res://scenes/actions/machineGun.tscn")
 
 var dead : bool = false
 
@@ -57,13 +58,21 @@ func use_action(scene : PackedScene) -> void:
 	action.spawn(self, skillTarget)
 	add_sibling(action)
 	action.global_transform = castPosition.global_transform
-	action.skillLockFinished.connect(func(): usingSkill = false)
+
+	var skillLockTimer : Timer = Timer.new()
+	skillLockTimer.timeout.connect(func():
+		usingSkill = false
+		skillLockTimer.queue_free())
+	add_child(skillLockTimer)
+	skillLockTimer.start(action.skill.skillLock)
 
 	var cooldownTimer : Timer = Timer.new()
+	cooldownTimer.timeout.connect(func():
+		cooldowns.erase(cooldownTimer)
+		cooldownTimer.queue_free())
 	add_child(cooldownTimer)
 	cooldowns.append(cooldownTimer)
-	cooldownTimer.start(0.1)
-	cooldownTimer.timeout.connect(cooldowns.erase.bind(cooldownTimer))
+	cooldownTimer.start(action.skill.cooldown)
 
 
 func stop_movement(weight : float = 0.3) -> void:
@@ -113,6 +122,8 @@ func get_closest_target() -> Node3D:
 
 # deals damage to the entity.
 func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.DMG_TYPES = Skill.DMG_TYPES.PHYS) -> void:
+	if dead: return
+	
 	var dmgReduction : float = 0.0
 	match dmgType:
 		Skill.DMG_TYPES.PHYS: dmgReduction = stats.get_stat(StatComponent.STATS.DEF)

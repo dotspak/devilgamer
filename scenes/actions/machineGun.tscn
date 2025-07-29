@@ -1,11 +1,36 @@
-[gd_scene load_steps=21 format=3 uid="uid://dqbtt3qeauutp"]
+[gd_scene load_steps=24 format=3 uid="uid://dqbtt3qeauutp"]
 
 [ext_resource type="Script" uid="uid://cxd1ydxs472kg" path="res://src/battle/action.gd" id="1_efir6"]
 [ext_resource type="ArrayMesh" uid="uid://jq570kbfsm3c" path="res://assets/models/bullet.obj" id="2_0dcwq"]
 [ext_resource type="AudioStream" uid="uid://jhwq03tpaw2x" path="res://addons/kenney_interface_sounds/click_003.wav" id="2_efir6"]
+[ext_resource type="Script" uid="uid://bxyodm8bmqbuu" path="res://src/battle/skill.gd" id="2_gnbsw"]
 [ext_resource type="Texture2D" uid="uid://d0fsn8bk04x4t" path="res://textures/tex_noise2.png" id="3_2bgaw"]
 [ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="4_efir6"]
 [ext_resource type="Script" uid="uid://c1f0esp0hdccy" path="res://addons/Trail3D.gd" id="5_gnbsw"]
+[ext_resource type="Script" uid="uid://do2a4kt4aroht" path="res://src/battle/actionMods/mod_homing.gd" id="8_2q8il"]
+
+[sub_resource type="Resource" id="Resource_2q8il"]
+script = ExtResource("2_gnbsw")
+name = "Machine Gun"
+description = "Rapid fire, low true damage homing attack."
+cooldown = 0.1
+skillLock = 0.1
+selfTarget = false
+castType = 1
+dmgType = 2
+variance = 0.0
+baseDmg = 1.0
+recoil = 0.0
+isHeal = false
+selfHeal = 0.0
+critRate = 0.0
+critDmg = 0.0
+drainRate = 0.0
+metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ddvx1"]
+radius = 0.15
+height = 0.561317
 
 [sub_resource type="GDScript" id="GDScript_2bgaw"]
 script/source = "extends AudioStreamPlayer3D
@@ -101,10 +126,6 @@ shader = SubResource("VisualShader_rvx43")
 
 [sub_resource type="ImmediateMesh" id="ImmediateMesh_gnbsw"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ddvx1"]
-radius = 0.15
-height = 0.561317
-
 [sub_resource type="Animation" id="Animation_efir6"]
 length = 0.001
 tracks/0/type = "value"
@@ -157,7 +178,12 @@ _data = {
 
 [node name="machineGun" type="Area3D"]
 script = ExtResource("1_efir6")
+skill = SubResource("Resource_2q8il")
 metadata/_custom_type_script = "uid://cxd1ydxs472kg"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_ddvx1")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("2_efir6")
@@ -186,14 +212,14 @@ lifespan = 0.1
 startColor = Color(0.52547, 0.553827, 1, 1)
 endColor = Color(0, 0.0151229, 1, 0)
 
-[node name="Area3D" type="Area3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_ddvx1")
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_gnbsw")
 }
 autoplay = "rot"
+
+[node name="homingMod" type="Node" parent="."]
+script = ExtResource("8_2q8il")
+homingStrength = 50.0
+moveSpeed = 50.0
+metadata/_custom_type_script = "uid://bb7bbdkd8x6lt"

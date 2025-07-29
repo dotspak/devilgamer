@@ -14,4 +14,4 @@ func physics_update(delta : float) -> void:
     if player.movement_input(): stateMachine.transition_to("run")
     elif !player.is_on_floor(): stateMachine.transition_to("fall")
 
-    if player.should_use_skill(): player.use_action(preload("res://scenes/actions/fireball.tscn"))
+    if player.should_use_skill(): player.use_action(player.selectedAction)

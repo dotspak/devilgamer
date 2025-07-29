@@ -59,6 +59,8 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://add
 player="all nodes related to the overworld player"
 climbable="objects that can be climbed"
 interactable=""
+enemy="Group for all enemy entites"
+actor="Group for all allied entities"
 
 [gui]
 

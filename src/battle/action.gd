@@ -32,8 +32,7 @@ func _ready():
 	if collideWithEnvironment:
 		set_collision_layer_value(1, true)
 
-	if timeout > 0: timer_setup(stop, timeout)
-	timer_setup(skillLockFinished.emit, skill.skillLock)
+	if timeout > 0: add_child(timer_setup(stop, timeout))
 	
 	for n in get_children():
 		if n is ActionMod:
