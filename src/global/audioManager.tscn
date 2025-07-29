@@ -1,12 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bf50s1a1ettqj"]
+[gd_scene load_steps=13 format=3 uid="uid://bf50s1a1ettqj"]
 
 [ext_resource type="Script" uid="uid://c7c0vui0cvtay" path="res://src/global/audioManager.gd" id="1_turgw"]
 [ext_resource type="AudioStream" uid="uid://yv4wkbu6u4dl" path="res://assets/audio/voiceSFX/TALK_def2.ogg" id="2_mohs4"]
 [ext_resource type="AudioStream" uid="uid://e5l77d6gmdup" path="res://assets/audio/voiceSFX/TALK_def3.ogg" id="2_thxen"]
+[ext_resource type="Script" uid="uid://jvvmknmqbywi" path="res://src/talkObject.gd" id="4_cbkp8"]
 [ext_resource type="AudioStream" uid="uid://clin8uuam2g5q" path="res://addons/kenney_interface_sounds/click_002.wav" id="4_thxen"]
+[ext_resource type="AudioStream" uid="uid://1v3hb8fpgncc" path="res://assets/audio/voiceSFX/se_talk_jerry1.wav" id="5_8venk"]
 [ext_resource type="AudioStream" uid="uid://3u8mu3kahwj5" path="res://assets/audio/sfx/SE_confirm.wav" id="5_thxen"]
+[ext_resource type="AudioStream" uid="uid://dfdun30y8o6bm" path="res://assets/audio/voiceSFX/se_talk_jerry2.wav" id="6_1nnis"]
 [ext_resource type="AudioStream" uid="uid://t30a7867qhxu" path="res://assets/audio/sfx/SE_cancel.wav" id="6_khqfk"]
 [ext_resource type="AudioStream" uid="uid://bkr8g7vmfnaab" path="res://addons/kenney_interface_sounds/minimize_008.wav" id="7_khqfk"]
+[ext_resource type="AudioStream" uid="uid://igt0k8qfcew4" path="res://assets/audio/voiceSFX/se_talk_jerry3.wav" id="7_uf78q"]
 [ext_resource type="AudioStream" uid="uid://0kd0fpelpu0x" path="res://assets/audio/sfx/SE_elevatorChime.ogg" id="8_s5rre"]
 
 [node name="AudioManager" type="Node"]
@@ -24,6 +28,23 @@ bus = &"talkSFX"
 stream = ExtResource("2_mohs4")
 volume_db = -5.0
 bus = &"talkSFX"
+
+[node name="TestJerry" type="AudioStreamPlayer" parent="talkSounds"]
+script = ExtResource("4_cbkp8")
+talkSounds = Array[AudioStream]([ExtResource("5_8venk"), ExtResource("6_1nnis"), ExtResource("7_uf78q")])
+metadata/_custom_type_script = "uid://jvvmknmqbywi"
+
+[node name="grumpy" type="AudioStreamPlayer" parent="talkSounds/TestJerry"]
+script = ExtResource("4_cbkp8")
+talkSounds = Array[AudioStream]([ExtResource("5_8venk"), ExtResource("6_1nnis"), ExtResource("7_uf78q")])
+pitchRange = Vector2(0.4, 0.7)
+metadata/_custom_type_script = "uid://jvvmknmqbywi"
+
+[node name="happy" type="AudioStreamPlayer" parent="talkSounds/TestJerry"]
+script = ExtResource("4_cbkp8")
+talkSounds = Array[AudioStream]([ExtResource("5_8venk"), ExtResource("6_1nnis"), ExtResource("7_uf78q")])
+pitchRange = Vector2(1.5, 2)
+metadata/_custom_type_script = "uid://jvvmknmqbywi"
 
 [node name="uiSounds" type="Node" parent="."]
 unique_name_in_owner = true

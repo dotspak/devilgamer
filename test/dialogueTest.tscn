@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bctq4y64ff6kn"]
+[gd_scene load_steps=20 format=3 uid="uid://bctq4y64ff6kn"]
 
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="2_f5nsq"]
 [ext_resource type="Script" uid="uid://06h4bswwg3ul" path="res://src/interactable.gd" id="3_35y5e"]
@@ -37,6 +37,14 @@ albedo_color = Color(0.779784, 0.70439, 1, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_35y5e"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f5nsq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ryyum"]
+albedo_color = Color(0, 0.480001, 0.708594, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_a3o7o"]
+material = SubResource("StandardMaterial3D_ryyum")
+radial_segments = 12
+rings = 4
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_35y5e"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -143,6 +151,31 @@ collision_mask = 2
 shape = SubResource("SphereShape3D_fmbjk")
 
 [node name="PopupPos" type="Marker3D" parent="NPC1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="NPC4" type="CharacterBody3D" parent="." node_paths=PackedStringArray("interactArea", "popupPos")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.80937, 1.5, 7)
+script = ExtResource("3_35y5e")
+interactArea = NodePath("interactRange")
+popupPos = NodePath("PopupPos")
+dialogueResource = ExtResource("4_35y5e")
+startingTitle = "jerry"
+
+[node name="mesh" type="MeshInstance3D" parent="NPC4"]
+mesh = SubResource("CapsuleMesh_a3o7o")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC4"]
+shape = SubResource("CapsuleShape3D_f5nsq")
+
+[node name="interactRange" type="Area3D" parent="NPC4" groups=["interactable"]]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NPC4/interactRange"]
+shape = SubResource("SphereShape3D_fmbjk")
+
+[node name="PopupPos" type="Marker3D" parent="NPC4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

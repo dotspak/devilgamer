@@ -14,7 +14,10 @@ func load_sfx_library() -> void:
 
 		library[n.name] = {}
 		for sound in n.get_children():
-			library[n.name][sound.name] = sound
+			if !sound is AudioStreamPlayer: continue
+			library[n.name][sound.name] = {}
+			library[n.name][sound.name]["sound"] = sound
+			library[n.name][sound.name]["pitch"] = sound.pitch_scale
 	
 	print("loaded all sounds successfully:\n", library)
 
@@ -44,15 +47,25 @@ func fade_bgm(duration : float = 1.0, fadeOut : bool = true) -> void:
 
 
 # play a sound of a given category
-func play_ui_sfx(sfx : String, pitch : float = 1.0) -> void: if library["uiSounds"].has(sfx): play_sfx(sfx, library["uiSounds"], pitch)
-func play_talk_sfx(sfx : String, pitch : float = 1.0) -> void: if library["talkSounds"].has(sfx): play_sfx(sfx, library["talkSounds"], pitch)
-func play_jingle(sfx : String, pitch : float = 1.0) -> void: if library["jingles"].has(sfx): play_sfx(sfx, library["jingles"], pitch)
+func play_ui_sfx(sfx : String, pitch : float = 1.0) -> void: 
+	if library["uiSounds"].has(sfx): play_sfx(sfx, library["uiSounds"], pitch)
+
+func play_talk_sfx(sfx : String, pitch : float = 1.0, mood : String = "") -> void: 
+	if library["talkSounds"].has(sfx): play_sfx(sfx, library["talkSounds"], pitch, mood)
+
+func play_jingle(sfx : String, pitch : float = 1.0) -> void: 
+	if library["jingles"].has(sfx): play_sfx(sfx, library["jingles"], pitch)
 
 
 # plays a sound from a given sfx bank. Should only be called from the more specific helper functions
-func play_sfx(sfx : String, bank : Dictionary, pitch : float) -> void:
+func play_sfx(sfx : String, bank : Dictionary, pitch : float, mood : String = "") -> void:
 	if !bank.has(sfx):
 		printerr("sound not found ", sfx, " in ", bank)
 		return
-	bank[sfx].pitch_scale = pitch
-	bank[sfx].play()
+	
+	var sound : AudioStreamPlayer = bank[sfx]["sound"]
+	var defaultPitch : float = bank[sfx]["pitch"]
+
+	sound.pitch_scale = defaultPitch * pitch
+	if sound is TalkObject: sound.talk_sound(mood)
+	else: sound.play()

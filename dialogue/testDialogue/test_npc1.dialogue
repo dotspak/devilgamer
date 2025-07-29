@@ -25,3 +25,12 @@ Binky: I'm taking all of your money.
 ~ rinky
 Rinky: [[Hi|Hello|Howdy]], this is some dialogue.
 => END
+
+~ jerry
+TestJerry: Omg its me, TestJerry.
+TestJerry: I have randomized talk sounds for testing!
+TestJerry: So cool, huh?
+TestJerry: [#mood=grumpy] I'm grumpy here cause I have moods >:(.
+TestJerry: [#mood=happy] I'm happy here cause I have moods :)!
+TestJerry: [#mood=wtf] I shouldn't have this mood so it uses default.
+=> END
