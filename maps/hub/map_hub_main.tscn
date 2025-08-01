@@ -1385,10 +1385,12 @@ proximity_fade_distance = 2.0
 material = SubResource("StandardMaterial3D_m0i6x")
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_j6ou0"]
+height = 2.5
 radial_segments = 8
 rings = 4
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4mn0w"]
+height = 2.5
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_p6xr2"]
 radius = 4.615
@@ -2693,11 +2695,11 @@ startingTitle = "FrontDeskClerk"
 metadata/_custom_type_script = "uid://06h4bswwg3ul"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 mesh = SubResource("CapsuleMesh_j6ou0")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Interactable"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0)
 shape = SubResource("CapsuleShape3D_4mn0w")
 
 [node name="Area3D" type="Area3D" parent="Interactable"]

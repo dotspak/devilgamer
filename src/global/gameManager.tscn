@@ -840,6 +840,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stretch = true
+stretch_shrink = 2
 mouse_target = true
 
 [node name="viewport" type="SubViewport" parent="world/container"]
@@ -848,9 +849,7 @@ handle_input_locally = false
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 audio_listener_enable_3d = true
-size = Vector2i(896, 504)
-size_2d_override = Vector2i(640, 360)
-size_2d_override_stretch = true
+size = Vector2i(448, 252)
 render_target_update_mode = 4
 
 [node name="scene" type="Node" parent="world/container/viewport"]
