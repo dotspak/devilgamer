@@ -101,7 +101,7 @@ unique_name_in_owner = true
 visible = false
 layout_mode = 2
 bbcode_enabled = true
-text = "[shake][color=484566][font_size=12]this world is dead."
+text = "[shake][color=484566][font_size=14]this world is dead."
 horizontal_alignment = 1
 vertical_alignment = 1
 

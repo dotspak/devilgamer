@@ -99,8 +99,8 @@ anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -66.5
 offset_top = 16.0
-offset_right = 66.5
-offset_bottom = 118.0
+offset_right = 125.5
+offset_bottom = 188.0
 grow_horizontal = 2
 pivot_offset = Vector2(96, 64)
 metadata/_edit_use_anchors_ = true
@@ -109,14 +109,16 @@ metadata/_edit_use_anchors_ = true
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
 bbcode_enabled = true
-text = "[shake][font_size=48][bgcolor=black][font_size=32][[/font_size][color=dodger_blue]F[/color][font_size=32]][/font_size]"
+text = "[shake][font_size=96][color=dodgerblue][bgcolor=000]E"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="bgThing2" type="ColorRect" parent="SubViewport/Control/key"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_wxyin")
 layout_mode = 1
@@ -131,14 +133,16 @@ color = Color(0, 0, 0, 0.533333)
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
 bbcode_enabled = true
-text = "[shake][font_size=48][bgcolor=black]talk"
+text = "[shake][font_size=96][bgcolor=black]talk"
 fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="bgThing" type="ColorRect" parent="SubViewport/Control/Label"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_wxyin")
 layout_mode = 1
