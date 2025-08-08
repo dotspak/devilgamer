@@ -54,6 +54,23 @@ project/assembly_name="DevilBattleSystem"
 
 enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
+[file_customization]
+
+folder_colors={
+"res://addons/": "gray",
+"res://assets/": "orange",
+"res://data/": "blue",
+"res://dialogue/": "green",
+"res://icons/": "gray",
+"res://maps/": "orange",
+"res://scenes/": "green",
+"res://shaders/": "green",
+"res://src/": "green",
+"res://test/": "gray",
+"res://textures/": "orange",
+"res://ui/": "blue"
+}
+
 [global_group]
 
 player="all nodes related to the overworld player"

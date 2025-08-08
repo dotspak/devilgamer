@@ -23,8 +23,7 @@ var usingSkill : bool = false
 var movementAllowed : bool = true
 var stopMoveWeight : float = 0.3
 var selectedAction : PackedScene = load("res://scenes/actions/machineGun.tscn")
-
-var dead : bool = false
+var isDead : bool = false
 
 signal entityDeath
 
@@ -122,7 +121,7 @@ func get_closest_target() -> Node3D:
 
 # deals damage to the entity.
 func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.DMG_TYPES = Skill.DMG_TYPES.PHYS) -> void:
-	if dead: return
+	if isDead: return
 	
 	var dmgReduction : float = 0.0
 	match dmgType:
@@ -161,6 +160,6 @@ func should_entity_die(hp : float) -> bool:
 func kill() -> void:
 	print(name + " died")
 	entityDeath.emit()
-	dead = true
+	isDead = true
 	if modelController: await modelController.startedDeathAnim
 	queue_free()

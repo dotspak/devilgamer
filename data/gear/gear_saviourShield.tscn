@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cve88aey33cr7"]
+
+[ext_resource type="Script" uid="uid://b2gvtbmuae2px" path="res://src/battle/gear.gd" id="1_pk2fa"]
+[ext_resource type="Script" uid="uid://bg4lt2giy14d" path="res://src/battle/passives/passive.gd" id="2_tkvpj"]
+
+[node name="saviourShield" type="Node"]
+script = ExtResource("1_pk2fa")
+gearName = "Saviour Shield"
+description = "Grants a short MDF buff whenever a Holy skill is used. Stacks up to 3 times."
+metadata/_custom_type_script = "uid://b2gvtbmuae2px"
+
+[node name="stackingMDF" type="Node" parent="."]
+script = ExtResource("2_tkvpj")
+metadata/_custom_type_script = "uid://bg4lt2giy14d"
