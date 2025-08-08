@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cve88aey33cr7"]
+[gd_scene load_steps=4 format=3 uid="uid://cve88aey33cr7"]
 
 [ext_resource type="Script" uid="uid://b2gvtbmuae2px" path="res://src/battle/gear.gd" id="1_pk2fa"]
 [ext_resource type="Script" uid="uid://bg4lt2giy14d" path="res://src/battle/passives/passive.gd" id="2_tkvpj"]
+[ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="3_tkvpj"]
 
 [node name="saviourShield" type="Node"]
 script = ExtResource("1_pk2fa")
@@ -12,3 +13,22 @@ metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 [node name="stackingMDF" type="Node" parent="."]
 script = ExtResource("2_tkvpj")
 metadata/_custom_type_script = "uid://bg4lt2giy14d"
+
+[node name="StatComponent" type="Node" parent="."]
+script = ExtResource("3_tkvpj")
+stats = Dictionary[int, float]({
+0: 20.0,
+1: 0.0,
+2: 1.0,
+3: 3.0,
+4: 5.0,
+5: 0.0
+})
+rates = Dictionary[int, float]({
+0: 0.0,
+1: 0.0,
+2: 0.0,
+3: 0.0,
+4: 0.0
+})
+metadata/_custom_type_script = "uid://c765h134s7wo0"
