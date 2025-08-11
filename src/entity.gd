@@ -17,6 +17,7 @@ const DMG_NUM : PackedScene = preload("res://ui/ui_dmgpopup.tscn")
 
 @export_group("Components")
 @export var stats : StatComponent
+@onready var stateMachine : StateMachine = $StateMachine
 
 var cooldowns : Array[Timer] = []
 var usingSkill : bool = false
@@ -26,8 +27,9 @@ var selectedAction : PackedScene = load("res://scenes/actions/machineGun.tscn")
 var isDead : bool = false
 
 signal entityDeath
+signal tookDamage
 
-func _ready():
+func _ready() -> void:
 	if modelController: entityDeath.connect(modelController.create_death_effect)
 	if stats: stats.hpChanged.connect(should_entity_die)
 
@@ -142,6 +144,7 @@ func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.D
 	display_damage_num(finalDMG, false, crit, false, false)
 	stats.HP -= finalDMG
 
+	tookDamage.emit()
 	print(name + " took " + str(int(finalDMG)) + " DMG!")
 
 
@@ -163,3 +166,17 @@ func kill() -> void:
 	isDead = true
 	if modelController: await modelController.startedDeathAnim
 	queue_free()
+
+
+func move_towards(targetPos : Vector3, delta : float, speed : float, accel : float = 60) -> void:
+	var dir : Vector3 = (targetPos - global_position).normalized()
+	velocity = velocity.move_toward(dir * speed, accel * delta)
+	move_and_slide()
+
+
+func face_velocity(delta : float, turnSpeed : float = 5.0 ) -> void:
+	var horizontalVel : Vector3 = Vector3(velocity.x, 0, velocity.z)
+	if horizontalVel.length_squared() < 0.001: return
+
+	var targetRot : float = atan2(horizontalVel.x, horizontalVel.z)
+	model.rotation.y = lerp_angle(model.rotation.y, targetRot, turnSpeed * delta)

@@ -33,8 +33,6 @@ const maxPitch : float = 50
 @export_group("Flair")
 @export var sounds : Dictionary[String, Node]
 
-@onready var stateMachine : StateMachine = %StateMachine
-
 @onready var camera : Camera3D = %Camera3D
 @onready var jumpCheck : RayCast3D = %jumpCheck
 
