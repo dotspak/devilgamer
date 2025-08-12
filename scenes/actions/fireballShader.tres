@@ -104,7 +104,6 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-717.992, 25.7677)
 modes/cull = 2
 flags/unshaded = true
 flags/shadows_disabled = true

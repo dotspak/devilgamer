@@ -15,6 +15,8 @@ func spawn() -> void:
     stateMachine.transition_to("Idle")
     show()
 
+
 func deactivate() -> void:
     stateMachine.transition_to("Freeze")
     hide()
+
