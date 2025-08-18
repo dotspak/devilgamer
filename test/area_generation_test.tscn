@@ -4,4 +4,5 @@
 
 [node name="AreaGenerationTest" type="Node3D"]
 script = ExtResource("1_jv8rq")
+startingArea = "Bathroom"
 metadata/_custom_type_script = "uid://kjou0ho8hg8j"

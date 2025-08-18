@@ -149,6 +149,8 @@ func _unhandled_input(event: InputEvent) -> void:
 					if area.overlaps_body(self):
 						interact(area.get_parent())
 
+	# handles menu opening/closing
+	if inputAllowed || GameManager.mainMenu.visible:
 		if Input.is_action_just_pressed("open_menu"):
 			GameManager.display_menu()
 

@@ -270,5 +270,11 @@ mesh = SubResource("BoxMesh_508fm")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/MeshInstance3D4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ldqlq")
 
-[node name="player" parent="." instance=ExtResource("3_jskug")]
+[node name="player" parent="." node_paths=PackedStringArray("sounds") instance=ExtResource("3_jskug")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
+sounds = {
+"respawn": null,
+"step": null,
+"void": null,
+"waterStep": null
+}

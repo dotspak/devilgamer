@@ -8,6 +8,8 @@ const CURSOR : PackedScene = preload("res://ui/cursor.tscn")
 const PLAYER_SCENE : PackedScene = preload("res://scenes/player/owPlayer3D.tscn")
 
 @onready var dialogueWindow : Control = %dialogue
+@onready var mainMenu : MainMenu = %mainMenu
+@onready var battleHud : Control = %battleHud
 
 # Debug Tools --------------------------
 var DEBUG_MODE : bool = false
@@ -38,7 +40,7 @@ signal areaLoaded
 
 func _ready() -> void:
 	fetch_scene()
-	%battleHud.hide()
+	battleHud.hide()
 	DEBUG_MODE = OS.is_debug_build()
 
 	instance_player()
@@ -66,8 +68,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("left_click"): Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"): Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	if %mainMenu.visible:
-		%mainMenu.phoneScreen.push_input(event, true)
+	if mainMenu.visible:
+		mainMenu.phoneScreen.push_input(event, true)
 
 
 func toggle_fullscreen():
@@ -364,7 +366,7 @@ func exit_focus_ui() -> void:
 
 
 func show_battle_ui() -> void:
-	%battleHud.show()
+	battleHud.show()
 	var anim : AnimationPlayer = %uiAnimator
 	anim.play("displayBattleHUD")
 	await anim.animation_finished
@@ -374,7 +376,7 @@ func hide_battle_ui() -> void:
 	var anim : AnimationPlayer = %uiAnimator
 	anim.play_backwards("displayBattleHUD")
 	await anim.animation_finished
-	%battleHud.hide()
+	battleHud.hide()
 
 
 func change_max_breath(val : float) -> void: 
@@ -421,13 +423,14 @@ func play_static(duration : float = 0.5) -> void:
 func game_over() -> void: print("GAME OVER!")
 
 func display_menu() -> void:
-	if !%mainMenu.visible:
+	if !mainMenu.visible:
 		player.freeze()
 		show_battle_ui()
 		enter_focus_ui()
-		%mainMenu.display()
+		mainMenu.display()
 	else:
-		if !%mainMenu.isFullMenu:
+		if !mainMenu.isFullMenu:
 			player.un_freeze()
+			show_battle_ui()
 			exit_focus_ui()
-			%mainMenu.undisplay()
+			mainMenu.undisplay()

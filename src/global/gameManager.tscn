@@ -744,7 +744,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qbj2a"]
 shader = ExtResource("7_dmym8")
-shader_parameter/resolution = Vector2(768, 432)
+shader_parameter/resolution = Vector2(896, 504)
 shader_parameter/scan_line_amount = 0.01
 shader_parameter/warp_amount = 0.0
 shader_parameter/noise_amount = 0.0

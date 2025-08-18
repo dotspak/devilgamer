@@ -10,7 +10,6 @@
 [ext_resource type="AudioStream" uid="uid://blnhu0gjpx20p" path="res://assets/audio/sfx/SE_elevatorClose.ogg" id="6_j3lm5"]
 [ext_resource type="Material" uid="uid://dh5qsnqbe3ga" path="res://textures/tex_metal3.tres" id="7_2rf1k"]
 [ext_resource type="Material" uid="uid://nc21s1vjsihl" path="res://textures/tex_bathTile.tres" id="7_3gqpm"]
-[ext_resource type="PackedScene" uid="uid://prh35jb6tjtd" path="res://assets/models/dummy/sophia_skin/sophia_skin.tscn" id="7_o4klg"]
 [ext_resource type="Material" uid="uid://c4l8yf5l8furj" path="res://textures/tex_tileWall1.tres" id="8_ev24r"]
 [ext_resource type="Material" uid="uid://s1p8g3ukmdcp" path="res://textures/tex_carpet2.tres" id="9_6y1db"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="9_uwm38"]
@@ -20,6 +19,7 @@
 [ext_resource type="Material" uid="uid://45jlkpu7s0y2" path="res://textures/tex_bathStallDoor.tres" id="14_1x7m1"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="15_k0aal"]
 [ext_resource type="Material" uid="uid://dwlryq700pve4" path="res://textures/color_black.tres" id="16_k0aal"]
+[ext_resource type="PackedScene" uid="uid://5lxth85oco32" path="res://scenes/player/epiaSkin.tscn" id="18_x6kxp"]
 [ext_resource type="Texture2D" uid="uid://djsfr3fcx5uy" path="res://addons/kenney_particle_pack/scorch_01.png" id="21_uhj3u"]
 [ext_resource type="PackedScene" uid="uid://37enc871tpt1" path="res://scenes/player/pe_landParticles.tscn" id="22_uhj3u"]
 [ext_resource type="Texture2D" uid="uid://cgxdu0e7ow4n0" path="res://addons/kenney_particle_pack/trace_01.png" id="23_k0aal"]
@@ -2196,13 +2196,13 @@ text = "Frozen God"
 alignment = 2
 
 [node name="tubes" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(3.07366, 0, -2.54778, 0, 4, 0, 2.54778, 0, 3.07366, 0, 7, 0)
+transform = Transform3D(1.59014, 0, 3.66196, 0, 4, 0, -3.66196, 0, 1.59014, 0, 7, 0)
 
 [node name="BézierCurve_002" parent="tubes" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_ltdxl")
 
 [node name="tubes2" parent="." instance=ExtResource("24_6y1db")]
-transform = Transform3D(-3.79991, 0, 1.22459, 0, 4, 0, -1.22459, 0, -3.79991, 0, -9, 0)
+transform = Transform3D(-0.116973, 0, -3.99063, 0, 4, 0, 3.99063, 0, -0.116973, 0, -9, 0)
 
 [node name="BézierCurve_002" parent="tubes2" index="0"]
 transform = Transform3D(100, 0, 0, 0, -4.37114e-06, -100, 0, 100, -4.37114e-06, 0, 0.977458, 0)
@@ -2437,7 +2437,7 @@ mesh = SubResource("ArrayMesh_oujap")
 [node name="entity_2_collision_shape" type="CollisionShape3D" parent="elevator/FuncGodotMap/entity_2_func_detail"]
 shape = SubResource("ConcavePolygonShape3D_5lxxe")
 
-[node name="SophiaSkin" parent="elevator" instance=ExtResource("7_o4klg")]
+[node name="epiaSkin" parent="elevator" instance=ExtResource("18_x6kxp")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_04xm0")
@@ -2507,19 +2507,19 @@ rotateBias = 25.0
 tubes = [NodePath("../tubes"), NodePath("../tubes2")]
 
 [node name="tube2" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 17.3196, -5.19846e-07)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -12.0559, -5.19846e-07)
 material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
 
 [node name="tube3" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(0.0162672, 0, -0.999867, 0, 1, 0, 0.999867, 0, 0.0162672, 0, -2.6804, 0)
+transform = Transform3D(0.0162672, 0, -0.999867, 0, 1, 0, 0.999867, 0, 0.0162672, 0, -32.0559, 0)
 material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
 
 [node name="tube1" type="MeshInstance3D" parent="elevatorShaft"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -22.6804, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.95494, 0)
 material_override = SubResource("ShaderMaterial_y6gdt")
 mesh = SubResource("CylinderMesh_vaieh")
 skeleton = NodePath("../..")
@@ -2578,7 +2578,7 @@ size = Vector3(14.5, 8, 15.25)
 material = SubResource("FogMaterial_uhj3u")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 12)
+transform = Transform3D(0.577858, 0, 0.816138, 0, 1, 0, -0.816138, 0, 0.577858, 4, 3, 12)
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300
