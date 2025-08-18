@@ -31,34 +31,33 @@ shader_parameter/specullar = 0.5
 render_priority = 0
 shader = ExtResource("3_vyyk8")
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6o6pb"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuhgi"]
 animation = &"epia_idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vyyk8"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e734v"]
 animation = &"epia_run"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cuhgi"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5gvi"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e734v"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rfycw"]
 xfade_time = 0.6
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6o6pb"]
-xfade_time = 0.5
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mj8wc"]
+xfade_time = 0.8
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_h5gvi"]
-states/Start/position = Vector2(389, 243)
-states/epia_idle/node = SubResource("AnimationNodeAnimation_6o6pb")
-states/epia_idle/position = Vector2(580, 243)
-states/epia_run/node = SubResource("AnimationNodeAnimation_vyyk8")
-states/epia_run/position = Vector2(773, 257)
-transitions = ["Start", "epia_idle", SubResource("AnimationNodeStateMachineTransition_cuhgi"), "epia_idle", "epia_run", SubResource("AnimationNodeStateMachineTransition_e734v"), "epia_run", "epia_idle", SubResource("AnimationNodeStateMachineTransition_6o6pb")]
-graph_offset = Vector2(-16, 72)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_lwyi2"]
+states/Start/position = Vector2(237, 109)
+states/epia_idle/node = SubResource("AnimationNodeAnimation_cuhgi")
+states/epia_idle/position = Vector2(386, 102)
+states/epia_run/node = SubResource("AnimationNodeAnimation_e734v")
+states/epia_run/position = Vector2(558, 105)
+transitions = ["Start", "epia_idle", SubResource("AnimationNodeStateMachineTransition_h5gvi"), "epia_idle", "epia_run", SubResource("AnimationNodeStateMachineTransition_rfycw"), "epia_run", "epia_idle", SubResource("AnimationNodeStateMachineTransition_mj8wc")]
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rfycw"]
-graph_offset = Vector2(-235.661, 38.2809)
-nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_h5gvi")
-nodes/StateMachine/position = Vector2(80, 140)
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_4lhdc"]
+graph_offset = Vector2(-45.5454, -9.09091)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_lwyi2")
+nodes/StateMachine/position = Vector2(40, 80)
 node_connections = [&"output", 0, &"StateMachine"]
 
 [node name="epiaSkin" type="Node3D"]
@@ -66,50 +65,51 @@ node_connections = [&"output", 0, &"StateMachine"]
 [node name="epiaModel2" parent="." instance=ExtResource("1_54w00")]
 
 [node name="Skeleton3D" parent="epiaModel2/Armature" index="0"]
-bones/1/position = Vector3(0.126532, 0.0510771, 0.00549419)
-bones/1/rotation = Quaternion(-0.0269091, 1.87321e-05, 0.999638, 0.000690652)
-bones/3/position = Vector3(-0.126532, 0.0510771, 0.0487752)
-bones/3/rotation = Quaternion(0.0269091, 1.87321e-05, 0.999638, -0.000690652)
-bones/4/rotation = Quaternion(0.0195372, 0.706053, 0.707647, -0.0185168)
-bones/5/position = Vector3(-0.276627, 0.691396, 0.0222215)
-bones/5/rotation = Quaternion(0.902082, -0.018789, 0.370021, 0.221312)
-bones/7/position = Vector3(0.276627, 0.691396, 0.0222215)
-bones/7/rotation = Quaternion(0.902082, 0.018789, -0.370021, 0.221312)
-bones/9/position = Vector3(-7.08424e-11, 0.677541, 0.0330914)
-bones/9/rotation = Quaternion(0.101014, -0.00143467, -0.014131, 0.994784)
-bones/10/rotation = Quaternion(-0.0204215, 0.00256758, 0.0139553, 0.999691)
-bones/11/scale = Vector3(1.0061, 1.0061, 1.0061)
-bones/12/position = Vector3(-3.00863e-10, 0.205743, 0.00246218)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0107067, 0, -0.0015049)
+bones/0/position = Vector3(4.64497e-20, -0.0619929, 0)
+bones/1/position = Vector3(0.119056, 0.181512, 0.341306)
+bones/1/rotation = Quaternion(-0.00325823, 0.162027, 0.986749, 0.00799158)
+bones/3/position = Vector3(-0.110729, 0.283213, -0.45073)
+bones/3/rotation = Quaternion(-0.0327925, -0.662216, 0.748592, -0.00213013)
+bones/5/position = Vector3(-0.393974, 0.782336, 0.30857)
+bones/5/rotation = Quaternion(0.840799, -0.0857088, 0.394984, 0.360137)
+bones/7/position = Vector3(0.331424, 0.866398, -0.170563)
+bones/7/rotation = Quaternion(0.893641, 0.311077, -0.214103, -0.242482)
+bones/9/position = Vector3(9.42808e-09, 0.62178, 0.0330914)
+bones/9/rotation = Quaternion(0.101024, 2.37199e-07, 2.4086e-08, 0.994884)
+bones/10/rotation = Quaternion(0.153499, -2.35593e-07, 3.6597e-08, 0.988149)
+bones/11/scale = Vector3(1.00007, 1.00007, 1.00007)
+bones/12/position = Vector3(-1.42515e-14, 0.202162, 5.46226e-08)
 bones/12/rotation = Quaternion(0.296599, -1.13845e-07, 3.53573e-08, 0.955002)
-bones/12/scale = Vector3(0.993922, 0.993922, 0.993922)
-bones/13/rotation = Quaternion(0.0109745, -6.22078e-05, -0.00566809, 0.999924)
-bones/14/rotation = Quaternion(0.933133, -8.57192e-08, 2.22476e-07, -0.359532)
-bones/15/rotation = Quaternion(-0.350193, -1.11661e-07, -1.25239e-07, 0.936678)
-bones/16/rotation = Quaternion(0.037013, -1.75119e-14, 8.82459e-09, 0.999315)
-bones/17/rotation = Quaternion(0.122633, -1.80072e-14, 2.9238e-08, 0.992452)
-bones/18/rotation = Quaternion(-0.100434, -6.16269e-15, -2.39453e-08, 0.994944)
+bones/12/scale = Vector3(0.999933, 0.999933, 0.999933)
+bones/13/rotation = Quaternion(-0.16283, 2.47234e-15, -9.17514e-16, 0.986654)
+bones/14/rotation = Quaternion(0.965343, -5.94173e-08, 2.31912e-07, -0.260985)
+bones/15/rotation = Quaternion(-0.00560594, -1.18524e-07, -8.72952e-10, 0.999984)
+bones/16/rotation = Quaternion(0.225015, -6.06935e-11, 5.89962e-08, 0.974355)
+bones/17/rotation = Quaternion(0.28397, -1.0627e-09, 7.43646e-08, 0.958833)
+bones/18/rotation = Quaternion(0.188469, 4.30805e-10, 4.9368e-08, 0.982079)
 bones/19/rotation = Quaternion(-0.704534, -0.0635006, 0.706574, -0.0187684)
-bones/20/rotation = Quaternion(0.139838, -0.697326, 0.00844544, 0.702929)
-bones/22/rotation = Quaternion(0.139838, 0.697326, -0.00844544, 0.702929)
-bones/23/rotation = Quaternion(0.868908, -0.278626, 0.382723, -0.144533)
-bones/24/rotation = Quaternion(-0.00146513, 0.00137645, -0.00323902, 0.999993)
-bones/25/rotation = Quaternion(-0.0353123, -0.0510676, -0.173072, 0.98295)
-bones/26/rotation = Quaternion(0.867824, 0.273077, -0.388201, -0.147003)
-bones/27/rotation = Quaternion(-0.00146504, -0.0013765, 0.00323905, 0.999993)
-bones/28/rotation = Quaternion(-0.0402448, 0.0558884, 0.168628, 0.983271)
-bones/29/position = Vector3(-0.117661, 0.0417741, 0.00629136)
-bones/29/rotation = Quaternion(0.00475407, 0.103415, 0.994608, -0.00618023)
-bones/29/scale = Vector3(1, 1, 1.00002)
-bones/30/rotation = Quaternion(-0.00277761, -0.000276155, 8.69002e-05, 0.999996)
-bones/30/scale = Vector3(1, 1, 0.999988)
-bones/31/rotation = Quaternion(0.000699593, -0.0225586, 0.00815933, 0.999712)
-bones/32/position = Vector3(0.117661, 0.0417742, 0.00629149)
-bones/32/rotation = Quaternion(0.00382693, 0.124032, 0.992041, -0.0213474)
-bones/32/scale = Vector3(1, 1, 1.00002)
-bones/33/rotation = Quaternion(-0.100879, 0.000299263, -0.00249434, 0.994896)
-bones/33/scale = Vector3(1, 1, 0.999989)
-bones/34/rotation = Quaternion(0.0778928, 0.0292406, -0.00329377, 0.996527)
-bones/34/scale = Vector3(1, 1, 1)
+bones/20/rotation = Quaternion(0.139839, -0.697326, 0.00844545, 0.702929)
+bones/22/rotation = Quaternion(0.139839, 0.697326, -0.00844545, 0.702929)
+bones/23/rotation = Quaternion(0.921996, -0.30554, 0.161578, 0.174532)
+bones/24/rotation = Quaternion(-0.00291904, -0.00156463, -0.00159197, 0.999993)
+bones/25/rotation = Quaternion(0.0177393, 0.264815, -0.11348, 0.957435)
+bones/26/rotation = Quaternion(0.737076, 0.49803, -0.382427, -0.24987)
+bones/27/rotation = Quaternion(0.00038417, -0.00482745, 0.00301273, 0.999984)
+bones/28/rotation = Quaternion(0.000253998, 0.290213, 0.0752709, 0.953997)
+bones/29/position = Vector3(-0.117644, 0.0415281, 0.00646732)
+bones/29/rotation = Quaternion(-0.00941943, -0.272206, 0.96219, 0.00231263)
+bones/29/scale = Vector3(1, 0.999998, 1.00002)
+bones/30/rotation = Quaternion(-0.0857979, 8.75582e-05, 0.00786532, 0.996282)
+bones/30/scale = Vector3(1, 0.999999, 0.999991)
+bones/31/rotation = Quaternion(-0.257873, 0.0246832, 0.00741037, 0.965835)
+bones/32/position = Vector3(0.117617, 0.0411209, 0.00675884)
+bones/32/rotation = Quaternion(-0.00332456, 0.474648, 0.880002, -0.0171759)
+bones/32/scale = Vector3(1, 1.00002, 1.00001)
+bones/33/rotation = Quaternion(-0.261294, -0.000190236, -0.0308439, 0.964766)
+bones/33/scale = Vector3(1, 0.999995, 0.999993)
+bones/34/rotation = Quaternion(0.0354751, -0.0117924, -0.00459374, 0.999291)
+bones/34/scale = Vector3(1, 1.00002, 0.999983)
 
 [node name="armCorrupt" parent="epiaModel2/Armature/Skeleton3D" index="0"]
 surface_material_override/0 = SubResource("ShaderMaterial_e734v")
@@ -130,9 +130,92 @@ surface_material_override/0 = SubResource("ShaderMaterial_rfycw")
 [node name="horns" parent="epiaModel2/Armature/Skeleton3D" index="8"]
 surface_material_override/0 = SubResource("ShaderMaterial_cuhgi")
 
+[node name="dangleRSpring" type="SpringBoneSimulator3D" parent="epiaModel2/Armature/Skeleton3D" index="10"]
+setting_count = 1
+settings/0/root_bone_name = "hairDangle1.r"
+settings/0/root_bone = 19
+settings/0/end_bone_name = "hairDangle2.r"
+settings/0/end_bone = 20
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.1
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 1.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.3
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="dangleLSpring" type="SpringBoneSimulator3D" parent="epiaModel2/Armature/Skeleton3D" index="11"]
+setting_count = 1
+settings/0/root_bone_name = "hairDangle1.l"
+settings/0/root_bone = 21
+settings/0/end_bone_name = "hairDangle2.l"
+settings/0/end_bone = 22
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.1
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 1.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.3
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="hairSpring" type="SpringBoneSimulator3D" parent="epiaModel2/Armature/Skeleton3D" index="12"]
+setting_count = 1
+settings/0/root_bone_name = "hair_2"
+settings/0/root_bone = 14
+settings/0/end_bone_name = "hair5"
+settings/0/end_bone = 18
+settings/0/extend_end_bone = false
+settings/0/center_from = 0
+settings/0/individual_config = false
+settings/0/rotation_axis = 3
+settings/0/radius/value = 0.1
+settings/0/radius/damping_curve = null
+settings/0/stiffness/value = 4.0
+settings/0/stiffness/damping_curve = null
+settings/0/drag/value = 0.3
+settings/0/drag/damping_curve = null
+settings/0/gravity/value = 0.0
+settings/0/gravity/damping_curve = null
+settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/enable_all_child_collisions = true
+settings/0/exclude_collision_count = 0
+
+[node name="basicLookat" type="LookAtModifier3D" parent="epiaModel2/Armature/Skeleton3D" index="13"]
+target_node = NodePath("../../../../Node3D")
+bone_name = "head_2"
+bone = 13
+duration = 0.1
+transition_type = 1
+ease_type = 1
+use_angle_limitation = true
+symmetry_limitation = true
+primary_limit_angle = 2.0944
+primary_damp_threshold = 1.0
+secondary_limit_angle = 1.5708
+secondary_damp_threshold = 1.0
+
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../epiaModel2")
-tree_root = SubResource("AnimationNodeBlendTree_rfycw")
+tree_root = SubResource("AnimationNodeBlendTree_4lhdc")
 anim_player = NodePath("../epiaModel2/AnimationPlayer")
+
+[node name="Node3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0452681, 1.78915, 0.830072)
 
 [editable path="epiaModel2"]
