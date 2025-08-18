@@ -51,6 +51,7 @@ const maxPitch : float = 50
 @onready var mainCam : PhantomCamera3D = %mainCam
 @onready var lockCam : PhantomCamera3D = %lockCam
 @onready var menuCam : PhantomCamera3D = %menuCam
+@onready var defaultSpringLength : float = mainCam.spring_length
 
 var isRespawning : bool = false
 var inputAllowed : bool = true
@@ -125,6 +126,19 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if inputAllowed:
+		# handles the easter egg where Epia looks at the camera
+		if Input.is_anything_pressed():
+			if mainCam.spring_length != defaultSpringLength: change_zoom(1, 0.2)
+			if model is EpiaSkin:
+				if !model.cameraEggTimer.is_stopped():
+					model.cameraEggTimer.stop()
+					model.cameraEggTimer.timeout.disconnect(camera_look_egg)
+		else:
+			if model is EpiaSkin:
+				if model.cameraEggTimer.is_stopped():
+					model.cameraEggTimer.start()
+					model.cameraEggTimer.timeout.connect(camera_look_egg)
+
 		# handles mouse camera control
 		if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			if inputAllowed:
@@ -597,3 +611,22 @@ func move_to_position(targetPos : Vector3, stopDistance : float = 0.1) -> void:
 
 func kill() -> void:
 	GameManager.game_over()
+
+
+func change_zoom(factor : float = 0.5, duration : float = 1.0) -> void:
+	var TW = create_tween()
+	TW.tween_property(mainCam, "spring_length", 
+		defaultSpringLength * factor, 
+		duration).set_trans(Tween.TRANS_SINE)
+	await TW.finished
+
+
+func camera_look_egg() -> void:
+	print("activating camera easter egg")
+	
+	var targetAngle : float = mainCam.get_parent().rotation.y
+	lastMoveDir = Vector3(sin(targetAngle), 0, cos(targetAngle)).normalized()
+	
+	AudioManager.play_ui_sfx("resetCam")
+	await change_zoom(0.5)
+	model.weird_idle()

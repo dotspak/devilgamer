@@ -1,19 +1,19 @@
 [gd_resource type="VisualShader" load_steps=26 format=3 uid="uid://l3a1iji3ebvd"]
 
 [sub_resource type="Gradient" id="Gradient_1p7ew"]
-offsets = PackedFloat32Array(0.262357, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.280533, 0.272, 0.4, 1)
+offsets = PackedFloat32Array(0.501818, 0.690909)
+colors = PackedColorArray(0, 0, 0, 1, 0.259563, 0.239133, 0.4, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rcarn"]
 noise_type = 3
 seed = 1
-frequency = 0.0029
+frequency = 0.0012
 fractal_type = 2
 fractal_gain = 1.9
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7kpiu"]
-width = 128
-height = 128
+width = 64
+height = 64
 seamless = true
 color_ramp = SubResource("Gradient_1p7ew")
 noise = SubResource("FastNoiseLite_rcarn")
@@ -45,27 +45,26 @@ operator = 2
 constant = Color(0, 0, 0, 1)
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_7kpiu"]
-default_input_values = [0, 0.0, 1, -1.0]
+default_input_values = [0, 0.0, 1, -0.7]
 operator = 5
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_1p7ew"]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_rcarn"]
-constant = Color(0.482077, 0.521379, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_rcarn"]
-offsets = PackedFloat32Array(0.31448, 0.612167, 0.821293)
+offsets = PackedFloat32Array(0.31448, 0.612167, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.34023, 0.3234, 0.66, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_1p7ew"]
 noise_type = 3
-frequency = 0.002
+frequency = 0.0018
 fractal_type = 2
-fractal_gain = 1.9
+fractal_gain = 4.305
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_unblf"]
-width = 128
-height = 128
+width = 64
+height = 64
 seamless = true
 color_ramp = SubResource("Gradient_rcarn")
 noise = SubResource("FastNoiseLite_1p7ew")
@@ -171,12 +170,12 @@ void fragment() {
 
 
 // FloatOp:20
-	float n_in20p1 = -1.00000;
+	float n_in20p1 = -0.70000;
 	float n_out20p0 = pow(n_out18p0, n_in20p1);
 
 
 // ColorConstant:22
-	vec4 n_out22p0 = vec4(0.482077, 0.521379, 1.000000, 1.000000);
+	vec4 n_out22p0 = vec4(1.000000, 1.000000, 1.000000, 1.000000);
 
 
 // VectorOp:21
@@ -194,6 +193,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-527.543, 192.614)
 flags/unshaded = true
 nodes/fragment/0/position = Vector2(860, 180)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_1p7ew")
