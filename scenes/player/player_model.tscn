@@ -1,23 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://5lxth85oco32"]
+[gd_scene load_steps=17 format=3 uid="uid://5lxth85oco32"]
 
 [ext_resource type="PackedScene" uid="uid://bcr4tskr0sk5j" path="res://assets/models/player/epiaModel2.glb" id="1_54w00"]
-[ext_resource type="Shader" uid="uid://l3a1iji3ebvd" path="res://scenes/player/liquidMetal.tres" id="2_6o6pb"]
+[ext_resource type="Texture2D" uid="uid://dnsibyu4gj7y1" path="res://assets/models/player/epiaModel2_tex_epiaBase.png" id="2_6o6pb"]
+[ext_resource type="Shader" uid="uid://l3a1iji3ebvd" path="res://scenes/player/liquidMetal.tres" id="3_vyyk8"]
+[ext_resource type="Shader" uid="uid://xnybntoti1bq" path="res://scenes/player/epiaPlating.tres" id="5_h5gvi"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vyyk8"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e734v"]
 render_priority = 0
-shader = ExtResource("2_6o6pb")
+shader = ExtResource("3_vyyk8")
 
-[node name="model" type="Node3D"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_h5gvi"]
+render_priority = 0
+shader = ExtResource("5_h5gvi")
+shader_parameter/Metallic = 1.0
+shader_parameter/specullar = 0.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vyyk8"]
+resource_name = "main"
+cull_mode = 2
+albedo_texture = ExtResource("2_6o6pb")
+texture_filter = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfycw"]
+render_priority = 0
+shader = ExtResource("5_h5gvi")
+shader_parameter/Metallic = 1.0
+shader_parameter/specullar = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuhgi"]
+render_priority = 0
+shader = ExtResource("3_vyyk8")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6o6pb"]
+animation = &"epia_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vyyk8"]
+animation = &"epia_run"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cuhgi"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e734v"]
+xfade_time = 0.6
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6o6pb"]
+xfade_time = 0.5
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_h5gvi"]
+states/Start/position = Vector2(389, 243)
+states/epia_idle/node = SubResource("AnimationNodeAnimation_6o6pb")
+states/epia_idle/position = Vector2(580, 243)
+states/epia_run/node = SubResource("AnimationNodeAnimation_vyyk8")
+states/epia_run/position = Vector2(773, 257)
+transitions = ["Start", "epia_idle", SubResource("AnimationNodeStateMachineTransition_cuhgi"), "epia_idle", "epia_run", SubResource("AnimationNodeStateMachineTransition_e734v"), "epia_run", "epia_idle", SubResource("AnimationNodeStateMachineTransition_6o6pb")]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_rfycw"]
+graph_offset = Vector2(-91.3496, 72.8999)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_h5gvi")
+nodes/StateMachine/position = Vector2(80, 140)
+node_connections = [&"output", 0, &"StateMachine"]
+
+[node name="epiaSkin" type="Node3D"]
 
 [node name="epiaModel2" parent="." instance=ExtResource("1_54w00")]
 
-[node name="horns" parent="epiaModel2" index="4"]
-surface_material_override/0 = SubResource("ShaderMaterial_vyyk8")
+[node name="armCorrupt" parent="epiaModel2/Armature/Skeleton3D" index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_e734v")
 
-[node name="armCorrupt" parent="epiaModel2" index="6"]
-surface_material_override/0 = SubResource("ShaderMaterial_vyyk8")
-
-[node name="armR" parent="epiaModel2" index="9"]
+[node name="armL" parent="epiaModel2/Armature/Skeleton3D" index="1"]
 visible = false
+
+[node name="armPlate" parent="epiaModel2/Armature/Skeleton3D" index="2"]
+visible = false
+surface_material_override/0 = SubResource("ShaderMaterial_h5gvi")
+
+[node name="hair" parent="epiaModel2/Armature/Skeleton3D" index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_vyyk8")
+
+[node name="hornPlate" parent="epiaModel2/Armature/Skeleton3D" index="7"]
+surface_material_override/0 = SubResource("ShaderMaterial_rfycw")
+
+[node name="horns" parent="epiaModel2/Armature/Skeleton3D" index="8"]
+surface_material_override/0 = SubResource("ShaderMaterial_cuhgi")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../epiaModel2")
+tree_root = SubResource("AnimationNodeBlendTree_rfycw")
+anim_player = NodePath("../epiaModel2/AnimationPlayer")
 
 [editable path="epiaModel2"]

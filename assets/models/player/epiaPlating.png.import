@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnsibyu4gj7y1"
-path.s3tc="res://.godot/imported/epiaModel2_tex_epiaBase.png-a22be0a6d1c8409d36cf2ce8d5e1a17a.s3tc.ctex"
+uid="uid://dds5eamk4capa"
+path.s3tc="res://.godot/imported/epiaPlating.png-8b47c06d61ddd8966751aa574c6ded55.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "369970f39a8126e92a3c9c5427a514af"
-}
 
 [deps]
 
-source_file="res://assets/models/player/epiaModel2_tex_epiaBase.png"
-dest_files=["res://.godot/imported/epiaModel2_tex_epiaBase.png-a22be0a6d1c8409d36cf2ce8d5e1a17a.s3tc.ctex"]
+source_file="res://assets/models/player/epiaPlating.png"
+dest_files=["res://.godot/imported/epiaPlating.png-8b47c06d61ddd8966751aa574c6ded55.s3tc.ctex"]
 
 [params]
 

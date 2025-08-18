@@ -388,6 +388,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-510.344, -459.678)
 modes/diffuse = 3
 modes/specular = 1
 nodes/vertex/2/node = SubResource("VisualShaderNodeInput_xw8xi")
