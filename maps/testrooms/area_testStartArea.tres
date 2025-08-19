@@ -8,6 +8,7 @@
 
 [resource]
 script = ExtResource("2_g2a6s")
+ID = 5
 areaName = "Start"
 areaDescription = "the starting room"
 environment = ExtResource("2_kb18t")

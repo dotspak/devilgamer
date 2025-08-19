@@ -4,7 +4,9 @@ class_name Area
 
 const TRANSITION_ROOM : PackedScene = preload("res://scenes/areaTransitionRoom.tscn")
 
+enum AREA_IDS {bath, freeze, abyss, lab, heaven, hub, border}
 @export_group("Area Info")
+@export var ID : AREA_IDS
 @export var areaName : String = "Area"
 @export var areaDescription : String = "dummy description"
 

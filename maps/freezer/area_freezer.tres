@@ -13,6 +13,7 @@
 
 [resource]
 script = ExtResource("9_u1fxs")
+ID = 1
 areaName = "Freezer"
 areaDescription = "Time slows while air flows"
 environment = ExtResource("4_6fkhr")
