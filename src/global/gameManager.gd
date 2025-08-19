@@ -31,7 +31,7 @@ var startingArea : String = ""
 
 @onready var fadeAnim : AnimationPlayer = %fadeAnims
 
-const WATERALPHA : float = 0.3
+const WATERALPHA : float = 1.0
 var isUnderwater : bool = false
 
 signal playerChanged(player : OWPlayer)
@@ -211,6 +211,8 @@ func handle_water_change(color : Color = Color.ALICE_BLUE) -> void:
 	%wavy.material.set_shader_parameter("color", Vector4(color.r, color.g, color.b, 0))
 	TW.tween_property(%wavy.material, "shader_parameter/color", Vector4(color.r, color.g, color.b, WATERALPHA), 0.2)
 	waterOverlay.show()
+	AudioManager.play_ui_sfx("enterWater")
+	AudioManager.set_lowpass(true)
 	await TW.finished
 
 
@@ -222,6 +224,7 @@ func handle_water_exit() -> void:
 	var color : Vector4 = %wavy.material.get_shader_parameter("color")
 	color.w = 0
 	TW.tween_property(%wavy.material, "shader_parameter/color", color, 0.2)
+	AudioManager.set_lowpass(false)
 	await TW.finished
 	waterOverlay.hide()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bf50s1a1ettqj"]
+[gd_scene load_steps=22 format=3 uid="uid://bf50s1a1ettqj"]
 
 [ext_resource type="Script" uid="uid://c7c0vui0cvtay" path="res://src/global/audioManager.gd" id="1_turgw"]
 [ext_resource type="AudioStream" uid="uid://yv4wkbu6u4dl" path="res://assets/audio/voiceSFX/TALK_def2.ogg" id="2_mohs4"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://dj402lh5ertpy" path="res://assets/audio/voiceSFX/TALK_atlas6.ogg" id="10_5hw30"]
 [ext_resource type="AudioStream" uid="uid://c7iudciyd34pd" path="res://assets/audio/voiceSFX/TALK_atlas7.ogg" id="11_w5w26"]
 [ext_resource type="AudioStream" uid="uid://bvan4dllnxgnk" path="res://assets/audio/voiceSFX/TALK_atlas8.ogg" id="12_dtkv8"]
+[ext_resource type="AudioStream" uid="uid://cjp67keow3ntv" path="res://assets/audio/sfx/SE_enterWater.ogg" id="20_3kdwd"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_turgw")
@@ -120,6 +121,11 @@ bus = &"SFX"
 stream = ExtResource("7_khqfk")
 volume_db = -15.0
 bus = &"SFX"
+
+[node name="enterWater" type="AudioStreamPlayer" parent="uiSounds"]
+stream = ExtResource("20_3kdwd")
+volume_db = -10.0
+pitch_scale = 1.63
 
 [node name="jingles" type="Node" parent="."]
 

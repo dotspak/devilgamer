@@ -69,3 +69,6 @@ func play_sfx(sfx : String, bank : Dictionary, pitch : float, mood : String = ""
 	sound.pitch_scale = max(defaultPitch * pitch, 0.01)
 	if sound is TalkObject: sound.talk_sound(mood)
 	else: sound.play()
+
+
+func set_lowpass(enable : bool = true) -> void: AudioServer.set_bus_effect_enabled(0, 0, enable)

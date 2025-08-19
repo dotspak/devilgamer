@@ -34,26 +34,32 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if !transitioning:
 		# fun animations
 		if Input.is_action_just_pressed("ui_left"):
+			AudioManager.play_ui_sfx("cursor")
 			anim.stop(true)
 			anim.play("tapLeft")
-		if Input.is_action_just_pressed("ui_right"): 
+		if Input.is_action_just_pressed("ui_right"):
+			AudioManager.play_ui_sfx("cursor")
 			anim.stop(true)
 			anim.play("tapRight")
-		if Input.is_action_just_pressed("ui_up"): 
+		if Input.is_action_just_pressed("ui_up"):
+			AudioManager.play_ui_sfx("cursor")
 			anim.stop(true)
 			anim.play("tapUp")
-		if Input.is_action_just_pressed("ui_down"): 
+		if Input.is_action_just_pressed("ui_down"):
+			AudioManager.play_ui_sfx("cursor")
 			anim.stop(true)
 			anim.play("tapDown")
 
 		# transition logic
 		if !isFullMenu:
 			if Input.is_action_just_pressed("ui_accept"):
+				AudioManager.play_ui_sfx("confirm")
 				isFullMenu = true
 				phoneOption.release_focus()
 				play_transition("fullScreenZoom")
 		else:
 			if Input.is_action_just_pressed("ui_cancel"):
+				AudioManager.play_ui_sfx("cancel")
 				await play_transition("fullScreenZoom", true)
 				phoneOption.grab_focus()
 				isFullMenu = false

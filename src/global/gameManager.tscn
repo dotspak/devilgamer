@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=77 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -23,8 +23,10 @@
 [ext_resource type="Shader" uid="uid://h7ksbluwgx4e" path="res://shaders/transition.gdshader" id="17_jf5ue"]
 [ext_resource type="Texture2D" uid="uid://b8p3vqae8xelu" path="res://textures/tex_metal2.png" id="19_60syl"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bpcc3"]
+
 [sub_resource type="Gradient" id="Gradient_s6qcl"]
-colors = PackedColorArray(0.620382, 0.673866, 0.955469, 1, 1, 1, 1, 1)
+colors = PackedColorArray(0.2925, 0.31875, 0.45, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_uc4fk"]
 noise_type = 2
@@ -43,10 +45,20 @@ noise = SubResource("FastNoiseLite_uc4fk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s6qcl"]
 shader = ExtResource("8_uc4fk")
-shader_parameter/color = Color(0.483, 0.0107614, 0, 1)
+shader_parameter/color = Color(0.59, 0.617333, 1, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_s6qcl")
-shader_parameter/speed = Vector2(0.03, 0.07)
-shader_parameter/waveStrength = 5.0
+shader_parameter/speed = Vector2(0.03, 0.06)
+shader_parameter/waveStrength = 0.01
+shader_parameter/distortion = 0.02
+
+[sub_resource type="Gradient" id="Gradient_bpcc3"]
+offsets = PackedFloat32Array(0.698039, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o7o5j"]
+gradient = SubResource("Gradient_bpcc3")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_hc8e2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.233415, 1), 0.0, 0.0, 0, 0, Vector2(0.749386, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -371,7 +383,7 @@ bg_color = Color(0.384314, 0.0196078, 0, 1)
 expand_margin_top = 2.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qbj2a"]
-blend_mode = 3
+blend_mode = 4
 
 [sub_resource type="Gradient" id="Gradient_dmym8"]
 colors = PackedColorArray(0.900781, 0.900781, 0.900781, 1, 1, 1, 1, 1)
@@ -876,6 +888,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_s6qcl")
@@ -883,6 +897,7 @@ stretch_mode = 1
 
 [node name="color" type="ColorRect" parent="FX/waterOverlay"]
 visible = false
+material = SubResource("CanvasItemMaterial_bpcc3")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -890,7 +905,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-color = Color(0.414682, 0.433296, 1, 1)
+color = Color(0.392747, 0.3808, 0.56, 0.52549)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="FX/waterOverlay"]
 visible = false
@@ -921,16 +936,18 @@ size_flags_horizontal = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="wavy" type="ColorRect" parent="FX/waterOverlay"]
+[node name="wavy" type="TextureRect" parent="FX/waterOverlay"]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_s6qcl")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+texture = SubResource("GradientTexture2D_o7o5j")
 
 [node name="AreaIntro" type="CanvasLayer" parent="."]
 layer = 99
@@ -1039,9 +1056,8 @@ metadata/_edit_lock_ = true
 [node name="topBar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = -40.0
 offset_right = 896.0
-offset_bottom = -8.0
+offset_bottom = 32.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/topBar"]
@@ -1058,9 +1074,9 @@ expand_mode = 1
 [node name="bottombar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = 512.0
+offset_top = 472.0
 offset_right = 896.0
-offset_bottom = 544.0
+offset_bottom = 504.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/bottombar"]
@@ -1343,7 +1359,7 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="UI/breathBar/centerContainer/Control/airProgress"]
-modulate = Color(1, 1, 1, 0.397)
+modulate = Color(1, 1, 1, 0.266667)
 material = SubResource("CanvasItemMaterial_qbj2a")
 position = Vector2(300, 8)
 amount = 200

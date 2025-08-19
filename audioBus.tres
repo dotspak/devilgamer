@@ -1,4 +1,7 @@
-[gd_resource type="AudioBusLayout" load_steps=4 format=3 uid="uid://ep0h8ybs1rmn"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://ep0h8ybs1rmn"]
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_o2afx"]
+resource_name = "LowPassFilter"
 
 [sub_resource type="AudioEffectReverb" id="AudioEffectReverb_pxty1"]
 resource_name = "Reverb"
@@ -15,6 +18,8 @@ dry = 0.87
 wet = 0.27
 
 [resource]
+bus/0/effect/0/effect = SubResource("AudioEffectLowPassFilter_o2afx")
+bus/0/effect/0/enabled = false
 bus/1/name = &"SFX"
 bus/1/solo = false
 bus/1/mute = false
