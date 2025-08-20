@@ -38,6 +38,9 @@ metadata/_custom_type_script = "uid://c2fnpvd1bhjyl"
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("3_t7mrh")
+intervalVariance = 1.0
+roamSpeed = 4.0
+roamSpace = 0.0
 moveY = true
 
 [node name="PlayerDetected" type="Node" parent="StateMachine"]

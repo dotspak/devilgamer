@@ -3,6 +3,7 @@ extends EntityState
 @export var roamInterval : float = 2.0
 @export var intervalVariance : float = 0
 @export var roamSpeed : float = 2.0
+@export var roamSpace : float = 2.0
 @export var turnSpeed : float = 5.0
 @export var moveY : bool = false
 
@@ -29,7 +30,9 @@ func physics_update(delta : float) -> void:
 			
 			var yVel : float = randf() - 0.5 if moveY else 0.0
 			roamDirection = Vector3(randf() - 0.5, yVel, randf() - 0.5).normalized()
-		timer = roamInterval + randf_range(-intervalVariance, intervalVariance)
+		
+		var t : float = roamInterval if !isStopped else roamSpace
+		timer = t + randf_range(-intervalVariance, intervalVariance)
 
 	entity.velocity = roamDirection * roamSpeed
 	entity.move_and_slide()
