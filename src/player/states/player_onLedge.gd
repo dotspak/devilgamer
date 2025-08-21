@@ -14,7 +14,7 @@ func enter() -> void:
 func position_player_model() -> void:
     point = player.get_ledge_point()
     normal = -player.ledgeRayHori.get_collision_normal()
-    
+
     var TW : Tween = create_tween().set_trans(Tween.TRANS_SINE).set_parallel()
     TW.tween_property(player, "global_position", point, 0.2)
     player.disable_collision()
@@ -33,12 +33,12 @@ func ledge_input() -> void:
     # fall off the ledge
     if player.moveInput == Vector2.DOWN || Input.is_action_just_pressed("ui_cancel"):
         acceptInput = false
-        await player.drop_from_ledge()
+        player.drop_from_ledge()
 
     # climb up the ledge
     elif player.moveInput == Vector2.UP || Input.is_action_just_pressed("confirm"):
         acceptInput = false
-        await player.climb_up_ledge()
+        player.climb_up_ledge()
 
 func exit() -> void:
     player.enable_collision()
