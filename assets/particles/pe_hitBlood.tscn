@@ -1,0 +1,84 @@
+[gd_scene load_steps=14 format=3 uid="uid://d2venfam5bww7"]
+
+[ext_resource type="Shader" uid="uid://cen01y2oedc75" path="res://shaders/blood.res" id="1_1bp60"]
+[ext_resource type="Shader" uid="uid://f54voy6gbxnn" path="res://shaders/bloodSplat.res" id="2_8top2"]
+[ext_resource type="Script" uid="uid://rrrx1j64eyi6" path="res://assets/particles/pe_hit_blood.gd" id="2_qxbff"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7sknq"]
+render_priority = 0
+shader = ExtResource("1_1bp60")
+shader_parameter/color = Color(0.490625, 0.055743, 0.068922, 0.705882)
+
+[sub_resource type="Curve" id="Curve_c8vym"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248945, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nxrn8"]
+curve = SubResource("Curve_c8vym")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57tpm"]
+emission_shape_scale = Vector3(0, 0, 0)
+spread = 2.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 2.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_nxrn8")
+collision_mode = 2
+collision_use_scale = true
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_qwub3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8vym"]
+render_priority = 0
+shader = ExtResource("2_8top2")
+shader_parameter/color = Color(0.490625, 0.055743, 0.068922, 0.705882)
+
+[sub_resource type="Curve" id="Curve_nxrn8"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.14346, 1.14607), 0.0, 0.0, 0, 0, Vector2(1, 1.88908), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_57tpm"]
+curve = SubResource("Curve_nxrn8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qwub3"]
+emission_shape_scale = Vector3(1, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_57tpm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yd2tt"]
+orientation = 1
+
+[node name="bloodSpew" type="GPUParticles3D"]
+material_override = SubResource("ShaderMaterial_7sknq")
+cast_shadow = 0
+amount = 200
+sub_emitter = NodePath("bloodSplat")
+lifetime = 2.0
+speed_scale = 1.5
+collision_base_size = 0.1
+process_material = SubResource("ParticleProcessMaterial_57tpm")
+draw_pass_1 = SubResource("QuadMesh_qwub3")
+script = ExtResource("2_qxbff")
+color = Color(0.490625, 0.055743, 0.068922, 0.705882)
+
+[node name="bloodSplat" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.25, 0)
+material_override = SubResource("ShaderMaterial_c8vym")
+cast_shadow = 0
+amount = 200
+lifetime = 2.0
+process_material = SubResource("ParticleProcessMaterial_qwub3")
+draw_pass_1 = SubResource("QuadMesh_yd2tt")
+
+[node name="floor" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
+size = Vector3(25, 1.25, 25)
