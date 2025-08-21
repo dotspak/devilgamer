@@ -2,11 +2,12 @@ extends ActionMod
 class_name ProjectileMod
 
 @export var moveSpeed : float = 20
+@export var ignoreTarget : bool = false
 var moveDir : Vector3 = Vector3.ZERO
 
 func set_action(_action : Action) -> void:
-	super(_action)
-	if action.target: moveDir = (action.target.global_position - action.global_position).normalized()
+	await super(_action)
+	if action.target && !ignoreTarget: moveDir = (action.target.global_position - action.global_position).normalized()
 	else: moveDir = action.global_basis.z.normalized()
 
 

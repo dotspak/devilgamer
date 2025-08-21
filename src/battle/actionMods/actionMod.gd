@@ -8,4 +8,9 @@ class_name ActionMod
 
 var action : Action
 
-func set_action(_action : Action) -> void: action = _action
+signal actionSet
+
+func set_action(_action : Action) -> void:
+    if _action && !_action.spawned: await _action.actionSpawned
+    action = _action
+    actionSet.emit()

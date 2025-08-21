@@ -17,6 +17,7 @@ class_name Action
 @export var timeout : float = 0
 @export var pierce : bool = false
 
+var spawned : bool = false
 var caster : Entity
 var target : Entity
 
@@ -34,17 +35,7 @@ func _ready():
 
 	if timeout > 0: add_child(timer_setup(stop, timeout))
 	
-	for n in get_children():
-		if n is ActionMod:
-			n.call_deferred("set_action", self)
-
-
-func _on_action_collision(body : Node3D) -> void:
-	if body == caster: return
-	if body is Entity: entity_hit(body)
-	if !pierce: stop()
-
-
+	
 func spawn(_caster = null, _target = null) -> void:
 	# logic depends on having a caster, always delete if the caster is null
 	if !_caster: queue_free()
@@ -55,7 +46,25 @@ func spawn(_caster = null, _target = null) -> void:
 		target = _target
 		target.entityDeath.connect(func(): target = null)
 
+	setup_mods()
+
+	spawned = true
 	actionSpawned.emit()
+
+
+func setup_mods():
+	for n in get_children():
+		if n is ActionMod:
+			n.set_action(self)
+
+
+func _on_action_collision(body : Node3D) -> void:
+	if body == caster: return
+	if body is Entity:
+		if body.isDead: return
+		entity_hit(body)
+	
+	if !pierce: stop()
 
 
 # called whenever the action should end, usually on collision.

@@ -23,7 +23,7 @@ var cooldowns : Array[Timer] = []
 var usingSkill : bool = false
 var movementAllowed : bool = true
 var stopMoveWeight : float = 0.3
-var selectedAction : PackedScene = load("res://scenes/actions/machineGun.tscn")
+var selectedAction : PackedScene = load("res://scenes/actions/tripleShot.tscn")
 var isDead : bool = false
 
 signal entityDeath
@@ -56,9 +56,9 @@ func use_action(scene : PackedScene) -> void:
 	usingSkill = true
 
 	var action : Action = scene.instantiate()
-	action.spawn(self, skillTarget)
 	add_sibling(action)
 	action.global_transform = castPosition.global_transform
+	action.spawn(self, skillTarget)
 
 	var skillLockTimer : Timer = Timer.new()
 	skillLockTimer.timeout.connect(func():

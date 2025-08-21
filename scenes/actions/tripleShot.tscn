@@ -1,17 +1,19 @@
-[gd_scene load_steps=38 format=3 uid="uid://c7pe7gnr78btu"]
+[gd_scene load_steps=42 format=3 uid="uid://du83f4nl40oxo"]
 
-[ext_resource type="Script" uid="uid://cxd1ydxs472kg" path="res://src/battle/action.gd" id="1_ssc76"]
-[ext_resource type="Shader" uid="uid://cabkxa2y2kkhc" path="res://scenes/actions/fireballShader.tres" id="2_8gall"]
-[ext_resource type="Script" uid="uid://bxyodm8bmqbuu" path="res://src/battle/skill.gd" id="2_ssc76"]
-[ext_resource type="Texture2D" uid="uid://gustxudoq0pv" path="res://textures/tex_noise1.png" id="4_8gall"]
-[ext_resource type="ArrayMesh" uid="uid://dcuo5ndhj40hy" path="res://assets/models/fireball.obj" id="4_y6t2m"]
-[ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="5_8gall"]
-[ext_resource type="Texture2D" uid="uid://dfmamnkm6o5lp" path="res://assets/particles/pe_box1.png" id="6_abdn7"]
-[ext_resource type="Script" uid="uid://c1f0esp0hdccy" path="res://addons/Trail3D.gd" id="6_ssc76"]
-[ext_resource type="Script" uid="uid://do2a4kt4aroht" path="res://src/battle/actionMods/mod_homing.gd" id="9_bqk1o"]
+[ext_resource type="Script" uid="uid://cxd1ydxs472kg" path="res://src/battle/action.gd" id="1_vcbfe"]
+[ext_resource type="Script" uid="uid://bxyodm8bmqbuu" path="res://src/battle/skill.gd" id="2_oj1t0"]
+[ext_resource type="Shader" uid="uid://cabkxa2y2kkhc" path="res://scenes/actions/fireballShader.tres" id="3_57jse"]
+[ext_resource type="ArrayMesh" uid="uid://dcuo5ndhj40hy" path="res://assets/models/fireball.obj" id="4_b456y"]
+[ext_resource type="Texture2D" uid="uid://gustxudoq0pv" path="res://textures/tex_noise1.png" id="5_yuv5j"]
+[ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="6_p5xdv"]
+[ext_resource type="Script" uid="uid://c1f0esp0hdccy" path="res://addons/Trail3D.gd" id="7_0fhlj"]
+[ext_resource type="Texture2D" uid="uid://dfmamnkm6o5lp" path="res://assets/particles/pe_box1.png" id="8_fb65l"]
+[ext_resource type="Script" uid="uid://djbdqs30gbu1p" path="res://src/battle/actionMods/mod_projectile.gd" id="9_oj1t0"]
+[ext_resource type="Script" uid="uid://dsyc52elduq31" path="res://src/battle/actionMods/multiSpawner.gd" id="10_oj1t0"]
+[ext_resource type="Script" uid="uid://36mebktl5njy" path="res://src/battle/actionMods/angleMod.gd" id="11_57jse"]
 
-[sub_resource type="Resource" id="Resource_bqk1o"]
-script = ExtResource("2_ssc76")
+[sub_resource type="Resource" id="Resource_ddtq5"]
+script = ExtResource("2_oj1t0")
 name = "Ball"
 description = "Dummy description goes here!"
 dmgFormula = "10"
@@ -34,13 +36,13 @@ radius = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_abdn7"]
 render_priority = 0
-shader = ExtResource("2_8gall")
+shader = ExtResource("3_57jse")
 shader_parameter/color = Color(1, 0.541933, 0, 1)
 shader_parameter/Vector2Parameter = Vector2(2, 2)
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_bqk1o"]
 expanded_output_ports = [0]
-texture = ExtResource("4_8gall")
+texture = ExtResource("5_yuv5j")
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_mq3v5"]
 default_input_values = [1, Vector2(3, 3), 2, Vector2(0, 0)]
@@ -144,7 +146,7 @@ shader = SubResource("VisualShader_g66xh")
 
 [sub_resource type="SphereMesh" id="SphereMesh_d3sno"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_bqk1o"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_mclf0"]
 
 [sub_resource type="Curve" id="Curve_abdn7"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -191,7 +193,7 @@ shading_mode = 0
 disable_ambient_light = true
 disable_fog = true
 vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("6_abdn7")
+albedo_texture = ExtResource("8_fb65l")
 billboard_mode = 3
 billboard_keep_scale = true
 particles_anim_h_frames = 1
@@ -241,46 +243,57 @@ _data = {
 &"spin": SubResource("Animation_abdn7")
 }
 
-[node name="fireballAttack" type="Area3D"]
-script = ExtResource("1_ssc76")
-skill = SubResource("Resource_bqk1o")
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_0s0dm"]
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_f8iwk"]
+
+[node name="tripleShot" type="Area3D"]
+script = ExtResource("1_vcbfe")
+skill = SubResource("Resource_ddtq5")
 timeout = 2.0
 metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="projectiles" type="Node3D" parent="."]
+
+[node name="fire1" type="Area3D" parent="projectiles"]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
+script = ExtResource("1_vcbfe")
+metadata/_custom_type_script = "uid://cxd1ydxs472kg"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="projectiles/fire1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.646326)
 shape = SubResource("SphereShape3D_s0vri")
 debug_color = Color(0, 0.6, 0.7, 1)
 
-[node name="Node3D" type="Node3D" parent="."]
+[node name="Node3D" type="Node3D" parent="projectiles/fire1"]
 
-[node name="fire" type="MeshInstance3D" parent="Node3D"]
+[node name="fire" type="MeshInstance3D" parent="projectiles/fire1/Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.588223)
 material_override = SubResource("ShaderMaterial_abdn7")
 cast_shadow = 0
-mesh = ExtResource("4_y6t2m")
+mesh = ExtResource("4_b456y")
 skeleton = NodePath("../..")
 
-[node name="inside" type="MeshInstance3D" parent="Node3D"]
+[node name="inside" type="MeshInstance3D" parent="projectiles/fire1/Node3D"]
 transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0.423286)
 material_override = SubResource("ShaderMaterial_i1346")
 mesh = SubResource("SphereMesh_d3sno")
 skeleton = NodePath("../..")
 
-[node name="Trail3D" type="MeshInstance3D" parent="Node3D"]
+[node name="Trail3D" type="MeshInstance3D" parent="projectiles/fire1/Node3D"]
 transform = Transform3D(-0.262123, 0, 0.965034, 0, 1, 0, -0.965034, 0, -0.262123, 0, 0, 0)
-material_override = ExtResource("5_8gall")
+material_override = ExtResource("6_p5xdv")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_bqk1o")
+mesh = SubResource("ImmediateMesh_mclf0")
 skeleton = NodePath("../..")
-script = ExtResource("6_ssc76")
+script = ExtResource("7_0fhlj")
 fromWidth = 1.0
 toWidth = 1.3
 lifespan = 0.25
 startColor = Color(1, 0.95048, 0, 1)
 endColor = Color(1, 0.006, 0, 0)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="projectiles/fire1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
 amount = 10
 lifetime = 0.4
@@ -288,13 +301,138 @@ speed_scale = 1.3
 process_material = SubResource("ParticleProcessMaterial_y6t2m")
 draw_pass_1 = SubResource("QuadMesh_8gall")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="projectiles/fire1"]
 libraries = {
 &"": SubResource("AnimationLibrary_ssc76")
 }
 autoplay = "spin"
 
-[node name="homingMod" type="Node" parent="."]
-script = ExtResource("9_bqk1o")
-moveSpeed = 30.0
+[node name="ProjectileMod" type="Node" parent="projectiles/fire1"]
+script = ExtResource("9_oj1t0")
+moveSpeed = 25.0
+ignoreTarget = true
+metadata/_custom_type_script = "uid://djbdqs30gbu1p"
+
+[node name="fire2" type="Area3D" parent="projectiles"]
+script = ExtResource("1_vcbfe")
+metadata/_custom_type_script = "uid://cxd1ydxs472kg"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="projectiles/fire2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.646326)
+shape = SubResource("SphereShape3D_s0vri")
+debug_color = Color(0, 0.6, 0.7, 1)
+
+[node name="Node3D" type="Node3D" parent="projectiles/fire2"]
+
+[node name="fire" type="MeshInstance3D" parent="projectiles/fire2/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.588223)
+material_override = SubResource("ShaderMaterial_abdn7")
+cast_shadow = 0
+mesh = ExtResource("4_b456y")
+skeleton = NodePath("../..")
+
+[node name="inside" type="MeshInstance3D" parent="projectiles/fire2/Node3D"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0.423286)
+material_override = SubResource("ShaderMaterial_i1346")
+mesh = SubResource("SphereMesh_d3sno")
+skeleton = NodePath("../..")
+
+[node name="Trail3D" type="MeshInstance3D" parent="projectiles/fire2/Node3D"]
+transform = Transform3D(-0.262123, 0, 0.965034, 0, 1, 0, -0.965034, 0, -0.262123, 0, 0, 0)
+material_override = ExtResource("6_p5xdv")
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_0s0dm")
+skeleton = NodePath("../..")
+script = ExtResource("7_0fhlj")
+fromWidth = 1.0
+toWidth = 1.3
+lifespan = 0.25
+startColor = Color(1, 0.95048, 0, 1)
+endColor = Color(1, 0.006, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="projectiles/fire2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+amount = 10
+lifetime = 0.4
+speed_scale = 1.3
+process_material = SubResource("ParticleProcessMaterial_y6t2m")
+draw_pass_1 = SubResource("QuadMesh_8gall")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="projectiles/fire2"]
+libraries = {
+&"": SubResource("AnimationLibrary_ssc76")
+}
+autoplay = "spin"
+
+[node name="ProjectileMod" type="Node" parent="projectiles/fire2"]
+script = ExtResource("9_oj1t0")
+moveSpeed = 25.0
+ignoreTarget = true
+metadata/_custom_type_script = "uid://djbdqs30gbu1p"
+
+[node name="fire3" type="Area3D" parent="projectiles"]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
+script = ExtResource("1_vcbfe")
+metadata/_custom_type_script = "uid://cxd1ydxs472kg"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="projectiles/fire3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.646326)
+shape = SubResource("SphereShape3D_s0vri")
+debug_color = Color(0, 0.6, 0.7, 1)
+
+[node name="Node3D" type="Node3D" parent="projectiles/fire3"]
+
+[node name="fire" type="MeshInstance3D" parent="projectiles/fire3/Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.588223)
+material_override = SubResource("ShaderMaterial_abdn7")
+cast_shadow = 0
+mesh = ExtResource("4_b456y")
+skeleton = NodePath("../..")
+
+[node name="inside" type="MeshInstance3D" parent="projectiles/fire3/Node3D"]
+transform = Transform3D(1.3, 0, 0, 0, 1.3, 0, 0, 0, 1.3, 0, 0, 0.423286)
+material_override = SubResource("ShaderMaterial_i1346")
+mesh = SubResource("SphereMesh_d3sno")
+skeleton = NodePath("../..")
+
+[node name="Trail3D" type="MeshInstance3D" parent="projectiles/fire3/Node3D"]
+transform = Transform3D(-0.262123, 0, 0.965034, 0, 1, 0, -0.965034, 0, -0.262123, 0, 0, 0)
+material_override = ExtResource("6_p5xdv")
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_f8iwk")
+skeleton = NodePath("../..")
+script = ExtResource("7_0fhlj")
+fromWidth = 1.0
+toWidth = 1.3
+lifespan = 0.25
+startColor = Color(1, 0.95048, 0, 1)
+endColor = Color(1, 0.006, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="projectiles/fire3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.25)
+amount = 10
+lifetime = 0.4
+speed_scale = 1.3
+process_material = SubResource("ParticleProcessMaterial_y6t2m")
+draw_pass_1 = SubResource("QuadMesh_8gall")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="projectiles/fire3"]
+libraries = {
+&"": SubResource("AnimationLibrary_ssc76")
+}
+autoplay = "spin"
+
+[node name="ProjectileMod" type="Node" parent="projectiles/fire3"]
+script = ExtResource("9_oj1t0")
+moveSpeed = 25.0
+ignoreTarget = true
+metadata/_custom_type_script = "uid://djbdqs30gbu1p"
+
+[node name="AngleMod" type="Node" parent="."]
+script = ExtResource("11_57jse")
+metadata/_custom_type_script = "uid://bb7bbdkd8x6lt"
+
+[node name="MultiSpawner" type="Node" parent="." node_paths=PackedStringArray("bonusActions")]
+script = ExtResource("10_oj1t0")
+bonusActions = [NodePath("../projectiles/fire1"), NodePath("../projectiles/fire2"), NodePath("../projectiles/fire3")]
 metadata/_custom_type_script = "uid://bb7bbdkd8x6lt"
