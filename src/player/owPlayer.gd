@@ -111,6 +111,7 @@ var targetIndicator : Node3D = null
 var isLockedOn : bool = false
 
 signal movedToPosition
+signal landedFromLedgeFall
 
 func _ready() -> void:
 	if get_tree().debug_collisions_hint: %ledgePoint.show()
@@ -382,24 +383,32 @@ func climbable_controls() -> void:
 
 # returns true if a ledge is able to be grabbed
 func ledge_detect(inAir : bool = false) -> bool:
-	if canGrabLedge:
-		ledgeRayAnti.force_raycast_update()
-		if ledgeRayAnti.is_colliding(): return false
+	if !canGrabLedge: return false
+	if !ledgeRayHori.is_colliding(): return false
 
-		ledgeRayHori.force_raycast_update()
-		if ledgeRayHori.is_colliding():
-			ledgeRayVert.global_position.x = ledgeRayHori.get_collision_point().x
-			ledgeRayVert.global_position.z = ledgeRayHori.get_collision_point().z
-			ledgeRayVert.force_raycast_update()
+	# ensures the player only grabs straightish walls
+	var wallnormal : Vector3 = ledgeRayHori.get_collision_normal()
+	if wallnormal.dot(Vector3.UP) > 0.6: return false
 
-			if ledgeRayVert.is_colliding():
-				var ledgePoint : Vector3 = get_ledge_point()
-				var isInHoriRange : bool = global_position.distance_to(ledgePoint) <= 3
-				%ledgePoint.global_position = ledgeRayVert.get_collision_point()
-				if isInHoriRange:
-					if inAir: return (ledgePoint.y - global_position.y) <= 1.8
-					else: return true
-	return false
+	var horiCollisionPoint : Vector3 = ledgeRayHori.get_collision_point()
+	ledgeRayVert.global_position.x = horiCollisionPoint.x
+	ledgeRayVert.global_position.z = horiCollisionPoint.z
+	ledgeRayVert.force_raycast_update()
+
+	if !ledgeRayVert.is_colliding(): return false
+
+	# checks if the player is within reach of the ledge
+	var ledgePoint : Vector3 = get_ledge_point()
+	%ledgePoint.global_position = ledgePoint
+
+	var maxHoriRange : float = 3.0
+	var verticalDiff : float = (ledgePoint.y - global_position.y)
+	var maxLedgeHeight : float = 1.8
+
+	if global_position.distance_to(ledgePoint) > maxHoriRange: return false
+	if inAir && verticalDiff > maxLedgeHeight: return false
+
+	return true
 
 
 func get_ledge_point() -> Vector3:
@@ -407,6 +416,30 @@ func get_ledge_point() -> Vector3:
 	point += LEDGE_BIAS.x * model.global_basis.z
 	point.y += LEDGE_BIAS.y
 	return point
+
+
+func drop_from_ledge() -> void:
+	canGrabLedge = false
+	velocity += -model.basis.z.normalized() * 5
+	stateMachine.transition_to("fall")
+
+	stateMachine.transitioned.connect(func(state : String):
+		if state == "idle":
+			landedFromLedgeFall.emit()
+			canGrabLedge = true)
+
+
+func climb_up_ledge() -> void:
+	canGrabLedge = false
+
+	var finalPos : Vector3 = ledgeRayVert.get_collision_point()
+	finalPos += ledgeRayHori.get_collision_normal() * 0.2
+
+	var TW = create_tween().set_trans(Tween.TRANS_SINE)
+	TW.tween_property(self, "global_position:y", finalPos.y, 0.2)
+	model.jump()
+	await TW.finished
+	stateMachine.transition_to("idle")
 
 
 func jump_check() -> bool: return !jumpCheck.is_colliding() && Vector2(velocity.x, velocity.z).length() >= 6
@@ -464,6 +497,7 @@ func enable_collision() -> void: $CollisionShape3D.disabled = false
 
 func respawn() -> void:
 	if isRespawning: return
+	disable_input()
 
 	isRespawning = true
 	sounds["void"].play()
@@ -481,11 +515,13 @@ func respawn() -> void:
 
 	mainCam.follow_damping_value = tempDamp
 	mainCam.follow_damping = true
+	enable_input()
 	isRespawning = false
 
 
 func is_head_underwater() -> bool: return is_underwater() && headInWater
 func is_underwater() -> bool: return inWater
+
 
 func freeze() -> void:
 	stateMachine.transition_to("gameFreeze")
@@ -509,7 +545,6 @@ func disable_input(haltPlayer : bool = true) -> void:
 
 
 func enable_input() -> void: inputAllowed = true
-
 
 # checks if the player can cast the passed skill 
 # (for now is just a basic check)

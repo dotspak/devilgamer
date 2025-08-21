@@ -5,6 +5,7 @@ var stepTimer : float = 0
 const LEDGE_WAIT : float = 0.25
 
 func enter() -> void:
+	ledgeTimer = 0
 	player.model.move()
 	player.stepParticles.emitting = true
 
@@ -33,7 +34,9 @@ func physics_update(delta : float) -> void:
 			stateMachine.transition_to("fall")
 		return
 	
-	if player.ledge_detect():
+	var wallNormal : Vector3 = player.ledgeRayHori.get_collision_normal()
+	var pressingIntoWall : bool = player.moveDir.dot(-wallNormal) > 0.6
+	if pressingIntoWall && player.ledge_detect():
 		ledgeTimer += delta
 		if ledgeTimer >= LEDGE_WAIT:
 			ledgeTimer = 0

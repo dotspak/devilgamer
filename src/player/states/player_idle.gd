@@ -2,7 +2,6 @@ extends PlayerState
 
 func enter() -> void:
     player.stepParticles.emitting = false
-    player.canGrabLedge = true
     player.model.idle()
 
     player.stairRayAhead.enabled = true
