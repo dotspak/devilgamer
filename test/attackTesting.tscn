@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://46y2558njyn5"]
+[gd_scene load_steps=25 format=3 uid="uid://46y2558njyn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
 [ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="2_pouwe"]
 [ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="3_m1h02"]
 [ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="4_f1few"]
 [ext_resource type="PackedScene" uid="uid://cuj3d2gat756e" path="res://assets/models/dummy/platformPack/Enemies/FBX/Skull.fbx" id="5_c8vym"]
+[ext_resource type="Shader" uid="uid://cen01y2oedc75" path="res://shaders/blood.res" id="7_7sknq"]
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="7_nxrn8"]
+[ext_resource type="Shader" uid="uid://f54voy6gbxnn" path="res://shaders/bloodSplat.res" id="8_m1h02"]
 
 [sub_resource type="GDScript" id="GDScript_qwub3"]
 script/source = "extends Node3D
@@ -32,6 +34,59 @@ points = PackedVector3Array(-10, -0.5, -10, -10, 0.5, -10, 10, -0.5, -10, -10, -
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nxrn8"]
 radius = 1.5
 height = 3.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7sknq"]
+render_priority = 0
+shader = ExtResource("7_7sknq")
+shader_parameter/color = Color(1, 0.24, 0.265333, 0.705882)
+
+[sub_resource type="Curve" id="Curve_c8vym"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248945, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_nxrn8"]
+curve = SubResource("Curve_c8vym")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57tpm"]
+emission_shape_scale = Vector3(0, 0, 0)
+spread = 2.0
+initial_velocity_min = 4.0
+initial_velocity_max = 8.0
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 2.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_nxrn8")
+collision_mode = 2
+collision_use_scale = true
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_qwub3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8vym"]
+render_priority = 0
+shader = ExtResource("8_m1h02")
+shader_parameter/color = Color(0.55, 0.132, 0.145933, 1)
+
+[sub_resource type="Curve" id="Curve_nxrn8"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0.14346, 1.14607), 0.0, 0.0, 0, 0, Vector2(1, 1.37079), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_57tpm"]
+curve = SubResource("Curve_nxrn8")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qwub3"]
+emission_shape_scale = Vector3(1, 0, 1)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_57tpm")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yd2tt"]
+orientation = 1
 
 [node name="testAttacks" type="Node3D"]
 script = SubResource("GDScript_qwub3")
@@ -95,5 +150,27 @@ wait_time = 0.3
 
 [node name="targetPos" type="Marker3D" parent="skull"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="bloodSpew" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, 0)
+material_override = SubResource("ShaderMaterial_7sknq")
+cast_shadow = 0
+amount = 100
+sub_emitter = NodePath("bloodSplat")
+collision_base_size = 0.1
+process_material = SubResource("ParticleProcessMaterial_57tpm")
+draw_pass_1 = SubResource("QuadMesh_qwub3")
+
+[node name="bloodSplat" type="GPUParticles3D" parent="bloodSpew"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.25, 0)
+material_override = SubResource("ShaderMaterial_c8vym")
+cast_shadow = 0
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_qwub3")
+draw_pass_1 = SubResource("QuadMesh_yd2tt")
+
+[node name="CollisionShape3D" type="GPUParticlesCollisionBox3D" parent="bloodSpew"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.25, -4.125, 0)
+size = Vector3(30, 1.25, 30)
 
 [editable path="skull/Skull"]
