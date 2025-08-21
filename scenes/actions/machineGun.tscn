@@ -13,14 +13,14 @@
 script = ExtResource("2_gnbsw")
 name = "Machine Gun"
 description = "Rapid fire, low true damage homing attack."
-cooldown = 0.1
-skillLock = 0.1
+dmgFormula = "1"
 selfTarget = false
 castType = 1
 dmgType = 2
 variance = 0.0
-baseDmg = 1.0
 recoil = 0.0
+cooldown = 0.1
+skillLock = 0.1
 isHeal = false
 selfHeal = 0.0
 critRate = 0.0
