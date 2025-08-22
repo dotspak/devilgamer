@@ -55,7 +55,7 @@ func set_floor_pos() -> bool:
 	if floorScanner.is_colliding():
 		var point : Vector3 = floorScanner.get_collision_point()
 		point = self.to_local(point)
-		floorHeight = point.y + DEF_FLOOR_HEIGHT + 0.125
+		floorHeight = point.y - particleFloor.size.y * 0.5
 		return true
 	
 	printerr("Floor not detected for blood particles ", name)

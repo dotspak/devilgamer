@@ -10,7 +10,7 @@ shader = ExtResource("1_1bp60")
 shader_parameter/color = Color(0.545313, 0.130447, 0.145417, 0.705882)
 
 [sub_resource type="Curve" id="Curve_c8vym"]
-_data = [Vector2(0, 0.280899), 0.0, 0.0, 0, 0, Vector2(0.248945, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.629214), 0.0, 0.0, 0, 0, Vector2(0.417721, 0.820225), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_nxrn8"]
@@ -21,7 +21,7 @@ emission_shape_scale = Vector3(0, 0, 0)
 emission_shape = 1
 emission_sphere_radius = 2.0
 direction = Vector3(0, 0.1, 0)
-spread = 20.0
+spread = 60.0
 initial_velocity_max = 4.0
 linear_accel_min = 4.0
 linear_accel_max = 4.0
@@ -42,7 +42,7 @@ shader_parameter/color = Color(0.545313, 0.130447, 0.145417, 0.705882)
 
 [sub_resource type="Curve" id="Curve_nxrn8"]
 _limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0.14346, 1.14607), 0.0, 0.0, 0, 0, Vector2(1, 1.88908), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.561798), 0.0, 0.0, 0, 0, Vector2(0.160338, 1.03371), 2.94323, 0.0, 1, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_57tpm"]
@@ -57,23 +57,24 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_57tpm")
 
 [sub_resource type="QuadMesh" id="QuadMesh_yd2tt"]
-size = Vector2(0.5, 0.5)
 orientation = 1
 
 [node name="Blood" type="GPUParticles3D"]
 material_override = SubResource("ShaderMaterial_7sknq")
 cast_shadow = 0
 amount = 200
+amount_ratio = 0.5
 sub_emitter = NodePath("bloodSplat")
 lifetime = 2.0
 speed_scale = 2.2
 explosiveness = 1.0
-collision_base_size = 0.1
+collision_base_size = 0.2
 process_material = SubResource("ParticleProcessMaterial_57tpm")
 draw_pass_1 = SubResource("QuadMesh_qwub3")
 script = ExtResource("2_qxbff")
 color = Color(0.545313, 0.130447, 0.145417, 0.705882)
-floorHeight = -3.875
+bloodAmount = 0.5
+floorHeight = -4.125
 
 [node name="bloodSplat" type="GPUParticles3D" parent="."]
 unique_name_in_owner = true
@@ -89,7 +90,7 @@ draw_pass_1 = SubResource("QuadMesh_yd2tt")
 
 [node name="floor" type="GPUParticlesCollisionBox3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.875, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.125, 0)
 size = Vector3(25, 1.25, 25)
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
@@ -101,5 +102,5 @@ debug_shape_thickness = 5
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
-use_collision = true
+visible = false
 size = Vector3(20, 1, 20)

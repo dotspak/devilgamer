@@ -170,7 +170,7 @@ func kill() -> void:
 	print(name + " died")
 	entityDeath.emit()
 	isDead = true
-	if modelController: await modelController.startedDeathAnim
+	#if modelController: await modelController.startedDeathAnim
 	queue_free()
 
 

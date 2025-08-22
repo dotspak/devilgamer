@@ -1,5 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://46y2558njyn5"]
 
+[ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="1_7sknq"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
 [ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="2_pouwe"]
 [ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="3_m1h02"]
@@ -13,10 +14,6 @@ script/source = "extends Node3D
 func _ready() -> void:
 	GameManager.show_battle_ui()
 "
-
-[sub_resource type="Environment" id="Environment_nxrn8"]
-background_mode = 1
-background_color = Color(0.6, 0.653333, 1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2y1j"]
 albedo_texture = ExtResource("1_ehm7b")
@@ -37,7 +34,7 @@ height = 3.5
 script = SubResource("GDScript_qwub3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_nxrn8")
+environment = ExtResource("1_7sknq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
