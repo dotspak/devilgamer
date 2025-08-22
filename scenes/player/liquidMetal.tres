@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=26 format=3 uid="uid://l3a1iji3ebvd"]
+[gd_resource type="VisualShader" load_steps=31 format=3 uid="uid://l3a1iji3ebvd"]
 
 [sub_resource type="Gradient" id="Gradient_1p7ew"]
 offsets = PackedFloat32Array(0.501818, 0.690909)
@@ -52,6 +52,27 @@ operator = 5
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_rcarn"]
 
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_7kpiu"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeVectorFunc" id="VisualShaderNodeVectorFunc_unblf"]
+default_input_values = [0, Vector2(0, 0)]
+op_type = 0
+function = 17
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_j16rt"]
+constant = 128.0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_2cq26"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_escp8"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+operator = 3
+
 [sub_resource type="Gradient" id="Gradient_rcarn"]
 offsets = PackedFloat32Array(0.31448, 0.612167, 1)
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1, 0.34023, 0.3234, 0.66, 1)
@@ -102,10 +123,30 @@ uniform sampler2D depth_tex_frg_18 : hint_depth_texture;
 
 
 void fragment() {
+// Input:26
+	vec2 n_out26p0 = UV;
+
+
+// FloatConstant:25
+	float n_out25p0 = 128.000000;
+
+
+// VectorOp:23
+	vec2 n_out23p0 = n_out26p0 * vec2(n_out25p0);
+
+
+// VectorFunc:24
+	vec2 n_out24p0 = floor(n_out23p0);
+
+
+// VectorOp:27
+	vec2 n_out27p0 = n_out24p0 / vec2(n_out25p0);
+
+
 // UVFunc:7
 	vec2 n_in7p1 = vec2(10.00000, 5.00000);
 	vec2 n_in7p2 = vec2(0.00000, 0.00000);
-	vec2 n_out7p0 = (UV - n_in7p2) * n_in7p1 + n_in7p2;
+	vec2 n_out7p0 = (n_out27p0 - n_in7p2) * n_in7p1 + n_in7p2;
 
 
 // Vector2Constant:6
@@ -127,7 +168,7 @@ void fragment() {
 // UVFunc:13
 	vec2 n_in13p1 = vec2(10.00000, 5.00000);
 	vec2 n_in13p2 = vec2(0.00000, 0.00000);
-	vec2 n_out13p0 = (UV - n_in13p2) * n_in13p1 + n_in13p2;
+	vec2 n_out13p0 = (n_out27p0 - n_in13p2) * n_in13p1 + n_in13p2;
 
 
 // Vector2Constant:12
@@ -193,6 +234,7 @@ void fragment() {
 
 }
 "
+graph_offset = Vector2(-1670.02, 178.983)
 flags/unshaded = true
 nodes/fragment/0/position = Vector2(860, 180)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_1p7ew")
@@ -233,4 +275,14 @@ nodes/fragment/21/node = SubResource("VisualShaderNodeVectorOp_1p7ew")
 nodes/fragment/21/position = Vector2(500, 520)
 nodes/fragment/22/node = SubResource("VisualShaderNodeColorConstant_rcarn")
 nodes/fragment/22/position = Vector2(300, 680)
-nodes/fragment/connections = PackedInt32Array(4, 0, 3, 0, 5, 0, 4, 2, 6, 0, 4, 1, 7, 0, 4, 0, 9, 0, 8, 1, 13, 0, 14, 0, 12, 0, 14, 1, 14, 0, 10, 0, 3, 0, 15, 0, 10, 0, 15, 1, 15, 0, 8, 0, 8, 0, 19, 0, 19, 0, 0, 5, 19, 0, 0, 0, 18, 0, 20, 0, 16, 0, 14, 2, 21, 0, 19, 1, 20, 0, 21, 0, 22, 0, 21, 1)
+nodes/fragment/23/node = SubResource("VisualShaderNodeVectorOp_7kpiu")
+nodes/fragment/23/position = Vector2(-1880, 520)
+nodes/fragment/24/node = SubResource("VisualShaderNodeVectorFunc_unblf")
+nodes/fragment/24/position = Vector2(-1620, 580)
+nodes/fragment/25/node = SubResource("VisualShaderNodeFloatConstant_j16rt")
+nodes/fragment/25/position = Vector2(-2140, 680)
+nodes/fragment/26/node = SubResource("VisualShaderNodeInput_2cq26")
+nodes/fragment/26/position = Vector2(-2240, 500)
+nodes/fragment/27/node = SubResource("VisualShaderNodeVectorOp_escp8")
+nodes/fragment/27/position = Vector2(-1400, 640)
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 0, 5, 0, 4, 2, 6, 0, 4, 1, 7, 0, 4, 0, 9, 0, 8, 1, 13, 0, 14, 0, 12, 0, 14, 1, 14, 0, 10, 0, 3, 0, 15, 0, 10, 0, 15, 1, 15, 0, 8, 0, 8, 0, 19, 0, 19, 0, 0, 5, 19, 0, 0, 0, 18, 0, 20, 0, 16, 0, 14, 2, 21, 0, 19, 1, 20, 0, 21, 0, 22, 0, 21, 1, 26, 0, 23, 0, 25, 0, 23, 1, 23, 0, 24, 0, 24, 0, 27, 0, 25, 0, 27, 1, 27, 0, 13, 0, 27, 0, 7, 0)

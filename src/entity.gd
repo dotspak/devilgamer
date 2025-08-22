@@ -14,6 +14,7 @@ const DMG_NUM : PackedScene = preload("res://ui/ui_dmgpopup.tscn")
 @export var targetArea : Area3D
 @export var model : Node3D
 @export var modelController : EntityModelController
+@export var bloodScene : PackedScene = preload("res://assets/particles/pe_hitBlood.tscn")
 
 @export_group("Components")
 @export var stats : StatComponent
@@ -144,6 +145,11 @@ func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.D
 	display_damage_num(finalDMG, false, crit, false, false)
 	stats.HP -= finalDMG
 
+	var blood : BloodSplatter = bloodScene.instantiate()
+	var bloodAmount : float = clampf((finalDMG / stats.stats[StatComponent.STATS.MHP]) * 2, 0.1, 1.0)
+	add_child(blood)
+	blood.spawn(bloodAmount)
+	
 	tookDamage.emit()
 	print(name + " took " + str(int(finalDMG)) + " DMG!")
 

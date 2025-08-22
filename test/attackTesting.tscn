@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://46y2558njyn5"]
+[gd_scene load_steps=13 format=3 uid="uid://46y2558njyn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
 [ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="2_pouwe"]
 [ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="3_m1h02"]
 [ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="4_f1few"]
 [ext_resource type="PackedScene" uid="uid://cuj3d2gat756e" path="res://assets/models/dummy/platformPack/Enemies/FBX/Skull.fbx" id="5_c8vym"]
-[ext_resource type="PackedScene" uid="uid://d2venfam5bww7" path="res://assets/particles/pe_hitBlood.tscn" id="7_7sknq"]
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="7_nxrn8"]
 
 [sub_resource type="GDScript" id="GDScript_qwub3"]
@@ -25,10 +24,10 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_f2bor"]
-size = Vector3(20, 1, 20)
+size = Vector3(50, 1, 50)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ehm7b"]
-points = PackedVector3Array(-10, -0.5, -10, -10, 0.5, -10, 10, -0.5, -10, -10, -0.5, 10, -10, 0.5, 10, 10, 0.5, -10, 10, -0.5, 10, 10, 0.5, 10)
+[sub_resource type="BoxShape3D" id="BoxShape3D_f1few"]
+size = Vector3(50, 1, 50)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nxrn8"]
 radius = 1.5
@@ -50,7 +49,7 @@ mesh = SubResource("BoxMesh_f2bor")
 [node name="StaticBody3D" type="StaticBody3D" parent="floor"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
-shape = SubResource("ConvexPolygonShape3D_ehm7b")
+shape = SubResource("BoxShape3D_f1few")
 
 [node name="skull" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition", "model", "modelController", "stats")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.75, -7.038)
@@ -96,8 +95,5 @@ wait_time = 0.3
 
 [node name="targetPos" type="Marker3D" parent="skull"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-
-[node name="bloodSpew" parent="." instance=ExtResource("7_7sknq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.25, 0)
 
 [editable path="skull/Skull"]

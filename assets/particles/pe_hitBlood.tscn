@@ -7,10 +7,10 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7sknq"]
 render_priority = 0
 shader = ExtResource("1_1bp60")
-shader_parameter/color = Color(0.490625, 0.055743, 0.068922, 0.705882)
+shader_parameter/color = Color(0.545313, 0.130447, 0.145417, 0.705882)
 
 [sub_resource type="Curve" id="Curve_c8vym"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.248945, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.280899), 0.0, 0.0, 0, 0, Vector2(0.248945, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_nxrn8"]
@@ -18,9 +18,11 @@ curve = SubResource("Curve_c8vym")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_57tpm"]
 emission_shape_scale = Vector3(0, 0, 0)
-spread = 2.0
-initial_velocity_min = 4.0
-initial_velocity_max = 8.0
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector3(0, 0.1, 0)
+spread = 20.0
+initial_velocity_max = 4.0
 linear_accel_min = 4.0
 linear_accel_max = 4.0
 scale_min = 2.0
@@ -36,7 +38,7 @@ sub_emitter_amount_at_collision = 1
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_c8vym"]
 render_priority = 0
 shader = ExtResource("2_8top2")
-shader_parameter/color = Color(0.490625, 0.055743, 0.068922, 0.705882)
+shader_parameter/color = Color(0.545313, 0.130447, 0.145417, 0.705882)
 
 [sub_resource type="Curve" id="Curve_nxrn8"]
 _limits = [0.0, 2.0, 0.0, 1.0]
@@ -47,7 +49,7 @@ point_count = 2
 curve = SubResource("Curve_nxrn8")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qwub3"]
-emission_shape_scale = Vector3(1, 0, 1)
+emission_shape_scale = Vector3(0, 0, 0)
 spread = 0.0
 gravity = Vector3(0, 0, 0)
 scale_min = 3.0
@@ -55,30 +57,49 @@ scale_max = 5.0
 scale_curve = SubResource("CurveTexture_57tpm")
 
 [sub_resource type="QuadMesh" id="QuadMesh_yd2tt"]
+size = Vector2(0.5, 0.5)
 orientation = 1
 
-[node name="bloodSpew" type="GPUParticles3D"]
+[node name="Blood" type="GPUParticles3D"]
 material_override = SubResource("ShaderMaterial_7sknq")
 cast_shadow = 0
 amount = 200
 sub_emitter = NodePath("bloodSplat")
 lifetime = 2.0
-speed_scale = 1.5
+speed_scale = 2.2
+explosiveness = 1.0
 collision_base_size = 0.1
 process_material = SubResource("ParticleProcessMaterial_57tpm")
 draw_pass_1 = SubResource("QuadMesh_qwub3")
 script = ExtResource("2_qxbff")
-color = Color(0.490625, 0.055743, 0.068922, 0.705882)
+color = Color(0.545313, 0.130447, 0.145417, 0.705882)
+floorHeight = -3.875
 
 [node name="bloodSplat" type="GPUParticles3D" parent="."]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.25, 0)
 material_override = SubResource("ShaderMaterial_c8vym")
 cast_shadow = 0
+emitting = false
 amount = 200
 lifetime = 2.0
+one_shot = true
 process_material = SubResource("ParticleProcessMaterial_qwub3")
 draw_pass_1 = SubResource("QuadMesh_yd2tt")
 
 [node name="floor" type="GPUParticlesCollisionBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.625, 0)
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.875, 0)
 size = Vector3(25, 1.25, 25)
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -11, 0)
+debug_shape_custom_color = Color(0, 0.0117741, 1, 1)
+debug_shape_thickness = 5
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
