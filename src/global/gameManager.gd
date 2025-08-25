@@ -11,6 +11,7 @@ const PLAYER_SCENE : PackedScene = preload("res://scenes/player/owPlayer3D.tscn"
 @onready var mainMenu : MainMenu = %mainMenu
 @onready var battleHud : Control = %battleHud
 @onready var battleBar : BattleActions = %battleBar
+@onready var epiaHud : PlayerHud = %epiaHud
 
 # Debug Tools --------------------------
 var DEBUG_MODE : bool = false

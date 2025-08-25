@@ -520,7 +520,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [false]
+"values": [true]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1094,7 +1094,6 @@ flip_v = true
 
 [node name="battleHud" type="MarginContainer" parent="UI"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -1205,17 +1204,6 @@ unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="actorHuds" type="VBoxContainer" parent="UI/battleHud"]
-layout_direction = 2
-layout_mode = 2
-size_flags_horizontal = 8
-mouse_filter = 2
-theme_override_constants/separation = 8
-alignment = 2
-
-[node name="epiaHud" parent="UI/battleHud/actorHuds" instance=ExtResource("15_60syl")]
-layout_mode = 2
-
 [node name="bossBar" type="CenterContainer" parent="UI/battleHud"]
 visible = false
 layout_mode = 2
@@ -1295,6 +1283,10 @@ text = "[bgcolor=000]BOSS"
 fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
+
+[node name="epiaHud" parent="UI/battleHud" instance=ExtResource("15_60syl")]
+unique_name_in_owner = true
+layout_mode = 2
 
 [node name="mainMenu" parent="UI" instance=ExtResource("17_bpcc3")]
 unique_name_in_owner = true
@@ -1488,3 +1480,5 @@ libraries = {
 
 [node name="static" type="AudioStreamPlayer" parent="CRT"]
 stream = ExtResource("15_ofr1g")
+
+[connection signal="playerChanged" from="." to="UI/battleHud/epiaHud" method="_on_player_changed"]
