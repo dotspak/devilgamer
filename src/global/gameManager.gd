@@ -10,6 +10,7 @@ const PLAYER_SCENE : PackedScene = preload("res://scenes/player/owPlayer3D.tscn"
 @onready var dialogueWindow : Control = %dialogue
 @onready var mainMenu : MainMenu = %mainMenu
 @onready var battleHud : Control = %battleHud
+@onready var battleBar : BattleActions = %battleBar
 
 # Debug Tools --------------------------
 var DEBUG_MODE : bool = false
@@ -357,13 +358,13 @@ func _start_balloon(balloon: Node, resource: DialogueResource, title: String, ex
 
 
 func enter_focus_ui() -> void:
-	var anim : AnimationPlayer = %uiAnimator
+	var anim : AnimationPlayer = %uiAnimator2
 	anim.play("enterFocus")
 	await anim.animation_finished
 
 
 func exit_focus_ui() -> void:
-	var anim : AnimationPlayer = %uiAnimator
+	var anim : AnimationPlayer = %uiAnimator2
 	anim.play_backwards("enterFocus")
 	await anim.animation_finished
 
@@ -428,7 +429,7 @@ func game_over() -> void: print("GAME OVER!")
 func display_menu() -> void:
 	if !mainMenu.visible:
 		player.freeze()
-		show_battle_ui()
+		battleHud.hide()
 		enter_focus_ui()
 		mainMenu.display()
 	else:

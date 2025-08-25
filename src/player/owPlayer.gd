@@ -46,12 +46,14 @@ const maxPitch : float = 50
 @onready var stairRayAhead : RayCast3D = %stairRayAhead
 
 @onready var basicAttackCooldown : Timer = %basicAttackCooldown
+@onready var inventory : GearInventory = %inventory
 
 @onready var pCamHost : PhantomCameraHost = %PhantomCameraHost
 @onready var mainCam : PhantomCamera3D = %mainCam
 @onready var lockCam : PhantomCamera3D = %lockCam
 @onready var menuCam : PhantomCamera3D = %menuCam
 @onready var defaultSpringLength : float = mainCam.spring_length
+
 
 var isRespawning : bool = false
 var inputAllowed : bool = true
@@ -665,3 +667,19 @@ func camera_look_egg() -> void:
 	AudioManager.play_ui_sfx("resetCam")
 	await change_zoom(0.5)
 	model.weird_idle()
+
+
+func inventory_updated(_node : Node) -> void:
+	if !inventory:
+		await get_tree().create_timer(0.2).timeout
+		if !inventory:
+			return
+
+	if !GameManager.battleBar.is_node_ready():
+		await GameManager.battleBar.ready
+
+	var updatedInvetory : Array[Gear] = []
+	for n : Node in inventory.get_children():
+		if n is Gear:
+			updatedInvetory.append(n)
+	GameManager.battleBar.gear = updatedInvetory

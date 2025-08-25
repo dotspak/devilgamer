@@ -86,4 +86,6 @@ func display() -> void:
 
 func undisplay() -> void:
 	CameraManager.enable_main_cam()
+	%items.release_focus()
 	await play_transition("show", true)
+

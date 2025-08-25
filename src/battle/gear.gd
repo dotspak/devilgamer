@@ -5,7 +5,7 @@ class_name Gear
 enum GEAR_MODE {ALPHA, OMEGA}
 @export var gearName : String = ""
 @export_multiline var description : String = ""
-@export var model : Node3D
+@export var sprite : Texture
 @export var action_a : PackedScene
 @export var action_b : PackedScene
 
@@ -19,6 +19,12 @@ var mode : GEAR_MODE = GEAR_MODE.ALPHA
 var statComponent : StatComponent
 var passives : Array[Passive]
 var entity : Entity
+var stacks : int = 0 :
+    set(val):
+        stacks = val
+        stacksChanged.emit(stacks)
+
+signal stacksChanged(stacks : int)
 
 func _ready():
     if find_entity(get_parent()):
@@ -44,7 +50,7 @@ func instance_action() -> Action:
 
 
 # getters --------------------------------
-func get_model() -> Node3D: return model.duplicate()
+func get_sprite() -> Texture: return sprite
 
 
 func get_skill() -> Skill:
