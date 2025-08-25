@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://deysr8xllppqi"]
+[gd_scene load_steps=10 format=3 uid="uid://deysr8xllppqi"]
 
 [ext_resource type="Script" uid="uid://dmq2pvdayxfpi" path="res://ui/battle/ui_battle_actions.gd" id="1_60lkr"]
 [ext_resource type="Texture2D" uid="uid://dlb7vko2jd0ci" path="res://assets/gearIcons/gear_ironPipe.png" id="1_sob5k"]
+[ext_resource type="Texture2D" uid="uid://dwnxbhl5k4pxi" path="res://assets/gearIcons/gear_testBig.png" id="3_y14kt"]
+[ext_resource type="Texture2D" uid="uid://bq3u0re2xqyf8" path="res://assets/gearIcons/gear_saviourShield.png" id="4_h8kr1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y14kt"]
 bg_color = Color(0, 0, 0, 1)
@@ -78,7 +80,6 @@ fit_content = true
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 4
-alignment = 1
 
 [node name="gear0" type="PanelContainer" parent="VBoxContainer/gear"]
 unique_name_in_owner = true
@@ -93,6 +94,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_sob5k")
+expand_mode = 1
 
 [node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear0"]
 layout_mode = 2
@@ -101,6 +103,12 @@ text = "[outline_size=4][outline_color=000]999"
 scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear0"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[outline_size=4][outline_color=000]1"
+scroll_active = false
 
 [node name="gear1" type="PanelContainer" parent="VBoxContainer/gear"]
 custom_minimum_size = Vector2(48, 48)
@@ -111,7 +119,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_h8kr1")
 [node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear1"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = ExtResource("1_sob5k")
+texture = ExtResource("3_y14kt")
+expand_mode = 1
 
 [node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear1"]
 layout_mode = 2
@@ -120,6 +129,12 @@ text = "999"
 scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear1"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[outline_size=4][outline_color=000]2"
+scroll_active = false
 
 [node name="gear2" type="PanelContainer" parent="VBoxContainer/gear"]
 custom_minimum_size = Vector2(48, 48)
@@ -130,7 +145,8 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_dsnjk")
 [node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear2"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture = ExtResource("1_sob5k")
+texture = ExtResource("4_h8kr1")
+expand_mode = 1
 
 [node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear2"]
 layout_mode = 2
@@ -139,6 +155,12 @@ text = "999"
 scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[outline_size=4][outline_color=000]3"
+scroll_active = false
 
 [node name="gear3" type="PanelContainer" parent="VBoxContainer/gear"]
 custom_minimum_size = Vector2(48, 48)
@@ -150,6 +172,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_uu05m")
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("1_sob5k")
+expand_mode = 1
 
 [node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear3"]
 layout_mode = 2
@@ -158,6 +181,12 @@ text = "999"
 scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear3"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[outline_size=4][outline_color=000]4"
+scroll_active = false
 
 [node name="items" type="HBoxContainer" parent="VBoxContainer"]
 unique_name_in_owner = true

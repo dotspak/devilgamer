@@ -46,7 +46,8 @@ noise = SubResource("FastNoiseLite_uc4fk")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s6qcl"]
 shader = ExtResource("8_uc4fk")
-shader_parameter/color = Color(0.59, 0.617333, 1, 1)
+shader_parameter/color = Color(0.59, 0.617333, 1, 0.384314)
+shader_parameter/alpha = 0.5
 shader_parameter/noise = SubResource("NoiseTexture2D_s6qcl")
 shader_parameter/speed = Vector2(0.03, 0.06)
 shader_parameter/waveStrength = 0.01

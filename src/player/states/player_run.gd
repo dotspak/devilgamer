@@ -43,8 +43,6 @@ func physics_update(delta : float) -> void:
 			stateMachine.transition_to("jumpToLedge")
 	else:
 		ledgeTimer = max(ledgeTimer - delta, 0)
-	
-	if player.should_use_skill(): player.use_action(player.selectedAction)
 
 
 func exit() -> void: 

@@ -1,6 +1,7 @@
 shader_type canvas_item;
 
 uniform vec4 color : source_color = vec4(0, 0.2, 1.0, 1);
+uniform float alpha = 0.5;
 uniform sampler2D noise : repeat_enable;
 uniform sampler2D SCREEN : hint_screen_texture;
 
@@ -15,5 +16,5 @@ void fragment() {
 	COLOR = texture(TEXTURE, UV + n * waveStrength);
 	COLOR.rgb *= color.rgb;
 	COLOR *= texture(SCREEN, SCREEN_UV + n * distortion);
-	COLOR.a = color.a;
+	COLOR.a = alpha;
 }

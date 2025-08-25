@@ -166,6 +166,10 @@ func _unhandled_input(event: InputEvent) -> void:
 					if area.overlaps_body(self):
 						interact(area.get_parent())
 
+		if Input.is_action_pressed("skill_cast"):
+			if should_use_skill():
+				use_action(selectedAction)
+
 	# handles menu opening/closing
 	if inputAllowed || GameManager.mainMenu.visible:
 		if Input.is_action_just_pressed("open_menu"):
@@ -551,9 +555,9 @@ func enable_input() -> void: inputAllowed = true
 # checks if the player can cast the passed skill 
 # (for now is just a basic check)
 func should_use_skill(_skill = null) -> bool:
-	if inputAllowed:
-		if Input.is_action_pressed("skill_cast"):
-			return super()
+	var state : String = stateMachine.get_state()
+	if state == "idle" || state == "run":
+		return super()
 	return false
 
 

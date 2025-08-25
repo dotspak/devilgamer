@@ -4,7 +4,7 @@ class_name BattleActions
 const ICON_IDX : int = 0
 const STACK_IDX : int = 1
 const LABEL_HEADER : String = "[bgcolor=000]> "
-const STACK_HEADER : String = "[outline_size=4][outline_color=000]"
+const STACK_HEADER : String = "[outline_size=4][outline_color=000][color=5ff]"
 
 @onready var gearBox : HBoxContainer = %gear
 @onready var selectedLabel : RichTextLabel = %selectedLabel
@@ -33,35 +33,41 @@ var gear : Array[Gear] = [] :
 
 		slotIDX = 0
 
-var slotIDX : int = 0 :
+var slotIDX : int = -1 :
 	set(val):
 		if gear.is_empty(): return
 
 		var prevIDX : int = slotIDX
 		slotIDX = clamp(val, 0, max(get_gear_amount() - 1, 0))
 
+		if prevIDX == slotIDX: return
+
+		AudioManager.play_ui_sfx("cursor")
+		GameManager.player.selectedAction = gear[slotIDX].get_action_scene()
+
 		animate_deselect(gearBox.get_child(prevIDX))
 		aninmate_select(gearBox.get_child(slotIDX))
 		
 		if selectedLabel:
 			var text : String = gear[slotIDX].gearName if get_gear_amount() > 0 else "NULL"
-			selectedLabel.text = LABEL_HEADER + text
-
-		if prevIDX != slotIDX:
-			AudioManager.play_ui_sfx("cursor")
+			selectedLabel.text = LABEL_HEADER + text		
 
 
 func _unhandled_input(_event: InputEvent) -> void:
 	if GameManager.player.inputAllowed:
 		if Input.is_action_just_pressed("skill_up"): slotIDX += 1
 		elif Input.is_action_just_pressed("skill_down"): slotIDX -= 1
+		else:
+			if Input.is_action_just_pressed("skill_slot1"): slotIDX = 0
+			elif Input.is_action_just_pressed("skill_slot2"): slotIDX = 1
+			elif Input.is_action_just_pressed("skill_slot3"): slotIDX = 2
+			elif Input.is_action_just_pressed("skill_slot4"): slotIDX = 3
 
 
 func stacks_changed(stacks : int, g : Gear) -> void:
 	var idx : int = get_gear_idx(g)
 	if idx >= 0:
 		var finalNum : String = str(stacks) if stacks > 0 else ""
-		print(finalNum)
 		gearBox.get_child(idx).get_child(STACK_IDX).text = STACK_HEADER + str(finalNum)
 
 
@@ -79,14 +85,22 @@ func get_gear_amount() -> int:
 
 
 func aninmate_select(slot : PanelContainer) -> void:
+	var duration : float = 0.1
 	var box : StyleBoxFlat = slot.get_theme_stylebox("panel")
-	var TW : Tween = create_tween().set_parallel()
-	TW.tween_property(box, "border_width_left", 4, 0.1)
-	TW.tween_property(box, "border_width_right", 4, 0.1)
+	var TW : Tween = create_tween().set_parallel().set_trans(Tween.TRANS_SINE)
+	TW.tween_property(box, "border_width_left", 4, duration)
+	TW.tween_property(box, "border_width_right", 4, duration)
+
+	var deltaSize : float = 1.2
+	var TW2 : Tween = create_tween().set_trans(Tween.TRANS_SINE)
+	slot.pivot_offset = Vector2(24, 24)
+	TW2.tween_property(slot, "scale", Vector2.ONE * deltaSize, duration * 0.5)
+	TW2.tween_property(slot, "scale", Vector2.ONE, duration * 0.5)
 
 
 func animate_deselect(slot : PanelContainer) -> void:
+	var duration : float = 0.1
 	var box : StyleBoxFlat = slot.get_theme_stylebox("panel")
-	var TW : Tween = create_tween().set_parallel()
-	TW.tween_property(box, "border_width_left", 0, 0.1)
-	TW.tween_property(box, "border_width_right", 0, 0.1)
+	var TW : Tween = create_tween().set_parallel().set_trans(Tween.TRANS_SINE)
+	TW.tween_property(box, "border_width_left", 0, duration)
+	TW.tween_property(box, "border_width_right", 0, duration)

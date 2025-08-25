@@ -6,6 +6,7 @@ enum GEAR_MODE {ALPHA, OMEGA}
 @export var gearName : String = ""
 @export_multiline var description : String = ""
 @export var sprite : Texture
+@export var mode : GEAR_MODE = GEAR_MODE.ALPHA
 @export var action_a : PackedScene
 @export var action_b : PackedScene
 
@@ -15,11 +16,10 @@ enum GEAR_MODE {ALPHA, OMEGA}
 ## the action/skill associated with it.
 @export var isPlaceholder : bool = false
 
-var mode : GEAR_MODE = GEAR_MODE.ALPHA
 var statComponent : StatComponent
 var passives : Array[Passive]
 var entity : Entity
-var stacks : int = 0 :
+@export var stacks : int = 0 :
     set(val):
         stacks = val
         stacksChanged.emit(stacks)
@@ -49,7 +49,10 @@ func instance_action() -> Action:
     return inst if inst is Action else null
 
 
+
+
 # getters --------------------------------
+func get_action_scene() -> PackedScene: return action_a if mode == GEAR_MODE.ALPHA else action_b
 func get_sprite() -> Texture: return sprite
 
 

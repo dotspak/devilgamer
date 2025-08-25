@@ -143,15 +143,21 @@ func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.D
 	if modelController:
 		modelController.damage_flash()
 	display_damage_num(finalDMG, false, crit, false, false)
+
+	var bloodAmount : float = clampf((finalDMG / stats.stats[StatComponent.STATS.MHP]) * 1.3, 0.1, 1.0)
+	blood_splatter(bloodAmount)
+
 	stats.HP -= finalDMG
 
-	var blood : BloodSplatter = bloodScene.instantiate()
-	var bloodAmount : float = clampf((finalDMG / stats.stats[StatComponent.STATS.MHP]) * 2, 0.1, 1.0)
-	add_child(blood)
-	blood.spawn(bloodAmount)
-	
 	tookDamage.emit()
 	print(name + " took " + str(int(finalDMG)) + " DMG!")
+
+
+func blood_splatter(amount : float) -> void:
+	var blood : BloodSplatter = bloodScene.instantiate()
+	add_sibling(blood)
+	blood.global_transform = global_transform
+	blood.spawn(amount)
 
 
 func heal_damage(baseHeal : float) -> void:
