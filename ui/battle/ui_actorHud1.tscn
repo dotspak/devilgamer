@@ -1,8 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://c8xwgmnwg56he"]
+[gd_scene load_steps=16 format=3 uid="uid://c8xwgmnwg56he"]
 
 [ext_resource type="Script" uid="uid://dp6y8msta10jr" path="res://ui/battle/ui_playerHud.gd" id="1_8vngl"]
 [ext_resource type="Texture2D" uid="uid://cickma02n07t" path="res://assets/portraits/port_hud_epia.png" id="1_bj86p"]
 [ext_resource type="Texture2D" uid="uid://knqf3kp1d0ak" path="res://assets/particles/pe_messy.png" id="2_pq3bi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12fmu"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_mr5cl"]
 blend_mode = 3
@@ -15,20 +17,17 @@ colors = PackedColorArray(0.280533, 0.272, 0.4, 0, 0.280533, 0.272, 0.4, 0.61176
 gradient = SubResource("Gradient_8vngl")
 width = 164
 
-[sub_resource type="Gradient" id="Gradient_pq3bi"]
-offsets = PackedFloat32Array(0.4447, 0.85023)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8vngl"]
-gradient = SubResource("Gradient_pq3bi")
-width = 16
-height = 16
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(1, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq3bi"]
 bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vngl"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr5cl"]
+bg_color = Color(1, 0.657709, 0.269428, 1)
+border_width_left = 4
+border_color = Color(0.424, 0.027, 0, 0)
+border_blend = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58pt6"]
 bg_color = Color(0.424219, 0.0264641, 0, 1)
@@ -38,12 +37,6 @@ border_blend = true
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8vngl"]
 blend_mode = 3
-
-[sub_resource type="Gradient" id="Gradient_mr5cl"]
-colors = PackedColorArray(0.900781, 0.900781, 0.900781, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_be743"]
-gradient = SubResource("Gradient_mr5cl")
 
 [sub_resource type="Curve" id="Curve_12fmu"]
 _limits = [0.0, 1.2, 0.0, 1.0]
@@ -64,7 +57,7 @@ tangential_accel_max = 30.0
 scale_min = 0.6
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_qfiq7")
-color_initial_ramp = SubResource("GradientTexture1D_be743")
+color = Color(1.2, 1.2, 1.2, 1)
 
 [node name="actorHud" type="Control"]
 layout_mode = 3
@@ -84,11 +77,22 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -192.0
-offset_top = -52.0
+offset_top = -504.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 0
+alignment = 2
+
+[node name="buffs" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 2
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_12fmu")
 
 [node name="portrait" type="TextureRect" parent="VBoxContainer"]
 clip_children = 2
@@ -116,6 +120,7 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="name" type="RichTextLabel" parent="VBoxContainer/portrait"]
+visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = 10
@@ -143,46 +148,6 @@ theme_override_constants/v_separation = 0
 columns = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect5" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect6" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect7" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect8" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect9" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
-[node name="TextureRect10" type="TextureRect" parent="VBoxContainer/portrait/buffs"]
-layout_mode = 2
-texture = SubResource("GradientTexture2D_8vngl")
-
 [node name="health" type="PanelContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_pq3bi")
@@ -201,25 +166,40 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/health/healthBar"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="bar" type="ProgressBar" parent="VBoxContainer/health/healthBar/MarginContainer"]
+[node name="dragBar" type="ProgressBar" parent="VBoxContainer/health/healthBar/MarginContainer"]
 unique_name_in_owner = true
-clip_children = 2
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
-theme_override_styles/fill = SubResource("StyleBoxFlat_58pt6")
+theme_override_styles/background = SubResource("StyleBoxFlat_8vngl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mr5cl")
 max_value = 55.0
 value = 35.0
 fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/health/healthBar/MarginContainer/bar"]
+[node name="bar" type="ProgressBar" parent="VBoxContainer/health/healthBar/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_58pt6")
+max_value = 55.0
+value = 20.0
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/health/healthBar/MarginContainer"]
 material = SubResource("CanvasItemMaterial_8vngl")
+position = Vector2(0, 4)
 amount = 200
 texture = ExtResource("2_pq3bi")
 trail_enabled = true

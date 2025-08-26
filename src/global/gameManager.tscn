@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=77 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -14,6 +14,7 @@
 [ext_resource type="Shader" uid="uid://cbldjuh3xpygm" path="res://shaders/waveShader.gdshader" id="8_uc4fk"]
 [ext_resource type="AudioStream" uid="uid://efj5ex35psoa" path="res://assets/audio/sfx/SE_areaIntro2.ogg" id="9_be743"]
 [ext_resource type="Texture2D" uid="uid://knqf3kp1d0ak" path="res://assets/particles/pe_messy.png" id="10_c2bp1"]
+[ext_resource type="Texture2D" uid="uid://dpl48uieonenp" path="res://assets/ui/ui_waterOverlay.png" id="11_1pv88"]
 [ext_resource type="Shader" uid="uid://cgoa181d3u6xp" path="res://shaders/textBox.tres" id="11_ofr1g"]
 [ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="12_qfiq7"]
 [ext_resource type="Texture2D" uid="uid://dugjrfbjh3gge" path="res://assets/particles/pe_bubbleLayer.png" id="14_qfiq7"]
@@ -47,20 +48,11 @@ noise = SubResource("FastNoiseLite_uc4fk")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s6qcl"]
 shader = ExtResource("8_uc4fk")
 shader_parameter/color = Color(0.59, 0.617333, 1, 0.384314)
-shader_parameter/alpha = 0.5
+shader_parameter/alpha = 0.0
 shader_parameter/noise = SubResource("NoiseTexture2D_s6qcl")
 shader_parameter/speed = Vector2(0.03, 0.06)
 shader_parameter/waveStrength = 0.01
 shader_parameter/distortion = 0.02
-
-[sub_resource type="Gradient" id="Gradient_bpcc3"]
-offsets = PackedFloat32Array(0.698039, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_o7o5j"]
-gradient = SubResource("Gradient_bpcc3")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Curve" id="Curve_hc8e2"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.233415, 1), 0.0, 0.0, 0, 0, Vector2(0.749386, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -948,7 +940,7 @@ offset_top = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = SubResource("GradientTexture2D_o7o5j")
+texture = ExtResource("11_1pv88")
 
 [node name="AreaIntro" type="CanvasLayer" parent="."]
 layer = 99

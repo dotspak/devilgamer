@@ -7,13 +7,32 @@ const NORM_COLOR : String = "[color=fff]"
 
 @onready var hpLabel : RichTextLabel = %hpText
 @onready var hpBar : ProgressBar = %bar
+@onready var dragBar : ProgressBar = %dragBar
 
-var mhp : float = 100
-var hp : float = 99 :
+var mhp : float = 100 :
+	set(val):
+		mhp = val
+		update_maxes()
+
+var hp : float = 100 :
 	set(val):
 		hp = val
 		hpBar.value = hp
+		dragTimer.stop()
+		dragTimer.start()
 		update_hp_label()
+
+var dragTimer : Timer 
+
+func _ready():
+	dragTimer = Timer.new()
+	dragTimer.one_shot = true
+	dragTimer.wait_time = 0.5
+	add_child(dragTimer)
+	dragTimer.timeout.connect(_update_drag_bar)
+
+	dragBar.value = mhp
+	hpBar.value = mhp
 
 
 func update_hp_label() -> void:
@@ -40,15 +59,30 @@ func update_hp_label() -> void:
 
 func mhp_changed(_mhp : float) -> void: 
 	mhp = _mhp
+	update_maxes()
+
+
+func update_maxes() -> void:
 	hpBar.max_value = mhp
+	dragBar.max_value = mhp
 
 
 func hp_changed(_hp : float) -> void:
-	var TW = create_tween()
-	TW.tween_property(self, "hp", _hp, 0.2)
+	var TW = create_tween().set_trans(Tween.TRANS_SINE)
+	var time : float = (mhp / _hp) * 0.1
+	TW.tween_property(self, "hp", _hp, time)
+
+
+func _update_drag_bar() -> void:
+	var TW = create_tween().set_trans(Tween.TRANS_SINE)
+	TW.tween_property(dragBar, "value", hp, 0.4)
 
 
 func _on_player_changed(player: OWPlayer) -> void:
-	mhp_changed(player.stats.stats[StatComponent.STATS.MHP])
+	mhp = player.stats.get_stat(StatComponent.STATS.MHP)
 	hp = player.stats.HP
+
+	player.stats.mhpChanged.connect(mhp_changed)
 	player.stats.hpChanged.connect(hp_changed)
+
+

@@ -127,7 +127,7 @@ func _ready() -> void:
 	stepParticles.emitting = false
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:
 		# handles the easter egg where Epia looks at the camera
 		if Input.is_anything_pressed():
@@ -166,10 +166,6 @@ func _unhandled_input(event: InputEvent) -> void:
 					if area.overlaps_body(self):
 						interact(area.get_parent())
 
-		if Input.is_action_pressed("skill_cast"):
-			if should_use_skill():
-				use_action(selectedAction)
-
 	# handles menu opening/closing
 	if inputAllowed || GameManager.mainMenu.visible:
 		if Input.is_action_just_pressed("open_menu"):
@@ -200,6 +196,10 @@ func _physics_process(delta: float) -> void:
 				gravity = 0
 			else:
 				gravity = -40
+
+		if Input.is_action_pressed("skill_cast"):
+			if should_use_skill():
+				use_action(selectedAction)
 		
 		if isLockedOn:
 			var targetBodies : Array[Node3D] = targetArea.get_overlapping_bodies()

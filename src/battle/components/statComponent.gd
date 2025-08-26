@@ -32,6 +32,7 @@ var HP : float = stats[STATS.MHP] :
 		hpChanged.emit(HP)
 
 signal hpChanged(val : float)
+signal mhpChanged(val : float)
 
 # setters/getters -----------------------------------------------------
 func get_stat(stat : STATS) -> float: return stats[stat]
@@ -43,7 +44,10 @@ func set_stat(stat : STATS, val : float) -> void:
 
 func set_rate(rate : RATES, val : float) -> void: rates[rate] = val
 
-func set_MHP(val : float) -> void: stats[STATS.MHP] = val # TODO, change with proper HP scaling logic
+func set_MHP(val : float) -> void: 
+	stats[STATS.MHP] = val
+	mhpChanged.emit(stats[STATS.MHP])
+	# TODO, change with proper HP scaling logic
 	
 func calc_crit_chance() -> float: return get_rate(RATES.CRIT) * get_stat(STATS.LUC)
 func calc_eva_chance() -> float: return get_rate(RATES.EVA) * get_stat(STATS.LUC) * EVA_REDUCTION
