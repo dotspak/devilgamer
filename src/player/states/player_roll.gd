@@ -8,8 +8,8 @@ func enter() -> void:
 	var finalVel : Vector3 = player.velocity
 
 	player.velocity = Vector3.ZERO
-	TW.tween_property(player, "velocity", dir * player.rollSpeed, 0.1)
-	TW.tween_property(player, "velocity", finalVel, 0.3)
+	TW.tween_property(player, "velocity", dir * player.rollSpeed, 0.1).set_ease(Tween.EASE_IN)
+	TW.tween_property(player, "velocity", finalVel, 0.3).set_ease(Tween.EASE_OUT)
 	await TW.finished  
 
 	stateMachine.transition_to("run")

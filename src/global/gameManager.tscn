@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene load_steps=78 format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -416,6 +416,9 @@ shader_parameter/radius = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ofr1g"]
 bg_color = Color(0.361166, 0.344683, 0.697656, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1pv88"]
+blend_mode = 4
 
 [sub_resource type="Curve" id="Curve_qfiq7"]
 _data = [Vector2(0.00491401, 1), 0.0, 0.0, 0, 0, Vector2(0.746929, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -1068,9 +1071,9 @@ expand_mode = 1
 [node name="bottombar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = 472.002
+offset_top = 472.0
 offset_right = 896.0
-offset_bottom = 504.002
+offset_bottom = 504.0
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/bottombar"]
@@ -1198,6 +1201,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="bossBar" type="CenterContainer" parent="UI/battleHud"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
@@ -1344,14 +1348,14 @@ mouse_filter = 2
 theme_override_styles/background = SubResource("StyleBoxEmpty_qfiq7")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ofr1g")
 max_value = 5.0
-value = 0.01
+value = 3.53
 allow_lesser = true
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="UI/breathBar/centerContainer/Control/airProgress"]
 modulate = Color(1, 1, 1, 0.266667)
-material = SubResource("CanvasItemMaterial_qbj2a")
+material = SubResource("CanvasItemMaterial_1pv88")
 position = Vector2(300, 8)
 amount = 200
 texture = ExtResource("14_qfiq7")

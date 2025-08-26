@@ -107,7 +107,7 @@ vertical_alignment = 2
 [node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear0"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[outline_size=4][outline_color=000]1"
+text = "[font_size=12][outline_size=4][outline_color=000]1"
 scroll_active = false
 
 [node name="gear1" type="PanelContainer" parent="VBoxContainer/gear"]
@@ -133,7 +133,7 @@ vertical_alignment = 2
 [node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear1"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[outline_size=4][outline_color=000]2"
+text = "[font_size=12][outline_size=4][outline_color=000]2"
 scroll_active = false
 
 [node name="gear2" type="PanelContainer" parent="VBoxContainer/gear"]
@@ -159,7 +159,7 @@ vertical_alignment = 2
 [node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear2"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[outline_size=4][outline_color=000]3"
+text = "[font_size=12][outline_size=4][outline_color=000]3"
 scroll_active = false
 
 [node name="gear3" type="PanelContainer" parent="VBoxContainer/gear"]
@@ -185,7 +185,7 @@ vertical_alignment = 2
 [node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear3"]
 layout_mode = 2
 bbcode_enabled = true
-text = "[outline_size=4][outline_color=000]4"
+text = "[font_size=12][outline_size=4][outline_color=000]4"
 scroll_active = false
 
 [node name="items" type="HBoxContainer" parent="VBoxContainer"]

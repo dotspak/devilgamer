@@ -42,7 +42,7 @@ var slotIDX : int = -1 :
 
 		if prevIDX == slotIDX: return
 
-		AudioManager.play_ui_sfx("cursor")
+		if get_parent().visible: AudioManager.play_ui_sfx("cursor")
 		GameManager.player.selectedAction = gear[slotIDX].get_action_scene()
 
 		animate_deselect(gearBox.get_child(prevIDX))

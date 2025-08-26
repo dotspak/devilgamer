@@ -33,7 +33,13 @@ func _ready():
 	if collideWithEnvironment:
 		set_collision_layer_value(1, true)
 
-	if timeout > 0: add_child(timer_setup(stop, timeout))
+	if timeout > 0:
+		var deleteTimer : Timer = Timer.new()
+		deleteTimer.wait_time = timeout
+		deleteTimer.timeout.connect(stop)
+		add_child(deleteTimer)
+		deleteTimer.start()
+		#add_child(timer_setup(stop, timeout))
 	
 	
 func spawn(_caster = null, _target = null) -> void:
