@@ -29,6 +29,7 @@ const maxPitch : float = 50
 @export var jumpStrength : float = 8
 @export var jumpDist : float = 4
 @export var climbSpeed : float = 2
+@export var rollSpeed : float = 20
 
 @export_group("Flair")
 @export var sounds : Dictionary[String, Node]
@@ -53,7 +54,7 @@ const maxPitch : float = 50
 @onready var lockCam : PhantomCamera3D = %lockCam
 @onready var menuCam : PhantomCamera3D = %menuCam
 @onready var defaultSpringLength : float = mainCam.spring_length
-
+@onready var defaultCamOffset : Vector3 = mainCam.follow_offset
 
 var isRespawning : bool = false
 var inputAllowed : bool = true
@@ -131,7 +132,10 @@ func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:
 		# handles the easter egg where Epia looks at the camera
 		if Input.is_anything_pressed():
-			if mainCam.spring_length != defaultSpringLength: change_zoom(1, 0.2)
+			if mainCam.spring_length != defaultSpringLength:
+				model.idle()
+				change_zoom(1, 0.2)
+				create_tween().tween_property(mainCam, "follow_offset:y", defaultCamOffset.y, 0.2)
 			if model is EpiaSkin:
 				if !model.cameraEggTimer.is_stopped():
 					model.cameraEggTimer.stop()
@@ -141,6 +145,10 @@ func _unhandled_input(event : InputEvent) -> void:
 				if model.cameraEggTimer.is_stopped():
 					model.cameraEggTimer.start()
 					model.cameraEggTimer.timeout.connect(camera_look_egg)
+
+		if Input.is_action_pressed("skill_cast"):
+			if should_use_skill():
+				use_action(selectedAction)
 
 		# handles mouse camera control
 		if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -167,7 +175,7 @@ func _unhandled_input(event : InputEvent) -> void:
 						interact(area.get_parent())
 
 	# handles menu opening/closing
-	if inputAllowed || GameManager.mainMenu.visible:
+	if inputAllowed || GameManager.mainMenu.visible && (stateMachine.get_state() == "idle" || stateMachine.get_state() == "run"):
 		if Input.is_action_just_pressed("open_menu"):
 			GameManager.display_menu()
 
@@ -187,20 +195,6 @@ func interact(node : Interactable) -> void:
 
 func _physics_process(delta: float) -> void:
 	if inputAllowed:
-		# DEBUG INPUTS FOR PLAYER ----------------
-		if GameManager.DEBUG_MODE:
-			# debug hover
-			if Input.is_action_pressed("jump"):
-				airTimer = 0
-				global_position.y += 0.3
-				gravity = 0
-			else:
-				gravity = -40
-
-		if Input.is_action_pressed("skill_cast"):
-			if should_use_skill():
-				use_action(selectedAction)
-		
 		if isLockedOn:
 			var targetBodies : Array[Node3D] = targetArea.get_overlapping_bodies()
 			targetBodies.erase(self)
@@ -667,6 +661,8 @@ func camera_look_egg() -> void:
 	
 	var targetAngle : float = mainCam.get_parent().rotation.y
 	lastMoveDir = Vector3(sin(targetAngle), 0, cos(targetAngle)).normalized()
+	
+	create_tween().tween_property(mainCam, "follow_offset:y", 1, 0.2)
 	
 	AudioManager.play_ui_sfx("resetCam")
 	await change_zoom(0.5)

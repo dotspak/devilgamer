@@ -179,6 +179,8 @@ _data = {
 [node name="machineGun" type="Area3D"]
 script = ExtResource("1_efir6")
 skill = SubResource("Resource_2q8il")
+collideWithEnvironment = true
+timeout = 1.0
 metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

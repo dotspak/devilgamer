@@ -244,6 +244,7 @@ _data = {
 [node name="fireballAttack" type="Area3D"]
 script = ExtResource("1_ssc76")
 skill = SubResource("Resource_bqk1o")
+collideWithEnvironment = true
 timeout = 2.0
 metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 

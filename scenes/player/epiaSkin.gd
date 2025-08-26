@@ -37,6 +37,9 @@ func wall_slide():
 func weird_idle():
 	state_machine.travel("epia_idleStrange")
 
+func roll():
+	state_machine.travel("epia_roll")
+
 
 func enter_merc_mode() -> void:
 	$model/Armature/Skeleton3D/armCorrupt.show()

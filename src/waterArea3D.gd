@@ -29,5 +29,4 @@ func get_water_color() -> Color:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body is CharacterBody3D || body is RigidBody3D: 
-		print("yump")
 		water_splash(body.global_position)

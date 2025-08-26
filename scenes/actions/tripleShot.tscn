@@ -146,7 +146,7 @@ shader = SubResource("VisualShader_g66xh")
 
 [sub_resource type="SphereMesh" id="SphereMesh_d3sno"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_mclf0"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_57jse"]
 
 [sub_resource type="Curve" id="Curve_abdn7"]
 _limits = [-360.0, 360.0, 0.0, 1.0]
@@ -243,9 +243,9 @@ _data = {
 &"spin": SubResource("Animation_abdn7")
 }
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_0s0dm"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_b456y"]
 
-[sub_resource type="ImmediateMesh" id="ImmediateMesh_f8iwk"]
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_yuv5j"]
 
 [node name="tripleShot" type="Area3D"]
 script = ExtResource("1_vcbfe")
@@ -258,6 +258,7 @@ metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 [node name="fire1" type="Area3D" parent="projectiles"]
 transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, 0, 0, 0)
 script = ExtResource("1_vcbfe")
+collideWithEnvironment = true
 metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projectiles/fire1"]
@@ -284,7 +285,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.262123, 0, 0.965034, 0, 1, 0, -0.965034, 0, -0.262123, 0, 0, 0)
 material_override = ExtResource("6_p5xdv")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_mclf0")
+mesh = SubResource("ImmediateMesh_57jse")
 skeleton = NodePath("../..")
 script = ExtResource("7_0fhlj")
 fromWidth = 1.0
@@ -315,6 +316,7 @@ metadata/_custom_type_script = "uid://djbdqs30gbu1p"
 
 [node name="fire2" type="Area3D" parent="projectiles"]
 script = ExtResource("1_vcbfe")
+collideWithEnvironment = true
 metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projectiles/fire2"]
@@ -341,7 +343,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.262123, 0, 0.965034, 0, 1, 0, -0.965034, 0, -0.262123, 0, 0, 0)
 material_override = ExtResource("6_p5xdv")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_0s0dm")
+mesh = SubResource("ImmediateMesh_b456y")
 skeleton = NodePath("../..")
 script = ExtResource("7_0fhlj")
 fromWidth = 1.0
@@ -373,6 +375,7 @@ metadata/_custom_type_script = "uid://djbdqs30gbu1p"
 [node name="fire3" type="Area3D" parent="projectiles"]
 transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 0, 0, 0)
 script = ExtResource("1_vcbfe")
+collideWithEnvironment = true
 metadata/_custom_type_script = "uid://cxd1ydxs472kg"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="projectiles/fire3"]
@@ -399,7 +402,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(-0.262123, 0, 0.965034, 0, 1, 0, -0.965034, 0, -0.262123, 0, 0, 0)
 material_override = ExtResource("6_p5xdv")
 cast_shadow = 0
-mesh = SubResource("ImmediateMesh_f8iwk")
+mesh = SubResource("ImmediateMesh_yuv5j")
 skeleton = NodePath("../..")
 script = ExtResource("7_0fhlj")
 fromWidth = 1.0

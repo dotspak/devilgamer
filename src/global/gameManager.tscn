@@ -377,7 +377,7 @@ bg_color = Color(0.384314, 0.0196078, 0, 1)
 expand_margin_top = 2.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qbj2a"]
-blend_mode = 4
+blend_mode = 3
 
 [sub_resource type="Gradient" id="Gradient_dmym8"]
 colors = PackedColorArray(0.900781, 0.900781, 0.900781, 1, 1, 1, 1, 1)
@@ -404,6 +404,7 @@ tangential_accel_max = 30.0
 scale_min = 0.6
 scale_max = 1.5
 scale_curve = SubResource("CurveTexture_bpcc3")
+color = Color(1.2, 1.2, 1.2, 1)
 color_initial_ramp = SubResource("GradientTexture1D_60syl")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bdi3q"]
@@ -1067,9 +1068,9 @@ expand_mode = 1
 [node name="bottombar" type="ColorRect" parent="UI/focusBars"]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
-offset_top = 472.0
+offset_top = 472.002
 offset_right = 896.0
-offset_bottom = 504.0
+offset_bottom = 504.002
 color = Color(0, 0, 0, 1)
 
 [node name="grad" type="TextureRect" parent="UI/focusBars/bottombar"]
@@ -1197,7 +1198,6 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="bossBar" type="CenterContainer" parent="UI/battleHud"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
