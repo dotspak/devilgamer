@@ -264,7 +264,7 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		snap_down_to_stairs()
 	
-	if moveDir.length() > 0.2 && stateMachine.is_state("run"): lastMoveDir = moveDir
+	if moveDir.length() > 0.2 && stateMachine.is_state("run") && !usingSkill: lastMoveDir = moveDir
 
 
 func movement_input() -> bool:
@@ -288,7 +288,7 @@ func move(delta : float) -> void:
 	
 	var angle : float = 0
 	if !movingToTarget:
-		if  !skillTarget:
+		if !skillTarget:
 			angle = Vector3.BACK.signed_angle_to(lastMoveDir, Vector3.UP)
 			model.rotation.y = lerp_angle(model.rotation.y, angle, rotationSpeed * delta)
 		elif velocity != Vector3.ZERO:
@@ -687,3 +687,15 @@ func inventory_updated(_node : Node) -> void:
 		if n is Gear:
 			updatedInvetory.append(n)
 	GameManager.battleBar.gear = updatedInvetory
+
+
+func use_action(scene : PackedScene) -> void:
+	var camForward : Vector3 = mainCam.global_basis.z
+	camForward  = camForward.normalized()
+	castPosition.look_at(castPosition.global_transform.origin + camForward, Vector3.UP)
+	
+	var playerRot : Vector3 = -camForward
+	playerRot.y = 0
+	lastMoveDir = playerRot
+
+	super(scene)
