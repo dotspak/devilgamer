@@ -146,10 +146,6 @@ func _unhandled_input(event : InputEvent) -> void:
 					model.cameraEggTimer.start()
 					model.cameraEggTimer.timeout.connect(camera_look_egg)
 
-		if Input.is_action_pressed("skill_cast"):
-			if should_use_skill():
-				use_action(selectedAction)
-
 		# handles mouse camera control
 		if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			if inputAllowed:
@@ -203,6 +199,10 @@ func _physics_process(delta: float) -> void:
 				if !targetBodies.has(skillTarget):
 					print("looking for new target")
 					skillTarget = get_closest_target()
+		
+		if Input.is_action_pressed("skill_cast"):
+			if should_use_skill():
+				use_action(selectedAction)
 		
 		# handle drowning logic
 		if headInWater: breathTimer -= delta

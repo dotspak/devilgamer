@@ -35,6 +35,13 @@ var floorButton : Callable = set_floor_pos
 @onready var particleFloor : GPUParticlesCollisionBox3D = %floor
 @onready var floorScanner : RayCast3D = %RayCast3D
 
+func _ready():
+	var deleteTimer : Timer = Timer.new()
+	deleteTimer.timeout.connect(queue_free)
+	add_child(deleteTimer)
+	deleteTimer.start(3)
+
+
 func spawn(_bloodAmount : float = 1, _color : Color = DEF_COLOR, permanent : bool = false) -> void:
 	emitting = false
 	bloodAmount = _bloodAmount

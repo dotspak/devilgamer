@@ -31,7 +31,7 @@ func _ready():
 	collision_mask = 16
 
 	if collideWithEnvironment:
-		set_collision_layer_value(1, true)
+		set_collision_mask_value(1, true)
 
 	if timeout > 0:
 		var deleteTimer : Timer = Timer.new()
@@ -39,7 +39,6 @@ func _ready():
 		deleteTimer.timeout.connect(stop)
 		add_child(deleteTimer)
 		deleteTimer.start()
-		#add_child(timer_setup(stop, timeout))
 	
 	
 func spawn(_caster = null, _target = null) -> void:
@@ -80,8 +79,12 @@ func stop() -> void:
 	queue_free()
 
 
+func spawn_hit_effect() -> void:
+	pass
+
+
 func entity_hit(entity : Entity) -> void:
-	if entity.stats:
+	if entity_hit_filter(entity) && entity.stats:
 		entity.take_damage(skill.calc_damage(caster), caster.stats, skill.dmgType)
 
 
@@ -95,3 +98,14 @@ func timer_setup(_onTimeout : Callable, time : float) -> Timer:
 	add_child(timer)
 	timer.start(time)
 	return timer
+
+
+func entity_hit_filter(body : Node3D) -> bool:
+	if caster:
+		if !caster is OWPlayer:
+			if body is OWPlayer:
+				return true
+		else:
+			if !body is OWPlayer:
+				return true
+	return false

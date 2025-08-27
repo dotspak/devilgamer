@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d0fsn8bk04x4t" path="res://textures/tex_noise2.png" id="3_2bgaw"]
 [ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="4_efir6"]
 [ext_resource type="Script" uid="uid://c1f0esp0hdccy" path="res://addons/Trail3D.gd" id="5_gnbsw"]
-[ext_resource type="Script" uid="uid://do2a4kt4aroht" path="res://src/battle/actionMods/mod_homing.gd" id="8_2q8il"]
+[ext_resource type="Script" uid="uid://djbdqs30gbu1p" path="res://src/battle/actionMods/mod_projectile.gd" id="8_2q8il"]
 
 [sub_resource type="Resource" id="Resource_2q8il"]
 script = ExtResource("2_gnbsw")
@@ -220,8 +220,7 @@ libraries = {
 }
 autoplay = "rot"
 
-[node name="homingMod" type="Node" parent="."]
+[node name="ProjectileMod" type="Node" parent="."]
 script = ExtResource("8_2q8il")
-homingStrength = 50.0
 moveSpeed = 50.0
-metadata/_custom_type_script = "uid://bb7bbdkd8x6lt"
+metadata/_custom_type_script = "uid://djbdqs30gbu1p"
