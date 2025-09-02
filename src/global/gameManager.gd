@@ -258,6 +258,12 @@ func change_area_fade() -> void:
 	await fadein_screen(1, Color.WHITE)
 
 
+func load_terminal() -> void:
+	var terminal : CanvasLayer = load("res://ui/ui_terminalScreen.tscn").instantiate()
+	if player: player.freeze()
+	set_current_scene(terminal)
+
+
 # loads the passed area (to) coming from the previous area (from)
 func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> void:
 	print("attempting to load ", to, ", from ", from)

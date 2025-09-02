@@ -132,6 +132,12 @@ func create_file(time : float = 0.3) -> void:
 	pitchTW.tween_property(music, "pitch_scale", 1.0, time * 0.2).from(pitch)
 
 
+func new_game() -> void:
+	await create_file(1.0)
+	GameManager.load_terminal()
+	queue_free()
+
+
 func end_title() -> void:
 	set_input(false)
 	titleOptions.get_child(0).release_focus()
@@ -139,16 +145,15 @@ func end_title() -> void:
 	titleOptions.get_child(2).release_focus()
 	
 	AudioManager.fade_bgm(1.8)
-	GameManager.run_area_generation()
 	await GameManager.fadeout_screen(2.0, Color.BLACK)
 
 	GameManager.player.un_freeze()
 	GameManager.player.show()
 	hide()
 
-	GameManager.load_area(GameManager.startingArea, "", Color.BLACK)
 	GameManager.areaLoaded.connect(queue_free)
-
+	GameManager.load_area(GameManager.startingArea, "", Color.BLACK)
+	
 
 func set_input(val) -> void:
 	set_process_input(val)
@@ -171,12 +176,13 @@ func button_focus() -> void:
 
 
 func _on_continue_pressed() -> void:
-	if hasFile: 
+	GameManager.run_area_generation()
+	if hasFile:
 		AudioManager.play_ui_sfx("confirm")
 		end_title()
 	else:
 		hasFile = true
-		await create_file(1.0)
+		new_game()
 		
 
 func _on_reset_pressed() -> void:

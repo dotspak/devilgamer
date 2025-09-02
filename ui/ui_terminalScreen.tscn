@@ -293,13 +293,11 @@ metadata/_edit_lock_ = true
 
 [node name="bgs" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_s82og")
-autoplay = true
 bus = &"BGS"
 parameters/looping = true
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_rtka1")
-autoplay = true
 bus = &"BGM"
 parameters/looping = true
 
@@ -428,7 +426,6 @@ layout_mode = 2
 text = "> Dialogue... "
 autowrap_mode = 0
 visible_characters_behavior = 0
-seconds_per_step = 0.04
 seconds_per_pause_step = 0.2
 
 [node name="textContainer" type="VBoxContainer" parent="terminal/mainText/text"]
@@ -472,6 +469,7 @@ caret_blink = true
 caret_force_displayed = true
 
 [node name="border" type="MarginContainer" parent="terminal"]
+unique_name_in_owner = true
 layout_mode = 2
 offset_right = 896.0
 offset_bottom = 504.0

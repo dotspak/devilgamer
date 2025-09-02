@@ -2,6 +2,7 @@
 # clear_text() - clears all text from the terminal
 # player_text_input() - gives player text input
 # get_inputted_text() - gets the player's text
+# load_next_area() - loads the passed area
 
 ~ intro
 > Here is the test for the terminal text.
@@ -26,6 +27,7 @@ do clear_text()
 > This one is important so hopefully it works!
 do player_text_input()
 > Wow nice input. You typed\: {{get_inputted_text()}}
-do clear_text()
 
+do close_terminal()
+do load_next_area()
 => END

@@ -1,6 +1,9 @@
-extends Node
+extends CanvasLayer
+class_name TerminalScreen
 
 @export var SCRIPT : DialogueResource
+@export var next_action: StringName = &"ui_accept"
+@export var skip_action: StringName = &"ui_cancel"
 
 @onready var header : RichTextLabel = %header
 @onready var originalText : DialogueLabel = %terminalText
@@ -8,34 +11,88 @@ extends Node
 @onready var textInput : LineEdit = %playerInput
 @onready var modelDisplayer : AnimationPlayer = %modelDisplayer
 @onready var terminal : Control = %terminal
+@onready var border : Control = %border
+
+@onready var bgs : AudioStreamPlayer = $bgs
+@onready var bgm : AudioStreamPlayer = $bgm
+
+@onready var options : DialogueResponsesMenu = %options
+
+var states: Array = [self]
+var is_waiting_for_input : bool = false
+var dialogue_line : DialogueLine :
+	set(value):
+		if value:
+			dialogue_line = value
+			apply_dialogue_line()
+	get:
+		return dialogue_line
+
+var will_hide_balloon : bool = false
+var mutation_cooldown: Timer = Timer.new()
 
 var currentText : DialogueLabel
 
+signal introFinished
+
 func _ready() -> void:
 	clear_text()
-
-	#remove_child(terminal)
-	#GameManager.add_ui(terminal)
-	GameManager.player.freeze()
-
-	await intro_animation()
-
 	mutation_cooldown.timeout.connect(_on_mutation_cooldown_timeout)
 	add_child(mutation_cooldown)
 
-	call_deferred("start", "intro")
+	await intro_animation()
+	trigger_terminal_scene()
+
 
 func intro_animation() -> void:
 	header.visible_ratio = 0
-	await get_tree().create_timer(1).timeout
+	border.modulate.a = 0	
+
+	await get_tree().create_timer(1.0).timeout
 
 	var TW : Tween = create_tween()
+	TW.tween_property(border, "modulate:a", 1, 0.5).from(0)
 	TW.tween_property(header, "visible_ratio", 1, 1).from(0)
+
+	play_audio(1, 0)
+
 	await TW.finished
 	await get_tree().create_timer(2).timeout
-
 	await show_model()
 
+	introFinished.emit()
+
+
+func play_audio(to : float, from : float) -> void:
+	var tween : Tween = create_tween().set_parallel()
+	tween.tween_property(bgs, "volume_linear", to, 0.5).from(from)
+	tween.tween_property(bgm, "volume_linear", to, 0.5).from(from)
+
+	if !bgs.playing: bgs.play()
+	if !bgm.playing: bgm.play()
+
+
+func close_terminal() -> void:
+	play_audio(0, 1)
+
+	var TW : Tween = create_tween()
+	TW.tween_property(header, "visible_ratio", 0, 1).from(1)
+	TW.tween_property(border, "modulate:a", 0, 0.5).from(1)
+
+	clear_text()
+	hide_model()
+	await TW.finished
+
+
+func load_next_area(area : String = GameManager.startingArea) -> void:
+	GameManager.fadeout_screen(0)
+	GameManager.player.un_freeze()
+	GameManager.player.show()
+	GameManager.areaLoaded.connect(queue_free)
+	GameManager.load_area(area, "", Color.BLACK)
+
+
+func trigger_terminal_scene(title : String = "intro") -> void: call_deferred("start", title) 
 
 # region Controls
 func enable_text_input() -> void:
@@ -81,23 +138,7 @@ func clear_text() -> void:
 
 
 # region Dialogue
-@export var next_action: StringName = &"ui_accept"
-@export var skip_action: StringName = &"ui_cancel"
 
-@onready var options : DialogueResponsesMenu = %options
-
-var states: Array = [self]
-var is_waiting_for_input : bool = false
-var dialogue_line : DialogueLine :
-	set(value):
-		if value:
-			dialogue_line = value
-			apply_dialogue_line()
-	get:
-		return dialogue_line
-
-var will_hide_balloon : bool = false
-var mutation_cooldown: Timer = Timer.new()
 
 func start(title : String) -> void: 
 	self.dialogue_line = await SCRIPT.get_next_dialogue_line(title, states)
