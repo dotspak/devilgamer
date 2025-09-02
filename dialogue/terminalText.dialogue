@@ -1,0 +1,31 @@
+# functions:
+# clear_text() - clears all text from the terminal
+# player_text_input() - gives player text input
+# get_inputted_text() - gets the player's text
+
+~ intro
+> Here is the test for the terminal text.
+> Hopefully this works well.
+> Ok seems like its working great, lets test clearing everything.
+do clear_text()
+
+> Ok the text should have cleared and this should now be typing.
+> Hopefully thats going great.
+do clear_text()
+
+> Ok now we will try letting the player make a choice lets see how that goes.
+- EASY
+	> Cool you picked EASY.
+- MEDIUM
+	> Cool you picked MEDIUM.
+- HARD
+	> Cool you picked HARD.
+do clear_text()
+
+> Ok finally, we will try player text input.
+> This one is important so hopefully it works!
+do player_text_input()
+> Wow nice input. You typed\: {{get_inputted_text()}}
+do clear_text()
+
+=> END

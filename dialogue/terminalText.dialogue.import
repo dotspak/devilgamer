@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bppwde21ny73d"
+path="res://.godot/imported/terminalText.dialogue-a33a1753ea21fd59cdae6256d91f82cb.tres"
+
+[deps]
+
+source_file="res://dialogue/terminalText.dialogue"
+dest_files=["res://.godot/imported/terminalText.dialogue-a33a1753ea21fd59cdae6256d91f82cb.tres"]
+
+[params]
+
+defaults=true

@@ -105,10 +105,12 @@ pitchRange = Vector2(1, 1.2)
 metadata/_custom_type_script = "uid://jvvmknmqbywi"
 
 [node name="Terminal" type="AudioStreamPlayer" parent="talkSounds"]
-stream = ExtResource("16_rm15o")
-pitch_scale = 1.12601
+stream = ExtResource("17_5hw30")
+volume_db = -8.0
+pitch_scale = 0.951273
 script = ExtResource("4_cbkp8")
 talkSounds = Array[AudioStream]([ExtResource("17_5hw30"), ExtResource("18_w5w26"), ExtResource("16_rm15o")])
+pitchRange = Vector2(0.85, 1)
 metadata/_custom_type_script = "uid://jvvmknmqbywi"
 
 [node name="uiSounds" type="Node" parent="."]

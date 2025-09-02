@@ -281,7 +281,7 @@ skill_slot4={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://dialogue/testDialogue/test_npc1.dialogue", "res://dialogue/bathroom/bath_npc_woundedGirl.dialogue", "res://dialogue/chestOpen.dialogue", "res://dialogue/elevator.dialogue", "res://dialogue/hubDialogue.dialogue")
+locale/translations_pot_files=PackedStringArray("res://dialogue/testDialogue/test_npc1.dialogue", "res://dialogue/bathroom/bath_npc_woundedGirl.dialogue", "res://dialogue/chestOpen.dialogue", "res://dialogue/elevator.dialogue", "res://dialogue/hubDialogue.dialogue", "res://dialogue/terminalText.dialogue")
 
 [layer_names]
 

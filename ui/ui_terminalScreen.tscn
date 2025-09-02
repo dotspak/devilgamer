@@ -1,7 +1,8 @@
-[gd_scene load_steps=36 format=3 uid="uid://iflfrbxiqxqo"]
+[gd_scene load_steps=37 format=3 uid="uid://iflfrbxiqxqo"]
 
 [ext_resource type="Script" uid="uid://74i7swymbqit" path="res://ui/ui_terminal_screen.gd" id="1_2tvuy"]
 [ext_resource type="PackedScene" uid="uid://6wluy6gfwgjc" path="res://assets/models/littleDevilBaby.glb" id="1_8fryo"]
+[ext_resource type="Resource" uid="uid://bppwde21ny73d" path="res://dialogue/terminalText.dialogue" id="2_kk5ac"]
 [ext_resource type="AudioStream" uid="uid://ypi7gkfowxtx" path="res://assets/audio/bgs/bgs_terminal.ogg" id="2_s82og"]
 [ext_resource type="Shader" uid="uid://h7ksbluwgx4e" path="res://shaders/transition.gdshader" id="2_yfj3l"]
 [ext_resource type="AudioStream" uid="uid://bylkir2qeng50" path="res://assets/audio/bgm/bgm_terminal.ogg" id="3_rtka1"]
@@ -240,6 +241,10 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s82og"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81hap"]
 content_margin_left = 1.0
@@ -254,6 +259,10 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtka1"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7me0c"]
 bg_color = Color(1, 1, 1, 1)
@@ -266,8 +275,10 @@ border_width_bottom = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8d7cd"]
 blend_mode = 3
 
-[node name="terminalScenes" type="Node"]
+[node name="terminalScenes" type="CanvasLayer"]
+layer = 100
 script = ExtResource("1_2tvuy")
+SCRIPT = ExtResource("2_kk5ac")
 
 [node name="bg" type="ColorRect" parent="."]
 z_index = -10
@@ -293,6 +304,7 @@ bus = &"BGM"
 parameters/looping = true
 
 [node name="terminal" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -326,6 +338,7 @@ stretch_shrink = 2
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
+gui_disable_input = true
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
@@ -373,6 +386,7 @@ speed_scale = 0.1
 [node name="Camera3D" type="Camera3D" parent="terminal/mainText/models/SubViewport"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 2.5)
 projection = 1
+current = true
 size = 3.4
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="terminal/mainText/models/SubViewport"]
@@ -401,45 +415,44 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_7me0c")
 bbcode_enabled = true
 text = "--------------------------------------
 DEVILGAMER 0.0
-© 2009 Altlas Inc.
+© Altlas Inc.
 --------------------------------------"
 fit_content = true
 scroll_active = false
 
 [node name="terminalText" parent="terminal/mainText/text" instance=ExtResource("8_rtka1")]
 unique_name_in_owner = true
+visible = false
 clip_contents = false
 layout_mode = 2
-size_flags_vertical = 3
 text = "> Dialogue... "
 autowrap_mode = 0
 visible_characters_behavior = 0
 seconds_per_step = 0.04
 seconds_per_pause_step = 0.2
 
-[node name="input" type="BoxContainer" parent="terminal/mainText/text"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-size_flags_vertical = 8
-
-[node name="options" type="VBoxContainer" parent="terminal/mainText/text/input" node_paths=PackedStringArray("response_template")]
+[node name="textContainer" type="VBoxContainer" parent="terminal/mainText/text"]
 unique_name_in_owner = true
-visible = false
+layout_mode = 2
+
+[node name="options" type="VBoxContainer" parent="terminal/mainText/text" node_paths=PackedStringArray("response_template")]
+unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 0
 alignment = 2
 script = ExtResource("9_j5x05")
 response_template = NodePath("Button")
 
-[node name="Button" type="Button" parent="terminal/mainText/text/input/options"]
+[node name="Button" type="Button" parent="terminal/mainText/text/options"]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_styles/focus = SubResource("StyleBoxFlat_xnmxw")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s82og")
-text = "EASY"
-alignment = 0
+text = "EXAMPLE"
+alignment = 2
 
-[node name="playerInput" type="LineEdit" parent="terminal/mainText/text/input"]
+[node name="playerInput" type="LineEdit" parent="terminal/mainText/text"]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(512, 16)
@@ -486,6 +499,9 @@ color = Color(0.3987, 0.697656, 0.399753, 1)
 
 [node name="destructionEffect" type="GPUParticles2D" parent="."]
 
+[connection signal="gui_input" from="terminal" to="." method="_on_terminal_gui_input"]
 [connection signal="timeout" from="terminal/mainText/models/SubViewport/devil/baby/Timer" to="terminal/mainText/models/SubViewport/devil" method="_on_timer_timeout"]
+[connection signal="spoke" from="terminal/mainText/text/terminalText" to="." method="_on_terminal_text_spoke"]
+[connection signal="response_selected" from="terminal/mainText/text/options" to="." method="_on_options_response_selected"]
 
 [editable path="terminal/mainText/models/SubViewport/devil/baby"]

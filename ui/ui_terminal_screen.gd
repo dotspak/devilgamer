@@ -1,25 +1,32 @@
 extends Node
 
-@onready var header : RichTextLabel = %header
-@onready var text : RichTextLabel = %terminalText
+@export var SCRIPT : DialogueResource
 
+@onready var header : RichTextLabel = %header
+@onready var originalText : DialogueLabel = %terminalText
+@onready var textContainer : VBoxContainer = %textContainer
 @onready var textInput : LineEdit = %playerInput
 @onready var modelDisplayer : AnimationPlayer = %modelDisplayer
+@onready var terminal : Control = %terminal
+
+var currentText : DialogueLabel
 
 func _ready() -> void:
 	clear_text()
 
-	var terminal : Control = $terminal
-	remove_child(terminal)
-	GameManager.add_ui(terminal)
+	#remove_child(terminal)
+	#GameManager.add_ui(terminal)
 	GameManager.player.freeze()
 
 	await intro_animation()
 
-	enable_text_input()
+	mutation_cooldown.timeout.connect(_on_mutation_cooldown_timeout)
+	add_child(mutation_cooldown)
 
+	call_deferred("start", "intro")
 
 func intro_animation() -> void:
+	header.visible_ratio = 0
 	await get_tree().create_timer(1).timeout
 
 	var TW : Tween = create_tween()
@@ -30,6 +37,7 @@ func intro_animation() -> void:
 	await show_model()
 
 
+# region Controls
 func enable_text_input() -> void:
 	textInput.text = ""
 	textInput.show()
@@ -41,6 +49,17 @@ func disable_text_input() -> void:
 	textInput.release_focus()
 
 
+func player_text_input() -> void:
+	enable_text_input()
+	await textInput.text_submitted
+	disable_text_input()
+
+
+func get_inputted_text() -> String:
+	if textInput.visible: disable_text_input()
+	return textInput.text
+
+
 func show_model() -> void:
 	modelDisplayer.play("toggleVisibility")
 	await modelDisplayer.animation_finished
@@ -50,10 +69,121 @@ func hide_model() -> void:
 	await modelDisplayer.animation_finished
 
 
-func clear_text() -> void: text.text = ""
+func clear_text() -> void:
+	for n : DialogueLabel in textContainer.get_children():
+		var tween : Tween = create_tween()
+		tween.tween_property(n, "visible_ratio", 0, 0.3)
+		tween.finished.connect(n.queue_free)
+	
+	await get_tree().create_timer(0.4).timeout
+
+# endregion
 
 
-# -------------------------------------------------
-# Dialogue Manager Handling
-# -------------------------------------------------
-@onready var options : DialogueResponse
+# region Dialogue
+@export var next_action: StringName = &"ui_accept"
+@export var skip_action: StringName = &"ui_cancel"
+
+@onready var options : DialogueResponsesMenu = %options
+
+var states: Array = [self]
+var is_waiting_for_input : bool = false
+var dialogue_line : DialogueLine :
+	set(value):
+		if value:
+			dialogue_line = value
+			apply_dialogue_line()
+	get:
+		return dialogue_line
+
+var will_hide_balloon : bool = false
+var mutation_cooldown: Timer = Timer.new()
+
+func start(title : String) -> void: 
+	self.dialogue_line = await SCRIPT.get_next_dialogue_line(title, states)
+	is_waiting_for_input = false
+
+	DialogueManager.dialogue_started.emit(SCRIPT)
+	DialogueManager.bridge_dialogue_started.emit(SCRIPT)
+
+func next(next_id : String) -> void: 
+	dialogue_line = await SCRIPT.get_next_dialogue_line(next_id, states)
+
+func _on_terminal_gui_input(event: InputEvent) -> void:
+	if !currentText: return
+
+	# See if we need to skip typing of the dialogue
+	if currentText.is_typing:
+		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
+		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
+		if mouse_was_clicked or skip_button_was_pressed:
+			get_viewport().set_input_as_handled()
+			currentText.skip_typing()
+			return
+
+	if not is_waiting_for_input: return
+	if dialogue_line.responses.size() > 0: return
+
+	# When there are no response options the balloon itself is the clickable thing
+	get_viewport().set_input_as_handled()
+
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		next(dialogue_line.next_id)
+	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == terminal:
+		next(dialogue_line.next_id)
+
+
+func _on_terminal_text_spoke(letter: String, _letter_index: int, _speed: float) -> void:
+	if !letter in [".", " ", ",", "!", "?"]: 
+		AudioManager.play_talk_sfx("Terminal")
+
+func _on_options_response_selected(response: DialogueResponse) -> void: next(response.next_id)
+
+func apply_dialogue_line() -> void:
+	currentText = originalText.duplicate()
+	currentText.text = ""
+	textContainer.add_child(currentText)
+	currentText.show()
+
+	mutation_cooldown.stop()
+
+	is_waiting_for_input = false
+	terminal.focus_mode = Control.FOCUS_ALL
+	terminal.grab_focus()
+
+	options.hide()
+	options.responses = dialogue_line.responses
+
+	currentText.hide()
+	currentText.dialogue_line = dialogue_line
+
+	# Show our balloon
+	terminal.show()
+	will_hide_balloon = false
+
+	currentText.show()
+	if not dialogue_line.text.is_empty():
+		currentText.type_out()
+		await currentText.finished_typing
+
+	# Wait for input
+	if dialogue_line.responses.size() > 0:
+		terminal.focus_mode = Control.FOCUS_NONE
+		options.show()
+	elif dialogue_line.time != "":
+		var time = dialogue_line.text.length() * 0.02 if dialogue_line.time == "auto" else dialogue_line.time.to_float()
+		await get_tree().create_timer(time).timeout
+		next(dialogue_line.next_id)
+	else:
+		is_waiting_for_input = true
+		terminal.focus_mode = Control.FOCUS_ALL
+		terminal.grab_focus()
+
+
+func _on_mutation_cooldown_timeout() -> void:
+	if will_hide_balloon:
+		will_hide_balloon = false
+		terminal.hide()
+
+
+# endregion
