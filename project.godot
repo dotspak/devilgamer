@@ -14,6 +14,7 @@ config/name="Devilgamer"
 config/tags=PackedStringArray("main", "rpg")
 run/main_scene="uid://2obewctec8iv"
 config/features=PackedStringArray("4.4", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="uid://bckdxeqa5ykr3"
 
 [audio]
@@ -307,6 +308,8 @@ anti_aliasing/screen_space_roughness_limiter/enabled=false
 textures/decals/filter=2
 textures/light_projectors/filter=2
 environment/volumetric_fog/use_filter=0
+environment/defaults/default_clear_color=Color(0.166406, 0.166406, 0.166406, 1)
+viewport/transparent_background=true
 
 [shader_globals]
 

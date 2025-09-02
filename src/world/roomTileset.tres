@@ -1,0 +1,27 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://cijwxd251g264"]
+
+[ext_resource type="Texture2D" uid="uid://ha64dd5f4b0c" path="res://icons/roomMapTileset.png" id="1_vplub"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eb084"]
+texture = ExtResource("1_vplub")
+texture_region_size = Vector2i(8, 8)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 1
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 2
+
+[resource]
+tile_size = Vector2i(8, 8)
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "floor"
+terrain_set_0/terrain_0/color = Color(1, 0.983414, 0.912542, 1)
+terrain_set_0/terrain_1/name = "door"
+terrain_set_0/terrain_1/color = Color(0.981759, 1, 0.366632, 1)
+terrain_set_0/terrain_2/name = "wall"
+terrain_set_0/terrain_2/color = Color(0, 0, 0, 1)
+sources/0 = SubResource("TileSetAtlasSource_eb084")

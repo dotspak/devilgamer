@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ceyl54ufandlq"]
+
+[ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_p6mqj"]
+[ext_resource type="TileSet" uid="uid://cijwxd251g264" path="res://src/world/roomTileset.tres" id="2_w1m3c"]
+[ext_resource type="Script" uid="uid://dc0bguqhdwog8" path="res://test/generationTest/roomTileMap.gd" id="3_eb084"]
+
+[node name="RoomInstance" type="Node3D"]
+script = ExtResource("1_p6mqj")
+metadata/_custom_type_script = "uid://b2bprkgeq3r1n"
+
+[node name="RoomTileMap" type="TileMapLayer" parent="."]
+tile_set = ExtResource("2_w1m3c")
+script = ExtResource("3_eb084")
+metadata/_custom_type_script = "uid://dc0bguqhdwog8"

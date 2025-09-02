@@ -57,6 +57,8 @@ func _unhandled_input(_event: InputEvent) -> void:
 				isFullMenu = true
 				phoneOption.release_focus()
 				play_transition("fullScreenZoom")
+			if Input.is_action_just_pressed("ui_cancel"):
+				GameManager.display_menu()
 		else:
 			if Input.is_action_just_pressed("ui_cancel"):
 				AudioManager.play_ui_sfx("cancel")

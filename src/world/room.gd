@@ -10,6 +10,7 @@ class_name RoomInstance
 @export_group("Room Properties")
 @export var roomName : String = "room"
 @export_multiline var description : String = "A room"
+@export var tilemap : RoomTileMap
 
 @export_group("Room Collections")
 @export var chests : Array[Node3D]
