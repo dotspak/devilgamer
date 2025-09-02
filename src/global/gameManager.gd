@@ -140,6 +140,7 @@ func spawn_player(spawnPos : Vector3 = Vector3.ZERO, spawnRot : float = 0) -> OW
 	player.model.rotation = Vector3(0, spawnRot, 0)
 
 	await get_tree().process_frame
+	player.stateMachine.transition_to("idle")
 	player.camera.make_current()
 
 	return player

@@ -131,20 +131,20 @@ func _ready() -> void:
 func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:
 		# handles the easter egg where Epia looks at the camera
-		if Input.is_anything_pressed():
-			if mainCam.spring_length != defaultSpringLength:
-				model.idle()
-				change_zoom(1, 0.2)
-				create_tween().tween_property(mainCam, "follow_offset:y", defaultCamOffset.y, 0.2)
-			if model is EpiaSkin:
-				if !model.cameraEggTimer.is_stopped():
-					model.cameraEggTimer.stop()
-					model.cameraEggTimer.timeout.disconnect(camera_look_egg)
-		else:
-			if model is EpiaSkin:
-				if model.cameraEggTimer.is_stopped():
-					model.cameraEggTimer.start()
-					model.cameraEggTimer.timeout.connect(camera_look_egg)
+		# if Input.is_anything_pressed():
+		# 	if mainCam.spring_length != defaultSpringLength:
+		# 		model.idle()
+		# 		change_zoom(1, 0.2)
+		# 		create_tween().tween_property(mainCam, "follow_offset:y", defaultCamOffset.y, 0.2)
+		# 	if model is EpiaSkin:
+		# 		if !model.cameraEggTimer.is_stopped():
+		# 			model.cameraEggTimer.stop()
+		# 			model.cameraEggTimer.timeout.disconnect(camera_look_egg)
+		# else:
+		# 	if model is EpiaSkin:
+		# 		if model.cameraEggTimer.is_stopped():
+		# 			model.cameraEggTimer.start()
+		# 			model.cameraEggTimer.timeout.connect(camera_look_egg)
 
 		# handles mouse camera control
 		if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:

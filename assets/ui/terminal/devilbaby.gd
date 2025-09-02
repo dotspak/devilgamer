@@ -18,6 +18,3 @@ func face_change(newFace : int) -> void:
     await anim.animation_finished
     faceSprite.frame = face
     $baby/Timer.start()
-
-
-

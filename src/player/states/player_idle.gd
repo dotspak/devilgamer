@@ -7,6 +7,7 @@ func enter() -> void:
     player.stairRayAhead.enabled = true
     player.stairRayDown.enabled = true
 
+
 func physics_update(delta : float) -> void:
     player.ledge_detect()
     player.move(delta)
@@ -16,3 +17,20 @@ func physics_update(delta : float) -> void:
 
     elif Input.is_action_just_pressed("action"):
         stateMachine.transition_to("roll")
+
+    
+    # epia camera look easter egg
+    if Input.is_anything_pressed():
+        if player.mainCam.spring_length != player.defaultSpringLength:
+            player.model.idle()
+            player.change_zoom(1, 0.2)
+            create_tween().tween_property(player.mainCam, "follow_offset:y", player.defaultCamOffset.y, 0.2)
+            if player.model is EpiaSkin:
+                if !player.model.cameraEggTimer.is_stopped():
+                    player.model.cameraEggTimer.stop()
+                    player.model.cameraEggTimer.timeout.disconnect(player.camera_look_egg)
+        else:
+            if player.model is EpiaSkin:
+                if player.model.cameraEggTimer.is_stopped():
+                    player.model.cameraEggTimer.start()
+                    player.model.cameraEggTimer.timeout.connect(player.camera_look_egg)

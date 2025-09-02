@@ -34,3 +34,8 @@ TestJerry: [#mood=grumpy] I'm grumpy here cause I have moods >:(.
 TestJerry: [#mood=happy] I'm happy here cause I have moods :)!
 TestJerry: [#mood=wtf] I shouldn't have this mood so it uses default.
 => END
+
+~ terminalTest
+Terminal: Look, i'm talking like a terminal.
+Terminal: Isn't that really really cooL?
+Terminal: Let me know how this sounds.

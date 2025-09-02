@@ -162,7 +162,7 @@ script = ExtResource("3_35y5e")
 interactArea = NodePath("interactRange")
 popupPos = NodePath("PopupPos")
 dialogueResource = ExtResource("4_35y5e")
-startingTitle = "jerry"
+startingTitle = "terminalTest"
 
 [node name="mesh" type="MeshInstance3D" parent="NPC4"]
 mesh = SubResource("CapsuleMesh_a3o7o")
