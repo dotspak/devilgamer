@@ -5,6 +5,96 @@
 # load_next_area() - loads the passed area
 
 ~ intro
+> [wait=2][color=f50]Warning\: Connection is not properly stabilized.
+> Defaulting to automatic stabilization...
+> [wait=2]Attempting to stabilize...
+> Stabilzing in 3[wait=1] 2[wait=2] 1
+> [next=1]
+> ...[next=2]
+> [next=1]
+> Stabilization failed.
+> Attempting 2nd layer stabilization...
+> [wait=2]Attempting to stabilize..
+> Stabilzing in 3[wait=1] 2[wait=2] 1
+> [next=1]
+> ...[next=2]
+> [next=1]
+> Stabilization [wait=1]successful.
+> Proceeding...
+do clear_text()
+
+> [color=f00]Error Code 201\: Body inactive.
+> [next=1]
+> Automatic routing initiated.
+> Determining location of body[wait=1]...
+> [next=1]
+> Body located.
+> [color=f50]Warning\: Body in poor condition.
+> [color=f50]Unexpected outcomes are possible.
+> [color=f50]Proceeding...
+do clear_text()
+
+> Devilgamer is ready.
+> Testing comprehension functions.
+> If (CLIENT) is present, please select one of the following options\:
+- A
+- B
+- C
+> Comprehension adequate.
+> Proceeding...
+do clear_text()
+[next=3]
+
+> Hello?
+> Are you reading this alright?
+> Fantastic. 
+> Oh [wait=0.2]and, please forgive the comupter.
+> Communication is not what they are trained for.
+
+do clear_text()
+> On other matters...were you aware our automatic stabilization failed?
+> That's a rather peculiar outcome.
+> You must not be from Recura.
+> I'll be sure to make a note of that.
+> Is there anything you need to make your stay here more...comfortable?
+
+do player_text_input()
+> {{get_inputted_text()}}? [wait=1]Alright, I'll see what I can do.
+
+do clear_text()
+> Oh of course! I completely forgot.
+
+while GameFlags.playerName == ""
+	> To whom do I owe the pleasure of talking to?
+	do player_text_input()
+	> {{get_inputted_text()}}?
+	> Is that correct?
+	- YES
+		do GameFlags.playerName = get_inputted_text()
+	- NO
+		do clear_text()
+		> Then please, tell me again.
+> {{GameFlags.playerName}}.
+> Its a pleasure to meet you.
+> I hope you will enjoy your time with everyone.
+do clear_text()
+
+> Now before I let you go, I have a few questions I need you to answer.
+> Just basic things, nothing complicated.
+> Think of it like...a personality test.
+> It won't affect my opinion of you in any way, but its a vital part of my research.
+> One second, let me grab my questions.
+> ...
+> Ok!
+> Lets begin.
+do clear_text()
+
+
+do close_terminal()
+do load_next_area()
+=> END
+
+~ test
 > Here is the test for the terminal text.
 > Hopefully this works well.
 > Ok seems like its working great, lets test clearing everything.

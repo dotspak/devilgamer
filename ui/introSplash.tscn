@@ -1,0 +1,59 @@
+[gd_scene load_steps=5 format=3 uid="uid://hube6hx1tev6"]
+
+[ext_resource type="Script" uid="uid://c5psd80i2yyto" path="res://ui/intro_splash.gd" id="1_h45h0"]
+[ext_resource type="Texture2D" uid="uid://bckdxeqa5ykr3" path="res://icons/epiaIcon.png" id="1_r5npc"]
+[ext_resource type="FontFile" uid="uid://butbrkw87optm" path="res://assets/fonts/GamestationWarped.otf" id="2_h45h0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3lla3"]
+font = ExtResource("2_h45h0")
+font_size = 48
+outline_size = 4
+outline_color = Color(0.361166, 0.344683, 0.697656, 1)
+shadow_size = 8
+shadow_color = Color(0.361166, 0.344683, 0.697656, 1)
+shadow_offset = Vector2(2, 2)
+
+[node name="introSplash" type="CanvasLayer"]
+layer = 120
+script = ExtResource("1_h45h0")
+
+[node name="bg" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_lock_ = true
+
+[node name="spakLogo" type="HBoxContainer" parent="bg"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -37.5
+offset_bottom = 37.5
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="bg/spakLogo"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 0
+texture = ExtResource("1_r5npc")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="bg/spakLogo"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+
+[node name="Label" type="Label" parent="bg/spakLogo/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "dotspak"
+label_settings = SubResource("LabelSettings_3lla3")
+horizontal_alignment = 1
+vertical_alignment = 2

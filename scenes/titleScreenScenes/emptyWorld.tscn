@@ -154,7 +154,7 @@ _data = {
 
 [sub_resource type="Resource" id="Resource_x12yn"]
 script = ExtResource("3_p1rk6")
-duration = 1.0
+duration = 0.0
 transition = 0
 ease = 2
 

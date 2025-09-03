@@ -1,6 +1,8 @@
 @icon("res://icons/flagIcon.svg")
 extends Node
 
+var playerName : String = ""
+
 # General game flag control ----------------------------------------
 var FLAGS : Dictionary[String, Variant] = {
 	"testFlag" : true,

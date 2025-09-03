@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://2obewctec8iv"]
+[gd_scene load_steps=3 format=3 uid="uid://2obewctec8iv"]
 
 [ext_resource type="Script" uid="uid://bnqq832o8pyl2" path="res://boot.gd" id="1_hjvc4"]
+[ext_resource type="PackedScene" uid="uid://hube6hx1tev6" path="res://ui/introSplash.tscn" id="2_n76rq"]
 
 [node name="boot" type="Node"]
 editor_description = "boot screen"
@@ -14,3 +15,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="introSplash" parent="." instance=ExtResource("2_n76rq")]

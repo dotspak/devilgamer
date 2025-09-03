@@ -175,7 +175,7 @@ func _on_terminal_gui_input(event: InputEvent) -> void:
 
 
 func _on_terminal_text_spoke(letter: String, _letter_index: int, _speed: float) -> void:
-	if !letter in [".", " ", ",", "!", "?"]: 
+	if !letter in [">"]: 
 		AudioManager.play_talk_sfx("Terminal")
 
 func _on_options_response_selected(response: DialogueResponse) -> void: next(response.next_id)
