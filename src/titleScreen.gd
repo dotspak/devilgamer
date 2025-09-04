@@ -134,7 +134,7 @@ func create_file(time : float = 0.3) -> void:
 
 func new_game() -> void:
 	await create_file(1.0)
-	GameManager.load_terminal()
+	GameManager.load_terminal("intro")
 	queue_free()
 
 

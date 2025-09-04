@@ -64,10 +64,11 @@ func _process(_delta : float) -> void:
 
 	if Input.is_action_just_pressed("window_toggle"):
 		toggle_fullscreen()
+		
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("left_click"): Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton && event.pressed: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"): Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 	if mainMenu.visible:
@@ -258,10 +259,12 @@ func change_area_fade() -> void:
 	await fadein_screen(1, Color.WHITE)
 
 
-func load_terminal() -> void:
+func load_terminal(title : String) -> void:
 	var terminal : CanvasLayer = load("res://ui/ui_terminalScreen.tscn").instantiate()
+	terminal.targetTitle = title
 	if player: player.freeze()
-	set_current_scene(terminal)
+	dialogueWindow.add_child(terminal)
+	#set_current_scene(terminal)
 
 
 # loads the passed area (to) coming from the previous area (from)

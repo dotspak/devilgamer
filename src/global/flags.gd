@@ -15,7 +15,7 @@ func check_flag(flag : String):
 	return result
 
 
-func set_flag(flag : String, val) -> void:
+func set_flag(flag : String, val : Variant) -> void:
 	print(flag, " set to : ", str(val)) 
 	FLAGS[flag] = val
 

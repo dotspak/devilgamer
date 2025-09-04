@@ -5,17 +5,25 @@
 # load_next_area() - loads the passed area
 
 ~ intro
-> [wait=2][color=f50]Warning\: Connection is not properly stabilized.
-> Defaulting to automatic stabilization...
+[wait=2]> Session #{{random_session_tag()}} started.
+> Running session audit...
+> [next=1]
+> [color={{E}}]Error(s) or warning(s) found.
+> Proceeding with automatic cleanup.
+do clear_text()
+
+# stabilization section
+> [color={{W}}]Warning\: Connection not yet stabilized.
+> Attempting automatic stabilization...
 > [wait=2]Attempting to stabilize...
-> Stabilzing in 3[wait=1] 2[wait=2] 1
+> Stabilizing in 3[wait=1] 2[wait=2] 1
 > [next=1]
 > ...[next=2]
 > [next=1]
-> Stabilization failed.
-> Attempting 2nd layer stabilization...
+> [color={{E}}]Error Code 301\: Stabilization failed.
+> Defaulting to 2nd layer stabilization...
 > [wait=2]Attempting to stabilize..
-> Stabilzing in 3[wait=1] 2[wait=2] 1
+> Stabilizing in 3[wait=1] 2[wait=2] 1
 > [next=1]
 > ...[next=2]
 > [next=1]
@@ -23,29 +31,67 @@
 > Proceeding...
 do clear_text()
 
-> [color=f00]Error Code 201\: Body inactive.
+# body retrieval section
+> [color={{E}}]Error Code 201\: Avatar not found.
 > [next=1]
 > Automatic routing initiated.
-> Determining location of body[wait=1]...
+> Determining location of Avatar[wait=1]...
 > [next=1]
-> Body located.
-> [color=f50]Warning\: Body in poor condition.
-> [color=f50]Unexpected outcomes are possible.
-> [color=f50]Proceeding...
+> Avatar located.
+> [color={{W}}]Warning\: Avatar detected as poor to fatal condition.
+> [color={{W}}]Unexpected outcomes are possible.
+> Proceeding...
 do clear_text()
 
-> Devilgamer is ready.
-> Testing comprehension functions.
-> If (CLIENT) is present, please select one of the following options\:
+# comprehension functions
+> [color={{W}}]Warning: Interaction not tested.
+> Interaction test initiated.
+> If present, please select one of the following options\:
 - A
 - B
 - C
-> Comprehension adequate.
+> If present, please input any line of text below\:
+do player_text_input()
+> Interaction test successful.
 > Proceeding...
 do clear_text()
-[next=3]
 
-> Hello?
+# final wrap up
+> Running session audit...
+> [next=1]
+> [color={{W}}]Session audit completed successfully with minor warning(s).
+> Proceeding...
+do clear_text()
+
+> Communication interface opened.
+> [next=1]
+> You have\: 1 outgoing tranmission.
+> Accept transmission 1?
+- ACCEPT
+	=> transitionToPart2
+- SKIP
+	> Transmission marked as important.
+	> Confirm skip?
+	- YES
+		=> introPart2Skip
+	- NO
+		=> transitionToPart2
+[next=3]
+=> introPart2
+
+~ transitionToPart2
+> Opening transmission.
+do clear_text()
+=> introPart2
+
+~ introPart2Skip
+> Transmission closed.
+> Please select difficulty\:
+- NORMAL
+- HARD
+
+~ introPart2
+[wait=2]> Hello?
 > Are you reading this alright?
 > Fantastic. 
 > Oh [wait=0.2]and, please forgive the comupter.
@@ -87,37 +133,46 @@ do clear_text()
 > ...
 > Ok!
 > Lets begin.
+
 do clear_text()
+do show_model()
+> First off, how are you with challenges?
+> Do you like things...more difficult?
+> Or do you prefer things to be tame?
+- NORMAL
+	> Ah I see.
+	> Alright, normal it is.
+- HARD
+	> An excellent choice.
 
-
+do clear_text()
 do close_terminal()
 do load_next_area()
 => END
 
 ~ test
-> Here is the test for the terminal text.
-> Hopefully this works well.
-> Ok seems like its working great, lets test clearing everything.
-do clear_text()
+while GameFlags.check_flag("testFlag")
+	> What do you want to test here?
+	- \: TEXT INPUT
+		> Ok, here is a text input please test it out.
+		do player_text_input()
+		> You inputted: {{get_inputted_text()}}
+	- \: SPECIFIC TITLE
+		> Ok, input the title to test it.
+		do player_text_input()
+		do clear_text()
+		=> {{get_inputted_text()}}
+	- \: END TEST
+		do GameFlags.set_flag("testFlag", false)
+	do clear_text()
 
-> Ok the text should have cleared and this should now be typing.
-> Hopefully thats going great.
-do clear_text()
-
-> Ok now we will try letting the player make a choice lets see how that goes.
-- EASY
-	> Cool you picked EASY.
-- MEDIUM
-	> Cool you picked MEDIUM.
-- HARD
-	> Cool you picked HARD.
-do clear_text()
-
-> Ok finally, we will try player text input.
-> This one is important so hopefully it works!
-do player_text_input()
-> Wow nice input. You typed\: {{get_inputted_text()}}
-
-do close_terminal()
-do load_next_area()
+> Test complete.
+> Load an area?
+- YES
+	> Ok, which area to load?
+	do player_text_input()
+	do close_terminal()
+	do load_next_area(get_inputted_text())
+- NO
+	do close_terminal()
 => END

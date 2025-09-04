@@ -10,6 +10,7 @@ func _ready():
 
 func play_splashes() -> void:
     await animate_node(%spakLogo)
+    
 
 
 func animate_node(node : Control) -> void:

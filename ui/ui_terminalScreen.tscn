@@ -232,20 +232,6 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7me0c"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnmxw"]
-bg_color = Color(1, 1, 1, 1)
-draw_center = false
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s82og"]
-content_margin_left = 8.0
-content_margin_top = 4.0
-content_margin_right = 8.0
-content_margin_bottom = 4.0
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81hap"]
 content_margin_left = 1.0
 content_margin_top = 1.0
@@ -259,6 +245,20 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtka1"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnmxw"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s82og"]
 content_margin_left = 8.0
 content_margin_top = 4.0
 content_margin_right = 8.0
@@ -291,16 +291,6 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="bgs" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_s82og")
-bus = &"BGS"
-parameters/looping = true
-
-[node name="bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_rtka1")
-bus = &"BGM"
-parameters/looping = true
-
 [node name="terminal" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
@@ -316,6 +306,7 @@ offset_right = 896.0
 offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
@@ -329,6 +320,7 @@ custom_minimum_size = Vector2(256, 256)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+focus_mode = 0
 stretch = true
 stretch_shrink = 2
 
@@ -408,6 +400,7 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
+mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7me0c")
 bbcode_enabled = true
@@ -418,19 +411,29 @@ DEVILGAMER 0.0
 fit_content = true
 scroll_active = false
 
-[node name="terminalText" parent="terminal/mainText/text" instance=ExtResource("8_rtka1")]
-unique_name_in_owner = true
-visible = false
-clip_contents = false
-layout_mode = 2
-text = "> Dialogue... "
-autowrap_mode = 0
-visible_characters_behavior = 0
-seconds_per_pause_step = 0.2
-
 [node name="textContainer" type="VBoxContainer" parent="terminal/mainText/text"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="playerInput" type="LineEdit" parent="terminal/mainText/text"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(512, 16)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+mouse_filter = 1
+theme_override_styles/focus = SubResource("StyleBoxFlat_81hap")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_rtka1")
+placeholder_text = "INPUT RESPONSE NOW"
+max_length = 64
+context_menu_enabled = false
+emoji_menu_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+caret_blink = true
+caret_force_displayed = true
 
 [node name="options" type="VBoxContainer" parent="terminal/mainText/text" node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
@@ -444,37 +447,29 @@ response_template = NodePath("Button")
 [node name="Button" type="Button" parent="terminal/mainText/text/options"]
 layout_mode = 2
 size_flags_horizontal = 0
+mouse_filter = 1
 theme_override_styles/focus = SubResource("StyleBoxFlat_xnmxw")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s82og")
 text = "EXAMPLE"
 alignment = 2
 
-[node name="playerInput" type="LineEdit" parent="terminal/mainText/text"]
+[node name="terminalText" parent="terminal/mainText/text" instance=ExtResource("8_rtka1")]
 unique_name_in_owner = true
 visible = false
-custom_minimum_size = Vector2(512, 16)
+clip_contents = false
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-theme_override_styles/focus = SubResource("StyleBoxFlat_81hap")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_rtka1")
-placeholder_text = "INPUT RESPONSE NOW"
-max_length = 64
-context_menu_enabled = false
-emoji_menu_enabled = false
-virtual_keyboard_enabled = false
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
-caret_blink = true
-caret_force_displayed = true
+text = "> Dialogue... "
+autowrap_mode = 0
+visible_characters_behavior = 0
+seconds_per_pause_step = 0.2
 
 [node name="border" type="MarginContainer" parent="terminal"]
 unique_name_in_owner = true
-layout_mode = 2
 offset_right = 896.0
 offset_bottom = 504.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -482,6 +477,7 @@ theme_override_constants/margin_bottom = 16
 
 [node name="Panel" type="Panel" parent="terminal/border"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7me0c")
 
 [node name="colorOverlay" type="ColorRect" parent="terminal"]
@@ -495,11 +491,19 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.3987, 0.697656, 0.399753, 1)
 
-[node name="destructionEffect" type="GPUParticles2D" parent="."]
+[node name="bgs" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_s82og")
+bus = &"BGS"
+parameters/looping = true
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_rtka1")
+bus = &"BGM"
+parameters/looping = true
 
 [connection signal="gui_input" from="terminal" to="." method="_on_terminal_gui_input"]
 [connection signal="timeout" from="terminal/mainText/models/SubViewport/devil/baby/Timer" to="terminal/mainText/models/SubViewport/devil" method="_on_timer_timeout"]
-[connection signal="spoke" from="terminal/mainText/text/terminalText" to="." method="_on_terminal_text_spoke"]
 [connection signal="response_selected" from="terminal/mainText/text/options" to="." method="_on_options_response_selected"]
+[connection signal="spoke" from="terminal/mainText/text/terminalText" to="." method="_on_terminal_text_spoke"]
 
 [editable path="terminal/mainText/models/SubViewport/devil/baby"]

@@ -1,6 +1,9 @@
 extends CanvasLayer
 class_name TerminalScreen
 
+const E : String = "f00"
+const W : String = "f60"
+
 @export var SCRIPT : DialogueResource
 @export var next_action: StringName = &"ui_accept"
 @export var skip_action: StringName = &"ui_cancel"
@@ -32,16 +35,42 @@ var will_hide_balloon : bool = false
 var mutation_cooldown: Timer = Timer.new()
 
 var currentText : DialogueLabel
+var targetTitle : String = "test"
+var inputtedText : String = ""
+var isTyping : bool = false
 
 signal introFinished
 
 func _ready() -> void:
+	if get_tree().current_scene == self:
+		print("loaded as scene")
+		GameManager.load_terminal(targetTitle)
+		queue_free()
+
 	clear_text()
+
+	# If the responses menu doesn't have a next action set, use this one
+	if options.next_action.is_empty():
+		options.next_action = next_action
+	
 	mutation_cooldown.timeout.connect(_on_mutation_cooldown_timeout)
 	add_child(mutation_cooldown)
 
 	await intro_animation()
 	trigger_terminal_scene()
+
+
+func random_session_tag(times : int = 5) -> String:
+	var finalString : String = ""
+	while times > 0:
+		times -= 1
+		finalString += str(randi() % 10)
+	return finalString
+
+
+func _unhandled_input(_event: InputEvent) -> void:
+	# Only the balloon is allowed to handle input while it's showing
+	get_viewport().set_input_as_handled()
 
 
 func intro_animation() -> void:
@@ -58,7 +87,6 @@ func intro_animation() -> void:
 
 	await TW.finished
 	await get_tree().create_timer(2).timeout
-	await show_model()
 
 	introFinished.emit()
 
@@ -92,29 +120,41 @@ func load_next_area(area : String = GameManager.startingArea) -> void:
 	GameManager.load_area(area, "", Color.BLACK)
 
 
-func trigger_terminal_scene(title : String = "intro") -> void: call_deferred("start", title) 
+func trigger_terminal_scene() -> void: 
+	print("attempting to start terminal scene with title: ", targetTitle)
+	call_deferred("start")
 
 # region Controls
 func enable_text_input() -> void:
-	textInput.text = ""
+	isTyping = true
 	textInput.show()
+	textInput.editable = true
+	terminal.focus_mode = Control.FOCUS_NONE
+	textInput.focus_mode = Control.FOCUS_ALL
 	textInput.grab_focus()
 
 
 func disable_text_input() -> void:
-	textInput.hide()
+	isTyping = false
+	textInput.text = ""
+	textInput.editable = false
+	textInput.focus_mode = Control.FOCUS_NONE
 	textInput.release_focus()
+	textInput.hide()
 
 
 func player_text_input() -> void:
+	if isTyping: return
 	enable_text_input()
-	await textInput.text_submitted
+	textInput.text = ""
+	inputtedText = await textInput.text_submitted
+	inputtedText = inputtedText.split("\n")[0]
 	disable_text_input()
 
 
 func get_inputted_text() -> String:
-	if textInput.visible: disable_text_input()
-	return textInput.text
+	print(textInput.text)
+	return inputtedText
 
 
 func show_model() -> void:
@@ -140,8 +180,8 @@ func clear_text() -> void:
 # region Dialogue
 
 
-func start(title : String) -> void: 
-	self.dialogue_line = await SCRIPT.get_next_dialogue_line(title, states)
+func start() -> void: 
+	self.dialogue_line = await SCRIPT.get_next_dialogue_line(targetTitle, states)
 	is_waiting_for_input = false
 
 	DialogueManager.dialogue_started.emit(SCRIPT)
@@ -154,7 +194,7 @@ func _on_terminal_gui_input(event: InputEvent) -> void:
 	if !currentText: return
 
 	# See if we need to skip typing of the dialogue
-	if currentText.is_typing:
+	if currentText.is_typing && !isTyping:
 		var mouse_was_clicked: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()
 		var skip_button_was_pressed: bool = event.is_action_pressed(skip_action)
 		if mouse_was_clicked or skip_button_was_pressed:
@@ -168,10 +208,11 @@ func _on_terminal_gui_input(event: InputEvent) -> void:
 	# When there are no response options the balloon itself is the clickable thing
 	get_viewport().set_input_as_handled()
 
-	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
-		next(dialogue_line.next_id)
-	elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == terminal:
-		next(dialogue_line.next_id)
+	if !isTyping:
+		if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+			next(dialogue_line.next_id)
+		elif event.is_action_pressed(next_action) and get_viewport().gui_get_focus_owner() == terminal:
+			next(dialogue_line.next_id)
 
 
 func _on_terminal_text_spoke(letter: String, _letter_index: int, _speed: float) -> void:
@@ -189,8 +230,9 @@ func apply_dialogue_line() -> void:
 	mutation_cooldown.stop()
 
 	is_waiting_for_input = false
-	terminal.focus_mode = Control.FOCUS_ALL
-	terminal.grab_focus()
+	if !textInput.visible:
+		terminal.focus_mode = Control.FOCUS_ALL
+		terminal.grab_focus()
 
 	options.hide()
 	options.responses = dialogue_line.responses
@@ -226,5 +268,10 @@ func _on_mutation_cooldown_timeout() -> void:
 		will_hide_balloon = false
 		terminal.hide()
 
+
+func _on_mutated(_mutation: Dictionary) -> void:
+	is_waiting_for_input = false
+	will_hide_balloon = true
+	mutation_cooldown.start(0.1)
 
 # endregion
