@@ -6,7 +6,9 @@ extends Node
 
 func _ready() -> void:
 	await splashes.play_splashes()
+	GameManager.fadeout_screen(0)
 	splashes.queue_free()
+	await get_tree().create_timer(1).timeout
 	spawn_title()
 
 func spawn_title() -> void:
