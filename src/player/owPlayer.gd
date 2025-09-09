@@ -131,20 +131,21 @@ func _ready() -> void:
 func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:
 		# handles the easter egg where Epia looks at the camera
-		# if Input.is_anything_pressed():
-		# 	if mainCam.spring_length != defaultSpringLength:
-		# 		model.idle()
-		# 		change_zoom(1, 0.2)
-		# 		create_tween().tween_property(mainCam, "follow_offset:y", defaultCamOffset.y, 0.2)
-		# 	if model is EpiaSkin:
-		# 		if !model.cameraEggTimer.is_stopped():
-		# 			model.cameraEggTimer.stop()
-		# 			model.cameraEggTimer.timeout.disconnect(camera_look_egg)
-		# else:
-		# 	if model is EpiaSkin:
-		# 		if model.cameraEggTimer.is_stopped():
-		# 			model.cameraEggTimer.start()
-		# 			model.cameraEggTimer.timeout.connect(camera_look_egg)
+		if Input.is_anything_pressed() || event is InputEventMouseMotion:
+			if mainCam.spring_length != defaultSpringLength:
+				model.idle()
+				change_zoom(1, 0.2)
+				create_tween().tween_property(mainCam, "follow_offset:y", defaultCamOffset.y, 0.2)
+			if model is EpiaSkin:
+				if !model.cameraEggTimer.is_stopped():
+					model.cameraEggTimer.stop()
+					model.clear_look_target()
+					model.cameraEggTimer.timeout.disconnect(camera_look_egg)
+		else:
+			if model is EpiaSkin:
+				if model.cameraEggTimer.is_stopped():
+					model.cameraEggTimer.start()
+					model.cameraEggTimer.timeout.connect(camera_look_egg)
 
 		# handles mouse camera control
 		if event is InputEventMouseMotion && Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
@@ -447,7 +448,7 @@ func apply_gravity(delta : float) -> void: velocity.y += gravity * delta
 
 
 func center_camera() -> void:
-	if reset_camera(): AudioManager.play_ui_sfx("resetCam")
+	if await reset_camera(): AudioManager.play_ui_sfx("resetCam")
 	skillTarget = get_closest_target()
 
 
@@ -459,13 +460,14 @@ func reset_camera() -> bool:
 
 	if current_quat.is_equal_approx(target_quat): return false
 
-	var TW := create_tween()
+	var TW : Tween = create_tween()
 	TW.tween_method(
 		func(weight: float) -> void:
 			var slerped := current_quat.slerp(target_quat, weight)
 			mainCam.set_third_person_quaternion(slerped),
 		0.0, 1.0, 0.2
 	).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	await TW.finished
 	return true
 
 
@@ -664,7 +666,6 @@ func camera_look_egg() -> void:
 	
 	create_tween().tween_property(mainCam, "follow_offset:y", 1, 0.2)
 	
-	AudioManager.play_ui_sfx("resetCam")
 	await change_zoom(0.5)
 	model.weird_idle()
 

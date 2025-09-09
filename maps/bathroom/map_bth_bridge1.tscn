@@ -1,4 +1,4 @@
-[gd_scene load_steps=204 format=4 uid="uid://dnhqx604sbfxq"]
+[gd_scene load_steps=216 format=4 uid="uid://dnhqx604sbfxq"]
 
 [ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_drwxu"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_eef4w"]
@@ -8,7 +8,6 @@
 [ext_resource type="Material" uid="uid://c0j8d0mx2casc" path="res://textures/tex_metal2.tres" id="5_idkm6"]
 [ext_resource type="Material" uid="uid://bl1bathafb5iy" path="res://textures/tex_dirt2.tres" id="6_idkm6"]
 [ext_resource type="Material" uid="uid://cbbkbocrhst0y" path="res://textures/text_bathroomChip.tres" id="6_kiapq"]
-[ext_resource type="Shader" uid="uid://jck7rp0xshcm" path="res://shaders/psx/psx_lit_transparent.gdshader" id="6_l4beq"]
 [ext_resource type="Material" uid="uid://cdedg0mmh1n6o" path="res://textures/tex_bathFloor1.tres" id="6_x1t4m"]
 [ext_resource type="Material" uid="uid://r7cbd85d6r52" path="res://textures/tex_bathroom2.tres" id="7_drwxu"]
 [ext_resource type="Shader" uid="uid://qqmyy4kv5o7o" path="res://shaders/water.tres" id="7_tna62"]
@@ -16,7 +15,9 @@
 [ext_resource type="Script" uid="uid://c0muddf08l6bb" path="res://src/player/killPlane.gd" id="9_tna62"]
 [ext_resource type="Shader" uid="uid://dncajdd1ilrvj" path="res://shaders/chestOrb.tres" id="10_c3xxh"]
 [ext_resource type="Texture2D" uid="uid://dxaa0jwo45gdl" path="res://addons/kenney_particle_pack/circle_05.png" id="11_7kv8t"]
+[ext_resource type="Texture2D" uid="uid://dm13qjutpdcrn" path="res://assets/particles/pe_bubble.png" id="12_uejp2"]
 [ext_resource type="Material" uid="uid://1h2ut3uo1je5" path="res://textures/tex_bathWall1.tres" id="13_ldve1"]
+[ext_resource type="Texture2D" uid="uid://ijh0dqqnfouv" path="res://assets/particles/pe_moth.png" id="13_uejp2"]
 [ext_resource type="Resource" uid="uid://ltx03wl1n1se" path="res://dialogue/chestOpen.dialogue" id="17_53fbd"]
 [ext_resource type="PackedScene" uid="uid://c54uxkb2kkknm" path="res://scenes/exitPointer.tscn" id="17_aruku"]
 [ext_resource type="Script" uid="uid://06h4bswwg3ul" path="res://src/interactable.gd" id="17_t5x2d"]
@@ -581,9 +582,25 @@ point_count = 4
 [sub_resource type="CurveTexture" id="CurveTexture_d0a8c"]
 curve = SubResource("Curve_7kv8t")
 
+[sub_resource type="Gradient" id="Gradient_ldve1"]
+interpolation_color_space = 2
+offsets = PackedFloat32Array(0, 0.544944, 1)
+colors = PackedColorArray(0, 0.096178, 0.201563, 1, 0.744241, 0.824018, 1, 1, 0.559461, 1, 0.929544, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uxs5m"]
+gradient = SubResource("Gradient_ldve1")
+
+[sub_resource type="Curve" id="Curve_x1t4m"]
+_limits = [0.0, 50.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.235294, 50), 0.0, 0.0, 0, 0, Vector2(0.745098, 50), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_uxs5m"]
+curve = SubResource("Curve_x1t4m")
+
 [sub_resource type="Curve" id="Curve_kndry"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.356902, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 3
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.356902, 1), 0.0, 0.0, 0, 0, Vector2(0.833333, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.2112, 0.0, 0, 0]
+point_count = 4
 
 [sub_resource type="CurveTexture" id="CurveTexture_ltm4v"]
 curve = SubResource("Curve_kndry")
@@ -592,31 +609,75 @@ curve = SubResource("Curve_kndry")
 lifetime_randomness = 0.78
 emission_shape_offset = Vector3(100, 0, 100)
 emission_shape = 3
-emission_box_extents = Vector3(20, 1, 20)
+emission_box_extents = Vector3(50, 1, 50)
 direction = Vector3(0, 0, 0)
 angular_velocity_min = -100.0
 angular_velocity_max = 100.0
-gravity = Vector3(0, 9, 0)
+gravity = Vector3(0, 1, 0)
 radial_accel_min = -10.0
 radial_accel_max = 10.0
-scale_min = 0.2
+attractor_interaction_enabled = false
+scale_min = 0.1
 scale_curve = SubResource("CurveTexture_ltm4v")
+color = Color(1, 1, 1, 0.156863)
+color_initial_ramp = SubResource("GradientTexture1D_uxs5m")
 alpha_curve = SubResource("CurveTexture_d0a8c")
+emission_curve = SubResource("CurveTexture_uxs5m")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ihir4"]
-render_priority = 0
-shader = ExtResource("6_l4beq")
-shader_parameter/modulate_color = Color(0.461592, 0.931608, 0.758612, 1)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_pan_velocity = Vector2(0, 0)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nm4br"]
+transparency = 1
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("12_uejp2")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
-[sub_resource type="SphereMesh" id="SphereMesh_drwxu"]
-material = SubResource("ShaderMaterial_ihir4")
-radius = 0.2
-height = 0.4
-radial_segments = 4
-rings = 4
+[sub_resource type="QuadMesh" id="QuadMesh_e3tg6"]
+material = SubResource("StandardMaterial3D_nm4br")
+
+[sub_resource type="Gradient" id="Gradient_x1t4m"]
+offsets = PackedFloat32Array(0, 0.241573, 0.691011, 0.994382)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ldve1"]
+gradient = SubResource("Gradient_x1t4m")
+
+[sub_resource type="Curve" id="Curve_e3tg6"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.710784, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_uwnot"]
+curve = SubResource("Curve_e3tg6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_432ok"]
+lifetime_randomness = 1.0
+particle_flag_align_y = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 3, 3)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+angular_velocity_min = 30.0
+angular_velocity_max = 60.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.5
+scale_curve = SubResource("CurveTexture_uwnot")
+color_ramp = SubResource("GradientTexture1D_ldve1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkd5b"]
+transparency = 1
+cull_mode = 2
+shading_mode = 2
+diffuse_mode = 1
+specular_mode = 2
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("13_uejp2")
+billboard_keep_scale = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_pqote"]
+material = SubResource("StandardMaterial3D_gkd5b")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_l4beq"]
 render_priority = 0
@@ -1203,16 +1264,15 @@ shape = SubResource("ConvexPolygonShape3D_5t1oj")
 [node name="enviro" type="Node3D" parent="."]
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="enviro"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, 0, -100)
-amount = 100
-lifetime = 3.0
-preprocess = 2.0
-speed_scale = 0.6
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100, -5.5, -100)
+cast_shadow = 0
+amount = 300
+lifetime = 2.0
 randomness = 1.0
 visibility_aabb = AABB(-4, -4, -4, 200, 200, 200)
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_kiapq")
-draw_pass_1 = SubResource("SphereMesh_drwxu")
+draw_pass_1 = SubResource("QuadMesh_e3tg6")
 
 [node name="mainlight" type="OmniLight3D" parent="enviro"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 6.5, 43)
@@ -1245,12 +1305,32 @@ light_energy = 3.0
 light_volumetric_fog_energy = 6.0
 omni_range = 30.0
 
+[node name="GPUParticles3D" type="GPUParticles3D" parent="enviro/lightHouse1"]
+amount = 50
+lifetime = 10.0
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_432ok")
+draw_pass_1 = SubResource("QuadMesh_pqote")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="enviro/lightHouse1/GPUParticles3D"]
+radius = 20.0
+
 [node name="lightHouse2" type="OmniLight3D" parent="enviro"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 15.4, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 15.4, -4)
 light_color = Color(1, 0.931771, 0.833076, 1)
 light_energy = 6.0
 light_volumetric_fog_energy = 6.0
 omni_range = 30.0
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="enviro/lightHouse2"]
+amount = 50
+lifetime = 10.0
+speed_scale = 2.0
+process_material = SubResource("ParticleProcessMaterial_432ok")
+draw_pass_1 = SubResource("QuadMesh_pqote")
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="enviro/lightHouse2/GPUParticles3D"]
+radius = 20.0
 
 [node name="water" type="MeshInstance3D" parent="enviro"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8, -4, 12.3)

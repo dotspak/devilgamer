@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6lselmockcdb"
-path.s3tc="res://.godot/imported/pe_bubbleBlur.png-73089d07b48d3fd360f39b7b3af40dcf.s3tc.ctex"
+uid="uid://ijh0dqqnfouv"
+path.s3tc="res://.godot/imported/pe_moth.png-7692057a1d44dd70250fe2e720cc1a8b.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/particles/pe_bubbleBlur.png"
-dest_files=["res://.godot/imported/pe_bubbleBlur.png-73089d07b48d3fd360f39b7b3af40dcf.s3tc.ctex"]
+source_file="res://assets/particles/pe_moth.png"
+dest_files=["res://.godot/imported/pe_moth.png-7692057a1d44dd70250fe2e720cc1a8b.s3tc.ctex"]
 
 [params]
 

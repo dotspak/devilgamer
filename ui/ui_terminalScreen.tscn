@@ -465,6 +465,7 @@ seconds_per_pause_step = 0.2
 
 [node name="border" type="MarginContainer" parent="terminal"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_right = 896.0
 offset_bottom = 504.0
 grow_horizontal = 2

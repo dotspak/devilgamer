@@ -13,7 +13,10 @@ var normModeButton : Callable = enter_norm_mode
 @onready var cameraEggTimer : Timer = $cameraEggTimer
 @onready var lookAt : LookAtModifier3D = %lookAt
 
-func set_look_target(target : Node3D) -> void: lookAt.target_node = target.get_path()
+func set_look_target(target : Node3D, secondaryRotation : bool = true) -> void: 
+	lookAt.use_secondary_rotation = secondaryRotation
+	lookAt.target_node = target.get_path()
+
 func clear_look_target() -> void: lookAt.target_node = ""
 
 func idle():
