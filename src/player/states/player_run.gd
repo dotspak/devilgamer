@@ -36,6 +36,9 @@ func physics_update(delta : float) -> void:
 		elif !player.stairRayDown.is_colliding():
 			stateMachine.transition_to("fall")
 		return
+	else:
+		if player.model.get_current_anim() != "run":
+			player.model.move()
 	
 	var wallNormal : Vector3 = player.ledgeRayHori.get_collision_normal()
 	var pressingIntoWall : bool = player.moveDir.dot(-wallNormal) > 0.6
@@ -46,6 +49,8 @@ func physics_update(delta : float) -> void:
 			stateMachine.transition_to("jumpToLedge")
 	else:
 		ledgeTimer = max(ledgeTimer - delta, 0)
+
+	
 
 
 func exit() -> void: 

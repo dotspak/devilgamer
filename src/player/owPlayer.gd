@@ -512,6 +512,7 @@ func respawn() -> void:
 	velocity = Vector3.ZERO
 	mainCam.follow_damping = false
 	sounds["respawn"].play()
+	take_damage(10, stats, Skill.DMG_TYPES.TRUE)
 
 	await GameManager.fadein_screen(0.5)
 
@@ -694,5 +695,9 @@ func use_action(scene : PackedScene) -> void:
 	var playerRot : Vector3 = -camForward
 	playerRot.y = 0
 	lastMoveDir = playerRot
+
+	var skill : Skill = scene.instantiate().skill
+	var attackSpeed : float = (1.0 + 0.38) / skill.cooldown
+	model.attack(attackSpeed)
 
 	super(scene)

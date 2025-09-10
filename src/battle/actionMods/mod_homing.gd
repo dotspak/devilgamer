@@ -30,8 +30,9 @@ func spawn_homing_area() -> void:
 
 func homing_lock(body : Node3D) -> void:
 	if action.target == null:
-		if body != action.caster && action.entity_hit_filter(body):
-			action.target = body
+		if body is Entity:
+			if body != action.caster && action.entity_hit_filter(body):
+				action.target = body
 
 
 func _physics_process(delta : float):

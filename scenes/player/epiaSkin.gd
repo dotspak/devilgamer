@@ -12,6 +12,7 @@ var normModeButton : Callable = enter_norm_mode
 
 @onready var cameraEggTimer : Timer = $cameraEggTimer
 @onready var lookAt : LookAtModifier3D = %lookAt
+@onready var weaponSlot : Node3D = %weaponHolder
 
 func set_look_target(target : Node3D, secondaryRotation : bool = true) -> void: 
 	lookAt.use_secondary_rotation = secondaryRotation
@@ -20,28 +21,44 @@ func set_look_target(target : Node3D, secondaryRotation : bool = true) -> void:
 func clear_look_target() -> void: lookAt.target_node = ""
 
 func idle():
-	state_machine.travel("epia_idle")
+	state_machine.travel("idle")
 
 func move():
-	state_machine.travel("epia_run")
+	state_machine.travel("run")
 
 func fall():
-	state_machine.travel("epia_fall")
+	state_machine.travel("fall")
 
 func jump():
-	state_machine.travel("epia_jump")
+	state_machine.travel("jump")
 
 func edge_grab():
-	state_machine.travel("epia_edge")
+	state_machine.travel("edge")
 
 func wall_slide():
 	state_machine.travel("WallSlide")
 
 func weird_idle():
-	state_machine.travel("epia_idleStrange")
+	state_machine.travel("idleStrange")
 
 func roll():
-	state_machine.travel("epia_roll")
+	state_machine.travel("roll")
+
+func attack(speed : float = 1.0):
+	animation_tree.set("parameters/StateMachine/attack/TimeScale/scale", speed)
+	state_machine.travel("attack")
+
+	weaponSlot.show()
+	await animation_tree.animation_finished
+	weaponSlot.hide()
+	
+
+func clear_weapon_holder() -> void:
+	for n in weaponSlot.get_children():
+		n.queue_free()
+
+
+func get_current_anim() -> String: return state_machine.get_current_node()
 
 
 func enter_merc_mode() -> void:

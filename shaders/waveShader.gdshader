@@ -12,7 +12,7 @@ uniform float distortion = 0.01;
 void fragment() {
 	vec2 uv = UV + speed * TIME;
 	vec2 n = 2.0 * texture(noise, uv).rg - vec2((1.0 - distortion) + 0.4);
-	
+
 	COLOR = texture(TEXTURE, UV + n * waveStrength);
 	COLOR.rgb *= color.rgb;
 	COLOR *= texture(SCREEN, SCREEN_UV + n * distortion);
