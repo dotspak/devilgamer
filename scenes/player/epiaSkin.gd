@@ -14,35 +14,48 @@ var normModeButton : Callable = enter_norm_mode
 @onready var lookAt : LookAtModifier3D = %lookAt
 @onready var weaponSlot : Node3D = %weaponHolder
 
+var speed : float = 0 :
+	set(val):
+		speed = clamp(val, 0, 1)
+
+
+func clear_look_target() -> void: lookAt.target_node = ""
 func set_look_target(target : Node3D, secondaryRotation : bool = true) -> void: 
 	lookAt.use_secondary_rotation = secondaryRotation
 	lookAt.target_node = target.get_path()
 
-func clear_look_target() -> void: lookAt.target_node = ""
 
 func idle():
 	state_machine.travel("idle")
 
+
 func move():
 	state_machine.travel("run")
+
 
 func fall():
 	state_machine.travel("fall")
 
+
 func jump():
 	state_machine.travel("jump")
+
 
 func edge_grab():
 	state_machine.travel("edge")
 
+
 func wall_slide():
 	state_machine.travel("WallSlide")
+
 
 func weird_idle():
 	state_machine.travel("idleStrange")
 
+
 func roll():
 	state_machine.travel("roll")
+
 
 func attack(speed : float = 1.0):
 	animation_tree.set("parameters/StateMachine/attack/TimeScale/scale", speed)
