@@ -272,6 +272,8 @@ func movement_input() -> bool:
 	return moveInput != Vector2.ZERO
 	
 
+var prevVelocity : Vector3 = Vector3.ZERO
+
 func move(delta : float) -> void:
 	if !movementAllowed: return
 
@@ -280,6 +282,10 @@ func move(delta : float) -> void:
 
 	velocity = velocity.move_toward(moveDir * speed, (
 		accel * accel_idleScale if moveInput == Vector2.ZERO else accel)* delta)
+	
+	if velocity != prevVelocity:
+		prevVelocity = velocity
+		model.speed = prevVelocity.length() / speed
 	
 	var angle : float = 0
 	if !movingToTarget:
