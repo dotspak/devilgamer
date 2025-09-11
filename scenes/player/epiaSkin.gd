@@ -10,8 +10,10 @@ var normModeButton : Callable = enter_norm_mode
 @export_range(0, 1) var speed : float = 0 :
 	set(val):
 		speed = clamp(val, 0, 1)
-		tree.set("parameters/runTimeScale/scale", speed)
-		tree.set("parameters/runSpeed/blend_amount", speed)
+		if Engine.is_editor_hint() || is_node_ready():
+			tree.set("parameters/runTimeScale/scale", speed)
+			tree.set("parameters/runSpeed/blend_amount", speed)
+			tree.set("parameters/weaponState/none/runBlend/blend_amount", speed)
 
 enum WEAPONSTATES {None, Gun, OneHand, TwoHand}
 @export var currentWeapon : WEAPONSTATES = WEAPONSTATES.None :
@@ -32,6 +34,8 @@ enum WEAPONSTATES {None, Gun, OneHand, TwoHand}
 @onready var lookAt : LookAtModifier3D = %lookAt
 @onready var weaponSlot : Node3D = %weaponHolder
 
+func _ready() -> void:
+	speed = 0
 
 func clear_look_target() -> void: lookAt.target_node = ""
 func set_look_target(target : Node3D, secondaryRotation : bool = true) -> void: 
@@ -51,23 +55,17 @@ func move():
 
 func fall():
 	#state_machine.travel("fall")
-	tree.set("parameters/fallBlend/blend_amount", 1)
-	tree.set("parameters/jumpBlend/blend_amount", 0)
-	tree.set("parameters/edgeBlend/blend_amount", 0)
+	tree.set("parameters/fallShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
 
 
 func jump():
 	#state_machine.travel("jump")
-	tree.set("parameters/fallBlend/blend_amount", 0)
-	tree.set("parameters/jumpBlend/blend_amount", 1)
-	tree.set("parameters/edgeBlend/blend_amount", 0)
+	tree.set("parameters/jumpShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
 
 
 func edge_grab():
 	#state_machine.travel("edge")
-	tree.set("parameters/fallBlend/blend_amount", 0)
-	tree.set("parameters/jumpBlend/blend_amount", 0)
-	tree.set("parameters/edgeBlend/blend_amount", 1)
+	tree.set("parameters/edgeShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
 
 
 func wall_slide():
@@ -79,6 +77,9 @@ func weird_idle():
 
 
 func land():
+	tree.set("parameters/jumpShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/edgeShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/fallShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
 	tree.set("parameters/landShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
 
 

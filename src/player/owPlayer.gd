@@ -484,6 +484,7 @@ func camera_to_front() -> void:
 
 
 func land() -> void:
+	model.land()
 	var particle : GPUParticles3D = LAND_PARTICLE.instantiate()
 	particle.amount = clamp(12 * (1 + airTimer * 2), 12, 100)
 	particle.finished.connect(particle.queue_free)
