@@ -23,7 +23,7 @@ const DMG_NUM : PackedScene = preload("res://ui/ui_dmgpopup.tscn")
 var cooldowns : Array[Timer] = []
 var usingSkill : bool = false
 var movementAllowed : bool = true
-var stopMoveWeight : float = 0.3
+var stopMoveWeight : float = 0.1
 var selectedAction : PackedScene = load("res://scenes/actions/tripleShot.tscn")
 var isDead : bool = false
 
@@ -124,6 +124,7 @@ func get_closest_target() -> Node3D:
 
 # deals damage to the entity.
 func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.DMG_TYPES = Skill.DMG_TYPES.PHYS) -> void:
+	if !stats: return
 	if isDead: return
 	
 	var dmgReduction : float = 0.0
@@ -146,6 +147,7 @@ func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.D
 
 	var bloodAmount : float = clampf((finalDMG / stats.stats[StatComponent.STATS.MHP]) * 1.3, 0.1, 1.0)
 	blood_splatter(bloodAmount)
+	flash_model(Color(2, 0, 0))
 
 	stats.HP -= finalDMG
 
@@ -160,8 +162,28 @@ func blood_splatter(amount : float) -> void:
 	blood.spawn(amount)
 
 
+func flash_model(color : Color = Color(2, 0, 0)) -> void:
+	if !model: return
+
+	var flashMat : StandardMaterial3D = StandardMaterial3D.new()
+	flashMat.transparency = StandardMaterial3D.TRANSPARENCY_ALPHA
+	flashMat.albedo_color = color
+	flashMat.albedo_color.a = 0
+
+	var meshes : Array[MeshInstance3D]
+	for n : Node in model.get_children(true):
+		if n is MeshInstance3D:
+			meshes.append(n)
+			n.material_overlay = flashMat
+
+	var TW : Tween = create_tween()
+	TW.tween_property(flashMat, "albedo_color:a", 1, 0.05).from(0)
+	TW.tween_property(flashMat, "albedo_color:a", 0, 0.05).from(1)
+
+
 func heal_damage(baseHeal : float) -> void:
 	display_damage_num(baseHeal, true)
+	flash_model(Color(0, 2, 0.2))
 	stats.HP += baseHeal
 
 

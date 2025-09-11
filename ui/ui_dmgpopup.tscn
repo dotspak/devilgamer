@@ -101,7 +101,9 @@ shader_parameter/radius = 10.0
 cast_shadow = 0
 billboard = 1
 no_depth_test = true
+alpha_cut = 1
 texture_filter = 0
+render_priority = -1
 texture = SubResource("ViewportTexture_85egg")
 script = ExtResource("1_7luxo")
 

@@ -1,11 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://46y2558njyn5"]
+[gd_scene load_steps=15 format=3 uid="uid://46y2558njyn5"]
 
 [ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="1_7sknq"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
 [ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="2_pouwe"]
 [ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="3_m1h02"]
 [ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="4_f1few"]
-[ext_resource type="PackedScene" uid="uid://cuj3d2gat756e" path="res://assets/models/dummy/platformPack/Enemies/FBX/Skull.fbx" id="5_c8vym"]
 [ext_resource type="PackedScene" uid="uid://bnr0q3faomdeb" path="res://assets/models/enemies/enem_puyon.glb" id="5_nxrn8"]
 [ext_resource type="Texture2D" uid="uid://bvuteu131ylnv" path="res://assets/models/enemies/enem_puyon_tex_puyon1.png" id="6_57tpm"]
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="7_nxrn8"]
@@ -60,57 +59,45 @@ mesh = SubResource("BoxMesh_f2bor")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_f1few")
 
-[node name="skull" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition", "model", "modelController", "stats")]
+[node name="puyon" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition", "model", "modelController", "stats")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.75, -7.038)
 collision_layer = 16
 collision_mask = 8
 script = ExtResource("3_m1h02")
-mesh = NodePath("Skull/MonsterArmature/Skeleton3D/Skull")
+mesh = NodePath("")
 targetPosition = NodePath("targetPos")
-model = NodePath("Skull")
+model = NodePath("enem_puyon")
 modelController = NodePath("EntityModelController")
 stats = NodePath("StatComponent")
 metadata/_custom_type_script = "uid://dhrqews2wqm0v"
 
-[node name="EntityModelController" type="Node" parent="skull" node_paths=PackedStringArray("roots")]
+[node name="EntityModelController" type="Node" parent="puyon" node_paths=PackedStringArray("roots")]
 script = ExtResource("4_f1few")
-roots = [NodePath("../Skull/MonsterArmature/Skeleton3D")]
+roots = [NodePath("")]
 metadata/_custom_type_script = "uid://dgcrx5mh3d8c8"
 
-[node name="enem_puyon" parent="skull" instance=ExtResource("5_nxrn8")]
+[node name="enem_puyon" parent="puyon" instance=ExtResource("5_nxrn8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 
-[node name="jelly" parent="skull/enem_puyon" index="0"]
+[node name="jelly" parent="puyon/enem_puyon" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_qwub3")
 
-[node name="Skull" parent="skull" instance=ExtResource("5_c8vym")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, -0.865396, 0)
-visible = false
-
-[node name="Skeleton3D" parent="skull/Skull/MonsterArmature" index="0"]
-bones/1/position = Vector3(-7.80307e-20, 0.00147259, 0.00500828)
-bones/3/position = Vector3(0, 0, 0.00483194)
-bones/4/position = Vector3(0, 0.00516586, 0)
-bones/5/position = Vector3(0, 0.00390075, 0)
-bones/5/rotation = Quaternion(1.94769e-19, 3.54715e-10, -0.00264005, 0.999997)
-
-[node name="StatComponent" type="Node" parent="skull"]
+[node name="StatComponent" type="Node" parent="puyon"]
 script = ExtResource("7_nxrn8")
 metadata/_custom_type_script = "uid://c765h134s7wo0"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="skull"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="puyon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_nxrn8")
 
-[node name="mover" type="Node" parent="skull" node_paths=PackedStringArray("characterBody")]
+[node name="mover" type="Node" parent="puyon" node_paths=PackedStringArray("characterBody")]
 script = ExtResource("2_pouwe")
 characterBody = NodePath("..")
 move_range = 5.0
 move_speed = 4.0
 wait_time = 0.3
 
-[node name="targetPos" type="Marker3D" parent="skull"]
+[node name="targetPos" type="Marker3D" parent="puyon"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 
-[editable path="skull/enem_puyon"]
-[editable path="skull/Skull"]
+[editable path="puyon/enem_puyon"]

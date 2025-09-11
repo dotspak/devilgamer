@@ -24,7 +24,7 @@ const maxPitch : float = 50
 @export var speed : float = 8
 @export var accel : float = 60
 @export var accel_airScale : float = 0.3
-@export var accel_idleScale : float = 2.0
+@export var accel_idleScale : float = 1
 @export var rotationSpeed : float = 10
 @export var jumpStrength : float = 8
 @export var jumpDist : float = 4
@@ -223,7 +223,7 @@ func _physics_process(delta: float) -> void:
 
 			mainCam.set_third_person_rotation_degrees(camRotation)
 	
-	if !movementAllowed: velocity = lerp(velocity, Vector3.ZERO, stopMoveWeight)
+	if !movementAllowed: velocity.lerp(Vector3.ZERO, stopMoveWeight)
 
 	if movingToTarget:
 		model.move()
