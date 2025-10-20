@@ -46,7 +46,7 @@ operator = 2
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_disabled, diffuse_lambert, specular_schlick_ggx, unshaded, shadows_disabled, ambient_light_disabled, fog_disabled;
 
 uniform vec4 color : source_color = vec4(1.000000, 0.541933, 0.000000, 1.000000);
 uniform vec2 Vector2Parameter = vec2(2.000000, 2.000000);

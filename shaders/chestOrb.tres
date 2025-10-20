@@ -11,8 +11,8 @@ domain_warp_fractal_type = 0
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_1w0fa"]
 width = 64
 height = 64
-seamless = true
 noise = SubResource("FastNoiseLite_5acm4")
+seamless = true
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_u0pp3"]
 texture = SubResource("NoiseTexture2D_1w0fa")
@@ -60,7 +60,7 @@ input_name = "vertex"
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D tex_frg_2;
 uniform sampler2D tex_frg_6;

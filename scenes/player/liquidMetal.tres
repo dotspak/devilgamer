@@ -14,9 +14,9 @@ fractal_gain = 1.9
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7kpiu"]
 width = 64
 height = 64
-seamless = true
-color_ramp = SubResource("Gradient_1p7ew")
 noise = SubResource("FastNoiseLite_rcarn")
+color_ramp = SubResource("Gradient_1p7ew")
+seamless = true
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_unblf"]
 texture = SubResource("NoiseTexture2D_7kpiu")
@@ -86,9 +86,9 @@ fractal_gain = 4.305
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_unblf"]
 width = 64
 height = 64
-seamless = true
-color_ramp = SubResource("Gradient_rcarn")
 noise = SubResource("FastNoiseLite_1p7ew")
+color_ramp = SubResource("Gradient_rcarn")
+seamless = true
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_j16rt"]
 texture = SubResource("NoiseTexture2D_unblf")
@@ -114,7 +114,7 @@ constant = 3.5
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx, unshaded;
 
 uniform sampler2D tex_frg_3;
 uniform sampler2D tex_frg_10;

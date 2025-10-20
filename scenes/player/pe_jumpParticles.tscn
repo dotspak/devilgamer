@@ -1,60 +1,62 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4c3i0lfkuvym"]
+[gd_scene load_steps=11 format=3 uid="uid://b4c3i0lfkuvym"]
 
-[ext_resource type="Shader" uid="uid://jck7rp0xshcm" path="res://shaders/psx/psx_lit_transparent.gdshader" id="1_vaww4"]
+[ext_resource type="Shader" uid="uid://ckfvmlysydrct" path="res://shaders/puffShader.tres" id="1_j3j3j"]
 
-[sub_resource type="Curve" id="Curve_td2q8"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.761404, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_430qx"]
-curve = SubResource("Curve_td2q8")
-
-[sub_resource type="Curve" id="Curve_18exw"]
-_limits = [0.0, 2.0, 0.0, 1.0]
-_data = [Vector2(0.245614, 0.961484), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_34kbm"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_ssxyx"]
-curve = SubResource("Curve_18exw")
+[sub_resource type="CurveTexture" id="CurveTexture_00srj"]
+curve = SubResource("Curve_34kbm")
+
+[sub_resource type="Gradient" id="Gradient_em25i"]
+offsets = PackedFloat32Array(0.220472, 1)
+colors = PackedColorArray(0.507148, 0.507644, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_34kbm"]
+gradient = SubResource("Gradient_em25i")
+
+[sub_resource type="Curve" id="Curve_e65bt"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 0.68331), 0.0, 0.0, 0, 0, Vector2(0.742015, 2), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_c2eaf"]
+curve = SubResource("Curve_e65bt")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ggqpk"]
 particle_flag_align_y = true
 particle_flag_damping_as_friction = true
 emission_shape_scale = Vector3(1, 0, 1)
 emission_shape = 1
-emission_sphere_radius = 1.0
+emission_sphere_radius = 0.4
 spread = 180.0
 initial_velocity_max = 1.0
 gravity = Vector3(0, -3, 0)
 damping_min = 68.911
 damping_max = 100.0
-scale_min = 0.1
-scale_max = 0.2
-scale_curve = SubResource("CurveTexture_ssxyx")
-color = Color(0.6, 0.6, 0.517647, 1)
-alpha_curve = SubResource("CurveTexture_430qx")
-hue_variation_min = -0.05
-hue_variation_max = 0.1
+scale_min = 0.19999999
+scale_max = 0.39999998
+scale_curve = SubResource("CurveTexture_c2eaf")
+color_initial_ramp = SubResource("GradientTexture1D_34kbm")
+alpha_curve = SubResource("CurveTexture_00srj")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfhmg"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_em25i"]
 render_priority = 0
-shader = ExtResource("1_vaww4")
-shader_parameter/modulate_color = Color(1, 1, 1, 1)
-shader_parameter/uv_scale = Vector2(1, 1)
-shader_parameter/uv_offset = Vector2(0, 0)
-shader_parameter/uv_pan_velocity = Vector2(0, 0)
+shader = ExtResource("1_j3j3j")
 
-[sub_resource type="BoxMesh" id="BoxMesh_uhhrl"]
-material = SubResource("ShaderMaterial_nfhmg")
-size = Vector3(0.8, 0.8, 0.8)
+[sub_resource type="SphereMesh" id="SphereMesh_iaivk"]
+material = SubResource("ShaderMaterial_em25i")
+radial_segments = 16
+rings = 8
 
 [node name="jumpParticles" type="GPUParticles3D"]
 unique_name_in_owner = true
 emitting = false
-amount = 12
+amount = 20
 lifetime = 0.5
 one_shot = true
-explosiveness = 0.7
+explosiveness = 0.5
 randomness = 1.0
 process_material = SubResource("ParticleProcessMaterial_ggqpk")
-draw_pass_1 = SubResource("BoxMesh_uhhrl")
+draw_pass_1 = SubResource("SphereMesh_iaivk")

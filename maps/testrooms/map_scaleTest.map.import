@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cvpgkci3qgg4t"
+path="res://.godot/imported/map_scaleTest.map-7a8aed0c63807db6ef9e080199a53af3.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/map_scaleTest.map"
+dest_files=["res://.godot/imported/map_scaleTest.map-7a8aed0c63807db6ef9e080199a53af3.tres"]
+
+[params]
+

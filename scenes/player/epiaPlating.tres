@@ -32,7 +32,7 @@ op_type = 0
 operator = 3
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_h265k"]
-constant = Color(0.873438, 0.145484, 0.00537107, 1)
+constant = Color(0.7, 0.35583332, 0.287, 1)
 
 [sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_wpevu"]
 parameter_name = "Metallic"
@@ -64,8 +64,8 @@ domain_warp_fractal_type = 0
 domain_warp_fractal_gain = -0.1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_p4wct"]
-color_ramp = SubResource("Gradient_pnq12")
 noise = SubResource("FastNoiseLite_vf0n1")
+color_ramp = SubResource("Gradient_pnq12")
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_0c1b3"]
 texture = SubResource("NoiseTexture2D_p4wct")
@@ -84,7 +84,7 @@ operator = 2
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_lambert, specular_schlick_ggx;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
 
 uniform sampler2D tex_frg_6;
 uniform sampler2D tex_frg_8;
@@ -96,7 +96,7 @@ uniform sampler2D tex_frg_11;
 
 void fragment() {
 // ColorConstant:2
-	vec4 n_out2p0 = vec4(0.873438, 0.145484, 0.005371, 1.000000);
+	vec4 n_out2p0 = vec4(0.700000, 0.355833, 0.287000, 1.000000);
 
 
 // Input:15
@@ -165,7 +165,7 @@ void fragment() {
 "
 nodes/fragment/0/position = Vector2(740, 160)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_h265k")
-nodes/fragment/2/position = Vector2(-180, -40)
+nodes/fragment/2/position = Vector2(-240, -40)
 nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_wpevu")
 nodes/fragment/3/position = Vector2(1260, 200)
 nodes/fragment/4/node = SubResource("VisualShaderNodeFloatParameter_cgf8p")

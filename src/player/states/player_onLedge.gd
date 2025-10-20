@@ -8,8 +8,10 @@ func enter() -> void:
     acceptInput = false
     player.velocity = Vector3.ZERO
     await position_player_model()
-    await get_tree().create_timer(0.2).timeout
+    await get_tree().create_timer(0.05).timeout
     acceptInput = true
+
+    player.climb_up_ledge()
 
 func position_player_model() -> void:
     point = player.get_ledge_point()
@@ -21,24 +23,24 @@ func position_player_model() -> void:
     player.model.edge_grab()
     await TW.finished
 
-func physics_update(_delta : float) -> void:
-    if normal:
-        player.model.rotation.y = lerp_angle(
-            player.model.rotation.y, atan2(normal.x, normal.z), 0.3)
-    if acceptInput: ledge_input()
+# func physics_update(_delta : float) -> void:
+#     if normal:
+#         player.model.rotation.y = lerp_angle(
+#             player.model.rotation.y, atan2(normal.x, normal.z), 0.3)
+#     if acceptInput: ledge_input()
 
-func ledge_input() -> void:
-    player.movement_input()
+# func ledge_input() -> void:
+#     player.movement_input()
 
-    # fall off the ledge
-    if player.moveInput == Vector2.DOWN || Input.is_action_just_pressed("ui_cancel"):
-        acceptInput = false
-        player.drop_from_ledge()
+#     # fall off the ledge
+#     if player.moveInput == Vector2.DOWN || Input.is_action_just_pressed("ui_cancel"):
+#         acceptInput = false
+#         player.drop_from_ledge()
 
-    # climb up the ledge
-    elif player.moveInput == Vector2.UP || Input.is_action_just_pressed("confirm"):
-        acceptInput = false
-        player.climb_up_ledge()
+#     # climb up the ledge
+#     elif player.moveInput == Vector2.UP || Input.is_action_just_pressed("confirm"):
+#         acceptInput = false
+#         player.climb_up_ledge()
 
 func exit() -> void:
     player.enable_collision()

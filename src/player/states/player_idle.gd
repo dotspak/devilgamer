@@ -18,6 +18,8 @@ func physics_update(delta : float) -> void:
     elif Input.is_action_just_pressed("action"):
         stateMachine.transition_to("roll")
 
+    if player.jump_check(): stateMachine.transition_to("jump")
+
     
     # epia camera look easter egg
     if Input.is_anything_pressed():

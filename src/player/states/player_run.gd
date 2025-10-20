@@ -28,12 +28,14 @@ func physics_update(delta : float) -> void:
 		camForward.y = 0
 		camForward = camForward.normalized()
 
-	player.move(delta)    
+	player.move(delta)
+
+	if player.jump_check(): stateMachine.transition_to("jump")
 	
 	if !player.is_on_floor():
-		if player.jump_check(): 
-			stateMachine.transition_to("jump")
-		elif !player.stairRayDown.is_colliding():
+		# if player.jump_check():
+		# 	stateMachine.transition_to("jump")
+		if !player.stairRayDown.is_colliding():
 			stateMachine.transition_to("fall")
 		return
 	else:

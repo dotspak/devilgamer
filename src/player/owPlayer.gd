@@ -449,7 +449,10 @@ func climb_up_ledge() -> void:
 	stateMachine.transition_to("idle")
 
 
-func jump_check() -> bool: return !jumpCheck.is_colliding() && Vector2(velocity.x, velocity.z).length() >= 6
+func jump_check() -> bool:
+	var jumpPressed : bool = Input.is_action_just_pressed("jump")
+	return jumpPressed && is_on_floor()
+	#return !jumpCheck.is_colliding() && Vector2(velocity.x, velocity.z).length() >= 6
 func apply_gravity(delta : float) -> void: velocity.y += gravity * delta
 
 

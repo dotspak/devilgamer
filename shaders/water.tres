@@ -75,8 +75,8 @@ frequency = 0.0285
 cellular_distance_function = 1
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_wjwk1"]
-seamless = true
 noise = SubResource("FastNoiseLite_5w6nj")
+seamless = true
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_sxtts"]
 texture = SubResource("NoiseTexture2D_wjwk1")
@@ -130,8 +130,8 @@ cellular_jitter = -0.525
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_q7myh"]
 width = 256
 height = 256
-seamless = true
 noise = SubResource("FastNoiseLite_jpoff")
+seamless = true
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7f3q1"]
 texture = SubResource("NoiseTexture2D_q7myh")
@@ -150,8 +150,8 @@ default_input_values = [1, Vector2(0.1, 0.1), 2, Vector2(0, 0)]
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_phhhr"]
 width = 256
 height = 256
-seamless = true
 noise = SubResource("FastNoiseLite_5w6nj")
+seamless = true
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_5w6nj"]
 texture = SubResource("NoiseTexture2D_phhhr")
@@ -177,7 +177,7 @@ default_value = 0.4
 
 [resource]
 code = "shader_type spatial;
-render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_toon, specular_toon;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_toon, specular_toon;
 
 uniform float WaveStrength = 0.40000000596046;
 uniform float WaveSpeed = 0.10000000149012;
