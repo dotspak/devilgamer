@@ -9,10 +9,13 @@ gradient = SubResource("Gradient_jhmw6")
 [resource]
 background_mode = 1
 ambient_light_source = 2
-ambient_light_color = Color(0.365883, 0.61385, 0.726151, 1)
-ambient_light_energy = 2.0
+ambient_light_color = Color(0.37123206, 0.4793754, 0.61960787, 1)
+ambient_light_energy = 0.5
+reflected_light_source = 1
 tonemap_mode = 3
 tonemap_exposure = 0.9
+ssao_radius = 16.0
+ssao_intensity = 15.25
 sdfgi_use_occlusion = true
 glow_enabled = true
 glow_levels/2 = 1.0

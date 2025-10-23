@@ -308,8 +308,10 @@ common/physics_interpolation=true
 
 textures/canvas_textures/default_texture_filter=3
 textures/lossless_compression/force_png=true
-lights_and_shadows/directional_shadow/size=1024
-lights_and_shadows/directional_shadow/size.mobile=1024
+lights_and_shadows/directional_shadow/size=256
+lights_and_shadows/directional_shadow/size.mobile=256
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=0
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=0
 textures/default_filters/use_nearest_mipmap_filter=true
 anti_aliasing/screen_space_roughness_limiter/enabled=false
 textures/decals/filter=2
@@ -317,6 +319,8 @@ textures/light_projectors/filter=2
 environment/volumetric_fog/use_filter=0
 environment/defaults/default_clear_color=Color(0.166406, 0.166406, 0.166406, 1)
 viewport/transparent_background=true
+lights_and_shadows/positional_shadow/atlas_size=256
+lights_and_shadows/positional_shadow/atlas_size.mobile=256
 
 [shader_globals]
 

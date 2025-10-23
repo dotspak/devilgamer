@@ -798,26 +798,33 @@ shape = SubResource("ConcavePolygonShape3D_1eo3p")
 [node name="ceilingLight" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.421524, 0)
 light_color = Color(1, 0.974811, 0.772186, 1)
+light_energy = 3.0
 light_volumetric_fog_energy = 0.0
+shadow_enabled = true
 omni_range = 30.0
 
-[node name="ceilingLight4" type="SpotLight3D" parent="."]
+[node name="ceilingLight4" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11.5, -28)
 light_color = Color(1, 0.974811, 0.772186, 1)
+light_energy = 3.0
 light_volumetric_fog_energy = 4.0
-spot_range = 15.0
-spot_angle = 23.277966
+shadow_enabled = true
+omni_range = 12.0
 
 [node name="ceilingLight2" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10.421524, 0)
 light_color = Color(1, 0.974811, 0.772186, 1)
+light_energy = 3.0
 light_volumetric_fog_energy = 0.0
+shadow_enabled = true
 omni_range = 30.0
 
 [node name="ceilingLight3" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10.421524, 0)
 light_color = Color(1, 0.974811, 0.772186, 1)
+light_energy = 3.0
 light_volumetric_fog_energy = 0.0
+shadow_enabled = true
 omni_range = 30.0
 
 [node name="wallElevator" parent="." instance=ExtResource("8_u64ml")]
