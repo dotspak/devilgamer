@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://5ts3rxyj1pxq"
+path="res://.godot/imported/map_bth_mainElevator.3.map-ceee34a25ef48a3f24b154b2f2077435.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/autosave/map_bth_mainElevator.3.map"
+dest_files=["res://.godot/imported/map_bth_mainElevator.3.map-ceee34a25ef48a3f24b154b2f2077435.tres"]
+
+[params]
+
