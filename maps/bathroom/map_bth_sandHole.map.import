@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://bso5a4cig6dga"
+path="res://.godot/imported/map_bth_sandHole.map-e5fb9eeb7b3a9737d46af2666f13fd04.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/map_bth_sandHole.map"
+dest_files=["res://.godot/imported/map_bth_sandHole.map-e5fb9eeb7b3a9737d46af2666f13fd04.tres"]
+
+[params]
+

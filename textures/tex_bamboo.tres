@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cyc242hutcamq"]
+
+[ext_resource type="Texture2D" uid="uid://vkt42xhyljfq" path="res://textures/tex_bamboo.png" id="1_p45dx"]
+[ext_resource type="Texture2D" uid="uid://b0cg1wikr8rg5" path="res://textures/norm_bamboo.png" id="2_q6clb"]
+
+[resource]
+albedo_texture = ExtResource("1_p45dx")
+metallic = 0.07
+normal_enabled = true
+normal_texture = ExtResource("2_q6clb")
+texture_filter = 2

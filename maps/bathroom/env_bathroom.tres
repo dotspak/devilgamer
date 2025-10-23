@@ -1,4 +1,4 @@
-[gd_resource type="Environment" load_steps=5 format=3 uid="uid://djgjbs23x8wfg"]
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://djgjbs23x8wfg"]
 
 [sub_resource type="Gradient" id="Gradient_jhmw6"]
 colors = PackedColorArray(0, 0, 0, 1, 0.98, 0.98, 0.98, 1)
@@ -6,19 +6,11 @@ colors = PackedColorArray(0, 0, 0, 1, 0.98, 0.98, 0.98, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_l0p1w"]
 gradient = SubResource("Gradient_jhmw6")
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l2y2w"]
-sky_top_color = Color(0, 0, 0, 1)
-sky_horizon_color = Color(0, 0, 0, 1)
-
-[sub_resource type="Sky" id="Sky_2vtwm"]
-sky_material = SubResource("ProceduralSkyMaterial_l2y2w")
-
 [resource]
-background_mode = 2
-sky = SubResource("Sky_2vtwm")
+background_mode = 1
 ambient_light_source = 2
 ambient_light_color = Color(0.365883, 0.61385, 0.726151, 1)
-ambient_light_energy = 2.5
+ambient_light_energy = 2.0
 tonemap_mode = 3
 tonemap_exposure = 0.9
 sdfgi_use_occlusion = true
