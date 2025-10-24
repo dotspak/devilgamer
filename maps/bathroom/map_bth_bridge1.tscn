@@ -1464,5 +1464,5 @@ material = ExtResource("22_4y6fo")
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
 top_level = true
 light_energy = 0.5
-light_volumetric_fog_energy = 3.0
+light_volumetric_fog_energy = 4.0
 shadow_enabled = true

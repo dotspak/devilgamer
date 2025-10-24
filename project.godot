@@ -45,7 +45,7 @@ Dummy, dummy, dummy!
 window/size/viewport_width=896
 window/size/viewport_height=504
 window/subwindows/embed_subwindows=false
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
 [dotnet]
