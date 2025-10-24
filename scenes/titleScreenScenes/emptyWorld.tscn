@@ -155,8 +155,6 @@ _data = {
 [sub_resource type="Resource" id="Resource_x12yn"]
 script = ExtResource("3_p1rk6")
 duration = 0.0
-transition = 0
-ease = 2
 
 [sub_resource type="Animation" id="Animation_i3lmu"]
 length = 0.001
@@ -203,7 +201,7 @@ _data = {
 environment = SubResource("Environment_whmlw")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 13.135, 0)
+transform = Transform3D(1, 0, 0, 0, -3.6199901e-06, 1, 0, -1, -3.6199901e-06, 0, 13.135, 0)
 light_color = Color(0.850187, 0.92499, 1, 1)
 light_energy = 16.0
 shadow_enabled = true
@@ -212,7 +210,7 @@ spot_attenuation = 0.48
 spot_angle = 13.66
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="."]
-transform = Transform3D(0.160993, 0.974081, -0.158893, 0, 0.160993, 0.986956, 0.986956, -0.158893, 0.0259188, 0, 14.135, 0)
+transform = Transform3D(0.16099301, 0.974081, -0.15889318, 0, 0.16099313, 0.986956, 0.98695606, -0.15889283, 0.025918776, 0, 14.135, 0)
 light_color = Color(1, 0.748509, 0.57624, 1)
 light_energy = 11.13
 shadow_enabled = true
