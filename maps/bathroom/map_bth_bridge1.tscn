@@ -1,4 +1,4 @@
-[gd_scene load_steps=216 format=4 uid="uid://dnhqx604sbfxq"]
+[gd_scene load_steps=224 format=4 uid="uid://dnhqx604sbfxq"]
 
 [ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_drwxu"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_eef4w"]
@@ -791,6 +791,52 @@ radius = 2.0
 [sub_resource type="BoxShape3D" id="BoxShape3D_53fbd"]
 size = Vector3(200, 1, 200)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uejp2"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+use_particle_trails = true
+
+[sub_resource type="Gradient" id="Gradient_uxs5m"]
+offsets = PackedFloat32Array(0.0054200543, 1)
+colors = PackedColorArray(0.2370078, 0.3711567, 0.43673304, 1, 0.04507523, 0.2942338, 0.4202275, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nm4br"]
+gradient = SubResource("Gradient_uxs5m")
+
+[sub_resource type="Gradient" id="Gradient_uejp2"]
+offsets = PackedFloat32Array(0, 0.18157181, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_x1t4m"]
+gradient = SubResource("Gradient_uejp2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_uejp2"]
+lifetime_randomness = 1.0
+emission_shape_offset = Vector3(0, 20, 0)
+emission_shape = 3
+emission_box_extents = Vector3(70, 30, 70)
+direction = Vector3(0.1, -1, 0.1)
+spread = 5.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_max = 3.0
+color_ramp = SubResource("GradientTexture1D_x1t4m")
+color_initial_ramp = SubResource("GradientTexture1D_nm4br")
+hue_variation_min = -0.010000022
+hue_variation_max = 0.009999977
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="Curve" id="Curve_ldve1"]
+_limits = [0.0, 0.110076725, 0.0, 1.0]
+_data = [Vector2(0, 0.110076725), 0.0, 0.0, 0, 0, Vector2(0.19906323, 0.110076725), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RibbonTrailMesh" id="RibbonTrailMesh_x1t4m"]
+curve = SubResource("Curve_ldve1")
+
 [node name="bathroom_bridge1" type="Node3D" node_paths=PackedStringArray("chests", "npcs", "exits")]
 script = ExtResource("1_drwxu")
 roomName = "Pipe Bridge"
@@ -1466,3 +1512,15 @@ top_level = true
 light_energy = 0.5
 light_volumetric_fog_energy = 4.0
 shadow_enabled = true
+
+[node name="rain" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.382744, 0, -11.331043)
+material_override = SubResource("StandardMaterial3D_uejp2")
+amount = 1000
+lifetime = 2.0
+speed_scale = 5.0
+randomness = 1.0
+visibility_aabb = AABB(-50, 2, -50, 100, 50, 100)
+trail_enabled = true
+process_material = SubResource("ParticleProcessMaterial_uejp2")
+draw_pass_1 = SubResource("RibbonTrailMesh_x1t4m")
