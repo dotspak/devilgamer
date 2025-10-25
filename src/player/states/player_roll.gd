@@ -5,6 +5,8 @@ var TW : Tween
 
 func enter() -> void:
 	rollFinished = false
+	player.sounds["roll"].play()
+	player.sounds["roll"].pitch_scale = randf_range(0.8, 1.2)
 	player.model.roll()
 
 	TW = create_tween().set_trans(Tween.TRANS_SINE)

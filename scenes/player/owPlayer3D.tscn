@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene load_steps=66 format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
 [ext_resource type="Script" uid="uid://c2fnpvd1bhjyl" path="res://src/statemachine/state_machine.gd" id="2_vphkp"]
@@ -33,6 +33,8 @@
 [ext_resource type="AudioStream" uid="uid://bknwuu8umhweb" path="res://assets/audio/sfx/SE_respawn.ogg" id="20_cj0gn"]
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="24_4lsu4"]
 [ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="25_st7ng"]
+[ext_resource type="AudioStream" uid="uid://be817rxrv42ln" path="res://assets/audio/sfx/SE_jump1.ogg" id="33_oc67l"]
+[ext_resource type="AudioStream" uid="uid://dd76un3q2kmtv" path="res://assets/audio/sfx/SE_roll1.ogg" id="34_elhsl"]
 
 [sub_resource type="Resource" id="Resource_5g6mi"]
 script = ExtResource("16_sws5g")
@@ -192,7 +194,9 @@ accel_idleScale = 1.2
 jumpStrength = 16.0
 rollSpeed = 25.0
 sounds = {
+"jump": NodePath("sounds/jump"),
 "respawn": NodePath("sounds/respawn"),
+"roll": NodePath("sounds/roll"),
 "step": NodePath("sounds/foot"),
 "void": NodePath("sounds/voidOut"),
 "waterStep": NodePath("sounds/waterStep")
@@ -503,6 +507,16 @@ bus = &"SFX"
 [node name="respawn" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("20_cj0gn")
 volume_db = -6.0
+
+[node name="jump" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("33_oc67l")
+volume_db = -10.0
+bus = &"reverbSFX"
+
+[node name="roll" type="AudioStreamPlayer3D" parent="sounds"]
+stream = ExtResource("34_elhsl")
+volume_db = -8.0
+bus = &"reverbSFX"
 
 [node name="popupPos" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
