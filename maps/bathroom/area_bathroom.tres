@@ -17,6 +17,7 @@
 script = ExtResource("7_yjsob")
 areaName = "Bathroom"
 areaDescription = "Built to cleanse, left to rot."
+enviroPath = "res://maps/bathroom/bathhouse_enviro.tscn"
 environment = ExtResource("4_fi2yj")
 bgm = ExtResource("1_bcc2x")
 door = ExtResource("3_c70nk")

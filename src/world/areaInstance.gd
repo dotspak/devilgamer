@@ -6,7 +6,7 @@ const AREA_FADE_TIME : float = 1.5
 
 @export var defintion : AreaDef
 @export var generatedRooms : Array[RoomInstance]
-@export var areaTransitionRooms : Dictionary[String, RoomToArea]
+@export var areaTransitionRooms : Dictionary[int, RoomToArea]
 
 var bgmPlayer : AudioStreamPlayer = AudioStreamPlayer.new()
 
@@ -25,13 +25,13 @@ func area_intro(color : Color = Color.WHITE) -> void:
 	if defintion.bgm: AudioManager.play_bgm(defintion.bgm, 1, 1, AREA_FADE_TIME)
 
 
-func transition_to_area(area : String, playerPos : Vector3) -> void:
-	print("transitioning to area: ", area)
+func transition_to_area(area : int, playerPos : Vector3) -> void:
+	print("transitioning to area: ", Area.AREA_IDS.keys()[area])
 	GameManager.player.move_to_position(playerPos)
 	GameManager.hide_battle_ui()
 	AudioManager.fade_bgm(AREA_FADE_TIME)
 	await GameManager.fadeout_screen(AREA_FADE_TIME, Color.WHITE, GameManager.fadeTargets.AREA)
-	GameManager.load_area(area, defintion.areaName)
+	GameManager.load_area(area, str(defintion.ID))
 
 
 func spawn_rooms_from_def() -> void:
@@ -85,9 +85,8 @@ func spawn_rooms_from_def() -> void:
 			connect_door_to_room(door, false, otherRoom, otherExit)
 	
 	# spawn the area environment
-	var worldEnv : WorldEnvironment = WorldEnvironment.new()
-	worldEnv.environment = defintion.worldEnvironment
-	add_child(worldEnv)
+	if defintion.areaEnvionment:
+		add_child(defintion.areaEnvionment.instantiate())
 
 
 func connect_room_to_door(room : RoomInstance, roomExit : Node3D, door : DoorInstance, useEntryA : bool):
@@ -117,5 +116,5 @@ func connect_door_to_room(door : DoorInstance, useEntryA : bool, room : RoomInst
 
 
 # used for spawning the player correctly
-func find_entry_room(fromArea : String) -> RoomToArea: return areaTransitionRooms[fromArea]
+func find_entry_room(fromArea : int) -> RoomToArea: return areaTransitionRooms[fromArea]
 func get_player_spawn(areaRoom : RoomToArea) -> Vector3: return areaRoom.spawnPoint.global_position

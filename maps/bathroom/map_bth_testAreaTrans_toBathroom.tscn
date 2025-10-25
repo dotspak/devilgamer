@@ -15,9 +15,7 @@
 
 [sub_resource type="Resource" id="Resource_03l6c"]
 script = ExtResource("13_p27ej")
-duration = 1.0
 transition = 1
-ease = 2
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2gmbm"]
 _surfaces = [{
@@ -154,7 +152,6 @@ density_texture = SubResource("NoiseTexture3D_0y2ik")
 
 [node name="testBathTransition" type="Node3D" node_paths=PackedStringArray("spawnPoint", "transitionTrigger", "playerWalkToPos", "areaCam", "exits")]
 script = ExtResource("1_0y2ik")
-toArea = "Bathroom"
 spawnPoint = NodePath("spawn")
 transitionTrigger = NodePath("transitionTrigger")
 playerWalkToPos = NodePath("playerWalkTo")

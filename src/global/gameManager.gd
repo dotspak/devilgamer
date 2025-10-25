@@ -28,8 +28,8 @@ var player : OWPlayer :
 
 # World Management ----------------------------
 @export var areas : Array[Area]
-var generatedAreas : Dictionary[String, AreaDef] = {}
-var startingArea : String = ""
+var generatedAreas : Array[AreaDef] = []
+var startingArea : int = -1
 
 @onready var fadeAnim : AnimationPlayer = %fadeAnims
 
@@ -102,10 +102,11 @@ func set_current_scene(scene : Node) -> void:
 
 # trigger area generation for the game
 func run_area_generation() -> void:
+	generatedAreas.resize(Area.AREA_IDS.size())
 	for area in areas:
 		var def : AreaDef = area.generate_area_def()
-		generatedAreas[def.areaName] = def
-		if startingArea == "": startingArea = def.areaName
+		generatedAreas[def.ID] = def
+		if startingArea < 0: startingArea = def.ID
 	areasGenerated.emit()
 	print("finished generating areas")
 
@@ -268,7 +269,7 @@ func load_terminal(title : String) -> void:
 
 
 # loads the passed area (to) coming from the previous area (from)
-func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> void:
+func load_area(to : int, from : String = "", color : Color = Color.WHITE) -> void:
 	print("attempting to load ", to, ", from ", from)
 	player.disable_input()
 	
@@ -281,15 +282,18 @@ func load_area(to : String, from : String = "", color : Color = Color.WHITE) -> 
 
 	areaInstance.spawn_rooms_from_def()
 
+	if generatedAreas[to].areaEnvionment:
+		areaInstance.add_child(generatedAreas[to].areaEnvionment.instantiate())
+
 	# get the spawn position for the player
 	var spawnPos : Vector3 = Vector3.ZERO
 	var spawnRot : Basis = Basis.IDENTITY
 
 	var enteringRoom : RoomToArea = null
-	if areaInstance.areaTransitionRooms.has(from):
-		enteringRoom = areaInstance.areaTransitionRooms[from]
-
-	if from == "pool": # coming from a shadow pool
+	if areaInstance.areaTransitionRooms.has(int(from)):
+		enteringRoom = areaInstance.areaTransitionRooms[int(from)]
+	
+	if from == "elevator": # coming from an elevator
 		pass
 	elif from != "": # coming from a previous area
 		spawnPos = enteringRoom.playerWalkToPos.global_position

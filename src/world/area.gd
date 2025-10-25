@@ -5,12 +5,15 @@ class_name Area
 const TRANSITION_ROOM : PackedScene = preload("res://scenes/areaTransitionRoom.tscn")
 
 enum AREA_IDS {bath, freeze, abyss, lab, heaven, hub, border}
+enum SPECIAL_ID {none = -1, elevator = -2}
+
 @export_group("Area Info")
 @export var ID : AREA_IDS
 @export var areaName : String = "Area"
 @export var areaDescription : String = "dummy description"
 
 @export_group("Details")
+@export_file_path var enviroPath : String
 @export var environment : Environment
 @export var bgm : AudioStream
 
@@ -28,6 +31,9 @@ func generate_area_def() -> AreaDef:
 	def.doorScene = door
 	def.worldEnvironment = environment
 	def.bgm = bgm
+	def.ID = ID
+	
+	if enviroPath: def.areaEnvionment = load(enviroPath)
 
 	var remRooms : Array[RoomDef] = roomPool.duplicate(true)
 	var roomDefs : Array[RoomDef] = []

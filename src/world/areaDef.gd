@@ -2,12 +2,14 @@
 extends Resource
 class_name AreaDef
 
+var ID : Area.AREA_IDS
 var areaName : String = "Area"
 var worldEnvironment : Environment
 var bgm : AudioStream
 var areaDescription : String = "dummy description"
 var roomDefintions : Array[RoomDef]
 var doorScene : PackedScene
+var areaEnvionment : PackedScene
 
 func visualize_area_def(def: AreaDef = self) -> void:
 	print("=== Area Definition: %s ===" % areaName)

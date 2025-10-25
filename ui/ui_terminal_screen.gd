@@ -112,7 +112,7 @@ func close_terminal() -> void:
 	await TW.finished
 
 
-func load_next_area(area : String = GameManager.startingArea) -> void:
+func load_next_area(area : int = GameManager.startingArea) -> void:
 	GameManager.fadeout_screen(0)
 	GameManager.player.un_freeze()
 	GameManager.player.show()

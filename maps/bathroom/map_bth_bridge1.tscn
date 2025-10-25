@@ -1545,13 +1545,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.875, -31.1, 26.5)
 size = Vector3(146.75, 57.5, 209)
 material = ExtResource("22_4y6fo")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
-top_level = true
-light_energy = 0.5
-light_volumetric_fog_energy = 3.0
-shadow_enabled = true
-
 [node name="rain" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.382744, -5, -11.331043)
 material_override = SubResource("StandardMaterial3D_uejp2")

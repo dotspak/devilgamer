@@ -148,13 +148,11 @@ density_texture = SubResource("NoiseTexture3D_4kjy4")
 
 [sub_resource type="Resource" id="Resource_8xn2s"]
 script = ExtResource("12_3wccm")
-duration = 1.0
 transition = 1
-ease = 2
 
 [node name="testBathTransition" type="Node3D" node_paths=PackedStringArray("spawnPoint", "transitionTrigger", "playerWalkToPos", "areaCam", "exits")]
 script = ExtResource("1_cxypl")
-toArea = "Freezer"
+toArea = 1
 spawnPoint = NodePath("spawn")
 transitionTrigger = NodePath("transitionTrigger")
 playerWalkToPos = NodePath("playerWalkTo")

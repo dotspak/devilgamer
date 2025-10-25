@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dnxtmdatsugk1"]
+
+[ext_resource type="Environment" uid="uid://dtka8i3ysfwmq" path="res://maps/freezer/env_freezer.tres" id="1_q4qjr"]
+
+[node name="freezerEnviro" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_q4qjr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.1391731, 0.99026805, 0, -0.99026805, 0.1391731, 0, 0, 0)
+shadow_enabled = true
+sky_mode = 1

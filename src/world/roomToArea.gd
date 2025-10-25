@@ -3,9 +3,9 @@
 extends RoomInstance
 class_name RoomToArea
 
-signal areaTransitionEntered(area : String, playerPos : Vector3)
+signal areaTransitionEntered(area : int, playerPos : Vector3)
 
-@export var toArea : String
+@export var toArea : Area.AREA_IDS
 @export var spawnPoint : Node3D
 @export var transitionTrigger : Area3D
 @export var playerWalkToPos : Marker3D

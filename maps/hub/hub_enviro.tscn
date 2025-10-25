@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://bg8qcrbg2inag"]
+
+[sub_resource type="Gradient" id="Gradient_bi7hc"]
+offsets = PackedFloat32Array(0, 0.937008)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_lxlub"]
+gradient = SubResource("Gradient_bi7hc")
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l2y2w"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Sky" id="Sky_2vtwm"]
+sky_material = SubResource("ProceduralSkyMaterial_l2y2w")
+
+[sub_resource type="Environment" id="Environment_70jrk"]
+background_mode = 2
+sky = SubResource("Sky_2vtwm")
+ambient_light_source = 2
+ambient_light_color = Color(0.832307, 0.964613, 1, 1)
+ambient_light_energy = 0.4
+tonemap_mode = 2
+tonemap_exposure = 1.1
+ssao_radius = 5.03
+ssao_intensity = 15.0
+ssao_detail = 0.0
+sdfgi_use_occlusion = true
+glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/4 = 0.5
+glow_levels/5 = 0.2
+glow_intensity = 1.7
+glow_strength = 1.16
+glow_bloom = 0.08
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.544, 0.643733, 0.68, 1)
+fog_light_energy = 0.29
+fog_density = 1.0
+fog_depth_begin = 0.0
+fog_depth_end = 65.0
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.6232007, 0.59573877, 0.81479543, 1)
+volumetric_fog_emission = Color(0.4135076, 0.2889436, 0.47453207, 1)
+volumetric_fog_gi_inject = 0.0
+volumetric_fog_length = 500.0
+adjustment_enabled = true
+adjustment_brightness = 1.1
+adjustment_contrast = 1.1
+adjustment_saturation = 0.8
+adjustment_color_correction = SubResource("GradientTexture1D_lxlub")
+
+[node name="hubEnviro" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_70jrk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.1391731, 0.99026805, 0, -0.99026805, 0.1391731, 0, 0, 0)
+light_volumetric_fog_energy = 2.0
+shadow_enabled = true
+sky_mode = 1

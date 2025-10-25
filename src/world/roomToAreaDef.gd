@@ -2,4 +2,4 @@
 extends RoomDef
 class_name RoomToAreaDef
 
-@export var toArea : String
+@export var toArea : Area.AREA_IDS

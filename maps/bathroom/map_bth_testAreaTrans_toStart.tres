@@ -5,10 +5,7 @@
 
 [resource]
 script = ExtResource("2_b57tp")
-toArea = "Start"
+toArea = 5
 scene = ExtResource("1_22hsk")
 roomName = "Area Exit"
-description = "A room"
-chests = Array[String]([])
-npcs = Array[String]([])
 exits = Array[String](["startExit_exit"])

@@ -16,6 +16,7 @@ script = ExtResource("9_u1fxs")
 ID = 1
 areaName = "Freezer"
 areaDescription = "Time slows while air flows"
+enviroPath = "res://maps/freezer/freezer_enviro.tscn"
 environment = ExtResource("4_6fkhr")
 bgm = ExtResource("1_egm4w")
 door = ExtResource("3_tqube")

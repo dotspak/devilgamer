@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cw66vhkep53m"]
+
+[ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="1_nuxkc"]
+
+[node name="bathhouseEnviro" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_nuxkc")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
+top_level = true
+light_energy = 0.5
+light_volumetric_fog_energy = 3.0
+shadow_enabled = true
+sky_mode = 1
