@@ -1,4 +1,4 @@
-[gd_scene load_steps=209 format=4 uid="uid://bant5qedkc3eb"]
+[gd_scene load_steps=210 format=4 uid="uid://bant5qedkc3eb"]
 
 [ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_pc5bm"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_8edgk"]
@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://7361iwd5k16l" path="res://assets/audio/sfx/SE_neonBuzz.ogg" id="16_2s1ko"]
 [ext_resource type="Texture2D" uid="uid://cpuu7v63lymwm" path="res://assets/particles/pe_ripple.png" id="20_2ocs3"]
 [ext_resource type="PackedScene" uid="uid://c54uxkb2kkknm" path="res://scenes/exitPointer.tscn" id="20_23lxw"]
+[ext_resource type="AudioStream" uid="uid://ihxxmxhn6mg2" path="res://assets/audio/bgs/bgs_rain1.ogg" id="20_sgvt4"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3oiuc"]
 _surfaces = [{
@@ -1483,3 +1484,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5, 4.5, 14.5)
 
 [node name="exit2" parent="." instance=ExtResource("20_23lxw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -37.5, 4.5, -14.5)
+
+[node name="rainSFX" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 11.5, -0.75)
+stream = ExtResource("20_sgvt4")
+pitch_scale = 1.5
+autoplay = true
+max_distance = 100.0
+bus = &"reverbBGS"
+parameters/looping = true
+
+[node name="rainSFX2" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 13.25, -11.25)
+stream = ExtResource("20_sgvt4")
+volume_db = -5.0
+pitch_scale = 1.5
+autoplay = true
+max_distance = 100.0
+bus = &"reverbBGS"
+parameters/looping = true

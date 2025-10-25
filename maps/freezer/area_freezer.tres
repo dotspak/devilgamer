@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Area" load_steps=11 format=3 uid="uid://c7jpqltt5m0cl"]
+[gd_resource type="Resource" script_class="Area" load_steps=12 format=3 uid="uid://c7jpqltt5m0cl"]
 
 [ext_resource type="AudioStream" uid="uid://emf1r0l5lng0" path="res://assets/audio/bgm/bgm_freezer.ogg" id="1_egm4w"]
 [ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="1_og3sf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://crt4in306l6ij" path="res://maps/bathroom/map_bth_bridge1.tres" id="6_uog0y"]
 [ext_resource type="Resource" uid="uid://dl0blcfflv8jw" path="res://maps/bathroom/map_bth_largeSewerHall.tres" id="7_hgdef"]
 [ext_resource type="Script" uid="uid://cnrare6h4qlnf" path="res://src/world/area.gd" id="9_u1fxs"]
+[ext_resource type="Resource" uid="uid://dims47m2ona4r" path="res://maps/bathroom/map_bth_mainElevator.tres" id="10_guy8n"]
 
 [resource]
 script = ExtResource("9_u1fxs")
@@ -20,7 +21,7 @@ enviroPath = "res://maps/freezer/freezer_enviro.tscn"
 environment = ExtResource("4_6fkhr")
 bgm = ExtResource("1_egm4w")
 door = ExtResource("3_tqube")
-roomPool = Array[ExtResource("1_og3sf")]([ExtResource("6_6fkhr"), ExtResource("6_uog0y"), ExtResource("7_hgdef")])
+roomPool = Array[ExtResource("1_og3sf")]([ExtResource("6_6fkhr"), ExtResource("6_uog0y"), ExtResource("7_hgdef"), ExtResource("10_guy8n")])
 requiredDeadEnds = Array[ExtResource("1_og3sf")]([ExtResource("5_6fkhr")])
 deadendPool = Array[ExtResource("1_og3sf")]([ExtResource("2_8s5mv")])
 metadata/_custom_type_script = "uid://cnrare6h4qlnf"

@@ -5,7 +5,6 @@
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="3_pfebm"]
 [ext_resource type="Material" uid="uid://dixypl2r16cl2" path="res://textures/tex_sand1.tres" id="4_3fa3y"]
 [ext_resource type="Material" uid="uid://cdedg0mmh1n6o" path="res://textures/tex_bathFloor1.tres" id="4_mb7an"]
-[ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="5_7s2xn"]
 [ext_resource type="Material" uid="uid://1h2ut3uo1je5" path="res://textures/tex_bathWall1.tres" id="5_eykg5"]
 [ext_resource type="Material" uid="uid://bvwk13w0ru007" path="res://textures/tex_rock1.tres" id="6_vrqxj"]
 [ext_resource type="Material" uid="uid://cij4ginkdg3jv" path="res://textures/tex_bathroom1.tres" id="7_ihpgp"]
@@ -17,6 +16,7 @@
 [ext_resource type="Material" uid="uid://c0j8d0mx2casc" path="res://textures/tex_metal2.tres" id="12_3fa3y"]
 [ext_resource type="Material" uid="uid://nc21s1vjsihl" path="res://textures/tex_bathTile.tres" id="13_uw886"]
 [ext_resource type="Material" uid="uid://bmvee8xcrp7fi" path="res://textures/tex_wood1.tres" id="14_uw886"]
+[ext_resource type="PackedScene" uid="uid://cw66vhkep53m" path="res://maps/bathroom/bathhouse_enviro.tscn" id="17_uw886"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_uw886"]
 _surfaces = [{
@@ -1043,14 +1043,6 @@ shape = SubResource("ConvexPolygonShape3D_13fo7")
 [node name="entity_0_brush_140_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_h588v")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("5_7s2xn")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 8.092219, 0)
-visible = false
-light_color = Color(0.5855273, 0.8595102, 0.74760276, 1)
-
 [node name="water" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, -1.2642522, -9.2)
 material_override = SubResource("ShaderMaterial_3fa3y")
@@ -1115,3 +1107,5 @@ omni_attenuation = 1.3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5, -1, -16.5)
 size = Vector3(67, 2, 63)
 material = SubResource("FogMaterial_3fa3y")
+
+[node name="bathhouseEnviro" parent="." instance=ExtResource("17_uw886")]
