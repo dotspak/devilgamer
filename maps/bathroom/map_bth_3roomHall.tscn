@@ -461,6 +461,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12547, 5.34448, 0)
 light_color = Color(1, 0.996249, 0.750523, 1)
 light_energy = 14.0
 light_volumetric_fog_energy = 0.0
+shadow_enabled = true
 omni_range = 15.0
 omni_attenuation = 1.2
 
@@ -469,6 +470,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8755, 5.34448, -4.75)
 light_color = Color(0.722627, 0.797246, 1, 1)
 light_energy = 9.694
 light_volumetric_fog_energy = 0.0
+shadow_enabled = true
 omni_range = 15.0
 omni_attenuation = 1.2
 
@@ -477,6 +479,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.3877, 5.34448, 4.87345)
 light_color = Color(0.768492, 1, 0.989552, 1)
 light_energy = 16.0
 light_volumetric_fog_energy = 0.0
+shadow_enabled = true
 omni_range = 20.0
 omni_attenuation = 1.2
 

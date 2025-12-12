@@ -1,13 +1,14 @@
 extends Control
 class_name PlayerHud
 
-const HP_HEADER : String = "[font_size=20]"
+const HP_HEADER : String = "[font_size=24]"
 const ZERO_COLOR : String = "[color=555]"
 const NORM_COLOR : String = "[color=fff]"
 
 @onready var hpLabel : RichTextLabel = %hpText
 @onready var hpBar : ProgressBar = %bar
 @onready var dragBar : ProgressBar = %dragBar
+@onready var fullHUD : Control = $VBoxContainer
 
 var mhp : float = 100 :
 	set(val):
@@ -21,6 +22,9 @@ var hp : float = 100 :
 		dragTimer.stop()
 		dragTimer.start()
 		update_hp_label()
+
+var originalHudPos : Vector2 = Vector2.ZERO
+var shakeTween : Tween
 
 var dragTimer : Timer 
 
@@ -70,6 +74,7 @@ func update_maxes() -> void:
 func hp_changed(_hp : float) -> void:
 	var TW = create_tween().set_trans(Tween.TRANS_SINE)
 	var time : float = (mhp / _hp) * 0.1
+	if _hp < hp: shake_hud(time)
 	TW.tween_property(self, "hp", _hp, time)
 
 
@@ -86,3 +91,19 @@ func _on_player_changed(player: OWPlayer) -> void:
 	player.stats.hpChanged.connect(hp_changed)
 
 
+func shake_hud(duration : float = 0) -> void:
+	if duration <= 0:
+		duration = 0.15
+
+	if originalHudPos == Vector2.ZERO: originalHudPos = fullHUD.position
+	if shakeTween && shakeTween.is_running(): shakeTween.kill()
+
+	shakeTween = create_tween().set_trans(Tween.TRANS_SINE)
+
+	var steps : int = 12
+	var shakeStrength : int = 12
+	for i in steps:
+		var offset : Vector2 = Vector2(randf_range(-shakeStrength, shakeStrength), randf_range(-shakeStrength, shakeStrength))
+		shakeTween.tween_property(fullHUD, "position", originalHudPos + offset, duration / steps)
+	
+	shakeTween.tween_property(fullHUD, "position", originalHudPos, duration / steps)

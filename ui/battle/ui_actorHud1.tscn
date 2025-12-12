@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8xwgmnwg56he"]
+[gd_scene load_steps=30 format=3 uid="uid://c8xwgmnwg56he"]
 
 [ext_resource type="Script" uid="uid://dp6y8msta10jr" path="res://ui/battle/ui_playerHud.gd" id="1_8vngl"]
 [ext_resource type="Texture2D" uid="uid://cickma02n07t" path="res://assets/portraits/port_hud_epia.png" id="1_bj86p"]
@@ -17,6 +17,9 @@ colors = PackedColorArray(0.280533, 0.272, 0.4, 0, 0.280533, 0.272, 0.4, 0.61176
 gradient = SubResource("Gradient_8vngl")
 width = 164
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dx1d5"]
+bg_color = Color(0, 0, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pq3bi"]
 bg_color = Color(0, 0, 0, 1)
 
@@ -24,16 +27,58 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr5cl"]
-bg_color = Color(1, 0.657709, 0.269428, 1)
+bg_color = Color(1, 0.61183774, 0.19314921, 1)
 border_width_left = 4
 border_color = Color(0.424, 0.027, 0, 0)
 border_blend = true
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_58pt6"]
-bg_color = Color(0.424219, 0.0264641, 0, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mr5cl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljm6j"]
+bg_color = Color(0.4963197, 1, 0.51695013, 1)
 border_width_left = 4
 border_color = Color(0.424, 0.027, 0, 0)
 border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_58pt6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orw6u"]
+bg_color = Color(0.2595463, 0.2694113, 0.33437502, 1)
+border_width_left = 4
+border_color = Color(0, 0.02542248, 0.35000002, 0)
+border_blend = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_23ygr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vngl"]
+
+[sub_resource type="Gradient" id="Gradient_mr5cl"]
+offsets = PackedFloat32Array(0, 0.005586592, 0.020484172, 0.50793654, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0.8199481, 0.6205409, 1, 0.42352942, 0.02745098, 0, 1, 0.5529412, 0.17396133, 0.20535184, 1, 0.86, 0.12899998, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_12fmu"]
+gradient = SubResource("Gradient_mr5cl")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_58pt6"]
+texture = SubResource("GradientTexture1D_12fmu")
+
+[sub_resource type="Gradient" id="Gradient_58pt6"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6313726, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dx1d5"]
+gradient = SubResource("Gradient_58pt6")
+width = 8
+
+[sub_resource type="Gradient" id="Gradient_12fmu"]
+offsets = PackedFloat32Array(0, 0.005586592, 0.020484172, 0.50793654, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 0.8199481, 0.6205409, 1, 0, 1, 0.97523165, 1, 0.9160496, 0.76620907, 1, 1, 0.71308815, 0.86, 0.8380969, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_58pt6"]
+gradient = SubResource("Gradient_12fmu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_orw6u"]
+texture = SubResource("GradientTexture1D_58pt6")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8vngl"]
 blend_mode = 3
@@ -76,13 +121,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -192.0
-offset_top = -504.0
+offset_left = -256.0
+offset_top = -96.0
 grow_horizontal = 0
 grow_vertical = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 0
-alignment = 2
 
 [node name="buffs" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -95,6 +139,7 @@ layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_12fmu")
 
 [node name="portrait" type="TextureRect" parent="VBoxContainer"]
+visible = false
 clip_children = 2
 material = SubResource("CanvasItemMaterial_mr5cl")
 custom_minimum_size = Vector2(0, 32)
@@ -148,34 +193,188 @@ theme_override_constants/v_separation = 0
 columns = 5
 metadata/_edit_use_anchors_ = true
 
-[node name="health" type="PanelContainer" parent="VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pq3bi")
+theme_override_styles/panel = SubResource("StyleBoxFlat_dx1d5")
 
-[node name="healthBar" type="HBoxContainer" parent="VBoxContainer/health"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="hpText" type="RichTextLabel" parent="VBoxContainer/health/healthBar"]
+[node name="hpText" type="RichTextLabel" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 bbcode_enabled = true
-text = "[font_size=20][color=555]0[color=fff]35"
+text = "[font_size=32][color=555]0[color=fff]35"
 fit_content = true
 autowrap_mode = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/health/healthBar"]
+[node name="bars" type="VBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_constants/separation = 2
 
-[node name="dragBar" type="ProgressBar" parent="VBoxContainer/health/healthBar/MarginContainer"]
-unique_name_in_owner = true
+[node name="ohp" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pq3bi")
+
+[node name="ohpBar" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/ohp"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/ohp/ohpBar"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="dragBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/ohp/ohpBar/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_8vngl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mr5cl")
+max_value = 55.0
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="bar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/ohp/ohpBar/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_mr5cl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ljm6j")
+max_value = 55.0
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="hp" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pq3bi")
+
+[node name="healthBar" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar"]
+clip_contents = true
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
+
+[node name="refillBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_58pt6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orw6u")
+max_value = 55.0
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="dragBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_23ygr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_mr5cl")
+max_value = 55.0
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="bar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_8vngl")
+theme_override_styles/fill = SubResource("StyleBoxTexture_58pt6")
+max_value = 55.0
+value = 44.0
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="subdivisions" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="ColorRect2" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="ColorRect3" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="ColorRect4" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="ColorRect5" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="bp" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pq3bi")
+
+[node name="BPBar" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="refillBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_58pt6")
+theme_override_styles/fill = SubResource("StyleBoxFlat_orw6u")
+max_value = 55.0
+fill_mode = 1
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="dragBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxFlat_8vngl")
 theme_override_styles/fill = SubResource("StyleBoxFlat_mr5cl")
 max_value = 55.0
@@ -184,20 +383,55 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="bar" type="ProgressBar" parent="VBoxContainer/health/healthBar/MarginContainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 12)
+[node name="bar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 4
-theme_override_styles/fill = SubResource("StyleBoxFlat_58pt6")
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxEmpty_mr5cl")
+theme_override_styles/fill = SubResource("StyleBoxTexture_orw6u")
 max_value = 55.0
-value = 20.0
+value = 55.0
 fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/health/healthBar/MarginContainer"]
+[node name="subdivisions" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect5" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="ColorRect6" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="ColorRect7" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="ColorRect8" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
+custom_minimum_size = Vector2(4, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+texture = SubResource("GradientTexture1D_dx1d5")
+expand_mode = 1
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/PanelContainer/HBoxContainer/bars"]
 material = SubResource("CanvasItemMaterial_8vngl")
 position = Vector2(0, 4)
 amount = 200
