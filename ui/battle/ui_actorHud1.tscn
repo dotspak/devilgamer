@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c8xwgmnwg56he"]
+[gd_scene load_steps=32 format=3 uid="uid://c8xwgmnwg56he"]
 
 [ext_resource type="Script" uid="uid://dp6y8msta10jr" path="res://ui/battle/ui_playerHud.gd" id="1_8vngl"]
 [ext_resource type="Texture2D" uid="uid://cickma02n07t" path="res://assets/portraits/port_hud_epia.png" id="1_bj86p"]
@@ -53,22 +53,31 @@ border_blend = true
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vngl"]
 
 [sub_resource type="Gradient" id="Gradient_mr5cl"]
-offsets = PackedFloat32Array(0, 0.005586592, 0.020484172, 0.50793654, 1)
+offsets = PackedFloat32Array(0, 0.040968344, 0.096834265, 0.44878957, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 0.8199481, 0.6205409, 1, 0.42352942, 0.02745098, 0, 1, 0.5529412, 0.17396133, 0.20535184, 1, 0.86, 0.12899998, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_12fmu"]
 gradient = SubResource("Gradient_mr5cl")
+width = 64
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_58pt6"]
 texture = SubResource("GradientTexture1D_12fmu")
+texture_margin_left = 5.0
+expand_margin_left = 5.0
+region_rect = Rect2(2, 0, 64, 1)
 
-[sub_resource type="Gradient" id="Gradient_58pt6"]
-offsets = PackedFloat32Array(0, 0.5, 1)
-colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.6313726, 0, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_dx1d5"]
+offsets = PackedFloat32Array(0.005586592, 0.054003723)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dx1d5"]
-gradient = SubResource("Gradient_58pt6")
-width = 8
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ljm6j"]
+gradient = SubResource("Gradient_dx1d5")
+width = 128
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8vngl"]
+texture = SubResource("GradientTexture1D_ljm6j")
+axis_stretch_horizontal = 1
+region_rect = Rect2(0, 0, 85.3, 0)
 
 [sub_resource type="Gradient" id="Gradient_12fmu"]
 offsets = PackedFloat32Array(0, 0.005586592, 0.020484172, 0.50793654, 1)
@@ -79,6 +88,14 @@ gradient = SubResource("Gradient_12fmu")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_orw6u"]
 texture = SubResource("GradientTexture1D_58pt6")
+texture_margin_left = 5.0
+expand_margin_left = 5.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mr5cl"]
+texture = SubResource("GradientTexture1D_ljm6j")
+axis_stretch_horizontal = 1
+region_rect = Rect2(0, 0, 128, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8vngl"]
 blend_mode = 3
@@ -292,59 +309,26 @@ metadata/_edit_use_anchors_ = true
 
 [node name="bar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 theme_override_styles/background = SubResource("StyleBoxEmpty_8vngl")
 theme_override_styles/fill = SubResource("StyleBoxTexture_58pt6")
 max_value = 55.0
-value = 44.0
+value = 55.0
 fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="subdivisions" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar"]
+[node name="hpSub" type="Panel" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ColorRect" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
-
-[node name="ColorRect2" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
-
-[node name="ColorRect3" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
-
-[node name="ColorRect4" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
-
-[node name="ColorRect5" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_8vngl")
 
 [node name="bp" type="PanelContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars"]
 layout_mode = 2
@@ -395,41 +379,14 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="subdivisions" type="HBoxContainer" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar"]
+[node name="bpSub" type="Panel" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ColorRect5" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
-
-[node name="ColorRect6" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
-
-[node name="ColorRect7" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
-
-[node name="ColorRect8" type="TextureRect" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar/subdivisions"]
-custom_minimum_size = Vector2(4, 0)
-layout_mode = 2
-size_flags_horizontal = 6
-texture = SubResource("GradientTexture1D_dx1d5")
-expand_mode = 1
+theme_override_styles/panel = SubResource("StyleBoxTexture_mr5cl")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="VBoxContainer/PanelContainer/HBoxContainer/bars"]
 material = SubResource("CanvasItemMaterial_8vngl")
