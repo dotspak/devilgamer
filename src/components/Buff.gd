@@ -6,11 +6,10 @@ enum BUFF_TAG{atk, def, heal}
 @export var isMultiplier : bool = true
 @export var buffVal : float = 1.1
 @export var duration : float = 60.0
-
-var tag : BUFF_TAG = BUFF_TAG.atk
+@export var tag : BUFF_TAG = BUFF_TAG.atk
 var disabled : bool = false
 
-func _init(_buffVal : float, _isMultiplier : bool, _duration : float) -> void:
+func _init(_buffVal : float = buffVal, _isMultiplier : bool = isMultiplier, _duration : float = duration) -> void:
     isMultiplier = _isMultiplier
     buffVal = _buffVal
     duration = _duration

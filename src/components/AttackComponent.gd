@@ -7,7 +7,7 @@ class_name AttackComponent
 func get_attack() -> float: 
     var final : float = attack
     var buffs : Array = Utils.get_all_components(owner, Buff)
-    for b in Utils.filter_buffs_by_tag(buffs, Buff.BUFF_TAG.def): b.buff_value(final)
+    for b in Utils.filter_buffs_by_tag(buffs, Buff.BUFF_TAG.def): final = b.buff_value(final)
     return final
 
 func create_attack_buff(amount : float = 1.1, isMultiplier : bool = true, duration : float = 60, source : String = "AtkBuff") -> void:

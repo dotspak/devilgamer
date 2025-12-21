@@ -11,7 +11,7 @@ const OVERHEALTH_RATIO : float = 1.25
 
 var health : float = 1 :
     set(val):
-        health = val
+        health = min(val, maxHealth * OVERHEALTH_RATIO)
         hpChanged.emit(health)
 
 signal hpChanged(val : float)
@@ -23,8 +23,8 @@ func reset_health() -> void: health = maxHealth
 func take_damage(amount : float, isTrueDmg : bool = false) -> float:
     # handle damage resistance
     if !isTrueDmg:
-        var buffs : Array = Utils.get_all_components(owner, Buff)
-        for b in Utils.filter_buffs_by_tag(buffs, Buff.BUFF_TAG.def): b.buff_value(amount)
+        var buffs : Array = Utils.get_all_components(self, Buff)
+        for b in Utils.filter_buffs_by_tag(buffs, Buff.BUFF_TAG.def): amount = b.buff_value(amount)
 
     # take the final calculated damage, can't go below 1 damage ever
     health -= max(ceilf(amount), 1)

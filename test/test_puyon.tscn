@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://demhactqsjfxi"]
+
+[ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="1_eqjyv"]
+[ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="2_7qllt"]
+[ext_resource type="PackedScene" uid="uid://bnr0q3faomdeb" path="res://assets/models/enemies/enem_puyon.glb" id="3_8jdmq"]
+[ext_resource type="Texture2D" uid="uid://bvuteu131ylnv" path="res://assets/models/enemies/enem_puyon_tex_puyon1.png" id="4_6xccy"]
+[ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="5_qts8o"]
+[ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="6_chncv"]
+[ext_resource type="Script" uid="uid://b7f5ktvj7jshu" path="res://src/components/HealthComponent.gd" id="7_sdkho"]
+[ext_resource type="Script" uid="uid://cayjugeie8tjy" path="res://src/components/Buff.gd" id="8_vwps7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwub3"]
+resource_name = "material"
+transparency = 1
+cull_mode = 2
+depth_draw_mode = 1
+albedo_color = Color(1, 1, 1, 0.35)
+albedo_texture = ExtResource("4_6xccy")
+roughness = 0.5
+texture_filter = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nxrn8"]
+radius = 1.5
+height = 5.5
+
+[node name="testPuyon" type="CharacterBody3D" node_paths=PackedStringArray("targetPosition", "model", "modelController", "stats")]
+collision_layer = 16
+collision_mask = 8
+script = ExtResource("1_eqjyv")
+targetPosition = NodePath("targetPos")
+model = NodePath("enem_puyon")
+modelController = NodePath("EntityModelController")
+stats = NodePath("StatComponent")
+metadata/_custom_type_script = "uid://dhrqews2wqm0v"
+
+[node name="EntityModelController" type="Node" parent="." node_paths=PackedStringArray("roots")]
+script = ExtResource("2_7qllt")
+roots = [NodePath("../enem_puyon/jelly"), NodePath("../enem_puyon/head")]
+metadata/_custom_type_script = "uid://dgcrx5mh3d8c8"
+
+[node name="enem_puyon" parent="." instance=ExtResource("3_8jdmq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
+
+[node name="jelly" parent="enem_puyon" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_qwub3")
+
+[node name="StatComponent" type="Node" parent="."]
+script = ExtResource("5_qts8o")
+metadata/_custom_type_script = "uid://c765h134s7wo0"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("CapsuleShape3D_nxrn8")
+
+[node name="mover" type="Node" parent="." node_paths=PackedStringArray("characterBody")]
+script = ExtResource("6_chncv")
+characterBody = NodePath("..")
+move_range = 5.0
+move_speed = 4.0
+wait_time = 0.3
+
+[node name="targetPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("7_sdkho")
+maxHealth = 60.0
+metadata/_custom_type_script = "uid://b7f5ktvj7jshu"
+
+[node name="Buff" type="Timer" parent="HealthComponent"]
+script = ExtResource("8_vwps7")
+buffVal = 0.5
+tag = 1
+metadata/_custom_type_script = "uid://cayjugeie8tjy"
+
+[editable path="enem_puyon"]

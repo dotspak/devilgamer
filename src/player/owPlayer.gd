@@ -113,7 +113,7 @@ var currentLadder : Area3D = null
 var targetIndicator : Node3D = null
 var isLockedOn : bool = false
 
-var bpComponent : BPComponent
+@onready var bpComponent : BPComponent = $BPComponent
 
 signal movedToPosition
 signal landedFromLedgeFall
@@ -130,11 +130,6 @@ func _ready() -> void:
 	lockCam.priority = 0
 	fallingParticles.emitting = false
 	stepParticles.emitting = false
-
-func store_health_component() -> void:
-	healthComponent = Utils.get_component(self, PlayerHealthComponent)
-	bpComponent = Utils.get_component(self, BPComponent)
-
 
 func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:

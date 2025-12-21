@@ -31,6 +31,7 @@ static func get_component(node : Node, type : GDScript) -> Node:
 static func get_all_components(node : Node, type : GDScript) -> Array[Node]:
     var components : Array[Node] = []
     if node.get_script() == type: components.append(node)
+    print(node.get_children(true))
     for n in node.get_children(true):
         if n.get_script() == type:
             components.append(n)
@@ -54,8 +55,10 @@ static func create_buff(amount : float = 1.1, isMultiplier : bool = true, durati
 # filters an array of buffs based on the passed buff tag
 static func filter_buffs_by_tag(buffs : Array, tag : Buff.BUFF_TAG) -> Array[Buff]:
     var finalArray : Array[Buff] = []
+    print("buffs before: ", buffs)
     for b in buffs:
         if b is Buff:
             if b.tag == tag:
                 finalArray.append(b)
+    print("remaining buffs: ", finalArray)
     return finalArray

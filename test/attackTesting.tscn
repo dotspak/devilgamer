@@ -1,13 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://46y2558njyn5"]
+[gd_scene load_steps=7 format=3 uid="uid://46y2558njyn5"]
 
-[ext_resource type="Environment" uid="uid://djgjbs23x8wfg" path="res://maps/bathroom/env_bathroom.tres" id="1_7sknq"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
-[ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="2_pouwe"]
-[ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="3_m1h02"]
-[ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="4_f1few"]
-[ext_resource type="PackedScene" uid="uid://bnr0q3faomdeb" path="res://assets/models/enemies/enem_puyon.glb" id="5_nxrn8"]
-[ext_resource type="Texture2D" uid="uid://bvuteu131ylnv" path="res://assets/models/enemies/enem_puyon_tex_puyon1.png" id="6_57tpm"]
-[ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="7_nxrn8"]
+[ext_resource type="PackedScene" uid="uid://demhactqsjfxi" path="res://test/test_puyon.tscn" id="2_ehm7b"]
 
 [sub_resource type="GDScript" id="GDScript_qwub3"]
 script/source = "extends Node3D
@@ -27,25 +21,10 @@ size = Vector3(50, 1, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_f1few"]
 size = Vector3(50, 1, 50)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwub3"]
-resource_name = "material"
-transparency = 1
-cull_mode = 2
-depth_draw_mode = 1
-albedo_color = Color(1, 1, 1, 0.35)
-albedo_texture = ExtResource("6_57tpm")
-roughness = 0.5
-texture_filter = 2
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nxrn8"]
-radius = 1.5
-height = 5.5
-
 [node name="testAttacks" type="Node3D"]
 script = SubResource("GDScript_qwub3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("1_7sknq")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -59,45 +38,5 @@ mesh = SubResource("BoxMesh_f2bor")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("BoxShape3D_f1few")
 
-[node name="puyon" type="CharacterBody3D" parent="." node_paths=PackedStringArray("mesh", "targetPosition", "model", "modelController", "stats")]
+[node name="testPuyon" parent="." instance=ExtResource("2_ehm7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.75, -7.038)
-collision_layer = 16
-collision_mask = 8
-script = ExtResource("3_m1h02")
-mesh = NodePath("")
-targetPosition = NodePath("targetPos")
-model = NodePath("enem_puyon")
-modelController = NodePath("EntityModelController")
-stats = NodePath("StatComponent")
-metadata/_custom_type_script = "uid://dhrqews2wqm0v"
-
-[node name="EntityModelController" type="Node" parent="puyon" node_paths=PackedStringArray("roots")]
-script = ExtResource("4_f1few")
-roots = [NodePath("")]
-metadata/_custom_type_script = "uid://dgcrx5mh3d8c8"
-
-[node name="enem_puyon" parent="puyon" instance=ExtResource("5_nxrn8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
-
-[node name="jelly" parent="puyon/enem_puyon" index="0"]
-surface_material_override/0 = SubResource("StandardMaterial3D_qwub3")
-
-[node name="StatComponent" type="Node" parent="puyon"]
-script = ExtResource("7_nxrn8")
-metadata/_custom_type_script = "uid://c765h134s7wo0"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="puyon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
-shape = SubResource("CapsuleShape3D_nxrn8")
-
-[node name="mover" type="Node" parent="puyon" node_paths=PackedStringArray("characterBody")]
-script = ExtResource("2_pouwe")
-characterBody = NodePath("..")
-move_range = 5.0
-move_speed = 4.0
-wait_time = 0.3
-
-[node name="targetPos" type="Marker3D" parent="puyon"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
-
-[editable path="puyon/enem_puyon"]

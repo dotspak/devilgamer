@@ -4,11 +4,13 @@ class_name PlayerHud
 const HP_HEADER : String = "[font_size=24]"
 const ZERO_COLOR : String = "[color=555]"
 const NORM_COLOR : String = "[color=fff]"
+const OVERHEALTH_COLOR : String = "[color=0f3]"
 
 @onready var hpLabel : RichTextLabel = %hpText
 @onready var hpBar : ProgressBar = %hpBar
 @onready var hpDragBar : ProgressBar = %hpDragBar
 @onready var hpSegments : Panel = %hpSeg
+@onready var ohpBar : ProgressBar = %ohpBar
 
 @onready var bpBar : ProgressBar = %bpBar
 @onready var bpSegments : Panel = %bpSeg
@@ -24,6 +26,9 @@ var hp : float = 100 :
 	set(val):
 		hp = val
 		hpBar.value = hp
+		if hp > mhp: ohpBar.value = hp
+		else: ohpBar.value = 0
+
 		dragTimer.stop()
 		dragTimer.start()
 		update_hp_label()
@@ -82,6 +87,8 @@ func mhp_changed(_mhp : float) -> void:
 
 func update_maxes() -> void:
 	hpBar.max_value = mhp
+	ohpBar.max_value = mhp * HealthComponent.OVERHEALTH_RATIO
+	ohpBar.min_value = mhp
 	hpDragBar.max_value = mhp
 	bpBar.max_value = mbp
 	segment_hp()
@@ -112,7 +119,10 @@ func update_hp_label() -> void:
 
 	var finalText : String = HP_HEADER
 	if zeros.length() > 0: finalText += ZERO_COLOR + zeros
-	if rest.length() > 0: finalText += NORM_COLOR + rest
+	if rest.length() > 0: 
+		if hp > mhp: finalText += OVERHEALTH_COLOR
+		else: finalText += NORM_COLOR
+		finalText += rest
 
 	hpLabel.text = finalText
 

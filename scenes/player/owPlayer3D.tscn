@@ -537,7 +537,7 @@ metadata/_custom_type_script = "uid://c765h134s7wo0"
 script = ExtResource("25_st7ng")
 metadata/_custom_type_script = "uid://dgcrx5mh3d8c8"
 
-[node name="PlayerHealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("36_22sgx")
 
 [node name="AttackComponent" type="Node" parent="."]

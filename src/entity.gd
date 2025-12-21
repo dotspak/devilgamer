@@ -27,13 +27,13 @@ var stopMoveWeight : float = 0.1
 var selectedAction : PackedScene = load("res://scenes/actions/tripleShot.tscn")
 var isDead : bool = false
 
-var healthComponent : HealthComponent
+@onready var healthComponent : HealthComponent = $HealthComponent
+@onready var attackComponent : AttackComponent = $AttackComponent
 
 signal entityDeath
 signal tookDamage
 
 func _ready() -> void:
-	store_health_component()
 	if modelController: entityDeath.connect(modelController.create_death_effect)
 	if healthComponent: healthComponent.hpChanged.connect(should_entity_die)
 
