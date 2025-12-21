@@ -283,7 +283,7 @@ custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="refillBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
+[node name="hpRefillBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -295,7 +295,7 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="dragBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
+[node name="hpDragBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -307,7 +307,7 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="bar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
+[node name="hpBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
@@ -321,7 +321,7 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="hpSeg" type="Panel" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/bar"]
+[node name="hpSeg" type="Panel" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/hp/healthBar/MarginContainer/hpBar"]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -344,7 +344,8 @@ custom_minimum_size = Vector2(0, 6)
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="refillBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer"]
+[node name="bpRefillBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -368,7 +369,9 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="bar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer"]
+[node name="bpBar" type="ProgressBar" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(256, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
@@ -380,7 +383,8 @@ fill_mode = 1
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="bpSub" type="Panel" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bar"]
+[node name="bpSeg" type="Panel" parent="VBoxContainer/PanelContainer/HBoxContainer/bars/bp/BPBar/MarginContainer/bpBar"]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

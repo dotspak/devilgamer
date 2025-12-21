@@ -6,8 +6,13 @@ const ZERO_COLOR : String = "[color=555]"
 const NORM_COLOR : String = "[color=fff]"
 
 @onready var hpLabel : RichTextLabel = %hpText
-@onready var hpBar : ProgressBar = %bar
-@onready var dragBar : ProgressBar = %dragBar
+@onready var hpBar : ProgressBar = %hpBar
+@onready var hpDragBar : ProgressBar = %hpDragBar
+@onready var hpSegments : Panel = %hpSeg
+
+@onready var bpBar : ProgressBar = %bpBar
+@onready var bpSegments : Panel = %bpSeg
+
 @onready var fullHUD : Control = $VBoxContainer
 
 var mhp : float = 100 :
@@ -23,6 +28,17 @@ var hp : float = 100 :
 		dragTimer.start()
 		update_hp_label()
 
+var mbp : float = 100:
+	set(val):
+		mbp = val
+		update_maxes()
+
+var bp : float = 100:
+	set(val):
+		bp = val
+		bpBar.value = bp
+		
+
 var originalHudPos : Vector2 = Vector2.ZERO
 var shakeTween : Tween
 
@@ -35,8 +51,48 @@ func _ready():
 	add_child(dragTimer)
 	dragTimer.timeout.connect(_update_drag_bar)
 
-	dragBar.value = mhp
+	hpDragBar.value = mhp
 	hpBar.value = mhp
+
+
+func _on_player_changed(player: OWPlayer) -> void:
+	if !player.is_node_ready(): await player.ready
+	mhp = player.healthComponent.maxHealth
+	hp = player.healthComponent.health
+	mbp = player.bpComponent.maxBP
+	bp = player.bpComponent.BP
+
+	player.healthComponent.mhpChanged.connect(mhp_changed)
+	player.healthComponent.hpChanged.connect(hp_changed)
+	player.bpComponent.bpChanged.connect(bp_changed)
+	player.bpComponent.maxBpChanged.connect(mbp_changed)
+
+
+func hp_changed(_hp : float) -> void:
+	var TW = create_tween().set_trans(Tween.TRANS_SINE)
+	var time : float = (mhp / _hp) * 0.1
+	if _hp < hp: shake_hud(time)
+	TW.tween_property(self, "hp", _hp, time)
+
+
+func mhp_changed(_mhp : float) -> void: 
+	mhp = _mhp
+	update_maxes()
+
+
+func update_maxes() -> void:
+	hpBar.max_value = mhp
+	hpDragBar.max_value = mhp
+	bpBar.max_value = mbp
+	segment_hp()
+	segment_bp()
+
+
+func segment_hp() -> void:
+	var numUpgrades : int = GameManager.player.healthComponent.healthUpgrades
+	var length : float = hpSegments.size.x / numUpgrades
+	var stylebox : StyleBoxTexture = hpSegments.get("theme_override_styles/panel")
+	stylebox.region_rect.size.x = length
 
 
 func update_hp_label() -> void:
@@ -61,43 +117,28 @@ func update_hp_label() -> void:
 	hpLabel.text = finalText
 
 
-func mhp_changed(_mhp : float) -> void: 
-	mhp = _mhp
+func bp_changed(_bp : float) -> void:
+	var TW = create_tween().set_trans(Tween.TRANS_SINE)
+	var time : float = (mbp / _bp) * 0.1
+	if _bp < bp: shake_hud(time)
+	TW.tween_property(self, "bp", _bp, time)
+
+
+func mbp_changed(_mbp : float) -> void:
+	mbp = _mbp
 	update_maxes()
 
 
-func update_maxes() -> void:
-	hpBar.max_value = mhp
-	dragBar.max_value = mhp
-	segment_hp()
-
-
-func segment_hp() -> void:
-	var numUpgrades : int = GameManager.player.healthComponent.healthUpgrades
-	var length : float = %hpSeg.size.x / numUpgrades
-	var stylebox : StyleBoxTexture = %hpSeg.get("theme_override_styles/panel")
+func segment_bp() -> void:
+	var numUpgrades : int = GameManager.player.bpComponent.bpUpgrades
+	var length : float = bpSegments.size.x / numUpgrades
+	var stylebox : StyleBoxTexture = bpSegments.get("theme_override_styles/panel")
 	stylebox.region_rect.size.x = length
-
-
-func hp_changed(_hp : float) -> void:
-	var TW = create_tween().set_trans(Tween.TRANS_SINE)
-	var time : float = (mhp / _hp) * 0.1
-	if _hp < hp: shake_hud(time)
-	TW.tween_property(self, "hp", _hp, time)
 
 
 func _update_drag_bar() -> void:
 	var TW = create_tween().set_trans(Tween.TRANS_SINE)
-	TW.tween_property(dragBar, "value", hp, 0.4)
-
-
-func _on_player_changed(player: OWPlayer) -> void:
-	if !player.is_node_ready(): await player.ready
-	mhp = player.healthComponent.maxHealth
-	hp = player.healthComponent.health
-
-	player.healthComponent.mhpChanged.connect(mhp_changed)
-	player.healthComponent.hpChanged.connect(hp_changed)
+	TW.tween_property(hpDragBar, "value", hp, 0.4)
 
 
 func shake_hud(duration : float = 0) -> void:
