@@ -51,5 +51,5 @@ func reset_player_speed() -> String:
 	return "reset player speed to default"
 
 func set_player_hp(hp : float) -> String:
-	GameManager.player.stats.HP = hp
+	GameManager.player.healthComponent.health = hp
 	return "player hp set to " + str(GameManager.player.stats.HP)

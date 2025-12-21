@@ -84,11 +84,12 @@ func _update_drag_bar() -> void:
 
 
 func _on_player_changed(player: OWPlayer) -> void:
-	mhp = player.stats.get_stat(StatComponent.STATS.MHP)
-	hp = player.stats.HP
+	if !player.is_node_ready(): await player.ready
+	mhp = player.healthComponent.maxHealth
+	hp = player.healthComponent.health
 
-	player.stats.mhpChanged.connect(mhp_changed)
-	player.stats.hpChanged.connect(hp_changed)
+	player.healthComponent.mhpChanged.connect(mhp_changed)
+	player.healthComponent.hpChanged.connect(hp_changed)
 
 
 func shake_hud(duration : float = 0) -> void:

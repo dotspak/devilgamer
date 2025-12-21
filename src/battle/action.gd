@@ -84,8 +84,8 @@ func spawn_hit_effect() -> void:
 
 
 func entity_hit(entity : Entity) -> void:
-	if entity_hit_filter(entity) && entity.stats:
-		entity.take_damage(skill.calc_damage(caster), caster.stats, skill.dmgType)
+	if entity_hit_filter(entity) && entity.healthComponent:
+		entity.take_damage(skill.calc_damage(caster), false, false)
 
 
 func trigger_collideFX() -> void: add_child(collideFX.instantiate())

@@ -23,7 +23,7 @@ func _ready():
     CameraManager.set_active_cam($PhantomCamera3D, 0)
     AudioManager.play_bgm(audio, 1, 1, 1)
 
-    await GameManager.fadein_screen(0.5, GameConstants.ELEVATOR_FADE_COLOR)
+    await GameManager.fadein_screen(0.5, Utils.ELEVATOR_FADE_COLOR)
 
     animator.play("start")
     await animator.animation_finished
@@ -63,8 +63,8 @@ func trigger_exit() -> void:
 
 func exit_elevator() -> void: 
     isExiting = true
-    await GameManager.fadeout_screen(2.0, GameConstants.ELEVATOR_FADE_COLOR, GameManager.fadeTargets.AREA)
-    GameManager.load_area(GameManager.startingArea, "", GameConstants.ELEVATOR_FADE_COLOR)
+    await GameManager.fadeout_screen(2.0, Utils.ELEVATOR_FADE_COLOR, GameManager.fadeTargets.AREA)
+    GameManager.load_area(GameManager.startingArea, "", Utils.ELEVATOR_FADE_COLOR)
     queue_free()
     
 

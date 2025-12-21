@@ -117,6 +117,8 @@ signal movedToPosition
 signal landedFromLedgeFall
 
 func _ready() -> void:
+	super()
+
 	if get_tree().debug_collisions_hint: %ledgePoint.show()
 	else: %ledgePoint.hide()
 
@@ -127,6 +129,9 @@ func _ready() -> void:
 	fallingParticles.emitting = false
 	stepParticles.emitting = false
 
+func store_health_component() -> void:
+	healthComponent = Utils.get_component(self, PlayerHealthComponent)
+	
 
 func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:
@@ -522,7 +527,10 @@ func respawn() -> void:
 	velocity = Vector3.ZERO
 	mainCam.follow_damping = false
 	sounds["respawn"].play()
-	take_damage(10, stats, Skill.DMG_TYPES.TRUE)
+
+	# deal 10% of the player's health when falling
+	var dmg : float = healthComponent.maxHealth * 0.1
+	take_damage(dmg, false, true)
 
 	await GameManager.fadein_screen(0.5)
 

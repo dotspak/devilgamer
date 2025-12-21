@@ -28,14 +28,14 @@ func enter_elevator() -> void:
 
     animator.play("doorClose")
     await get_tree().create_timer(0.8).timeout
-    await GameManager.fadeout_screen(0.5, GameConstants.ELEVATOR_FADE_COLOR)
+    await GameManager.fadeout_screen(0.5, Utils.ELEVATOR_FADE_COLOR)
 
     GameManager.load_elevator()
 
 
 func exit_elevator() -> void:
     CameraManager.set_active_cam(cameraOverride, 0)
-    GameManager.fadein_screen(0.5, GameConstants.ELEVATOR_FADE_COLOR)
+    GameManager.fadein_screen(0.5, Utils.ELEVATOR_FADE_COLOR)
     animator.play("doorOpenExtended")
     await animator.animation_finished
 

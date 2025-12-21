@@ -6,5 +6,13 @@ const HEALTH_PER_UPGRADE : float = 25
 @export var healthUpgrades : int = 3 :
     set(val):
         healthUpgrades = val
-        maxHealth = healthUpgrades * HEALTH_PER_UPGRADE
+        calc_mhp()
         reset_health()
+
+func _ready(): 
+    calc_mhp()
+    reset_health()
+
+func calc_mhp() -> float:
+    maxHealth = healthUpgrades * HEALTH_PER_UPGRADE
+    return maxHealth

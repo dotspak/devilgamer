@@ -27,13 +27,18 @@ var stopMoveWeight : float = 0.1
 var selectedAction : PackedScene = load("res://scenes/actions/tripleShot.tscn")
 var isDead : bool = false
 
+var healthComponent : HealthComponent
+
 signal entityDeath
 signal tookDamage
 
 func _ready() -> void:
+	store_health_component()
 	if modelController: entityDeath.connect(modelController.create_death_effect)
-	if stats: stats.hpChanged.connect(should_entity_die)
+	if healthComponent: healthComponent.hpChanged.connect(should_entity_die)
 
+func store_health_component() -> void:
+	healthComponent = Utils.get_component(self, HealthComponent)
 
 func display_damage_num(dmg : float, isHeal : bool = false, isCrit : bool = false, isWeak : bool = false, isRes : bool = false) -> void:
 	var num : Sprite3D = DMG_NUM.instantiate()
@@ -123,36 +128,21 @@ func get_closest_target() -> Node3D:
 
 
 # deals damage to the entity.
-func take_damage(baseDMG : float, casterStats : StatComponent, dmgType : Skill.DMG_TYPES = Skill.DMG_TYPES.PHYS) -> void:
-	if !stats: return
+func take_damage(amount : float, crit : bool = false, isTrueDmg : bool = false) -> void:
+	if !healthComponent: return
 	if isDead: return
-	
-	var dmgReduction : float = 0.0
-	match dmgType:
-		Skill.DMG_TYPES.PHYS: dmgReduction = stats.get_stat(StatComponent.STATS.DEF)
-		Skill.DMG_TYPES.MAG: dmgReduction = stats.get_stat(StatComponent.STATS.MDF)
-		Skill.DMG_TYPES.TRUE: dmgReduction = 0
-	
-	var crit : bool = randf_range(0, 1) <= casterStats.calc_crit_chance()
-	if crit: baseDMG *= casterStats.get_rate(StatComponent.RATES.CRITDMG)
-	
-	var finalDMG = max(baseDMG * (
-		GameConstants.DEF_SCALE / 
-		(GameConstants.DEF_SCALE + dmgReduction)), 0)
-	finalDMG = roundf(finalDMG)
-	
-	if modelController:
-		modelController.damage_flash()
-	display_damage_num(finalDMG, false, crit, false, false)
 
-	var bloodAmount : float = clampf((finalDMG / stats.stats[StatComponent.STATS.MHP]) * 1.3, 0.1, 1.0)
+	amount = healthComponent.take_damage(amount, isTrueDmg)
+	
+	if modelController: modelController.damage_flash()
+	display_damage_num(amount, false, crit, false, false)
+
+	var bloodAmount : float = clampf((amount / healthComponent.maxHealth) * 1.3, 0.1, 1.0)
 	blood_splatter(bloodAmount)
 	flash_model(Color(2, 0, 0))
 
-	stats.HP -= finalDMG
-
 	tookDamage.emit()
-	print(name + " took " + str(int(finalDMG)) + " DMG!")
+	print(name + " took " + str(int(amount)) + " DMG!")
 
 
 func blood_splatter(amount : float) -> void:
@@ -182,9 +172,11 @@ func flash_model(color : Color = Color(2, 0, 0)) -> void:
 
 
 func heal_damage(baseHeal : float) -> void:
+	if !healthComponent: return
+
+	baseHeal = healthComponent.heal_damage(baseHeal)
 	display_damage_num(baseHeal, true)
 	flash_model(Color(0, 2, 0.2))
-	stats.HP += baseHeal
 
 
 func should_entity_die(hp : float) -> bool:
