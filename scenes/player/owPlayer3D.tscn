@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene load_steps=68 format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
 [ext_resource type="Script" uid="uid://c2fnpvd1bhjyl" path="res://src/statemachine/state_machine.gd" id="2_vphkp"]
@@ -36,6 +36,7 @@
 [ext_resource type="AudioStream" uid="uid://be817rxrv42ln" path="res://assets/audio/sfx/SE_jump1.ogg" id="33_oc67l"]
 [ext_resource type="AudioStream" uid="uid://dd76un3q2kmtv" path="res://assets/audio/sfx/SE_roll1.ogg" id="34_elhsl"]
 [ext_resource type="Script" uid="uid://djwrnxn25nog8" path="res://src/components/PlayerHealthComponent.gd" id="36_22sgx"]
+[ext_resource type="Script" uid="uid://dqeb22rwjfnpv" path="res://src/components/AttackComponent.gd" id="37_3t17q"]
 
 [sub_resource type="Resource" id="Resource_5g6mi"]
 script = ExtResource("16_sws5g")
@@ -537,6 +538,10 @@ metadata/_custom_type_script = "uid://dgcrx5mh3d8c8"
 
 [node name="PlayerHealthComponent" type="Node" parent="."]
 script = ExtResource("36_22sgx")
+
+[node name="AttackComponent" type="Node" parent="."]
+script = ExtResource("37_3t17q")
+metadata/_custom_type_script = "uid://dqeb22rwjfnpv"
 
 [connection signal="child_entered_tree" from="inventory" to="." method="inventory_updated"]
 [connection signal="area_entered" from="head" to="." method="_on_head_area_entered"]

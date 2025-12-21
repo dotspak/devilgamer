@@ -69,6 +69,14 @@ func mhp_changed(_mhp : float) -> void:
 func update_maxes() -> void:
 	hpBar.max_value = mhp
 	dragBar.max_value = mhp
+	segment_hp()
+
+
+func segment_hp() -> void:
+	var numUpgrades : int = GameManager.player.healthComponent.healthUpgrades
+	var length : float = %hpSeg.size.x / numUpgrades
+	var stylebox : StyleBoxTexture = %hpSeg.get("theme_override_styles/panel")
+	stylebox.region_rect.size.x = length
 
 
 func hp_changed(_hp : float) -> void:

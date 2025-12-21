@@ -35,8 +35,8 @@ func _ready():
 	else: make_file_dead()
 
 	set_input(false)
+	AudioManager.play_bgm(music.stream, 1, 1, 0, music)
 	await start_anim()
-	AudioManager.play_bgm(music.stream, 1, 1, 0.5, music)
 	set_input(true)
 
 

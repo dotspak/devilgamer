@@ -131,7 +131,7 @@ func _ready() -> void:
 
 func store_health_component() -> void:
 	healthComponent = Utils.get_component(self, PlayerHealthComponent)
-	
+
 
 func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:
@@ -529,7 +529,7 @@ func respawn() -> void:
 	sounds["respawn"].play()
 
 	# deal 10% of the player's health when falling
-	var dmg : float = healthComponent.maxHealth * 0.1
+	var dmg : float = healthComponent.maxHealth * 0.2
 	take_damage(dmg, false, true)
 
 	await GameManager.fadein_screen(0.5)
