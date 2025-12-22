@@ -43,8 +43,12 @@ func store_health_component() -> void:
 func display_damage_num(dmg : float, isHeal : bool = false, isCrit : bool = false, isWeak : bool = false, isRes : bool = false) -> void:
 	var num : Sprite3D = DMG_NUM.instantiate()
 	num.popupDone.connect(num.queue_free)
-	add_child(num)
-	num.position = Vector3(randf_range(-1,1), randf_range(-1,1), randf_range(-1,1))
+
+	if targetPosition: targetPosition.add_child(num)
+	else: add_child(num)
+
+	var offset : float = 1.2
+	num.position = Vector3(randf_range(-1,1) * offset, randf_range(-1,1) * offset, 0)
 	num.display_dmg(dmg, isHeal, isCrit, isWeak, isRes)
 
 

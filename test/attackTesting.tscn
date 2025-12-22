@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://46y2558njyn5"]
+[gd_scene load_steps=13 format=3 uid="uid://46y2558njyn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
 [ext_resource type="PackedScene" uid="uid://demhactqsjfxi" path="res://test/test_puyon.tscn" id="2_ehm7b"]
@@ -9,6 +9,32 @@ script/source = "extends Node3D
 func _ready() -> void:
 	GameManager.show_battle_ui()
 "
+
+[sub_resource type="Gradient" id="Gradient_ehm7b"]
+colors = PackedColorArray(0.24756429, 0.25105315, 0.42421877, 1, 0.04447637, 0.04839372, 0.16640627, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ehm7b"]
+frequency = 0.028
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yxqvu"]
+noise = SubResource("FastNoiseLite_ehm7b")
+color_ramp = SubResource("Gradient_ehm7b")
+seamless = true
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ehm7b"]
+sky_top_color = Color(0.09285715, 0.09982144, 0.16250002, 1)
+sky_horizon_color = Color(0.36562502, 0.08530312, 0.078756, 1)
+sky_cover = SubResource("NoiseTexture2D_yxqvu")
+ground_bottom_color = Color(0, 0, 0, 1)
+ground_horizon_color = Color(0.32721633, 0.31253535, 0.67058825, 1)
+
+[sub_resource type="Sky" id="Sky_yxqvu"]
+sky_material = SubResource("ProceduralSkyMaterial_ehm7b")
+
+[sub_resource type="Environment" id="Environment_pouwe"]
+background_mode = 2
+sky = SubResource("Sky_yxqvu")
+volumetric_fog_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2y1j"]
 albedo_texture = ExtResource("1_ehm7b")
@@ -25,6 +51,7 @@ size = Vector3(50, 1, 50)
 script = SubResource("GDScript_qwub3")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_pouwe")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 0, 0)

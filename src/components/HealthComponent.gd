@@ -27,7 +27,8 @@ func take_damage(amount : float, isTrueDmg : bool = false) -> float:
         for b in Utils.filter_buffs_by_tag(buffs, Buff.BUFF_TAG.def): amount = b.buff_value(amount)
 
     # take the final calculated damage, can't go below 1 damage ever
-    health -= max(ceilf(amount), 1)
+    amount = max(ceilf(amount), 1)
+    health -= amount
     return amount
 
 
