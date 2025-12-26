@@ -257,13 +257,15 @@ func _physics_process(delta: float) -> void:
 		
 		lastFrameOnFloor = Engine.get_physics_frames()
 
-	# moves the character around
-	if !snap_up_to_stairs(delta):
+	#moves the character around
+	if stateMachine.get_state() != "jump":
+		if !snap_up_to_stairs(delta):
+			move_and_slide()
+			snap_down_to_stairs()
+	else:
 		move_and_slide()
-		snap_down_to_stairs()
-	
+			
 	if moveDir.length() > 0.2 && stateMachine.is_state("run") && !usingSkill: lastMoveDir = moveDir
-
 
 func movement_input() -> bool:
 	if !inputAllowed || !movementAllowed: return false

@@ -319,7 +319,7 @@ omni_attenuation = 2.0
 [node name="Camera3D" type="Camera3D" parent="cameras"]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
-transform = Transform3D(-1, 4.4022994e-07, -2.4966666e-06, -1.4210855e-14, 0.9848077, 0.17364827, 2.535182e-06, 0.17364827, -0.98480785, -1.2483333e-05, 2.8682413, -4.924039)
+transform = Transform3D(-1, 4.402299e-07, -2.4966666e-06, 0, 0.9848077, 0.17364825, 2.535182e-06, 0.17364825, -0.98480785, -1.9973333e-05, 3.389186, -7.878462)
 current = true
 
 [node name="PhantomCameraHost" type="Node" parent="cameras/Camera3D"]
@@ -333,7 +333,7 @@ current = true
 
 [node name="mainCam" type="Node3D" parent="cameras" node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
-transform = Transform3D(-1, 4.4022994e-07, -2.4966666e-06, -1.4210855e-14, 0.9848077, 0.17364827, 2.535182e-06, 0.17364827, -0.98480785, -1.2483333e-05, 2.8682413, -4.924039)
+transform = Transform3D(-1, 4.402299e-07, -2.4966666e-06, 0, 0.9848077, 0.17364825, 2.535182e-06, 0.17364825, -0.98480785, -1.9973333e-05, 3.389186, -7.878462)
 script = ExtResource("15_4vs3c")
 priority = 1
 follow_mode = 6
@@ -343,10 +343,10 @@ camera_3d_resource = SubResource("Resource_4lsu4")
 follow_offset = Vector3(0, 2, 0)
 follow_damping = true
 follow_damping_value = Vector3(0.02, 0.02, 0.02)
-follow_distance = 5.0
+follow_distance = 8.0
 vertical_rotation_offset = 0.174533
 horizontal_rotation_offset = 3.14159
-spring_length = 5.0
+spring_length = 8.0
 shape = SubResource("SphereShape3D_h8a1l")
 
 [node name="lockCam" type="Node3D" parent="cameras"]
