@@ -1,10 +1,28 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmv54qboufhue"]
+[gd_scene load_steps=10 format=3 uid="uid://cmv54qboufhue"]
 
 [ext_resource type="Script" uid="uid://c4o6nck010onc" path="res://ui/ui_dmgPopup.gd" id="1_7luxo"]
 [ext_resource type="Shader" uid="uid://cgoa181d3u6xp" path="res://shaders/textBox.tres" id="2_wyl6w"]
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_85egg"]
+[sub_resource type="QuadMesh" id="QuadMesh_7luxo"]
+resource_local_to_scene = true
+size = Vector2(5, 3)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_7luxo"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wyl6w"]
+resource_local_to_scene = true
+render_priority = 1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+disable_ambient_light = true
+disable_fog = true
+disable_specular_occlusion = true
+albedo_texture = SubResource("ViewportTexture_7luxo")
+texture_filter = 2
+texture_repeat = false
+billboard_mode = 2
 
 [sub_resource type="Animation" id="Animation_wyl6w"]
 length = 0.001
@@ -97,16 +115,12 @@ shader = ExtResource("2_wyl6w")
 shader_parameter/speed = 1.0
 shader_parameter/radius = 10.0
 
-[node name="dmgPopup" type="Sprite3D"]
-cast_shadow = 0
-pixel_size = 0.02
-billboard = 1
-no_depth_test = true
-alpha_cut = 1
-texture_filter = 2
-render_priority = 1
-texture = SubResource("ViewportTexture_85egg")
+[node name="dmgPopup" type="Node3D"]
 script = ExtResource("1_7luxo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_7luxo")
+surface_material_override/0 = SubResource("StandardMaterial3D_wyl6w")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -142,6 +156,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="bgThing2" type="ColorRect" parent="SubViewport/Control/num"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_36mjo")
 layout_mode = 1

@@ -1,14 +1,14 @@
-extends Sprite3D
+extends Node3D
 
 const FX : String = "[shake][font_size=64][bgcolor=black]"
 
 @onready var label : RichTextLabel = %num
 @onready var anim : AnimationPlayer = $AnimationPlayer
+@onready var mesh : MeshInstance3D = $MeshInstance3D
 
 signal popupDone
 
 func display_dmg(dmg : float, isHeal : bool = false, isCrit : bool = false, isWeak : bool = false, isRes : bool = false) -> void:
-	pixel_size += randf_range(0.005, -0.005)
 	var text : String = FX
 	text += get_color(isHeal, isCrit)
 

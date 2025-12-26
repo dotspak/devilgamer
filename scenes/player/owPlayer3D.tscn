@@ -49,6 +49,7 @@ script = ExtResource("14_kdygc")
 metadata/_custom_type_script = "uid://b8hhnqsugykly"
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_h8a1l"]
+radius = 0.2
 
 [sub_resource type="Resource" id="Resource_h8a1l"]
 script = ExtResource("16_sws5g")

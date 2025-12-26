@@ -1,0 +1,3 @@
+extends _StatComponent
+class_name BonusHealComponent
+

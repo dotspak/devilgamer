@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://demhactqsjfxi"]
+[gd_scene load_steps=10 format=3 uid="uid://demhactqsjfxi"]
 
 [ext_resource type="Script" uid="uid://dhrqews2wqm0v" path="res://src/entity.gd" id="1_eqjyv"]
 [ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="2_7qllt"]
@@ -7,14 +7,13 @@
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="5_qts8o"]
 [ext_resource type="Script" uid="uid://haxycg1hc7ak" path="res://test/randomMovement.gd" id="6_chncv"]
 [ext_resource type="Script" uid="uid://b7f5ktvj7jshu" path="res://src/components/HealthComponent.gd" id="7_sdkho"]
-[ext_resource type="Script" uid="uid://cayjugeie8tjy" path="res://src/components/Buff.gd" id="8_vwps7"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qwub3"]
 resource_name = "material"
 transparency = 1
 cull_mode = 2
 depth_draw_mode = 1
-albedo_color = Color(1, 1, 1, 0.35)
+albedo_color = Color(1, 1, 1, 0.52156866)
 albedo_texture = ExtResource("4_6xccy")
 roughness = 0.5
 texture_filter = 2
@@ -66,11 +65,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
 script = ExtResource("7_sdkho")
 maxHealth = 60.0
 metadata/_custom_type_script = "uid://b7f5ktvj7jshu"
-
-[node name="Buff" type="Timer" parent="HealthComponent"]
-script = ExtResource("8_vwps7")
-buffVal = 0.5
-tag = 1
-metadata/_custom_type_script = "uid://cayjugeie8tjy"
 
 [editable path="enem_puyon"]

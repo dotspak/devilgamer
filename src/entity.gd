@@ -41,7 +41,7 @@ func store_health_component() -> void:
 	healthComponent = Utils.get_component(self, HealthComponent)
 
 func display_damage_num(dmg : float, isHeal : bool = false, isCrit : bool = false, isWeak : bool = false, isRes : bool = false) -> void:
-	var num : Sprite3D = DMG_NUM.instantiate()
+	var num : Node3D = DMG_NUM.instantiate()
 	num.popupDone.connect(num.queue_free)
 
 	if targetPosition: targetPosition.add_child(num)
@@ -210,3 +210,20 @@ func face_velocity(delta : float, turnSpeed : float = 5.0 ) -> void:
 
 	var targetRot : float = atan2(horizontalVel.x, horizontalVel.z)
 	model.rotation.y = lerp_angle(model.rotation.y, targetRot, turnSpeed * delta)
+
+
+func get_attack_stat() -> float:
+	var atk : float = 0
+	var attackComponents : Array = Utils.get_all_components(self, AttackComponent)
+	for a : AttackComponent in attackComponents:
+		if !a.isMultiplier: atk += a.amount
+		else: atk *= a.amount
+	return max(atk, 1)
+
+
+func apply_damage_mod(damage : float) -> float:
+	var defComponents : Array = Utils.get_all_components(self, DefenseComponent)
+	for d : DefenseComponent in defComponents:
+		if d.isMultiplier: damage *= d.amount
+		else: damage -= d.amount
+	return max(damage, 1)
