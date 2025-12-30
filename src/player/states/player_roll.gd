@@ -27,6 +27,6 @@ func physics_update(_delta: float):
 	if player.jump_check():
 		TW.kill()
 		print("roll to jump")
-		player.velocity = player.lastMoveDir * player.rollSpeed * 0.5
+		player.velocity -= player.lastMoveDir * player.rollSpeed * 0.1
 		stateMachine.transition_to("jump")
 	if rollFinished: stateMachine.transition_to("run")

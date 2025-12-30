@@ -22,7 +22,7 @@ disable_specular_occlusion = true
 albedo_texture = SubResource("ViewportTexture_7luxo")
 texture_filter = 2
 texture_repeat = false
-billboard_mode = 2
+billboard_mode = 1
 
 [sub_resource type="Animation" id="Animation_wyl6w"]
 length = 0.001

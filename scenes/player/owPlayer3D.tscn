@@ -194,8 +194,12 @@ collision_layer = 18
 collision_mask = 21
 script = ExtResource("1_yhvw8")
 accel = 50.0
+accel_airScale = 0.6
 accel_idleScale = 1.2
-jumpStrength = 16.0
+jumpPeakTime = 0.35
+jumpFallTime = 0.35
+jumpHeight = 2.5
+jumpDist = 8.0
 rollSpeed = 25.0
 sounds = {
 "jump": NodePath("sounds/jump"),

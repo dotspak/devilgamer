@@ -2,10 +2,15 @@ extends PlayerState
 
 const FALL_SHAKE_STRENGTH : float = 0.02
 
-func enter() -> void: 
-    player.model.fall()
+var fallCheck : bool = false
+
+func enter(): fallCheck = false
 
 func physics_update(delta : float) -> void:
+    if !fallCheck && player.velocity.y < 0:
+        player.model.fall()
+        fallCheck = true
+
     player.movement_input()
     player.air_move(delta)
     player.apply_gravity(delta)

@@ -26,7 +26,9 @@ const maxPitch : float = 50
 @export var accel_airScale : float = 0.3
 @export var accel_idleScale : float = 1
 @export var rotationSpeed : float = 10
-@export var jumpStrength : float = 8
+@export var jumpPeakTime : float = 0.5
+@export var jumpFallTime : float = 0.5
+@export var jumpHeight : float = 2.0
 @export var jumpDist : float = 4
 @export var climbSpeed : float = 2
 @export var rollSpeed : float = 20
@@ -55,6 +57,15 @@ const maxPitch : float = 50
 @onready var menuCam : PhantomCamera3D = %menuCam
 @onready var defaultSpringLength : float = mainCam.spring_length
 @onready var defaultCamOffset : Vector3 = mainCam.follow_offset
+
+var jumpVelocity : float = 5.0
+var jumpGravity : float = 5.0
+var fallGravity : float = 5.0
+
+func calc_jump() -> void:
+	jumpGravity = (2 * jumpHeight) / pow(jumpPeakTime, 2)
+	fallGravity = (2 * jumpHeight) / pow(jumpFallTime, 2)
+	jumpVelocity = jumpGravity * jumpPeakTime
 
 var isRespawning : bool = false
 var inputAllowed : bool = true
@@ -120,6 +131,7 @@ signal landedFromLedgeFall
 
 func _ready() -> void:
 	super()
+	calc_jump()
 
 	if get_tree().debug_collisions_hint: %ledgePoint.show()
 	else: %ledgePoint.hide()
@@ -130,6 +142,7 @@ func _ready() -> void:
 	lockCam.priority = 0
 	fallingParticles.emitting = false
 	stepParticles.emitting = false
+
 
 func _unhandled_input(event : InputEvent) -> void:
 	if inputAllowed:
@@ -356,7 +369,9 @@ func air_move(delta : float) -> void:
 	airTimer += delta
 	moveDir.y = 0
 	moveDir = moveDir.normalized()
+	var lockY : float = velocity.y
 	velocity = velocity.move_toward(moveDir * speed, accel * accel_airScale * delta)
+	velocity.y = lockY
 
 
 func is_on_ladder() -> bool:
@@ -458,7 +473,12 @@ func jump_check() -> bool:
 	var jumpPressed : bool = Input.is_action_just_pressed("jump")
 	return jumpPressed && is_on_floor()
 	#return !jumpCheck.is_colliding() && Vector2(velocity.x, velocity.z).length() >= 6
-func apply_gravity(delta : float) -> void: velocity.y += gravity * delta
+
+func apply_gravity(delta : float) -> void:
+	if velocity.y > 0:
+		velocity.y -= jumpGravity * delta
+	else:
+		velocity.y -= fallGravity * delta
 
 
 func center_camera() -> void:
