@@ -57,6 +57,7 @@ const maxPitch : float = 50
 @onready var menuCam : PhantomCamera3D = %menuCam
 @onready var defaultSpringLength : float = mainCam.spring_length
 @onready var defaultCamOffset : Vector3 = mainCam.follow_offset
+@onready var targetter : PlayerTargetter = $targetter
 
 var jumpVelocity : float = 5.0
 var jumpGravity : float = 5.0
@@ -177,8 +178,8 @@ func _unhandled_input(event : InputEvent) -> void:
 				mainCam.set_third_person_rotation_degrees(camRotation)
 
 		# handles camera lock on/centering camera
-		if Input.is_action_just_pressed("center_camera"): center_camera()
-		elif Input.is_action_just_released("center_camera"): skillTarget = null
+		if Input.is_action_just_pressed("center_camera") && !targetter.has_target(): center_camera()
+		#elif Input.is_action_just_released("center_camera"): skillTarget = null
 		
 		# handles player interaction
 		if Input.is_action_just_pressed("interact"):
@@ -483,7 +484,7 @@ func apply_gravity(delta : float) -> void:
 
 func center_camera() -> void:
 	if await reset_camera(): AudioManager.play_ui_sfx("resetCam")
-	skillTarget = get_closest_target()
+	#skillTarget = get_closest_target()
 
 
 func reset_camera() -> bool:

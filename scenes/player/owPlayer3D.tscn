@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene load_steps=75 format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
 [ext_resource type="Script" uid="uid://c2fnpvd1bhjyl" path="res://src/statemachine/state_machine.gd" id="2_vphkp"]
@@ -38,6 +38,9 @@
 [ext_resource type="Script" uid="uid://djwrnxn25nog8" path="res://src/components/PlayerHealthComponent.gd" id="36_22sgx"]
 [ext_resource type="Script" uid="uid://dqeb22rwjfnpv" path="res://src/components/AttackComponent.gd" id="37_3t17q"]
 [ext_resource type="Script" uid="uid://c70t5f1x8x3ck" path="res://src/components/BPComponent.gd" id="38_bk5u8"]
+[ext_resource type="Script" uid="uid://bfwcx2tifhivj" path="res://scenes/player/targetter.gd" id="39_1k34p"]
+[ext_resource type="Script" uid="uid://bvmxwvec6m8dt" path="res://scenes/player/reticle.gd" id="40_4qkhh"]
+[ext_resource type="Texture2D" uid="uid://b37d0vntp56wg" path="res://assets/ui/ui_reticle1.png" id="41_4qkhh"]
 
 [sub_resource type="Resource" id="Resource_5g6mi"]
 script = ExtResource("16_sws5g")
@@ -188,6 +191,44 @@ radius = 12.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bu0r1"]
 radius = 0.4
+
+[sub_resource type="Animation" id="Animation_4qkhh"]
+resource_name = "loop"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [0.075, 0.1, 0.075]
+}
+
+[sub_resource type="Animation" id="Animation_qypr7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.075]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_flgut"]
+_data = {
+&"RESET": SubResource("Animation_qypr7"),
+&"loop": SubResource("Animation_4qkhh")
+}
 
 [node name="player" type="CharacterBody3D" node_paths=PackedStringArray("sounds", "castPosition", "targetPosition", "targetArea", "model", "stats") groups=["player"]]
 collision_layer = 18
@@ -552,6 +593,31 @@ metadata/_custom_type_script = "uid://dqeb22rwjfnpv"
 [node name="BPComponent" type="Node" parent="."]
 script = ExtResource("38_bk5u8")
 metadata/_custom_type_script = "uid://c70t5f1x8x3ck"
+
+[node name="targetter" type="Node" parent="." node_paths=PackedStringArray("playerCamera", "targetRadius", "reticle")]
+script = ExtResource("39_1k34p")
+playerCamera = NodePath("../cameras/mainCam")
+targetRadius = NodePath("../targetArea")
+reticle = NodePath("../reticle")
+minDotToTarget = 0.65
+
+[node name="reticle" type="Node3D" parent="."]
+script = ExtResource("40_4qkhh")
+
+[node name="Sprite3D" type="Sprite3D" parent="reticle"]
+modulate = Color(0.5570313, 0, 0.20461407, 1)
+pixel_size = 0.075
+billboard = 1
+no_depth_test = true
+texture_filter = 0
+render_priority = -1
+texture = ExtResource("41_4qkhh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="reticle"]
+libraries = {
+&"": SubResource("AnimationLibrary_flgut")
+}
+autoplay = "loop"
 
 [connection signal="child_entered_tree" from="inventory" to="." method="inventory_updated"]
 [connection signal="area_entered" from="head" to="." method="_on_head_area_entered"]

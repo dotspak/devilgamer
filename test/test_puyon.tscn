@@ -66,4 +66,7 @@ script = ExtResource("7_sdkho")
 maxHealth = 60.0
 metadata/_custom_type_script = "uid://b7f5ktvj7jshu"
 
+[node name="TargetPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4683051, 0)
+
 [editable path="enem_puyon"]
