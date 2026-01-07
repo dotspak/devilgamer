@@ -43,14 +43,14 @@
 [ext_resource type="Script" uid="uid://bvmxwvec6m8dt" path="res://scenes/player/reticle.gd" id="40_4qkhh"]
 [ext_resource type="Texture2D" uid="uid://b37d0vntp56wg" path="res://assets/ui/ui_reticle1.png" id="41_4qkhh"]
 
-[sub_resource type="Resource" id="Resource_flgut"]
+[sub_resource type="Resource" id="Resource_qypr7"]
 script = ExtResource("15_qypr7")
 castType = 1
 dmgType = 1
 variance = 5.0
 metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
 
-[sub_resource type="Resource" id="Resource_lnks5"]
+[sub_resource type="Resource" id="Resource_flgut"]
 script = ExtResource("15_qypr7")
 name = "Machine Gun"
 description = "Rapid fire, low true damage homing attack."
@@ -62,7 +62,7 @@ cooldown = 0.1
 skillLock = 0.1
 metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
 
-[sub_resource type="Resource" id="Resource_8swys"]
+[sub_resource type="Resource" id="Resource_lnks5"]
 script = ExtResource("15_qypr7")
 castType = 1
 dmgType = 1
@@ -268,6 +268,7 @@ jumpPeakTime = 0.35
 jumpFallTime = 0.35
 jumpHeight = 2.5
 jumpDist = 8.0
+climbSpeed = 4.0
 rollSpeed = 25.0
 sounds = {
 "jump": NodePath("sounds/jump"),
@@ -324,7 +325,7 @@ script = ExtResource("11_28wk8")
 script = ExtResource("13_18mxl")
 gearName = "Blaze Staff"
 sprite = ExtResource("16_7jlee")
-skill = SubResource("Resource_flgut")
+skill_a = SubResource("Resource_qypr7")
 action_a = ExtResource("17_elhsl")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
@@ -353,7 +354,7 @@ metadata/_custom_type_script = "uid://c765h134s7wo0"
 script = ExtResource("13_18mxl")
 gearName = "Iron Pipe"
 sprite = ExtResource("14_drw8h")
-skill = SubResource("Resource_lnks5")
+skill_a = SubResource("Resource_flgut")
 action_a = ExtResource("17_oc67l")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
@@ -361,7 +362,7 @@ metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 script = ExtResource("13_18mxl")
 gearName = "Pink Staff"
 sprite = ExtResource("19_elhsl")
-skill = SubResource("Resource_8swys")
+skill_a = SubResource("Resource_lnks5")
 action_a = ExtResource("19_oc67l")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
@@ -426,6 +427,9 @@ vertical_rotation_offset = 0.174533
 horizontal_rotation_offset = 3.14159
 spring_length = 8.0
 shape = SubResource("SphereShape3D_h8a1l")
+align_transform_with_view = Callable()
+align_position_with_view = Callable()
+align_rotation_with_view = Callable()
 
 [node name="lockCam" type="Node3D" parent="cameras"]
 unique_name_in_owner = true

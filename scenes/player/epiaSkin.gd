@@ -44,8 +44,9 @@ func set_look_target(target : Node3D, secondaryRotation : bool = true) -> void:
 
 
 func idle():
-	pass
-	#state_machine.travel("idle")
+	tree.set("parameters/edgeShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/fallshot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/fallShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
 
 
 func move():
@@ -56,17 +57,23 @@ func move():
 func fall():
 	#state_machine.travel("fall")
 	tree.set("parameters/fallShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
+	tree.set("parameters/edgeShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/jumpShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
 
 
 func jump():
 	#state_machine.travel("jump")
 	tree.set("parameters/jumpShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
+	tree.set("parameters/edgeShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/fallshot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/rollShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
 
 
 func edge_grab():
 	#state_machine.travel("edge")
 	tree.set("parameters/edgeShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FIRE)
-
+	tree.set("parameters/fallshot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
+	tree.set("parameters/fallShot/request", AnimationNodeOneShot.OneShotRequest.ONE_SHOT_REQUEST_FADE_OUT)
 
 func wall_slide():
 	state_machine.travel("WallSlide")

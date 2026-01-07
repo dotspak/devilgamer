@@ -60,7 +60,7 @@ func _on_body_exited(body : Node3D) -> void:
 
 func remove_invalid_targets() -> void:
 	for target in validTargets:
-		if !is_instance_valid(target) || !is_valid_target(target):
+		if !is_valid_target(target):
 			validTargets.erase(target)
 			if lockedTarget == target: lockedTarget = null
 			if softTarget == target: softTarget = null
@@ -109,12 +109,14 @@ func toggle_lock() -> void:
 		print("unlocking from the target")
 		reticle.lock_off()
 		lockedTarget = null
-		return
+		owner.lock_off()
 	
-	if softTarget && is_valid_target(softTarget):
+	elif softTarget && is_valid_target(softTarget):
 		print("locking onto the target")
 		reticle.lock_on()
 		lockedTarget = softTarget
+
+		owner.lock_on()
 
 
 func update_reticle() -> void:

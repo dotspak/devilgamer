@@ -463,17 +463,24 @@ func climb_up_ledge() -> void:
 	var finalPos : Vector3 = ledgeRayVert.get_collision_point()
 	finalPos += ledgeRayHori.get_collision_normal() * 0.2
 
-	var TW = create_tween().set_trans(Tween.TRANS_SINE)
-	TW.tween_property(self, "global_position:y", finalPos.y, 0.2)
+	var toLedge : Vector3 = finalPos - global_position
+	toLedge.y = 0
+
+	velocity = Vector3.ZERO
+	velocity.y = jumpVelocity / 2
+	
+	if toLedge.length() > 0.001:
+		var dir : Vector3 = toLedge.normalized()
+		velocity.x = dir.x * climbSpeed
+		velocity.z = dir.z * climbSpeed
 	model.jump()
-	await TW.finished
-	stateMachine.transition_to("idle")
+	await get_tree().create_timer(0.1).timeout
+	stateMachine.transition_to("fall")
 
 
 func jump_check() -> bool:
 	var jumpPressed : bool = Input.is_action_just_pressed("jump")
 	return jumpPressed && is_on_floor()
-	#return !jumpCheck.is_colliding() && Vector2(velocity.x, velocity.z).length() >= 6
 
 func apply_gravity(delta : float) -> void:
 	if velocity.y > 0:
@@ -611,24 +618,24 @@ func hide_target_indicator() -> void:
 func lock_on() -> void:
 	if !isLockedOn: GameManager.enter_focus_ui()
 	
-	isLockedOn = true
-	model.set_look_target(skillTarget)
-	show_target_indicator()
+	#isLockedOn = true
+	model.set_look_target(targetter.softTarget)
+	#show_target_indicator()
 
 	lockCam.priority = 1
 	mainCam.priority = 0
 
 	# set the target
 	lockCam.follow_targets.clear()
-	lockCam.set_follow_targets([self, skillTarget])
+	lockCam.set_follow_targets([self, targetter.softTarget])
 
 
 func lock_off() -> void:
-	if !isLockedOn: return
+	#if !isLockedOn: return
 
-	isLockedOn = false
+	#isLockedOn = false
 	model.clear_look_target()
-	hide_target_indicator()
+	#hide_target_indicator()
 	reset_camera()
 
 	mainCam.priority = 1

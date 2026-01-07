@@ -1,4 +1,4 @@
-[gd_scene load_steps=233 format=4 uid="uid://dnhqx604sbfxq"]
+[gd_scene load_steps=234 format=4 uid="uid://dnhqx604sbfxq"]
 
 [ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_drwxu"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_eef4w"]
@@ -25,6 +25,7 @@
 [ext_resource type="Material" uid="uid://b4j2e2017rnxx" path="res://maps/bathroom/bathFogMat1.tres" id="22_4y6fo"]
 [ext_resource type="Texture2D" uid="uid://cpuu7v63lymwm" path="res://assets/particles/pe_ripple.png" id="24_x1t4m"]
 [ext_resource type="AudioStream" uid="uid://ihxxmxhn6mg2" path="res://assets/audio/bgs/bgs_rain1.ogg" id="25_ldve1"]
+[ext_resource type="PackedScene" uid="uid://demhactqsjfxi" path="res://test/test_puyon.tscn" id="26_uxs5m"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4y6fo"]
 _surfaces = [{
@@ -1582,3 +1583,9 @@ max_distance = 150.0
 panning_strength = 0.0
 bus = &"reverbBGS"
 parameters/looping = true
+
+[node name="testPuyon" parent="." instance=ExtResource("26_uxs5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, -18)
+
+[node name="testPuyon2" parent="." instance=ExtResource("26_uxs5m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 9, 29)

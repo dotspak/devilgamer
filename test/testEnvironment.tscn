@@ -1,8 +1,7 @@
-[gd_scene load_steps=30 format=3 uid="uid://cy30vrkv8cn1c"]
+[gd_scene load_steps=29 format=3 uid="uid://cy30vrkv8cn1c"]
 
 [ext_resource type="Material" uid="uid://be3fr88cl0fpr" path="res://test/testMaterial.tres" id="2_mohb2"]
 [ext_resource type="Material" uid="uid://h6e8wtrfd8g6" path="res://test/testMaterial2.tres" id="3_4kx51"]
-[ext_resource type="PackedScene" uid="uid://cm1qrmroln5o6" path="res://scenes/player/owPlayer3D.tscn" id="3_jskug"]
 [ext_resource type="Shader" uid="uid://jck7rp0xshcm" path="res://shaders/psx/psx_lit_transparent.gdshader" id="4_dskpw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_anh6l"]
@@ -269,12 +268,3 @@ mesh = SubResource("BoxMesh_508fm")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/MeshInstance3D4/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ldqlq")
-
-[node name="player" parent="." node_paths=PackedStringArray("sounds") instance=ExtResource("3_jskug")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-sounds = {
-"respawn": null,
-"step": null,
-"void": null,
-"waterStep": null
-}

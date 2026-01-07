@@ -1,11 +1,8 @@
 extends PlayerState
 
-var ledgeTimer : float = 0
 var stepTimer : float = 0
-const LEDGE_WAIT : float = 0.25
 
 func enter() -> void:
-	ledgeTimer = 0
 	player.model.move()
 	player.stepParticles.emitting = true
 
@@ -33,26 +30,12 @@ func physics_update(delta : float) -> void:
 	if player.jump_check(): stateMachine.transition_to("jump")
 	
 	if !player.is_on_floor():
-		# if player.jump_check():
-		# 	stateMachine.transition_to("jump")
 		if !player.stairRayDown.is_colliding():
 			stateMachine.transition_to("fall")
 		return
 	else:
 		if player.model.get_current_anim() != "run":
 			player.model.move()
-	
-	var wallNormal : Vector3 = player.ledgeRayHori.get_collision_normal()
-	var pressingIntoWall : bool = player.moveDir.dot(-wallNormal) > 0.6
-	if pressingIntoWall && player.ledge_detect():
-		ledgeTimer += delta
-		if ledgeTimer >= LEDGE_WAIT:
-			ledgeTimer = 0
-			stateMachine.transition_to("jumpToLedge")
-	else:
-		ledgeTimer = max(ledgeTimer - delta, 0)
-
-	
 
 
 func exit() -> void: 
