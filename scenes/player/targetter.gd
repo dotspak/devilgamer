@@ -14,11 +14,11 @@ class_name PlayerTargetter
 
 var softTarget : Node3D = null
 var lockedTarget : Node3D = null
-var validTargets : Dictionary[Node3D, bool] = {}
+var validTargets : Array[Node3D] = []
 
 func has_target() -> bool: return softTarget != null
 func is_targettable(node : Node) -> Node3D: return node.get_node_or_null("TargetPoint")
-func is_valid_target(target : Node3D) -> bool: return is_instance_valid(target) && validTargets[target]
+func is_valid_target(target : Node3D) -> bool: return is_instance_valid(target) && validTargets.has(target)
 
 func _ready() -> void:
 	targetRadius.body_entered.connect(_on_body_entered)
@@ -49,17 +49,17 @@ func _physics_process(_delta: float) -> void:
 func _on_body_entered(body : Node3D) -> void:
 	if is_targettable(body):
 		print(body.name)
-		validTargets[body] = true
+		validTargets.append(body)
 
 
 func _on_body_exited(body : Node3D) -> void:
-	if validTargets.has(body):validTargets.erase(body)
+	if validTargets.has(body): validTargets.erase(body)
 	if lockedTarget == body: lockedTarget = null
 	if softTarget == body: softTarget = null
 
 
 func remove_invalid_targets() -> void:
-	for target in validTargets.keys():
+	for target in validTargets:
 		if !is_instance_valid(target) || !is_valid_target(target):
 			validTargets.erase(target)
 			if lockedTarget == target: lockedTarget = null
@@ -77,7 +77,7 @@ func pick_best_target() -> Node3D:
 	var bestTarget : Node3D = null
 	var bestScore := -INF
 
-	for target in validTargets.keys():
+	for target in validTargets:
 		if !is_valid_target(target): continue
 
 		var targetPos : Vector3 = get_target_point(target)
@@ -122,5 +122,5 @@ func update_reticle() -> void:
 		reticle.set_active(false)
 		return
 
-	reticle.set_active(true)
 	reticle.set_world_pos(get_target_point(softTarget))
+	reticle.set_active(true)

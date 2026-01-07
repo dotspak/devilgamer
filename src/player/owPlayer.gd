@@ -209,18 +209,20 @@ func interact(node : Interactable) -> void:
 
 func _physics_process(delta: float) -> void:
 	if inputAllowed:
-		if isLockedOn:
-			var targetBodies : Array[Node3D] = targetArea.get_overlapping_bodies()
-			targetBodies.erase(self)
+		# if isLockedOn:
+		# 	var targetBodies : Array[Node3D] = targetArea.get_overlapping_bodies()
+		# 	targetBodies.erase(self)
 
-			if skillTarget:
-				if !targetBodies.has(skillTarget):
-					print("looking for new target")
-					skillTarget = get_closest_target()
+		# 	if skillTarget:
+		# 		if !targetBodies.has(skillTarget):
+		# 			print("looking for new target")
+		# 			skillTarget = get_closest_target()
 		
 		if Input.is_action_pressed("skill_cast"):
 			if should_use_skill():
+				skillTarget = targetter.softTarget
 				use_action(selectedAction)
+				skillTarget = null
 		
 		# handle drowning logic
 		if headInWater: breathTimer -= delta
@@ -592,16 +594,16 @@ func enable_input() -> void: inputAllowed = true
 # (for now is just a basic check)
 func should_use_skill(_skill = null) -> bool:
 	var state : String = stateMachine.get_state()
-	if state == "idle" || state == "run":
+	if targetter.has_target() && (state == "idle" || state == "run"):
 		return super()
 	return false
 
 
-func set_target(t : Entity) -> void:
-	if skillTarget && targetIndicator: targetIndicator.queue_free()
-	skillTarget = t
-	if skillTarget: lock_on()
-	else: lock_off()
+func set_target(t : Entity) -> void: skillTarget = t
+	# if skillTarget && targetIndicator: targetIndicator.queue_free()
+	# skillTarget = t
+	# if skillTarget: lock_on()
+	# else: lock_off()
 
 
 func show_target_indicator() -> void:
@@ -727,13 +729,13 @@ func inventory_updated(_node : Node) -> void:
 
 
 func use_action(scene : PackedScene) -> void:
-	var camForward : Vector3 = mainCam.global_basis.z
-	camForward  = camForward.normalized()
-	castPosition.look_at(castPosition.global_transform.origin + camForward, Vector3.UP)
+	# var camForward : Vector3 = mainCam.global_basis.z
+	# camForward  = camForward.normalized()
+	# castPosition.look_at(castPosition.global_transform.origin + camForward, Vector3.UP)
 	
-	var playerRot : Vector3 = -camForward
-	playerRot.y = 0
-	lastMoveDir = playerRot
+	# var playerRot : Vector3 = -camForward
+	# playerRot.y = 0
+	# lastMoveDir = playerRot
 
 	var skill : Skill = scene.instantiate().skill
 	var attackSpeed : float = (1.0 + 0.38) / skill.cooldown
