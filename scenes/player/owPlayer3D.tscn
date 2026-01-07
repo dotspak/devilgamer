@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene load_steps=79 format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
 [ext_resource type="Script" uid="uid://c2fnpvd1bhjyl" path="res://src/statemachine/state_machine.gd" id="2_vphkp"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://dlb7vko2jd0ci" path="res://assets/gearIcons/gear_ironPipe.png" id="14_drw8h"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="14_kdygc"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_4vs3c"]
+[ext_resource type="Script" uid="uid://bxyodm8bmqbuu" path="res://src/battle/skill.gd" id="15_qypr7"]
 [ext_resource type="Texture2D" uid="uid://dg8b76dfvnp7o" path="res://assets/gearIcons/gear_blazeStaff.png" id="16_7jlee"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_sws5g"]
 [ext_resource type="PackedScene" uid="uid://5lxth85oco32" path="res://scenes/player/epiaSkin.tscn" id="17_1lueo"]
@@ -41,6 +42,32 @@
 [ext_resource type="Script" uid="uid://bfwcx2tifhivj" path="res://scenes/player/targetter.gd" id="39_1k34p"]
 [ext_resource type="Script" uid="uid://bvmxwvec6m8dt" path="res://scenes/player/reticle.gd" id="40_4qkhh"]
 [ext_resource type="Texture2D" uid="uid://b37d0vntp56wg" path="res://assets/ui/ui_reticle1.png" id="41_4qkhh"]
+
+[sub_resource type="Resource" id="Resource_flgut"]
+script = ExtResource("15_qypr7")
+castType = 1
+dmgType = 1
+variance = 5.0
+metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
+
+[sub_resource type="Resource" id="Resource_lnks5"]
+script = ExtResource("15_qypr7")
+name = "Machine Gun"
+description = "Rapid fire, low true damage homing attack."
+dmgFormula = "1"
+castType = 1
+dmgType = 2
+variance = 0.0
+cooldown = 0.1
+skillLock = 0.1
+metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
+
+[sub_resource type="Resource" id="Resource_8swys"]
+script = ExtResource("15_qypr7")
+castType = 1
+dmgType = 1
+variance = 5.0
+metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
 
 [sub_resource type="Resource" id="Resource_5g6mi"]
 script = ExtResource("16_sws5g")
@@ -192,6 +219,21 @@ radius = 12.0
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bu0r1"]
 radius = 0.4
 
+[sub_resource type="Animation" id="Animation_qypr7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D:pixel_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.075]
+}
+
 [sub_resource type="Animation" id="Animation_4qkhh"]
 resource_name = "loop"
 length = 0.6
@@ -207,21 +249,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(0.5, 0.5, 1),
 "update": 0,
 "values": [0.075, 0.1, 0.075]
-}
-
-[sub_resource type="Animation" id="Animation_qypr7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite3D:pixel_size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.075]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_flgut"]
@@ -293,17 +320,11 @@ script = ExtResource("11_drw8h")
 unique_name_in_owner = true
 script = ExtResource("11_28wk8")
 
-[node name="ironPipe" type="Node" parent="inventory"]
-script = ExtResource("13_18mxl")
-gearName = "Iron Pipe"
-sprite = ExtResource("14_drw8h")
-action_a = ExtResource("17_oc67l")
-metadata/_custom_type_script = "uid://b2gvtbmuae2px"
-
 [node name="blazeStaff" type="Node" parent="inventory"]
 script = ExtResource("13_18mxl")
 gearName = "Blaze Staff"
 sprite = ExtResource("16_7jlee")
+skill = SubResource("Resource_flgut")
 action_a = ExtResource("17_elhsl")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
@@ -326,10 +347,21 @@ rates = Dictionary[int, float]({
 })
 metadata/_custom_type_script = "uid://c765h134s7wo0"
 
+[node name="CooldownTimer" type="Timer" parent="inventory/blazeStaff"]
+
+[node name="ironPipe" type="Node" parent="inventory"]
+script = ExtResource("13_18mxl")
+gearName = "Iron Pipe"
+sprite = ExtResource("14_drw8h")
+skill = SubResource("Resource_lnks5")
+action_a = ExtResource("17_oc67l")
+metadata/_custom_type_script = "uid://b2gvtbmuae2px"
+
 [node name="pinkStaff" type="Node" parent="inventory"]
 script = ExtResource("13_18mxl")
 gearName = "Pink Staff"
 sprite = ExtResource("19_elhsl")
+skill = SubResource("Resource_8swys")
 action_a = ExtResource("19_oc67l")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
@@ -619,7 +651,7 @@ libraries = {
 }
 autoplay = "loop"
 
-[connection signal="child_entered_tree" from="inventory" to="." method="inventory_updated"]
+[connection signal="child_entered_tree" from="inventory" to="inventory" method="inventory_updated"]
 [connection signal="area_entered" from="head" to="." method="_on_head_area_entered"]
 [connection signal="area_exited" from="head" to="." method="_on_head_area_exited"]
 [connection signal="area_entered" from="feet" to="." method="_on_feet_area_entered"]

@@ -2,23 +2,17 @@
 extends Node
 class_name Gear
 
-enum GEAR_MODE {ALPHA, OMEGA}
 @export var gearName : String = ""
 @export_multiline var description : String = ""
 @export var sprite : Texture
-@export var mode : GEAR_MODE = GEAR_MODE.ALPHA
+@export var skill : Skill
 @export var action_a : PackedScene
-@export var action_b : PackedScene
 
-## check this if you are using gear to simply store an action, ie for an enemy
-## playable entities should never have gear with this checked.
-## This is used for if you don't want to display any info about the gear except
-## the action/skill associated with it.
-@export var isPlaceholder : bool = false
-
+var cooldownTimer : Timer
 var statComponent : StatComponent
 var passives : Array[Passive]
 var entity : Entity
+
 @export var stacks : int = 0 :
     set(val):
         stacks = val
@@ -37,6 +31,30 @@ func _ready():
                 statComponent = n
 
 
+func use() -> void:
+    var scene : PackedScene = get_action_scene()
+    var attackSpeed : float = (1.0 + 0.38) / skill.cooldown
+    owner.model.attack(attackSpeed)
+    
+    # spawn the gear's attack
+    var action : Action = scene.instantiate()
+    add_sibling(action)
+    action.global_transform = owner.castPosition.global_transform
+    action.spawn(owner, owner.targetter.softTarget)
+
+    # handle the cooldowns between each use of the gear
+    if cooldownTimer: 
+        cooldownTimer.queue_free()
+        cooldownTimer = null
+    cooldownTimer = Timer.new()
+    cooldownTimer.timeout.connect(func():
+        owner.cooldowns.erase(cooldownTimer)
+        cooldownTimer.queue_free())
+    add_child(cooldownTimer)
+    owner.cooldowns.append(cooldownTimer)
+    cooldownTimer.start(action.skill.cooldown)
+
+
 func find_entity(parent : Node) -> bool:
     if parent is Entity: entity = parent
     elif parent == get_tree().root: return false
@@ -45,14 +63,12 @@ func find_entity(parent : Node) -> bool:
     
 
 func instance_action() -> Action:
-    var inst : Node = action_a.instantiate() if mode == GEAR_MODE.ALPHA else action_b.instantiate()
+    var inst : Node = action_a.instantiate()
     return inst if inst is Action else null
 
 
-
-
 # getters --------------------------------
-func get_action_scene() -> PackedScene: return action_a if mode == GEAR_MODE.ALPHA else action_b
+func get_action_scene() -> PackedScene: return action_a
 func get_sprite() -> Texture: return sprite
 
 
@@ -68,13 +84,11 @@ func get_skill_desc() -> String:
 
 func get_info() -> Dictionary:
     var info : Dictionary = {"NAME" : "", "DESCRIPTION" : ""}
-    if !isPlaceholder:
-        info.NAME = gearName
-        info.DESCRIPTION = description
-    else:
-        var action : Action = instance_action()
-        if action:
-            info.NAME = action.skill.name
-            info.DESCRIPTION = action.skill.description
+    var action : Action = instance_action()
+    if action:
+        info.NAME = action.skill.name
+        info.DESCRIPTION = action.skill.description
     return info
 
+
+func is_on_cooldown() -> bool: return !cooldownTimer.is_stopped()

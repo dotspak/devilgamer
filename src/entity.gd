@@ -60,32 +60,6 @@ func should_use_skill(_skill = null) -> bool:
 	return false
 
 
-# this code will later be used to use any action from a skill, for testing
-# it only currently uses the basic fireball.
-func use_action(scene : PackedScene) -> void:
-	usingSkill = true
-
-	var action : Action = scene.instantiate()
-	add_sibling(action)
-	action.global_transform = castPosition.global_transform
-	action.spawn(self, skillTarget)
-
-	var skillLockTimer : Timer = Timer.new()
-	skillLockTimer.timeout.connect(func():
-		usingSkill = false
-		skillLockTimer.queue_free())
-	add_child(skillLockTimer)
-	skillLockTimer.start(action.skill.skillLock)
-
-	var cooldownTimer : Timer = Timer.new()
-	cooldownTimer.timeout.connect(func():
-		cooldowns.erase(cooldownTimer)
-		cooldownTimer.queue_free())
-	add_child(cooldownTimer)
-	cooldowns.append(cooldownTimer)
-	cooldownTimer.start(action.skill.cooldown)
-
-
 func stop_movement(weight : float = 0.3) -> void:
 	if !movementAllowed: return
 	movementAllowed = false

@@ -9,42 +9,15 @@ const STACK_HEADER : String = "[outline_size=4][outline_color=000][color=5ff]"
 @onready var gearBox : HBoxContainer = %gear
 @onready var selectedLabel : RichTextLabel = %selectedLabel
 
-var gear : Array[Gear] = [] :
-	set(val):
-		if val.is_empty(): return
-		gear = val
-		gear.resize(4)
-
-		for i : int in gear.size():
-			var slot : PanelContainer = gearBox.get_child(i)
-			var styleBox : StyleBoxFlat = slot.get_theme_stylebox("panel")
-			styleBox.border_width_left = 0
-			styleBox.border_width_right = 0
-			
-			if gear[i]:
-				var g : Gear = gear[i]
-				slot.get_child(ICON_IDX).texture = g.get_sprite()
-				stacks_changed(g.stacks, g)
-				g.stacksChanged.connect(stacks_changed.bind(g))
-			else:
-				slot.get_child(ICON_IDX).texture = null
-				slot.get_child(STACK_IDX).text = ""
-				slot.modulate.a = 0.5
-
-		slotIDX = 0
-
+var gear : Array[Gear] = []
 var slotIDX : int = -1 :
 	set(val):
-		if gear.is_empty(): return
+		if gear.is_empty() || slotIDX == val: return
 
 		var prevIDX : int = slotIDX
-		slotIDX = clamp(val, 0, max(get_gear_amount() - 1, 0))
-
-		if prevIDX == slotIDX: return
+		slotIDX = val
 
 		if get_parent().visible: AudioManager.play_ui_sfx("cursor")
-		GameManager.player.selectedAction = gear[slotIDX].get_action_scene()
-
 		animate_deselect(gearBox.get_child(prevIDX))
 		aninmate_select(gearBox.get_child(slotIDX))
 		
@@ -53,29 +26,41 @@ var slotIDX : int = -1 :
 			selectedLabel.text = LABEL_HEADER + text		
 
 
-func _unhandled_input(_event: InputEvent) -> void:
-	if GameManager.player.inputAllowed:
-		if Input.is_action_just_pressed("skill_up"): slotIDX += 1
-		elif Input.is_action_just_pressed("skill_down"): slotIDX -= 1
+func update_inventory(inventory : Array[Gear]) -> void:
+	if inventory.is_empty() || gear == inventory : return
+	
+	slotIDX = 0
+	gear = inventory
+	gear.resize(4)
+	
+	for i : int in gear.size():
+		var slot : PanelContainer = gearBox.get_child(i)
+		var styleBox : StyleBoxFlat = slot.get_theme_stylebox("panel")
+		styleBox.border_width_left = 0
+		styleBox.border_width_right = 0
+		
+		if gear[i]:
+			var g : Gear = gear[i]
+			slot.get_child(ICON_IDX).texture = g.get_sprite()
+			stacks_changed(g.stacks, g)
+			
+			if g.stacksChanged.is_connected(stacks_changed):
+				g.stacksChanged.disconnect(stacks_changed)
+			g.stacksChanged.connect(stacks_changed.bind(g))
+		
 		else:
-			if Input.is_action_just_pressed("skill_slot1"): slotIDX = 0
-			elif Input.is_action_just_pressed("skill_slot2"): slotIDX = 1
-			elif Input.is_action_just_pressed("skill_slot3"): slotIDX = 2
-			elif Input.is_action_just_pressed("skill_slot4"): slotIDX = 3
+			slot.get_child(ICON_IDX).texture = null
+			slot.get_child(STACK_IDX).text = ""
+			slot.modulate.a = 0.5
+
+	
 
 
 func stacks_changed(stacks : int, g : Gear) -> void:
-	var idx : int = get_gear_idx(g)
+	var idx : int = gear.find(g)
 	if idx >= 0:
 		var finalNum : String = str(stacks) if stacks > 0 else ""
 		gearBox.get_child(idx).get_child(STACK_IDX).text = STACK_HEADER + str(finalNum)
-
-
-func get_gear_idx(g : Gear) -> int:
-	for i : int in gear.size():
-		if g == gear[i]:
-			return i
-	return -1
 
 
 func get_gear_amount() -> int:

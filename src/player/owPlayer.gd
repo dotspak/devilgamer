@@ -189,7 +189,7 @@ func _unhandled_input(event : InputEvent) -> void:
 						interact(area.get_parent())
 
 	# handles menu opening/closing
-	if inputAllowed || GameManager.mainMenu.visible && (stateMachine.get_state() == "idle" || stateMachine.get_state() == "run"):
+	if (inputAllowed || GameManager.mainMenu.visible) && is_on_floor_only():
 		if Input.is_action_just_pressed("open_menu"):
 			GameManager.display_menu()
 
@@ -220,9 +220,7 @@ func _physics_process(delta: float) -> void:
 		
 		if Input.is_action_pressed("skill_cast"):
 			if should_use_skill():
-				skillTarget = targetter.softTarget
-				use_action(selectedAction)
-				skillTarget = null
+				use_weapon()
 		
 		# handle drowning logic
 		if headInWater: breathTimer -= delta
@@ -599,13 +597,6 @@ func should_use_skill(_skill = null) -> bool:
 	return false
 
 
-func set_target(t : Entity) -> void: skillTarget = t
-	# if skillTarget && targetIndicator: targetIndicator.queue_free()
-	# skillTarget = t
-	# if skillTarget: lock_on()
-	# else: lock_off()
-
-
 func show_target_indicator() -> void:
 	if !skillTarget: return
 	targetIndicator = preload("res://ui/ui_targetIndicator2.tscn").instantiate()
@@ -728,17 +719,45 @@ func inventory_updated(_node : Node) -> void:
 	GameManager.battleBar.gear = updatedInvetory
 
 
+func use_weapon() -> void:
+	var camForward : Vector3 = mainCam.global_basis.z
+	camForward  = camForward.normalized()
+	castPosition.look_at(castPosition.global_transform.origin + camForward, Vector3.UP)
+
+	inventory.get_selected_gear().use()
+
+
 func use_action(scene : PackedScene) -> void:
-	# var camForward : Vector3 = mainCam.global_basis.z
-	# camForward  = camForward.normalized()
-	# castPosition.look_at(castPosition.global_transform.origin + camForward, Vector3.UP)
+	var camForward : Vector3 = mainCam.global_basis.z
+	camForward  = camForward.normalized()
+	castPosition.look_at(castPosition.global_transform.origin + camForward, Vector3.UP)
 	
-	# var playerRot : Vector3 = -camForward
-	# playerRot.y = 0
-	# lastMoveDir = playerRot
+	var playerRot : Vector3 = -camForward
+	playerRot.y = 0
+	lastMoveDir = playerRot
 
 	var skill : Skill = scene.instantiate().skill
 	var attackSpeed : float = (1.0 + 0.38) / skill.cooldown
 	model.attack(attackSpeed)
 
-	super(scene)
+	usingSkill = true
+
+	var action : Action = scene.instantiate()
+	add_sibling(action)
+	action.global_transform = castPosition.global_transform
+	action.spawn(self, targetter.softTarget)
+
+	var skillLockTimer : Timer = Timer.new()
+	skillLockTimer.timeout.connect(func():
+		usingSkill = false
+		skillLockTimer.queue_free())
+	add_child(skillLockTimer)
+	skillLockTimer.start(action.skill.skillLock)
+
+	var cooldownTimer : Timer = Timer.new()
+	cooldownTimer.timeout.connect(func():
+		cooldowns.erase(cooldownTimer)
+		cooldownTimer.queue_free())
+	add_child(cooldownTimer)
+	cooldowns.append(cooldownTimer)
+	cooldownTimer.start(action.skill.cooldown)
