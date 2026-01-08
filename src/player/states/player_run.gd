@@ -18,7 +18,8 @@ func physics_update(delta : float) -> void:
 		return
 	
 	if Input.is_action_just_pressed("action"):
-		stateMachine.transition_to("roll")
+		if player.can_roll():
+			stateMachine.transition_to("roll")
 	
 	if player.is_on_ladder():
 		var camForward = -player.camera.global_basis.z

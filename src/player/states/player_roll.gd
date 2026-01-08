@@ -4,6 +4,7 @@ var rollFinished : bool = false
 var TW : Tween
 
 func enter() -> void:
+	player.bpComponent.BP -= player.bpComponent.maxBP * 0.25
 	rollFinished = false
 	player.sounds["roll"].play()
 	player.sounds["roll"].pitch_scale = randf_range(0.8, 1.2)
@@ -15,7 +16,7 @@ func enter() -> void:
 
 	player.model.rotation.y = Vector3.BACK.signed_angle_to(dir, Vector3.UP)
 	player.velocity = Vector3.ZERO
-	TW.tween_property(player, "velocity", dir * player.rollSpeed, 0.1).set_ease(Tween.EASE_IN)
+	TW.tween_property(player, "velocity", dir * player.rollSpeed, 0.1).set_ease(Tween.EASE_IN_OUT)
 	TW.tween_property(player, "velocity", finalVel, 0.3).set_ease(Tween.EASE_OUT)
 
 	await TW.finished

@@ -14,6 +14,8 @@ var health : float = 1 :
 		health = min(val, maxHealth * OVERHEALTH_RATIO)
 		hpChanged.emit(health)
 
+
+
 signal hpChanged(val : float)
 signal mhpChanged(val : float)
 
@@ -39,3 +41,5 @@ func heal_damage(amount : float) -> float:
 		else: amount += bh.amount
 	health = clamp(health + amount, 0, maxHealth * OVERHEALTH_RATIO)
 	return amount
+
+

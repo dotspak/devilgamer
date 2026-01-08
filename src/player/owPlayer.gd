@@ -416,7 +416,7 @@ func ledge_detect(inAir : bool = false) -> bool:
 
 	# ensures the player only grabs straightish walls
 	var wallnormal : Vector3 = ledgeRayHori.get_collision_normal()
-	if wallnormal.dot(Vector3.UP) > 0.6: return false
+	if wallnormal.dot(Vector3.UP) > 0.8: return false
 
 	var horiCollisionPoint : Vector3 = ledgeRayHori.get_collision_point()
 	ledgeRayVert.global_position.x = horiCollisionPoint.x
@@ -760,3 +760,5 @@ func use_action(scene : PackedScene) -> void:
 	add_child(cooldownTimer)
 	cooldowns.append(cooldownTimer)
 	cooldownTimer.start(action.skill.cooldown)
+
+func can_roll() -> bool: return bpComponent.BP > bpComponent.maxBP * 0.25

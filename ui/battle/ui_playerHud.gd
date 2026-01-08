@@ -9,13 +9,17 @@ const OVERHEALTH_COLOR : String = "[color=0f3]"
 @onready var hpLabel : RichTextLabel = %hpText
 @onready var hpBar : ProgressBar = %hpBar
 @onready var hpDragBar : ProgressBar = %hpDragBar
+@onready var hpRefillBar : ProgressBar = %hpRefillBar
 @onready var hpSegments : Panel = %hpSeg
 @onready var ohpBar : ProgressBar = %ohpBar
 
 @onready var bpBar : ProgressBar = %bpBar
+@onready var bpRefillBar : ProgressBar = %bpRefillBar
 @onready var bpSegments : Panel = %bpSeg
 
 @onready var fullHUD : Control = $VBoxContainer
+
+var player : OWPlayer
 
 var mhp : float = 100 :
 	set(val):
@@ -60,8 +64,9 @@ func _ready():
 	hpBar.value = mhp
 
 
-func _on_player_changed(player: OWPlayer) -> void:
-	if !player.is_node_ready(): await player.ready
+func _on_player_changed(_player: OWPlayer) -> void:
+	if !_player.is_node_ready(): await _player.ready
+	player = _player
 	mhp = player.healthComponent.maxHealth
 	hp = player.healthComponent.health
 	mbp = player.bpComponent.maxBP
@@ -69,8 +74,20 @@ func _on_player_changed(player: OWPlayer) -> void:
 
 	player.healthComponent.mhpChanged.connect(mhp_changed)
 	player.healthComponent.hpChanged.connect(hp_changed)
+	hpRefillBar.max_value = PlayerHealthComponent.HP_REFILL_TIME
+
 	player.bpComponent.bpChanged.connect(bp_changed)
 	player.bpComponent.maxBpChanged.connect(mbp_changed)
+	bpRefillBar.max_value = BPComponent.BP_REFILL_TIME
+
+
+func _process(_delta : float) -> void:
+	if player:
+		hpRefillBar.value = player.healthComponent.refillTimer.wait_time - player.healthComponent.refillTimer.time_left
+		if hpRefillBar.value >= hpRefillBar.max_value: hpRefillBar.value = 0
+
+		bpRefillBar.value = player.bpComponent.refillTimer.wait_time - player.bpComponent.refillTimer.time_left
+		if bpRefillBar.value >= bpRefillBar.max_value: bpRefillBar.value = 0
 
 
 func hp_changed(_hp : float) -> void:
@@ -130,7 +147,6 @@ func update_hp_label() -> void:
 func bp_changed(_bp : float) -> void:
 	var TW = create_tween().set_trans(Tween.TRANS_SINE)
 	var time : float = (mbp / _bp) * 0.1
-	if _bp < bp: shake_hud(time)
 	TW.tween_property(self, "bp", _bp, time)
 
 

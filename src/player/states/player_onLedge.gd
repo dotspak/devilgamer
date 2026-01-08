@@ -18,12 +18,11 @@ func position_player_model() -> void:
 
     var TW : Tween = create_tween().set_trans(Tween.TRANS_SINE).set_parallel()
     TW.tween_property(player, "global_position", point, 0.2)
-    player.disable_collision()
+    
     player.model.edge_grab()
     await TW.finished
     await get_tree().create_timer(0.05).timeout
 
 
 func exit() -> void:
-    player.enable_collision()
     player.canGrabLedge = false
