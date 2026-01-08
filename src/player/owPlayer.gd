@@ -616,12 +616,9 @@ func hide_target_indicator() -> void:
 
 
 func lock_on() -> void:
-	if !isLockedOn: GameManager.enter_focus_ui()
+	GameManager.enter_focus_ui()
 	
-	#isLockedOn = true
 	model.set_look_target(targetter.softTarget)
-	#show_target_indicator()
-
 	lockCam.priority = 1
 	mainCam.priority = 0
 
@@ -631,13 +628,8 @@ func lock_on() -> void:
 
 
 func lock_off() -> void:
-	#if !isLockedOn: return
-
-	#isLockedOn = false
 	model.clear_look_target()
-	#hide_target_indicator()
 	reset_camera()
-
 	mainCam.priority = 1
 	lockCam.priority = 0
 	

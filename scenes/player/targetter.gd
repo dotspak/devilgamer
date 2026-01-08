@@ -13,7 +13,13 @@ class_name PlayerTargetter
 @export var distanceWeight : float = 0.15
 
 var softTarget : Node3D = null
-var lockedTarget : Node3D = null
+var lockedTarget : Node3D = null :
+	set(val):
+		lockedTarget = val
+		if !lockedTarget:
+			reticle.lock_off()
+			owner.lock_off()
+
 var validTargets : Array[Node3D] = []
 
 func has_target() -> bool: return softTarget != null
@@ -26,8 +32,8 @@ func _ready() -> void:
 	reticle.set_active(false)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("lock_on"):
+func _unhandled_input(_event: InputEvent) -> void:
+	if Input.is_action_just_pressed("lock_on"):
 		toggle_lock()
 
 
@@ -35,7 +41,7 @@ func _physics_process(_delta: float) -> void:
 	remove_invalid_targets()
 
 	# remove locked target if it becomes invalid
-	if lockedTarget && is_valid_target(lockedTarget): lockedTarget = null
+	if lockedTarget && !is_valid_target(lockedTarget): lockedTarget = null
 
 	# target choosing: use locked by default, otherwise determine the target
 	if lockedTarget: softTarget = lockedTarget
@@ -105,17 +111,18 @@ func get_target_point(target : Node3D) -> Vector3:
 
 
 func toggle_lock() -> void:
+	# lock off from the target
 	if lockedTarget:
 		print("unlocking from the target")
-		reticle.lock_off()
 		lockedTarget = null
+		reticle.lock_off()
 		owner.lock_off()
 	
+	# lock on to the target
 	elif softTarget && is_valid_target(softTarget):
 		print("locking onto the target")
-		reticle.lock_on()
 		lockedTarget = softTarget
-
+		reticle.lock_on()
 		owner.lock_on()
 
 
