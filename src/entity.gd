@@ -76,35 +76,6 @@ func get_target_size() -> float:
 		return avgSize * 80
 	return 1.0
 
-
-func get_closest_target() -> Node3D:
-	var bodies : Array[Node3D] = targetArea.get_overlapping_bodies()
-	bodies.erase(self)
-	if bodies.is_empty(): return null
-
-	var forward : Vector3 = -global_basis.z
-	var origin : Vector3 = global_transform.origin
-	var maxAngleDeg : float = 60
-	var minDot = cos(deg_to_rad(maxAngleDeg))
-
-	var closest : Node3D = bodies[0]
-	var minDist : float = global_position.distance_to(closest.global_position)
-
-	for body in bodies: 
-		if !body is CharacterBody3D: continue
-
-		var toTarget : Vector3 = (body.global_transform.origin - origin).normalized()
-		var dot : float = forward.dot(toTarget)
-
-		if dot >= minDot:
-			var dist : float = global_position.distance_to(body.global_position)
-			if dist < minDist:
-				minDist = dist
-				closest = body
-
-	return closest
-
-
 # deals damage to the entity.
 func take_damage(amount : float, crit : bool = false, isTrueDmg : bool = false) -> void:
 	if !healthComponent: return
