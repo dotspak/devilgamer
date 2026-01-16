@@ -68,9 +68,3 @@ shape = SubResource("BoxShape3D_f1few")
 
 [node name="testPuyon" parent="." instance=ExtResource("2_ehm7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.75, -7.038)
-
-[node name="testPuyon2" parent="." instance=ExtResource("2_ehm7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7139397, 2.75, -1.940877)
-
-[node name="testPuyon3" parent="." instance=ExtResource("2_ehm7b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.407001, 2.75, 15.71875)

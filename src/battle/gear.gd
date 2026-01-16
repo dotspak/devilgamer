@@ -6,13 +6,15 @@ class_name Gear
 @export_multiline var description : String = ""
 @export var sprite : Texture
 
-@export_group("Primary Fire")
+@export_category("Primary Fire")
 @export var skill_a : Skill
 @export var action_a : PackedScene
+@export var primarySpawner : ProjectileSpawner
 
-@export_group("Secondary Fire")
+@export_category("Secondary Fire")
 @export var skill_b : Skill
 @export var action_b : PackedScene
+@export var secondarySpawner : ProjectileSpawner
 
 var cooldownTimer : Timer
 var statComponent : StatComponent
@@ -35,6 +37,11 @@ func _ready():
 				
 			if n is StatComponent: 
 				statComponent = n
+
+	cooldownTimer = get_node_or_null("CooldownTimer")
+	if !cooldownTimer:
+		cooldownTimer = Timer.new()
+		add_child(cooldownTimer)
 
 
 func use() -> void:

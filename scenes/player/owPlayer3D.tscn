@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene load_steps=81 format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
 [ext_resource type="Script" uid="uid://c2fnpvd1bhjyl" path="res://src/statemachine/state_machine.gd" id="2_vphkp"]
@@ -26,8 +26,10 @@
 [ext_resource type="PackedScene" uid="uid://5lxth85oco32" path="res://scenes/player/epiaSkin.tscn" id="17_1lueo"]
 [ext_resource type="PackedScene" uid="uid://c7pe7gnr78btu" path="res://scenes/actions/fireball.tscn" id="17_elhsl"]
 [ext_resource type="PackedScene" uid="uid://dqbtt3qeauutp" path="res://scenes/actions/machineGun.tscn" id="17_oc67l"]
+[ext_resource type="Script" uid="uid://cqksxlfu5c6t7" path="res://src/attacks/projectileSpawner.gd" id="18_lnks5"]
 [ext_resource type="AudioStream" uid="uid://ck1qbquxscbox" path="res://addons/kenney impact sounds/footstep_concrete_004.ogg" id="18_sws5g"]
 [ext_resource type="AudioStream" uid="uid://cfxhmfmss3rcv" path="res://assets/audio/sfx/SE_voidOut.ogg" id="19_5g6mi"]
+[ext_resource type="Script" uid="uid://g8hw4iuycdqg" path="res://src/attacks/projectile.gd" id="19_8swys"]
 [ext_resource type="Texture2D" uid="uid://dwnxbhl5k4pxi" path="res://assets/gearIcons/gear_testBig.png" id="19_elhsl"]
 [ext_resource type="PackedScene" uid="uid://c1rj3bxl5ovuh" path="res://scenes/actions/homingBall.tscn" id="19_oc67l"]
 [ext_resource type="AudioStream" uid="uid://b6d2ekmk5xlhs" path="res://assets/audio/sfx/SE_waterStep.ogg" id="19_xyfrb"]
@@ -321,12 +323,13 @@ script = ExtResource("11_drw8h")
 unique_name_in_owner = true
 script = ExtResource("11_28wk8")
 
-[node name="blazeStaff" type="Node" parent="inventory"]
+[node name="blazeStaff" type="Node" parent="inventory" node_paths=PackedStringArray("primarySpawner")]
 script = ExtResource("13_18mxl")
 gearName = "Blaze Staff"
 sprite = ExtResource("16_7jlee")
 skill_a = SubResource("Resource_qypr7")
 action_a = ExtResource("17_elhsl")
+primarySpawner = NodePath("ProjectileSpawner")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
 [node name="StatComponent" type="Node" parent="inventory/blazeStaff"]
@@ -349,6 +352,16 @@ rates = Dictionary[int, float]({
 metadata/_custom_type_script = "uid://c765h134s7wo0"
 
 [node name="CooldownTimer" type="Timer" parent="inventory/blazeStaff"]
+
+[node name="ProjectileSpawner" type="Node3D" parent="inventory/blazeStaff"]
+script = ExtResource("18_lnks5")
+isPlayerProjectile = true
+metadata/_custom_type_script = "uid://cqksxlfu5c6t7"
+
+[node name="Projectile" type="Node3D" parent="inventory/blazeStaff/ProjectileSpawner"]
+visible = false
+script = ExtResource("19_8swys")
+metadata/_custom_type_script = "uid://g8hw4iuycdqg"
 
 [node name="ironPipe" type="Node" parent="inventory"]
 script = ExtResource("13_18mxl")

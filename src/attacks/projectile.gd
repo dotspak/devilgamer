@@ -8,7 +8,7 @@ class_name Projectile
 @export_group("Stat Parameters")
 @export var damage : float = 10.0
 @export var attackMult : float = 0.5
-@export var element : int = 0
+@export var element : GameConstants.Elements = GameConstants.Elements.None
 
 @onready var hitbox : Area3D = $Hitbox
 

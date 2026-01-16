@@ -13,3 +13,5 @@ const MAX_BUFF : int = 10
 const BUFF_SCALE : float = 0.2
 
 const ELEVATOR_FADE_COLOR : Color = Color.NAVY_BLUE
+
+enum Elements {None, Physical, Fire, Water, Electric, Holy, Vile, Radioactive}
