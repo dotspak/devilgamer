@@ -1,7 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhxe66uhqaiw8"]
+[gd_scene format=3 uid="uid://dhxe66uhqaiw8"]
 
 [ext_resource type="Script" uid="uid://bnlio3gix01nv" path="res://test/area_generation_test.gd" id="1_jv8rq"]
 
-[node name="AreaGenerationTest" type="Node3D"]
+[node name="AreaGenerationTest" type="Node3D" unique_id=1946608458]
 script = ExtResource("1_jv8rq")
 metadata/_custom_type_script = "uid://kjou0ho8hg8j"

@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://cgoa181d3u6xp"]
+[gd_resource type="VisualShader" format=3 uid="uid://cgoa181d3u6xp"]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_pd2m1"]
 default_input_values = [0, 0.0, 1, 5.0]
@@ -49,73 +49,6 @@ input_name = "time"
 function = 1
 
 [resource]
-code = "shader_type canvas_item;
-render_mode blend_mix, unshaded;
-
-uniform float speed = 1.0;
-uniform float radius = 5.0;
-
-
-
-void vertex() {
-// Input:3
-	vec2 n_out3p0 = VERTEX;
-
-
-// Input:6
-	float n_out6p0 = TIME;
-
-
-// FloatParameter:14
-	float n_out14p0 = speed;
-
-
-// FloatOp:16
-	float n_out16p0 = n_out6p0 * n_out14p0;
-
-
-// FloatFunc:5
-	float n_out5p0 = sin(n_out16p0);
-
-
-// FloatParameter:13
-	float n_out13p0 = radius;
-
-
-// FloatOp:11
-	float n_out11p0 = n_out5p0 * n_out13p0;
-
-
-// Input:8
-	float n_out8p0 = TIME;
-
-
-// FloatOp:15
-	float n_out15p0 = n_out14p0 * n_out8p0;
-
-
-// FloatFunc:9
-	float n_out9p0 = cos(n_out15p0);
-
-
-// FloatOp:12
-	float n_out12p0 = n_out13p0 * n_out9p0;
-
-
-// VectorCompose:7
-	vec2 n_out7p0 = vec2(n_out11p0, n_out12p0);
-
-
-// VectorOp:4
-	vec2 n_out4p0 = n_out3p0 + n_out7p0;
-
-
-// Output:0
-	VERTEX = n_out4p0;
-
-
-}
-"
 mode = 1
 flags/unshaded = true
 flags/light_only = false

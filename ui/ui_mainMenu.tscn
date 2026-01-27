@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bqtekbtr1dcki"]
+[gd_scene format=3 uid="uid://bqtekbtr1dcki"]
 
 [ext_resource type="Script" uid="uid://3uko58l4fto4" path="res://ui/ui_main_menu.gd" id="1_hr2vd"]
 [ext_resource type="Shader" uid="uid://h7ksbluwgx4e" path="res://shaders/transition.gdshader" id="1_iesq4"]
@@ -563,7 +563,7 @@ region = Rect2(96, 48, 24, 24)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_iftem"]
 blend_mode = 1
 
-[node name="mainMenu" type="Control"]
+[node name="mainMenu" type="Control" unique_id=239791599]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -573,12 +573,10 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_hr2vd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_hr2vd")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1845788425]
+libraries/ = SubResource("AnimationLibrary_hr2vd")
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=1180076446]
 material = SubResource("ShaderMaterial_hr2vd")
 custom_minimum_size = Vector2(324, 0)
 layout_mode = 1
@@ -587,52 +585,53 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -252.0
 offset_right = 324.0
-offset_bottom = 252.0
+offset_bottom = 252.00006
 grow_vertical = 2
 pivot_offset = Vector2(162, 192)
 size_flags_horizontal = 0
 stretch = true
 mouse_target = true
 
-[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=248788475]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(324, 504)
 render_target_update_mode = 4
 
-[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport"]
+[node name="Node3D" type="Node3D" parent="SubViewportContainer/SubViewport" unique_id=1783109973]
 
-[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D"]
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1602906436]
 transform = Transform3D(1, 0, 0, 0, 0.996195, -0.0871557, 0, 0.0871557, 0.996195, 0, -0.1, 0.75)
 visible = false
 current = true
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=260382998]
 transform = Transform3D(0.866025, 0.353553, -0.353553, 0, 0.707107, 0.707107, 0.5, -0.612372, 0.612372, -1.75, 1, 0.25)
 light_energy = 2.5
 shadow_enabled = true
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Node3D"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="SubViewportContainer/SubViewport/Node3D" unique_id=143627598]
 environment = SubResource("Environment_u0fhu")
 
-[node name="menuPhone" parent="SubViewportContainer/SubViewport/Node3D" instance=ExtResource("1_u0fhu")]
+[node name="menuPhone" parent="SubViewportContainer/SubViewport/Node3D" unique_id=29552738 instance=ExtResource("1_u0fhu")]
 
 [node name="phone" parent="SubViewportContainer/SubViewport/Node3D/menuPhone" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_me60o")
 
 [node name="screen" parent="SubViewportContainer/SubViewport/Node3D/menuPhone" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8312206e-06, 0.00054371357, -0.006339334)
 surface_material_override/0 = SubResource("StandardMaterial3D_iftem")
 
-[node name="speaker1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D/menuPhone"]
+[node name="speaker1" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D/menuPhone" unique_id=614861485]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, -0.35, 0.03)
 mesh = SubResource("QuadMesh_iftem")
 
-[node name="speaker2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D/menuPhone"]
+[node name="speaker2" type="MeshInstance3D" parent="SubViewportContainer/SubViewport/Node3D/menuPhone" unique_id=1220209692]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, -0.35, 0.03)
 mesh = SubResource("QuadMesh_iftem")
 
-[node name="OmniLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+[node name="OmniLight3D" type="SpotLight3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=378253664]
 transform = Transform3D(-0.5373, 0, -0.843391, 0, 1, 0, 0.843391, 0, -0.5373, -0.75, 0, -0.09)
 light_color = Color(0.361166, 0.344683, 0.697656, 1)
 light_energy = 16.0
@@ -640,19 +639,19 @@ spot_range = 1.275
 spot_attenuation = -0.11
 spot_angle = 51.5518
 
-[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Node3D"]
+[node name="OmniLight3D2" type="OmniLight3D" parent="SubViewportContainer/SubViewport/Node3D" unique_id=1808080263]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 light_color = Color(0.361166, 0.344683, 0.697656, 1)
 light_energy = 2.935
 omni_range = 0.767
 
-[node name="phoneScreenViewport" type="SubViewport" parent="."]
+[node name="phoneScreenViewport" type="SubViewport" parent="." unique_id=644367707]
 unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(208, 256)
 render_target_update_mode = 4
 
-[node name="phoneScreen" type="ColorRect" parent="phoneScreenViewport"]
+[node name="phoneScreen" type="ColorRect" parent="phoneScreenViewport" unique_id=234806747]
 clip_contents = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -664,7 +663,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.196078, 0.196078, 0.196078, 1)
 
-[node name="menu" type="MarginContainer" parent="phoneScreenViewport/phoneScreen"]
+[node name="menu" type="MarginContainer" parent="phoneScreenViewport/phoneScreen" unique_id=1430622309]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -677,14 +676,14 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="phoneScreenViewport/phoneScreen/menu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="phoneScreenViewport/phoneScreen/menu" unique_id=94800815]
 layout_mode = 2
 
-[node name="topbar" type="HBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer"]
+[node name="topbar" type="HBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer" unique_id=715829330]
 layout_mode = 2
 alignment = 1
 
-[node name="playTime" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/topbar"]
+[node name="playTime" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/topbar" unique_id=171736408]
 unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
@@ -695,11 +694,11 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="camera" type="TextureRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/topbar"]
+[node name="camera" type="TextureRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/topbar" unique_id=989990780]
 layout_mode = 2
 texture = SubResource("GradientTexture2D_hr2vd")
 
-[node name="money" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/topbar"]
+[node name="money" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/topbar" unique_id=1052918870]
 unique_name_in_owner = true
 clip_contents = false
 layout_mode = 2
@@ -710,7 +709,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="areaName" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer"]
+[node name="areaName" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer" unique_id=1459963638]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -720,7 +719,7 @@ fit_content = true
 autowrap_mode = 0
 horizontal_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/areaName"]
+[node name="ColorRect" type="ColorRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/areaName" unique_id=1492385929]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -730,7 +729,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="buttonLabel" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer"]
+[node name="buttonLabel" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer" unique_id=1293502141]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -741,25 +740,25 @@ text = "[bgcolor=000]> items
 fit_content = true
 autowrap_mode = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer" unique_id=296128446]
 layout_mode = 2
 size_flags_vertical = 2
 follow_focus = true
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
-[node name="wallpaperBox" type="HBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer"]
+[node name="wallpaperBox" type="HBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer" unique_id=619192278]
 clip_contents = true
 layout_mode = 2
 size_flags_vertical = 2
 
-[node name="selectables" type="VBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox"]
+[node name="selectables" type="VBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox" unique_id=1492531424]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="items" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables"]
+[node name="items" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables" unique_id=1739355204]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
@@ -768,7 +767,7 @@ size_flags_vertical = 3
 focus_neighbor_right = NodePath("../../VBoxContainer/r")
 icon = SubResource("AtlasTexture_8jqnp")
 
-[node name="equip" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables"]
+[node name="equip" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables" unique_id=1972518532]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
@@ -777,7 +776,7 @@ size_flags_vertical = 3
 focus_neighbor_right = NodePath("../../VBoxContainer/g")
 icon = SubResource("AtlasTexture_iesq4")
 
-[node name="quests" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables"]
+[node name="quests" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables" unique_id=1745124788]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
@@ -786,7 +785,7 @@ size_flags_vertical = 3
 focus_neighbor_right = NodePath("../../VBoxContainer/b")
 icon = SubResource("AtlasTexture_hr2vd")
 
-[node name="options" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables"]
+[node name="options" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables" unique_id=1051471263]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
@@ -795,7 +794,7 @@ size_flags_vertical = 3
 focus_neighbor_right = NodePath("../../VBoxContainer/wallpaper")
 icon = SubResource("AtlasTexture_mgjvc")
 
-[node name="quit" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables"]
+[node name="quit" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/selectables" unique_id=73554878]
 unique_name_in_owner = true
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
@@ -804,18 +803,18 @@ size_flags_vertical = 3
 focus_neighbor_right = NodePath("../../VBoxContainer/darkMode")
 icon = SubResource("AtlasTexture_gpgro")
 
-[node name="wallpaper" type="TextureRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox"]
+[node name="wallpaper" type="TextureRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox" unique_id=1366131283]
 texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 texture = ExtResource("2_8jqnp")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox"]
+[node name="VBoxContainer" type="VBoxContainer" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox" unique_id=11218906]
 layout_mode = 2
 alignment = 1
 
-[node name="r" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer"]
+[node name="r" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer" unique_id=829441538]
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -823,7 +822,7 @@ size_flags_vertical = 4
 focus_neighbor_left = NodePath("../../selectables/items")
 icon = SubResource("AtlasTexture_8jqnp")
 
-[node name="g" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer"]
+[node name="g" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer" unique_id=1602412416]
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -831,7 +830,7 @@ size_flags_vertical = 4
 focus_neighbor_left = NodePath("../../selectables/equip")
 icon = SubResource("AtlasTexture_iesq4")
 
-[node name="b" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer"]
+[node name="b" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer" unique_id=1553399052]
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -839,7 +838,7 @@ size_flags_vertical = 4
 focus_neighbor_left = NodePath("../../selectables/quests")
 icon = SubResource("AtlasTexture_hr2vd")
 
-[node name="wallpaper" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer"]
+[node name="wallpaper" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer" unique_id=2021864584]
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -847,7 +846,7 @@ size_flags_vertical = 4
 focus_neighbor_left = NodePath("../../selectables/options")
 icon = SubResource("AtlasTexture_mgjvc")
 
-[node name="darkMode" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer"]
+[node name="darkMode" type="Button" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/ScrollContainer/wallpaperBox/VBoxContainer" unique_id=2093187994]
 texture_filter = 1
 custom_minimum_size = Vector2(24, 24)
 layout_mode = 2
@@ -855,7 +854,7 @@ size_flags_vertical = 4
 focus_neighbor_left = NodePath("../../selectables/quit")
 icon = SubResource("AtlasTexture_mgjvc")
 
-[node name="currentObjective" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer"]
+[node name="currentObjective" type="RichTextLabel" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer" unique_id=2003701654]
 unique_name_in_owner = true
 clip_contents = false
 custom_minimum_size = Vector2(200, 32)
@@ -868,7 +867,7 @@ fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ColorRect" type="ColorRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/currentObjective"]
+[node name="ColorRect" type="ColorRect" parent="phoneScreenViewport/phoneScreen/menu/VBoxContainer/currentObjective" unique_id=1150299955]
 show_behind_parent = true
 layout_mode = 1
 anchors_preset = 15
@@ -878,7 +877,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="overlay" type="ColorRect" parent="phoneScreenViewport/phoneScreen"]
+[node name="overlay" type="ColorRect" parent="phoneScreenViewport/phoneScreen" unique_id=525772371]
 modulate = Color(1, 1, 1, 0.5)
 material = SubResource("CanvasItemMaterial_iftem")
 layout_mode = 1
@@ -891,7 +890,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 color = Color(0.361166, 0.344683, 0.697656, 1)
 
-[node name="SubViewportContainer2" type="SubViewportContainer" parent="."]
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="." unique_id=366916954]
 visible = false
 layout_mode = 0
 offset_right = 208.0

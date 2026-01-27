@@ -8,12 +8,16 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="Devilgamer"
 config/tags=PackedStringArray("main", "rpg")
 run/main_scene="uid://2obewctec8iv"
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/show_image=false
 config/icon="uid://bckdxeqa5ykr3"
@@ -30,7 +34,7 @@ GameFlags="*res://src/global/flags.gd"
 AudioManager="*res://src/global/audioManager.tscn"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 SceneManager="*res://src/global/sceneManager.gd"
-PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+PhantomCameraManager="*uid://duq6jhf6unyis"
 CameraManager="*res://src/global/cameraManager.tscn"
 
 [dialogue_manager]

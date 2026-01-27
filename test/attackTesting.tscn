@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://46y2558njyn5"]
+[gd_scene format=3 uid="uid://46y2558njyn5"]
 
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="1_ehm7b"]
 [ext_resource type="PackedScene" uid="uid://demhactqsjfxi" path="res://test/test_puyon.tscn" id="2_ehm7b"]
@@ -46,25 +46,25 @@ size = Vector3(50, 1, 50)
 [sub_resource type="BoxShape3D" id="BoxShape3D_f1few"]
 size = Vector3(50, 1, 50)
 
-[node name="testAttacks" type="Node3D"]
+[node name="testAttacks" type="Node3D" unique_id=416820753]
 script = SubResource("GDScript_qwub3")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1069000901]
 environment = SubResource("Environment_pouwe")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2123764873]
 transform = Transform3D(-0.86602384, -0.43301564, 0.2500005, 0, 0.49999815, 0.8660265, -0.50000286, 0.7499995, -0.4330103, 0, 3.291579, 0)
 light_energy = 2.655
 shadow_enabled = true
 
-[node name="floor" type="MeshInstance3D" parent="."]
+[node name="floor" type="MeshInstance3D" parent="." unique_id=1475971927]
 material_override = SubResource("StandardMaterial3D_y2y1j")
 mesh = SubResource("BoxMesh_f2bor")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+[node name="StaticBody3D" type="StaticBody3D" parent="floor" unique_id=1610551656]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D" unique_id=1780837917]
 shape = SubResource("BoxShape3D_f1few")
 
-[node name="testPuyon" parent="." instance=ExtResource("2_ehm7b")]
+[node name="testPuyon" parent="." unique_id=1064088594 instance=ExtResource("2_ehm7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 2.75, -7.038)
