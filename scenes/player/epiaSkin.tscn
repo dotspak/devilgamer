@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://5lxth85oco32"]
+[gd_scene format=3 uid="uid://5lxth85oco32"]
 
 [ext_resource type="Script" uid="uid://dnmkp4c2wgv74" path="res://scenes/player/epiaSkin.gd" id="1_sx4hy"]
 [ext_resource type="PackedScene" uid="uid://bcr4tskr0sk5j" path="res://assets/models/player/epiaModel2.glb" id="2_0c0nb"]
@@ -374,10 +374,10 @@ nodes/land/node = SubResource("AnimationNodeAnimation_ptbe0")
 nodes/land/position = Vector2(1520, 220)
 node_connections = [&"output", 0, &"landShot", &"TimeScale", 0, &"idle", &"edgeShot", 0, &"fallShot", &"edgeShot", 1, &"edge", &"fallShot", 0, &"jumpShot", &"fallShot", 1, &"fall", &"jumpShot", 0, &"runBlend", &"jumpShot", 1, &"jump", &"landShot", 0, &"rollShot", &"landShot", 1, &"land", &"rollShot", 0, &"edgeShot", &"rollShot", 1, &"roll", &"runBlend", 0, &"weaponState", &"runBlend", 1, &"runSpeed", &"runSpeed", 0, &"TimeScale", &"runSpeed", 1, &"runTimeScale", &"runTimeScale", 0, &"run"]
 
-[node name="epiaSkin" type="Node3D"]
+[node name="epiaSkin" type="Node3D" unique_id=306077700]
 script = ExtResource("1_sx4hy")
 
-[node name="model" parent="." instance=ExtResource("2_0c0nb")]
+[node name="model" parent="." unique_id=372165563 instance=ExtResource("2_0c0nb")]
 
 [node name="Skeleton3D" parent="model/Armature" index="0"]
 bones/1/position = Vector3(0.12653245, 0.05107713, 0.0054941922)
@@ -385,19 +385,19 @@ bones/1/rotation = Quaternion(-0.026909063, 1.8732106e-05, 0.99963766, 0.0006906
 bones/3/position = Vector3(-0.12653245, 0.05107713, 0.048775215)
 bones/3/rotation = Quaternion(0.026909063, 1.8732106e-05, 0.99963766, -0.0006906521)
 bones/4/rotation = Quaternion(0.019540653, 0.7060535, 0.7076467, -0.018513374)
-bones/5/position = Vector3(-0.27670267, 0.6913956, 0.022221498)
+bones/5/position = Vector3(-0.27758735, 0.6913956, 0.022221498)
 bones/5/rotation = Quaternion(0.90208244, -0.018789036, 0.3700207, 0.22131209)
 bones/7/position = Vector3(0.27662697, 0.6913956, 0.022221498)
 bones/7/rotation = Quaternion(0.90208244, 0.018789036, -0.3700207, 0.22131209)
-bones/9/position = Vector3(1.1162916e-10, 0.6770321, 0.033091445)
-bones/9/rotation = Quaternion(0.10101364, 0.0014440531, 0.014218747, 0.9947824)
-bones/10/rotation = Quaternion(-0.020421462, -0.0025861792, -0.0140537685, 0.9996894)
-bones/11/rotation = Quaternion(-0.37268525, -2.5161795e-05, -5.705326e-06, 0.9279578)
-bones/11/scale = Vector3(1.0109732, 1.0109733, 1.0109733)
-bones/12/position = Vector3(-6.8075656e-10, 0.20860074, 0.0044266665)
+bones/9/position = Vector3(2.6431188e-10, 0.6775028, 0.03309145)
+bones/9/rotation = Quaternion(0.10101946, -0.0009508402, -0.009366208, 0.99483997)
+bones/10/rotation = Quaternion(-0.020422617, 0.0017034414, 0.009258956, 0.9997471)
+bones/11/rotation = Quaternion(-0.37268528, -0.00032052025, -7.1864204e-05, 0.92795783)
+bones/11/scale = Vector3(1.0002395, 1.0002395, 1.0002395)
+bones/12/position = Vector3(-2.7311273e-10, 0.20247172, 0.00021319556)
 bones/12/rotation = Quaternion(0.29659903, -1.1384512e-07, 3.5357328e-08, 0.9550021)
-bones/12/scale = Vector3(0.9891462, 0.98914623, 0.9891461)
-bones/13/rotation = Quaternion(0.010974094, 0.00011161616, 0.010169959, 0.9998881)
+bones/12/scale = Vector3(0.9997606, 0.99976075, 0.9997607)
+bones/13/rotation = Quaternion(0.01097466, -7.2543787e-07, -6.609884e-05, 0.9999398)
 bones/14/rotation = Quaternion(0.9331327, -8.5719165e-08, 2.224762e-07, -0.3595324)
 bones/15/rotation = Quaternion(-0.3501934, -1.11660654e-07, -1.2523888e-07, 0.9366775)
 bones/16/rotation = Quaternion(0.037013043, -2.0692276e-15, 8.824593e-09, 0.9993148)
@@ -408,24 +408,24 @@ bones/20/rotation = Quaternion(0.13983855, -0.6973262, 0.008445148, 0.7029297)
 bones/21/rotation = Quaternion(0.7045331, -0.06350054, 0.7065753, 0.018768504)
 bones/22/rotation = Quaternion(0.13983855, 0.6973262, -0.008445148, 0.7029297)
 bones/27/rotation = Quaternion(-0.23706846, 0.24244867, 0.8228273, -0.45604002)
-bones/29/rotation = Quaternion(0.86799455, -0.27247488, 0.38834578, -0.14673348)
+bones/29/rotation = Quaternion(0.86850566, -0.27862114, 0.38341653, -0.14512023)
 bones/30/rotation = Quaternion(-0.0014651192, 0.0013764594, -0.0032390356, 0.9999928)
-bones/31/rotation = Quaternion(-0.040211856, -0.055962928, -0.16794766, 0.9833844)
-bones/32/rotation = Quaternion(0.8690927, 0.27806365, -0.38282284, -0.14424041)
+bones/31/rotation = Quaternion(-0.035444878, -0.052363187, -0.17337805, 0.98282343)
+bones/32/rotation = Quaternion(0.8677965, 0.27498332, -0.38701478, -0.14674187)
 bones/33/rotation = Quaternion(-0.0014650694, -0.001376689, 0.0032390642, 0.9999928)
-bones/34/rotation = Quaternion(-0.035230998, 0.051091127, 0.17243463, 0.98306406)
+bones/34/rotation = Quaternion(-0.039190207, 0.05494225, 0.17035975, 0.98306817)
 bones/35/position = Vector3(-0.117660835, 0.041774128, 0.006291377)
-bones/35/rotation = Quaternion(-0.0035847065, 0.17016514, 0.98517376, 0.021532662)
+bones/35/rotation = Quaternion(0.0031765194, 0.103385665, 0.9946346, -0.0018214332)
 bones/35/scale = Vector3(0.99999994, 0.99999946, 1.0000201)
-bones/36/rotation = Quaternion(-0.12631884, -0.00035673054, 0.0027160312, 0.9919859)
+bones/36/rotation = Quaternion(-0.0027810817, -0.0002738329, 8.78404e-05, 0.99999607)
 bones/36/scale = Vector3(1.0000002, 0.9999998, 0.99998784)
-bones/37/rotation = Quaternion(0.056937862, -0.029678585, 0.0036398529, 0.9979299)
+bones/37/rotation = Quaternion(0.00066934334, -0.02375079, 0.007851949, 0.99968684)
 bones/38/position = Vector3(0.117660835, 0.041774128, 0.0062914807)
-bones/38/rotation = Quaternion(-0.0039289175, 0.0712593, 0.9974294, 0.0064318744)
+bones/38/rotation = Quaternion(0.0026176714, 0.1145432, 0.9932807, -0.016325742)
 bones/38/scale = Vector3(1.0000006, 1.0000012, 1.0000179)
-bones/39/rotation = Quaternion(-0.00297937, 0.0002530923, -9.223628e-05, 0.9999956)
+bones/39/rotation = Quaternion(-0.08332736, 0.000282187, -0.0022520628, 0.9965197)
 bones/39/scale = Vector3(0.9999998, 0.9999999, 0.99998873)
-bones/40/rotation = Quaternion(0.03304612, 0.02391617, -0.0071886927, 0.9991419)
+bones/40/rotation = Quaternion(0.07036174, 0.028310904, -0.0038917107, 0.9971122)
 bones/40/scale = Vector3(0.99999994, 0.99999994, 0.9999999)
 bones/41/position = Vector3(-0.15629694, 0.077569865, -0.049698528)
 bones/42/position = Vector3(0.15629697, 0.07756982, -0.049698368)
@@ -453,7 +453,7 @@ surface_material_override/0 = SubResource("ShaderMaterial_dtypu")
 [node name="horns" parent="model/Armature/Skeleton3D" index="8"]
 surface_material_override/0 = SubResource("ShaderMaterial_2srff")
 
-[node name="dangleRSpring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="10"]
+[node name="dangleRSpring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="10" unique_id=845929866]
 influence = 0.35
 setting_count = 1
 settings/0/root_bone_name = "hairDangle1.r"
@@ -473,10 +473,14 @@ settings/0/drag/damping_curve = null
 settings/0/gravity/value = 1.0
 settings/0/gravity/damping_curve = null
 settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "hairDangle1.r"
+settings/0/joints/0/bone = 19
+settings/0/joints/1/bone_name = "hairDangle2.r"
+settings/0/joints/1/bone = 20
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="dangleLSpring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="11"]
+[node name="dangleLSpring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="11" unique_id=325723343]
 influence = 0.35
 setting_count = 1
 settings/0/root_bone_name = "hairDangle1.l"
@@ -496,10 +500,14 @@ settings/0/drag/damping_curve = null
 settings/0/gravity/value = 1.0
 settings/0/gravity/damping_curve = null
 settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "hairDangle1.l"
+settings/0/joints/0/bone = 21
+settings/0/joints/1/bone_name = "hairDangle2.l"
+settings/0/joints/1/bone = 22
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="spike1Spring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="12"]
+[node name="spike1Spring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="12" unique_id=1201143320]
 influence = 0.2
 setting_count = 1
 settings/0/root_bone_name = "spike1"
@@ -519,10 +527,14 @@ settings/0/drag/damping_curve = null
 settings/0/gravity/value = 1.0
 settings/0/gravity/damping_curve = null
 settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "spike1"
+settings/0/joints/0/bone = 23
+settings/0/joints/1/bone_name = "spike1.001"
+settings/0/joints/1/bone = 24
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="spike2Spring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="13"]
+[node name="spike2Spring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="13" unique_id=2063799405]
 influence = 0.2
 setting_count = 1
 settings/0/root_bone_name = "spike2"
@@ -542,10 +554,14 @@ settings/0/drag/damping_curve = null
 settings/0/gravity/value = 1.0
 settings/0/gravity/damping_curve = null
 settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "spike2"
+settings/0/joints/0/bone = 25
+settings/0/joints/1/bone_name = "spike2.001"
+settings/0/joints/1/bone = 26
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="spike3Spring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="14"]
+[node name="spike3Spring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="14" unique_id=2060026269]
 influence = 0.2
 setting_count = 1
 settings/0/root_bone_name = "spike3"
@@ -565,10 +581,14 @@ settings/0/drag/damping_curve = null
 settings/0/gravity/value = 1.0
 settings/0/gravity/damping_curve = null
 settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "spike3"
+settings/0/joints/0/bone = 27
+settings/0/joints/1/bone_name = "spike3.001"
+settings/0/joints/1/bone = 28
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="hairSpring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="15"]
+[node name="hairSpring" type="SpringBoneSimulator3D" parent="model/Armature/Skeleton3D" index="15" unique_id=1687847559]
 influence = 0.5
 setting_count = 1
 settings/0/root_bone_name = "hair3"
@@ -588,10 +608,16 @@ settings/0/drag/damping_curve = null
 settings/0/gravity/value = 1.0
 settings/0/gravity/damping_curve = null
 settings/0/gravity/direction = Vector3(0, -1, 0)
+settings/0/joints/0/bone_name = "hair3"
+settings/0/joints/0/bone = 16
+settings/0/joints/1/bone_name = "hair4"
+settings/0/joints/1/bone = 17
+settings/0/joints/2/bone_name = "hair5"
+settings/0/joints/2/bone = 18
 settings/0/enable_all_child_collisions = true
 settings/0/exclude_collision_count = 0
 
-[node name="lookAt" type="LookAtModifier3D" parent="model/Armature/Skeleton3D" index="16"]
+[node name="lookAt" type="LookAtModifier3D" parent="model/Armature/Skeleton3D" index="16" unique_id=1705948716]
 unique_name_in_owner = true
 bone_name = "head_2"
 bone = 13
@@ -605,22 +631,22 @@ primary_damp_threshold = 1.0
 secondary_limit_angle = 1.5708
 secondary_damp_threshold = 1.0
 
-[node name="BoneAttachment3D" type="BoneAttachment3D" parent="model/Armature/Skeleton3D" index="17"]
-transform = Transform3D(0.7333677, -0.19984464, 0.6665588, 0.13132775, -0.9112364, -0.41769332, 0.6833679, 0.38958544, -0.6350575, -0.24638957, 0.7698569, 0.015613882)
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="model/Armature/Skeleton3D" index="17" unique_id=1470833506]
+transform = Transform3D(0.72591895, -0.19699359, 0.6593284, 0.12975581, -0.90199894, -0.41235927, 0.6757841, 0.38479897, -0.6290664, -0.24273756, 0.775601, 0.015193263)
 bone_name = "hand.r"
 bone_idx = 31
 
-[node name="weaponHolder" type="Node3D" parent="model/Armature/Skeleton3D/BoneAttachment3D"]
+[node name="weaponHolder" type="Node3D" parent="model/Armature/Skeleton3D/BoneAttachment3D" unique_id=155808931]
 unique_name_in_owner = true
 transform = Transform3D(0.996617, -9.10014e-05, 4.35859e-06, 4.19468e-06, 7.88225e-05, -0.996616, 9.11788e-05, 0.996616, 7.90872e-05, 0.027865, 0.117843, -0.13272)
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="model/Armature/Skeleton3D/BoneAttachment3D/weaponHolder"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="model/Armature/Skeleton3D/BoneAttachment3D/weaponHolder" unique_id=1146671546]
 transform = Transform3D(1, -2.98023e-08, 0, 0, 1, -2.98023e-08, -2.98023e-08, -1.49012e-08, 1, 0, 0, 0)
 mesh = SubResource("CylinderMesh_mqdfo")
 skeleton = NodePath("../..")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=558064289]
 unique_name_in_owner = true
 active = false
 root_node = NodePath("%AnimationTree/../model")
@@ -629,7 +655,7 @@ anim_player = NodePath("../model/AnimationPlayer")
 parameters/StateMachine/attack/TimeScale/scale = 0.005819
 parameters/StateMachine/roll/TimeScale/scale = 1.0
 
-[node name="AnimationTree2" type="AnimationTree" parent="."]
+[node name="AnimationTree2" type="AnimationTree" parent="." unique_id=686726429]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree2/../model")
 tree_root = SubResource("AnimationNodeBlendTree_0c0nb")
@@ -655,7 +681,7 @@ parameters/runBlend/blend_amount = 0.0
 parameters/runSpeed/blend_amount = 0.0
 parameters/runTimeScale/scale = 0.0
 
-[node name="cameraEggTimer" type="Timer" parent="."]
+[node name="cameraEggTimer" type="Timer" parent="." unique_id=1023495808]
 wait_time = 10.0
 
 [editable path="model"]

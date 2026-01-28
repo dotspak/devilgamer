@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://oby4qc8dds5o"]
+[gd_scene format=3 uid="uid://oby4qc8dds5o"]
 
 [ext_resource type="Script" uid="uid://3dtyek044e7q" path="res://src/global/gameManager.gd" id="1_kv0tk"]
 [ext_resource type="Texture2D" uid="uid://fyr446pu4e3u" path="res://textures/tex_vignette.png" id="2_51u5g"]
@@ -831,17 +831,17 @@ _data = {
 &"static": SubResource("Animation_dmym8")
 }
 
-[node name="GameManager" type="Node"]
+[node name="GameManager" type="Node" unique_id=2136437472]
 script = ExtResource("1_kv0tk")
 areas = Array[ExtResource("2_oucsi")]([ExtResource("3_y5kg3"), ExtResource("5_va82q"), ExtResource("4_d6bmg")])
 
-[node name="debugConsole" parent="." instance=ExtResource("6_xx4xr")]
+[node name="debugConsole" parent="." unique_id=1712974454 instance=ExtResource("6_xx4xr")]
 visible = false
 
-[node name="world" type="CanvasLayer" parent="."]
+[node name="world" type="CanvasLayer" parent="." unique_id=1909945630]
 layer = 5
 
-[node name="container" type="SubViewportContainer" parent="world"]
+[node name="container" type="SubViewportContainer" parent="world" unique_id=1767933246]
 texture_filter = 1
 material = ExtResource("7_qbj2a")
 anchors_preset = 15
@@ -852,7 +852,7 @@ grow_vertical = 2
 stretch = true
 mouse_target = true
 
-[node name="viewport" type="SubViewport" parent="world/container"]
+[node name="viewport" type="SubViewport" parent="world/container" unique_id=2143030999]
 unique_name_in_owner = true
 handle_input_locally = false
 canvas_item_default_texture_filter = 0
@@ -861,13 +861,13 @@ audio_listener_enable_3d = true
 size = Vector2i(896, 504)
 render_target_update_mode = 4
 
-[node name="scene" type="Node" parent="world/container/viewport"]
+[node name="scene" type="Node" parent="world/container/viewport" unique_id=96469532]
 unique_name_in_owner = true
 
-[node name="FX" type="CanvasLayer" parent="."]
+[node name="FX" type="CanvasLayer" parent="." unique_id=1555398445]
 layer = 6
 
-[node name="waterOverlay" type="Control" parent="FX"]
+[node name="waterOverlay" type="Control" parent="FX" unique_id=2055955073]
 unique_name_in_owner = true
 visible = false
 layout_mode = 3
@@ -879,7 +879,7 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="TextureRect" type="TextureRect" parent="FX/waterOverlay"]
+[node name="TextureRect" type="TextureRect" parent="FX/waterOverlay" unique_id=190822013]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -892,7 +892,7 @@ grow_vertical = 2
 texture = ExtResource("7_s6qcl")
 stretch_mode = 1
 
-[node name="color" type="ColorRect" parent="FX/waterOverlay"]
+[node name="color" type="ColorRect" parent="FX/waterOverlay" unique_id=936311359]
 visible = false
 material = SubResource("CanvasItemMaterial_bpcc3")
 layout_mode = 1
@@ -904,7 +904,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.392747, 0.3808, 0.56, 0.52549)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="FX/waterOverlay"]
+[node name="HBoxContainer" type="HBoxContainer" parent="FX/waterOverlay" unique_id=926726736]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -915,25 +915,25 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 0
 
-[node name="ColorRect" type="ColorRect" parent="FX/waterOverlay/HBoxContainer"]
+[node name="ColorRect" type="ColorRect" parent="FX/waterOverlay/HBoxContainer" unique_id=2034561356]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="FX/waterOverlay/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="FX/waterOverlay/HBoxContainer" unique_id=1517771595]
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("2_51u5g")
 expand_mode = 2
 
-[node name="ColorRect2" type="ColorRect" parent="FX/waterOverlay/HBoxContainer"]
+[node name="ColorRect2" type="ColorRect" parent="FX/waterOverlay/HBoxContainer" unique_id=1073592171]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="wavy" type="TextureRect" parent="FX/waterOverlay"]
+[node name="wavy" type="TextureRect" parent="FX/waterOverlay" unique_id=925274220]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_s6qcl")
 layout_mode = 1
@@ -946,10 +946,10 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("11_1pv88")
 
-[node name="AreaIntro" type="CanvasLayer" parent="."]
+[node name="AreaIntro" type="CanvasLayer" parent="." unique_id=18419113]
 layer = 99
 
-[node name="Control" type="Control" parent="AreaIntro"]
+[node name="Control" type="Control" parent="AreaIntro" unique_id=2002144792]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -959,7 +959,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="areaName" type="RichTextLabel" parent="AreaIntro/Control"]
+[node name="areaName" type="RichTextLabel" parent="AreaIntro/Control" unique_id=2002665992]
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -975,7 +975,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 visible_characters_behavior = 1
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="AreaIntro/Control/areaName"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="AreaIntro/Control/areaName" unique_id=310821507]
 show_behind_parent = true
 z_index = -1
 position = Vector2(448, 128)
@@ -985,7 +985,7 @@ speed_scale = 0.3
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_qbj2a")
 
-[node name="areaDescription" type="RichTextLabel" parent="AreaIntro/Control"]
+[node name="areaDescription" type="RichTextLabel" parent="AreaIntro/Control" unique_id=933858949]
 modulate = Color(1, 1, 1, 0)
 z_index = 1
 layout_mode = 1
@@ -1003,7 +1003,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 visible_characters_behavior = 1
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="AreaIntro/Control/areaDescription"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="AreaIntro/Control/areaDescription" unique_id=1649866765]
 show_behind_parent = true
 z_index = -1
 position = Vector2(448, 120)
@@ -1013,32 +1013,30 @@ speed_scale = 0.3
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_be743")
 
-[node name="introAnimator" type="AnimationPlayer" parent="AreaIntro/Control"]
-libraries = {
-&"": SubResource("AnimationLibrary_i0rwf")
-}
+[node name="introAnimator" type="AnimationPlayer" parent="AreaIntro/Control" unique_id=989877292]
+libraries/ = SubResource("AnimationLibrary_i0rwf")
 
-[node name="title1" type="AudioStreamPlayer" parent="AreaIntro/Control"]
+[node name="title1" type="AudioStreamPlayer" parent="AreaIntro/Control" unique_id=661517034]
 stream = ExtResource("9_be743")
 volume_db = -3.0
 bus = &"SFX"
 
-[node name="title2" type="AudioStreamPlayer" parent="AreaIntro/Control"]
+[node name="title2" type="AudioStreamPlayer" parent="AreaIntro/Control" unique_id=238563568]
 stream = ExtResource("9_be743")
 volume_db = -3.0
 pitch_scale = 1.2
 bus = &"SFX"
 
-[node name="title3" type="AudioStreamPlayer" parent="AreaIntro/Control"]
+[node name="title3" type="AudioStreamPlayer" parent="AreaIntro/Control" unique_id=2099530685]
 stream = ExtResource("9_be743")
 volume_db = -3.0
 pitch_scale = 0.6
 bus = &"SFX"
 
-[node name="UI" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="." unique_id=1430732755]
 layer = 120
 
-[node name="focusBars" type="Control" parent="UI"]
+[node name="focusBars" type="Control" parent="UI" unique_id=912330751]
 visible = false
 modulate = Color(1, 1, 1, 0)
 layout_mode = 3
@@ -1050,14 +1048,14 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="topBar" type="ColorRect" parent="UI/focusBars"]
+[node name="topBar" type="ColorRect" parent="UI/focusBars" unique_id=1972819701]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_right = 896.0
 offset_bottom = 32.0
 color = Color(0, 0, 0, 1)
 
-[node name="grad" type="TextureRect" parent="UI/focusBars/topBar"]
+[node name="grad" type="TextureRect" parent="UI/focusBars/topBar" unique_id=1648242486]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1068,7 +1066,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_uc4fk")
 expand_mode = 1
 
-[node name="bottombar" type="ColorRect" parent="UI/focusBars"]
+[node name="bottombar" type="ColorRect" parent="UI/focusBars" unique_id=1973989096]
 modulate = Color(0, 0, 0, 1)
 layout_mode = 0
 offset_top = 472.0
@@ -1076,7 +1074,7 @@ offset_right = 896.0
 offset_bottom = 504.0
 color = Color(0, 0, 0, 1)
 
-[node name="grad" type="TextureRect" parent="UI/focusBars/bottombar"]
+[node name="grad" type="TextureRect" parent="UI/focusBars/bottombar" unique_id=392728863]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1088,7 +1086,7 @@ texture = SubResource("GradientTexture2D_uc4fk")
 expand_mode = 1
 flip_v = true
 
-[node name="battleHud" type="MarginContainer" parent="UI"]
+[node name="battleHud" type="MarginContainer" parent="UI" unique_id=2052585615]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
@@ -1101,18 +1099,18 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="actions" type="VBoxContainer" parent="UI/battleHud"]
+[node name="actions" type="VBoxContainer" parent="UI/battleHud" unique_id=1986232238]
 visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 
-[node name="Control" type="Control" parent="UI/battleHud/actions"]
+[node name="Control" type="Control" parent="UI/battleHud/actions" unique_id=644318251]
 custom_minimum_size = Vector2(0, 24)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="UI/battleHud/actions/Control"]
+[node name="Label" type="Label" parent="UI/battleHud/actions/Control" unique_id=1164560735]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1124,7 +1122,7 @@ text = "Actions"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="bgThing" type="ColorRect" parent="UI/battleHud/actions/Control/Label"]
+[node name="bgThing" type="ColorRect" parent="UI/battleHud/actions/Control/Label" unique_id=1510583202]
 visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_jf5ue")
@@ -1136,7 +1134,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.533333)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/battleHud/actions/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/battleHud/actions/Control" unique_id=266867742]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1152,23 +1150,23 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
 
-[node name="panel" type="PanelContainer" parent="UI/battleHud/actions"]
+[node name="panel" type="PanelContainer" parent="UI/battleHud/actions" unique_id=756304274]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_xx4xr")
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/battleHud/actions/panel"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/battleHud/actions/panel" unique_id=1788539932]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="actionBox" type="VBoxContainer" parent="UI/battleHud/actions/panel/MarginContainer"]
+[node name="actionBox" type="VBoxContainer" parent="UI/battleHud/actions/panel/MarginContainer" unique_id=2098783005]
 custom_minimum_size = Vector2(108, 88)
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Button" type="Button" parent="UI/battleHud/actions/panel/MarginContainer/actionBox"]
+[node name="Button" type="Button" parent="UI/battleHud/actions/panel/MarginContainer/actionBox" unique_id=1136217752]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
@@ -1178,7 +1176,7 @@ icon = ExtResource("12_qfiq7")
 alignment = 2
 expand_icon = true
 
-[node name="Button2" type="Button" parent="UI/battleHud/actions/panel/MarginContainer/actionBox"]
+[node name="Button2" type="Button" parent="UI/battleHud/actions/panel/MarginContainer/actionBox" unique_id=339852032]
 custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 theme_override_font_sizes/font_size = 14
@@ -1188,29 +1186,29 @@ icon = ExtResource("12_qfiq7")
 alignment = 2
 expand_icon = true
 
-[node name="bgThing" type="ColorRect" parent="UI/battleHud/actions/panel"]
+[node name="bgThing" type="ColorRect" parent="UI/battleHud/actions/panel" unique_id=1363098445]
 visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_jf5ue")
 layout_mode = 2
 color = Color(0, 0, 0, 0.533333)
 
-[node name="battleBar" parent="UI/battleHud" instance=ExtResource("17_o7o5j")]
+[node name="battleBar" parent="UI/battleHud" unique_id=1038822282 instance=ExtResource("17_o7o5j")]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 
-[node name="bossBar" type="CenterContainer" parent="UI/battleHud"]
+[node name="bossBar" type="CenterContainer" parent="UI/battleHud" unique_id=1726305304]
 visible = false
 layout_mode = 2
 size_flags_vertical = 0
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="UI/battleHud/bossBar"]
+[node name="Control" type="Control" parent="UI/battleHud/bossBar" unique_id=1594704413]
 custom_minimum_size = Vector2(600, 16)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="UI/battleHud/bossBar/Control"]
+[node name="Panel" type="Panel" parent="UI/battleHud/bossBar/Control" unique_id=1809208028]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -1225,7 +1223,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qbj2a")
 
-[node name="bossProgress" type="ProgressBar" parent="UI/battleHud/bossBar/Control"]
+[node name="bossProgress" type="ProgressBar" parent="UI/battleHud/bossBar/Control" unique_id=906275904]
 unique_name_in_owner = true
 clip_children = 2
 layout_mode = 1
@@ -1241,7 +1239,7 @@ value = 100.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/battleHud/bossBar/Control/bossProgress"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/battleHud/bossBar/Control/bossProgress" unique_id=1546473755]
 material = SubResource("CanvasItemMaterial_qbj2a")
 position = Vector2(300, 8)
 amount = 200
@@ -1249,7 +1247,7 @@ texture = ExtResource("10_c2bp1")
 trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_uc4fk")
 
-[node name="bgThing" type="ColorRect" parent="UI/battleHud/bossBar/Control"]
+[node name="bgThing" type="ColorRect" parent="UI/battleHud/bossBar/Control" unique_id=578509061]
 visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_bdi3q")
@@ -1262,7 +1260,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.533333)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/battleHud/bossBar/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/battleHud/bossBar/Control" unique_id=952288287]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1280,15 +1278,14 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
 
-[node name="epiaHud" parent="UI/battleHud" instance=ExtResource("15_60syl")]
+[node name="epiaHud" parent="UI/battleHud" unique_id=1131549076 instance=ExtResource("15_60syl")]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="mainMenu" parent="UI" instance=ExtResource("17_bpcc3")]
+[node name="mainMenu" parent="UI" unique_id=239791599 instance=ExtResource("17_bpcc3")]
 unique_name_in_owner = true
-z_index = 1
 
-[node name="breathBar" type="Control" parent="UI"]
+[node name="breathBar" type="Control" parent="UI" unique_id=1177164084]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -1298,18 +1295,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="centerContainer" type="CenterContainer" parent="UI/breathBar"]
+[node name="centerContainer" type="CenterContainer" parent="UI/breathBar" unique_id=441042330]
 layout_mode = 0
 offset_top = 128.0
 offset_right = 896.0
 offset_bottom = 192.0
 mouse_filter = 2
 
-[node name="Control" type="Control" parent="UI/breathBar/centerContainer"]
+[node name="Control" type="Control" parent="UI/breathBar/centerContainer" unique_id=1608680261]
 custom_minimum_size = Vector2(600, 16)
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="UI/breathBar/centerContainer/Control"]
+[node name="Panel" type="Panel" parent="UI/breathBar/centerContainer/Control" unique_id=57222584]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.28
@@ -1321,7 +1318,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qbj2a")
 
-[node name="Panel2" type="Panel" parent="UI/breathBar/centerContainer/Control"]
+[node name="Panel2" type="Panel" parent="UI/breathBar/centerContainer/Control" unique_id=1418535373]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.28
@@ -1337,7 +1334,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_qbj2a")
 
-[node name="airProgress" type="ProgressBar" parent="UI/breathBar/centerContainer/Control"]
+[node name="airProgress" type="ProgressBar" parent="UI/breathBar/centerContainer/Control" unique_id=1539958884]
 unique_name_in_owner = true
 clip_children = 2
 layout_mode = 0
@@ -1353,7 +1350,7 @@ allow_lesser = true
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/breathBar/centerContainer/Control/airProgress"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="UI/breathBar/centerContainer/Control/airProgress" unique_id=1734621820]
 modulate = Color(1, 1, 1, 0.266667)
 material = SubResource("CanvasItemMaterial_1pv88")
 position = Vector2(300, 8)
@@ -1363,7 +1360,7 @@ preprocess = 1.0
 speed_scale = 0.4
 process_material = SubResource("ParticleProcessMaterial_jf5ue")
 
-[node name="bgThing" type="ColorRect" parent="UI/breathBar/centerContainer/Control"]
+[node name="bgThing" type="ColorRect" parent="UI/breathBar/centerContainer/Control" unique_id=1609240240]
 visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_bdi3q")
@@ -1378,7 +1375,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.533333)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="UI/breathBar/centerContainer/Control"]
+[node name="RichTextLabel" type="RichTextLabel" parent="UI/breathBar/centerContainer/Control" unique_id=1982804208]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -1396,7 +1393,7 @@ fit_content = true
 autowrap_mode = 0
 vertical_alignment = 2
 
-[node name="dialogue" type="Control" parent="UI"]
+[node name="dialogue" type="Control" parent="UI" unique_id=208292701]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -1406,23 +1403,19 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="uiAnimator" type="AnimationPlayer" parent="UI"]
+[node name="uiAnimator" type="AnimationPlayer" parent="UI" unique_id=851169464]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_qbj2a")
-}
+libraries/ = SubResource("AnimationLibrary_qbj2a")
 
-[node name="uiAnimator2" type="AnimationPlayer" parent="UI"]
+[node name="uiAnimator2" type="AnimationPlayer" parent="UI" unique_id=1349908674]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_qbj2a")
-}
+libraries/ = SubResource("AnimationLibrary_qbj2a")
 
-[node name="fadeLayer" type="CanvasLayer" parent="."]
+[node name="fadeLayer" type="CanvasLayer" parent="." unique_id=1974053851]
 layer = 122
 follow_viewport_enabled = true
 
-[node name="fader" type="ColorRect" parent="fadeLayer"]
+[node name="fader" type="ColorRect" parent="fadeLayer" unique_id=1647790730]
 unique_name_in_owner = true
 modulate = Color(1, 1, 1, 0)
 anchors_preset = 15
@@ -1434,7 +1427,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="areaFader" type="ColorRect" parent="fadeLayer"]
+[node name="areaFader" type="ColorRect" parent="fadeLayer" unique_id=620205573]
 unique_name_in_owner = true
 material = SubResource("ShaderMaterial_xx4xr")
 anchors_preset = 15
@@ -1445,22 +1438,20 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="fadeAnims" type="AnimationPlayer" parent="fadeLayer"]
+[node name="fadeAnims" type="AnimationPlayer" parent="fadeLayer" unique_id=1084019374]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_o7o5j")
-}
+libraries/ = SubResource("AnimationLibrary_o7o5j")
 
-[node name="CRT" type="CanvasLayer" parent="."]
+[node name="CRT" type="CanvasLayer" parent="." unique_id=461497922]
 layer = 121
 
-[node name="TexMetal2" type="Sprite2D" parent="CRT"]
+[node name="TexMetal2" type="Sprite2D" parent="CRT" unique_id=2016052564]
 visible = false
 position = Vector2(446.5, 249)
 scale = Vector2(7.00781, 3.90625)
 texture = ExtResource("19_60syl")
 
-[node name="overlay" type="ColorRect" parent="CRT"]
+[node name="overlay" type="ColorRect" parent="CRT" unique_id=2026350965]
 material = SubResource("ShaderMaterial_qbj2a")
 anchors_preset = 15
 anchor_right = 1.0
@@ -1470,14 +1461,12 @@ grow_vertical = 2
 mouse_filter = 2
 metadata/_edit_lock_ = true
 
-[node name="staticAnim" type="AnimationPlayer" parent="CRT"]
+[node name="staticAnim" type="AnimationPlayer" parent="CRT" unique_id=1621876060]
 unique_name_in_owner = true
 root_node = NodePath("../../fadeLayer")
-libraries = {
-&"": SubResource("AnimationLibrary_ofr1g")
-}
+libraries/ = SubResource("AnimationLibrary_ofr1g")
 
-[node name="static" type="AudioStreamPlayer" parent="CRT"]
+[node name="static" type="AudioStreamPlayer" parent="CRT" unique_id=2002359746]
 stream = ExtResource("15_ofr1g")
 
 [connection signal="playerChanged" from="." to="UI/battleHud/epiaHud" method="_on_player_changed"]

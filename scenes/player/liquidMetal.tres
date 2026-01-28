@@ -39,13 +39,14 @@ input_name = "time"
 default_input_values = [0, 0.08]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_rcarn"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(1, 1, 1)]
 operator = 2
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_1p7ew"]
 constant = Color(0, 0, 0, 1)
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_7kpiu"]
-default_input_values = [0, 0.0, 1, -0.7]
+default_input_values = [0, 0.0, 1, -1.0]
 operator = 5
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_1p7ew"]
@@ -110,7 +111,7 @@ default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(3, 2, 2)]
 operator = 5
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_rcarn"]
-constant = 3.5
+constant = 4.5
 
 [resource]
 flags/unshaded = true
@@ -163,4 +164,4 @@ nodes/fragment/26/node = SubResource("VisualShaderNodeInput_2cq26")
 nodes/fragment/26/position = Vector2(-2240, 500)
 nodes/fragment/27/node = SubResource("VisualShaderNodeVectorOp_escp8")
 nodes/fragment/27/position = Vector2(-1400, 640)
-nodes/fragment/connections = PackedInt32Array(4, 0, 3, 0, 5, 0, 4, 2, 6, 0, 4, 1, 7, 0, 4, 0, 9, 0, 8, 1, 13, 0, 14, 0, 12, 0, 14, 1, 14, 0, 10, 0, 3, 0, 15, 0, 10, 0, 15, 1, 15, 0, 8, 0, 8, 0, 19, 0, 19, 0, 0, 5, 19, 0, 0, 0, 18, 0, 20, 0, 16, 0, 14, 2, 21, 0, 19, 1, 20, 0, 21, 0, 22, 0, 21, 1, 26, 0, 23, 0, 25, 0, 23, 1, 23, 0, 24, 0, 24, 0, 27, 0, 25, 0, 27, 1, 27, 0, 13, 0, 27, 0, 7, 0)
+nodes/fragment/connections = PackedInt32Array(4, 0, 3, 0, 5, 0, 4, 2, 6, 0, 4, 1, 7, 0, 4, 0, 9, 0, 8, 1, 13, 0, 14, 0, 12, 0, 14, 1, 14, 0, 10, 0, 3, 0, 15, 0, 10, 0, 15, 1, 15, 0, 8, 0, 8, 0, 19, 0, 19, 0, 0, 0, 18, 0, 20, 0, 16, 0, 14, 2, 20, 0, 21, 0, 22, 0, 21, 1, 26, 0, 23, 0, 25, 0, 23, 1, 23, 0, 24, 0, 24, 0, 27, 0, 25, 0, 27, 1, 27, 0, 13, 0, 27, 0, 7, 0, 21, 0, 0, 5)
