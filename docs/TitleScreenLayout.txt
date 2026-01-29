@@ -1,0 +1,39 @@
+------------------------------------
+Save File Screen Contents:
+------------------------------------
+Epia Portrait -> Maybe do some weird stuff with this?
+
+Current Area/Room
+Playtime
+Equipped Gear
+	1, 2, 3, 4
+Equipped Drone
+	blanked/not blanked
+Collected Cores
+	integer
+Coins
+	float
+Lives
+	integer
+Reset Count
+	integer
+
+------------------------------------
+Title World Contents:
+------------------------------------
+Move "trophies" to main world scene
+	ex. glowing bloody flower for Angel defeat
+	now stored in global save, not individual save
+
+Trophy List (trophies that exist and there conditions, not depictions)
+Most of these "trophies" will be represented by a flower:
+	Angel Trophy -> Defeat The Angel
+	Void Trophy -> Get the void ending
+	Trio Trophies -> Defeat the 3 Legendary Devils, 1 each
+	Mage Trophies -> Defeat a grand mage for the first time, 1 each
+	Completion Trophy -> Collect all devil cores in one playthrough (all bosses, all quests)
+
+Special Trophies:
+	Special Angel Trophy -> Defeat The Angel on a true reset without dying once
+	Special Void Trophy -> Defeat Festivus on a true reset without dying once
+	Null Trophy -> Defeat ATLAS (get to a certain point on a true reset without dying once, and defeat the boss there)

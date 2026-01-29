@@ -1,0 +1,53 @@
+---------------------------
+---------------------------
+Save File Contents:
+---------------------------
+---------------------------
+Player Info
+---------------------------
+Inventory
+	Collected Gear
+	Collected Consumables
+	Key Items
+	Equipped Gear
+	Equipped Consumable
+	Cash
+	
+Devilgene
+Collected Cores
+Mage Upgrades
+
+Lives Remaining
+Reset Count -> starts at 0 on true reset
+
+---------------------------
+World Info
+---------------------------
+Generated World
+	Chest Contents
+	Quest Bonus Rewards
+	Vending Machine Items/Prices
+Collected Chests
+Completed Objectives
+	Bosses
+	Quests
+
+Seeds
+	World Seed
+	Devilgene Seed
+
+---------------------------
+Extra Info
+---------------------------
+Void check -> boot into void ending
+
+
+---------------------------
+---------------------------
+Global Save Contents
+---------------------------
+---------------------------
+Player name
+Trophies
+Meta Controls
+
