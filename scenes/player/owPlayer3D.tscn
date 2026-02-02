@@ -1,4 +1,4 @@
-[gd_scene load_steps=81 format=3 uid="uid://cm1qrmroln5o6"]
+[gd_scene format=3 uid="uid://cm1qrmroln5o6"]
 
 [ext_resource type="Script" uid="uid://chnd1dhy2576t" path="res://src/player/owPlayer.gd" id="1_yhvw8"]
 [ext_resource type="Script" uid="uid://c2fnpvd1bhjyl" path="res://src/statemachine/state_machine.gd" id="2_vphkp"]
@@ -17,15 +17,13 @@
 [ext_resource type="Shader" uid="uid://ckfvmlysydrct" path="res://shaders/puffShader.tres" id="11_em25i"]
 [ext_resource type="Texture2D" uid="uid://bm2e02g0q2nlb" path="res://icons/state.png" id="11_ratpf"]
 [ext_resource type="Script" uid="uid://b2gvtbmuae2px" path="res://src/battle/gear.gd" id="13_18mxl"]
-[ext_resource type="Texture2D" uid="uid://dlb7vko2jd0ci" path="res://assets/gearIcons/gear_ironPipe.png" id="14_drw8h"]
 [ext_resource type="Script" uid="uid://b8hhnqsugykly" path="res://addons/phantom_camera/scripts/resources/camera_3d_resource.gd" id="14_kdygc"]
 [ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="15_4vs3c"]
-[ext_resource type="Script" uid="uid://bxyodm8bmqbuu" path="res://src/battle/skill.gd" id="15_qypr7"]
 [ext_resource type="Texture2D" uid="uid://dg8b76dfvnp7o" path="res://assets/gearIcons/gear_blazeStaff.png" id="16_7jlee"]
 [ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="16_sws5g"]
 [ext_resource type="PackedScene" uid="uid://5lxth85oco32" path="res://scenes/player/epiaSkin.tscn" id="17_1lueo"]
+[ext_resource type="Script" uid="uid://cpi4uts4pough" path="res://src/battle/playerAttackData.gd" id="17_8swys"]
 [ext_resource type="PackedScene" uid="uid://c7pe7gnr78btu" path="res://scenes/actions/fireball.tscn" id="17_elhsl"]
-[ext_resource type="PackedScene" uid="uid://dqbtt3qeauutp" path="res://scenes/actions/machineGun.tscn" id="17_oc67l"]
 [ext_resource type="Script" uid="uid://cqksxlfu5c6t7" path="res://src/attacks/projectileSpawner.gd" id="18_lnks5"]
 [ext_resource type="AudioStream" uid="uid://ck1qbquxscbox" path="res://addons/kenney impact sounds/footstep_concrete_004.ogg" id="18_sws5g"]
 [ext_resource type="AudioStream" uid="uid://cfxhmfmss3rcv" path="res://assets/audio/sfx/SE_voidOut.ogg" id="19_5g6mi"]
@@ -34,7 +32,9 @@
 [ext_resource type="PackedScene" uid="uid://c1rj3bxl5ovuh" path="res://scenes/actions/homingBall.tscn" id="19_oc67l"]
 [ext_resource type="AudioStream" uid="uid://b6d2ekmk5xlhs" path="res://assets/audio/sfx/SE_waterStep.ogg" id="19_xyfrb"]
 [ext_resource type="AudioStream" uid="uid://bknwuu8umhweb" path="res://assets/audio/sfx/SE_respawn.ogg" id="20_cj0gn"]
+[ext_resource type="PackedScene" uid="uid://b27ex14grova6" path="res://scenes/gear/gear_ironPipe.tscn" id="20_lnks5"]
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="24_4lsu4"]
+[ext_resource type="Script" uid="uid://dtefnwl2axrqu" path="res://scenes/player/PlayerAttackController.gd" id="24_8swys"]
 [ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="25_st7ng"]
 [ext_resource type="AudioStream" uid="uid://be817rxrv42ln" path="res://assets/audio/sfx/SE_jump1.ogg" id="33_oc67l"]
 [ext_resource type="AudioStream" uid="uid://dd76un3q2kmtv" path="res://assets/audio/sfx/SE_roll1.ogg" id="34_elhsl"]
@@ -45,31 +45,9 @@
 [ext_resource type="Script" uid="uid://bvmxwvec6m8dt" path="res://scenes/player/reticle.gd" id="40_4qkhh"]
 [ext_resource type="Texture2D" uid="uid://b37d0vntp56wg" path="res://assets/ui/ui_reticle1.png" id="41_4qkhh"]
 
-[sub_resource type="Resource" id="Resource_qypr7"]
-script = ExtResource("15_qypr7")
-castType = 1
-dmgType = 1
-variance = 5.0
-metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
-
-[sub_resource type="Resource" id="Resource_flgut"]
-script = ExtResource("15_qypr7")
-name = "Machine Gun"
-description = "Rapid fire, low true damage homing attack."
-dmgFormula = "1"
-castType = 1
-dmgType = 2
-variance = 0.0
-cooldown = 0.1
-skillLock = 0.1
-metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
-
-[sub_resource type="Resource" id="Resource_lnks5"]
-script = ExtResource("15_qypr7")
-castType = 1
-dmgType = 1
-variance = 5.0
-metadata/_custom_type_script = "uid://bxyodm8bmqbuu"
+[sub_resource type="Resource" id="Resource_05uve"]
+script = ExtResource("17_8swys")
+metadata/_custom_type_script = "uid://cpi4uts4pough"
 
 [sub_resource type="Resource" id="Resource_5g6mi"]
 script = ExtResource("16_sws5g")
@@ -259,7 +237,7 @@ _data = {
 &"loop": SubResource("Animation_4qkhh")
 }
 
-[node name="player" type="CharacterBody3D" node_paths=PackedStringArray("sounds", "castPosition", "targetPosition", "targetArea", "model", "stats") groups=["player"]]
+[node name="player" type="CharacterBody3D" unique_id=2141575549 node_paths=PackedStringArray("sounds", "castPosition", "targetPosition", "targetArea", "model", "stats") groups=["player"]]
 collision_layer = 18
 collision_mask = 21
 script = ExtResource("1_yhvw8")
@@ -286,53 +264,52 @@ targetArea = NodePath("targetArea")
 model = NodePath("EpiaSkin")
 stats = NodePath("StatComponent")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." unique_id=95677996 node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
 script = ExtResource("2_vphkp")
 initial_state = NodePath("idle")
 
-[node name="idle" type="Node" parent="StateMachine"]
+[node name="idle" type="Node" parent="StateMachine" unique_id=1141399787]
 script = ExtResource("3_6ixtw")
 
-[node name="run" type="Node" parent="StateMachine"]
+[node name="run" type="Node" parent="StateMachine" unique_id=2108536903]
 script = ExtResource("4_brycn")
 
-[node name="jump" type="Node" parent="StateMachine"]
+[node name="jump" type="Node" parent="StateMachine" unique_id=216757147]
 script = ExtResource("5_4oxs8")
 
-[node name="fall" type="Node" parent="StateMachine"]
+[node name="fall" type="Node" parent="StateMachine" unique_id=393018905]
 script = ExtResource("6_d25kf")
 
-[node name="onLedge" type="Node" parent="StateMachine"]
+[node name="onLedge" type="Node" parent="StateMachine" unique_id=1370844386]
 script = ExtResource("7_mkkme")
 
-[node name="jumpToLedge" type="Node" parent="StateMachine"]
+[node name="jumpToLedge" type="Node" parent="StateMachine" unique_id=696385388]
 script = ExtResource("8_wh7nt")
 
-[node name="climb" type="Node" parent="StateMachine"]
+[node name="climb" type="Node" parent="StateMachine" unique_id=1097153232]
 script = ExtResource("9_em25i")
 
-[node name="gameFreeze" type="Node" parent="StateMachine"]
+[node name="gameFreeze" type="Node" parent="StateMachine" unique_id=891612221]
 script = ExtResource("10_4vs3c")
 metadata/_custom_type_script = "uid://c3i0t5p8rl76g"
 
-[node name="roll" type="Node" parent="StateMachine"]
+[node name="roll" type="Node" parent="StateMachine" unique_id=1592768402]
 script = ExtResource("11_drw8h")
 
-[node name="inventory" type="Node" parent="."]
+[node name="inventory" type="Node" parent="." unique_id=1063454169]
 unique_name_in_owner = true
 script = ExtResource("11_28wk8")
 
-[node name="blazeStaff" type="Node" parent="inventory" node_paths=PackedStringArray("primarySpawner")]
+[node name="blazeStaff" type="Node" parent="inventory" unique_id=1955069349]
 script = ExtResource("13_18mxl")
+action_a = ExtResource("17_elhsl")
 gearName = "Blaze Staff"
 sprite = ExtResource("16_7jlee")
-skill_a = SubResource("Resource_qypr7")
-action_a = ExtResource("17_elhsl")
-primarySpawner = NodePath("ProjectileSpawner")
+primaryFire = SubResource("Resource_05uve")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
-[node name="StatComponent" type="Node" parent="inventory/blazeStaff"]
+[node name="StatComponent" type="Node" parent="inventory/blazeStaff" unique_id=934607797]
 script = ExtResource("24_4lsu4")
 stats = Dictionary[int, float]({
 0: 10.0,
@@ -351,35 +328,28 @@ rates = Dictionary[int, float]({
 })
 metadata/_custom_type_script = "uid://c765h134s7wo0"
 
-[node name="CooldownTimer" type="Timer" parent="inventory/blazeStaff"]
+[node name="CooldownTimer" type="Timer" parent="inventory/blazeStaff" unique_id=1580510088]
 
-[node name="ProjectileSpawner" type="Node3D" parent="inventory/blazeStaff"]
+[node name="ProjectileSpawner" type="Node3D" parent="inventory/blazeStaff" unique_id=1610856705]
 script = ExtResource("18_lnks5")
 isPlayerProjectile = true
 metadata/_custom_type_script = "uid://cqksxlfu5c6t7"
 
-[node name="Projectile" type="Node3D" parent="inventory/blazeStaff/ProjectileSpawner"]
+[node name="Projectile" type="Node3D" parent="inventory/blazeStaff/ProjectileSpawner" unique_id=526697657]
 visible = false
 script = ExtResource("19_8swys")
 metadata/_custom_type_script = "uid://g8hw4iuycdqg"
 
-[node name="ironPipe" type="Node" parent="inventory"]
-script = ExtResource("13_18mxl")
-gearName = "Iron Pipe"
-sprite = ExtResource("14_drw8h")
-skill_a = SubResource("Resource_flgut")
-action_a = ExtResource("17_oc67l")
-metadata/_custom_type_script = "uid://b2gvtbmuae2px"
+[node name="ironPipe" parent="inventory" unique_id=996090173 instance=ExtResource("20_lnks5")]
 
-[node name="pinkStaff" type="Node" parent="inventory"]
+[node name="pinkStaff" type="Node" parent="inventory" unique_id=499168466]
 script = ExtResource("13_18mxl")
+action_a = ExtResource("19_oc67l")
 gearName = "Pink Staff"
 sprite = ExtResource("19_elhsl")
-skill_a = SubResource("Resource_lnks5")
-action_a = ExtResource("19_oc67l")
 metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 
-[node name="StatComponent" type="Node" parent="inventory/pinkStaff"]
+[node name="StatComponent" type="Node" parent="inventory/pinkStaff" unique_id=175695396]
 script = ExtResource("24_4lsu4")
 stats = Dictionary[int, float]({
 0: 10.0,
@@ -398,7 +368,11 @@ rates = Dictionary[int, float]({
 })
 metadata/_custom_type_script = "uid://c765h134s7wo0"
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
+[node name="PlayerAttackController" type="Node" parent="." unique_id=1511610280 node_paths=PackedStringArray("playerModel")]
+script = ExtResource("24_8swys")
+playerModel = NodePath("../EpiaSkin")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1541188948]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 visible = false
 light_color = Color(1, 0.944116, 0.861228, 1)
@@ -406,24 +380,24 @@ light_volumetric_fog_energy = 0.0
 omni_range = 30.0
 omni_attenuation = 2.0
 
-[node name="cameras" type="Node3D" parent="."]
+[node name="cameras" type="Node3D" parent="." unique_id=1289960598]
 
-[node name="Camera3D" type="Camera3D" parent="cameras"]
+[node name="Camera3D" type="Camera3D" parent="cameras" unique_id=1514368074]
 unique_name_in_owner = true
 physics_interpolation_mode = 1
 transform = Transform3D(-1, 4.402299e-07, -2.4966666e-06, 0, 0.9848077, 0.17364825, 2.535182e-06, 0.17364825, -0.98480785, -1.9973333e-05, 3.389186, -7.878462)
 current = true
 
-[node name="PhantomCameraHost" type="Node" parent="cameras/Camera3D"]
+[node name="PhantomCameraHost" type="Node" parent="cameras/Camera3D" unique_id=1514803143]
 unique_name_in_owner = true
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("10_h8a1l")
 
-[node name="AudioListener3D" type="AudioListener3D" parent="cameras/Camera3D"]
+[node name="AudioListener3D" type="AudioListener3D" parent="cameras/Camera3D" unique_id=465112292]
 current = true
 
-[node name="mainCam" type="Node3D" parent="cameras" node_paths=PackedStringArray("follow_target")]
+[node name="mainCam" type="Node3D" parent="cameras" unique_id=894631487 node_paths=PackedStringArray("follow_target")]
 unique_name_in_owner = true
 transform = Transform3D(-1, 4.402299e-07, -2.4966666e-06, 0, 0.9848077, 0.17364825, 2.535182e-06, 0.17364825, -0.98480785, -1.9973333e-05, 3.389186, -7.878462)
 script = ExtResource("15_4vs3c")
@@ -444,7 +418,7 @@ align_transform_with_view = Callable()
 align_position_with_view = Callable()
 align_rotation_with_view = Callable()
 
-[node name="lockCam" type="Node3D" parent="cameras"]
+[node name="lockCam" type="Node3D" parent="cameras" unique_id=1915002846]
 unique_name_in_owner = true
 top_level = true
 script = ExtResource("15_4vs3c")
@@ -459,23 +433,23 @@ auto_follow_distance_max = 10.0
 spring_length = 3.0
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="cameraPivot" type="Node3D" parent="."]
+[node name="cameraPivot" type="Node3D" parent="." unique_id=1535240001]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.965925, -0.258819, 0, 0.258819, 0.965925, 0, 1.5, 0)
 
-[node name="cameraSmooth" type="Node3D" parent="cameraPivot"]
+[node name="cameraSmooth" type="Node3D" parent="cameraPivot" unique_id=1298280232]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, -5.96046e-08, 0, 5.96046e-08, 1, 0, 0, 0)
 
-[node name="SpringArm3D" type="SpringArm3D" parent="cameraPivot/cameraSmooth"]
+[node name="SpringArm3D" type="SpringArm3D" parent="cameraPivot/cameraSmooth" unique_id=1570135920]
 transform = Transform3D(-1, 0, -8.74228e-08, 1.77636e-15, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 shape = SubResource("SphereShape3D_r7bod")
 spring_length = 6.0
 
-[node name="EpiaSkin" parent="." instance=ExtResource("17_1lueo")]
+[node name="EpiaSkin" parent="." unique_id=1871333099 instance=ExtResource("17_1lueo")]
 unique_name_in_owner = true
 
-[node name="stepParticles" type="GPUParticles3D" parent="EpiaSkin"]
+[node name="stepParticles" type="GPUParticles3D" parent="EpiaSkin" unique_id=2019766277]
 unique_name_in_owner = true
 amount = 12
 lifetime = 0.4
@@ -483,7 +457,7 @@ explosiveness = 0.14
 process_material = SubResource("ParticleProcessMaterial_04fde")
 draw_pass_1 = SubResource("SphereMesh_34kbm")
 
-[node name="fallingParticles" type="GPUParticles3D" parent="EpiaSkin"]
+[node name="fallingParticles" type="GPUParticles3D" parent="EpiaSkin" unique_id=957516495]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0)
 emitting = false
@@ -493,167 +467,160 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_uomwf")
 draw_pass_1 = SubResource("QuadMesh_mi51i")
 
-[node name="ledgeDetectors" type="Node3D" parent="EpiaSkin"]
+[node name="ledgeDetectors" type="Node3D" parent="EpiaSkin" unique_id=1248190169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="ledgeRayVert" type="RayCast3D" parent="EpiaSkin/ledgeDetectors"]
+[node name="ledgeRayVert" type="RayCast3D" parent="EpiaSkin/ledgeDetectors" unique_id=1994836391]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0.8)
 target_position = Vector3(0, -1.9, 0)
 debug_shape_custom_color = Color(3.22476e-06, 0.775259, 0.140685, 1)
 
-[node name="ledgeRayHori" type="RayCast3D" parent="EpiaSkin/ledgeDetectors"]
+[node name="ledgeRayHori" type="RayCast3D" parent="EpiaSkin/ledgeDetectors" unique_id=1423005833]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.55, 0)
 target_position = Vector3(0, 0, 1.5)
 debug_shape_custom_color = Color(3.22476e-06, 0.775259, 0.140685, 1)
 
-[node name="ledgeRayAnti" type="RayCast3D" parent="EpiaSkin/ledgeDetectors"]
+[node name="ledgeRayAnti" type="RayCast3D" parent="EpiaSkin/ledgeDetectors" unique_id=33138644]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
 target_position = Vector3(0, 0, 1.3)
 hit_from_inside = true
 debug_shape_custom_color = Color(0.775259, 0, 0.0185816, 1)
 
-[node name="stairDetectors" type="Node3D" parent="EpiaSkin"]
+[node name="stairDetectors" type="Node3D" parent="EpiaSkin" unique_id=2145588994]
 
-[node name="stairRayDown" type="RayCast3D" parent="EpiaSkin/stairDetectors"]
+[node name="stairRayDown" type="RayCast3D" parent="EpiaSkin/stairDetectors" unique_id=497767404]
 unique_name_in_owner = true
 target_position = Vector3(0, -0.75, 0)
 
-[node name="stairRayAhead" type="RayCast3D" parent="EpiaSkin/stairDetectors"]
+[node name="stairRayAhead" type="RayCast3D" parent="EpiaSkin/stairDetectors" unique_id=1603798447]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.75)
 target_position = Vector3(0, -0.5, 0)
 
-[node name="actionCast" type="Marker3D" parent="EpiaSkin"]
+[node name="actionCast" type="Marker3D" parent="EpiaSkin" unique_id=1637243549]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.5)
 
-[node name="menuCam" type="Node3D" parent="EpiaSkin"]
+[node name="menuCam" type="Node3D" parent="EpiaSkin" unique_id=29833767]
 unique_name_in_owner = true
 transform = Transform3D(0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939692, -0.2, 1, 2)
 script = ExtResource("15_4vs3c")
 tween_resource = SubResource("Resource_st7ng")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
 
-[node name="head" type="Area3D" parent="." groups=["player"]]
+[node name="head" type="Area3D" parent="." unique_id=2069552419 groups=["player"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="head"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="head" unique_id=1966940673]
 shape = SubResource("SphereShape3D_lo5xy")
 debug_color = Color(0, 0.891678, 1, 1)
 
-[node name="feet" type="Area3D" parent="." groups=["player"]]
+[node name="feet" type="Area3D" parent="." unique_id=2012376984 groups=["player"]]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="feet"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="feet" unique_id=324662896]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 shape = SubResource("CylinderShape3D_xyfrb")
 debug_color = Color(0.937906, 0.253437, 1, 1)
 
-[node name="targetArea" type="Area3D" parent="."]
+[node name="targetArea" type="Area3D" parent="." unique_id=1515822026]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.2)
 collision_layer = 0
 collision_mask = 16
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="targetArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="targetArea" unique_id=933958561]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 shape = SubResource("SphereShape3D_4vs3c")
 debug_color = Color(0.941173, 1, 0, 0.42)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1856651530]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_bu0r1")
 debug_color = Color(0, 0.995982, 1, 1)
 
-[node name="ledgePoint" type="Sprite3D" parent="."]
+[node name="ledgePoint" type="Sprite3D" parent="." unique_id=2126931069]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 billboard = 1
 texture = ExtResource("11_ratpf")
 
-[node name="jumpCheck" type="RayCast3D" parent="."]
+[node name="jumpCheck" type="RayCast3D" parent="." unique_id=1971354560]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 target_position = Vector3(0, -2, 0)
 debug_shape_custom_color = Color(1, 0.461015, 0.673447, 1)
 debug_shape_thickness = 5
 
-[node name="sounds" type="Node3D" parent="."]
+[node name="sounds" type="Node3D" parent="." unique_id=9657926]
 
-[node name="foot" type="AudioStreamPlayer" parent="sounds"]
+[node name="foot" type="AudioStreamPlayer" parent="sounds" unique_id=1410043723]
 stream = ExtResource("18_sws5g")
 volume_db = -10.0
 bus = &"reverbSFX"
 
-[node name="waterStep" type="AudioStreamPlayer" parent="sounds"]
+[node name="waterStep" type="AudioStreamPlayer" parent="sounds" unique_id=891658629]
 stream = ExtResource("19_xyfrb")
 volume_db = -15.0
 bus = &"reverbSFX"
 
-[node name="voidOut" type="AudioStreamPlayer" parent="sounds"]
+[node name="voidOut" type="AudioStreamPlayer" parent="sounds" unique_id=619128699]
 stream = ExtResource("19_5g6mi")
 volume_db = -6.0
 pitch_scale = 0.9
 bus = &"SFX"
 
-[node name="respawn" type="AudioStreamPlayer" parent="sounds"]
+[node name="respawn" type="AudioStreamPlayer" parent="sounds" unique_id=1622504169]
 stream = ExtResource("20_cj0gn")
 volume_db = -6.0
 
-[node name="jump" type="AudioStreamPlayer3D" parent="sounds"]
+[node name="jump" type="AudioStreamPlayer3D" parent="sounds" unique_id=1070605170]
 stream = ExtResource("33_oc67l")
 volume_db = -10.0
 bus = &"reverbSFX"
 
-[node name="roll" type="AudioStreamPlayer3D" parent="sounds"]
+[node name="roll" type="AudioStreamPlayer3D" parent="sounds" unique_id=86861314]
 stream = ExtResource("34_elhsl")
 volume_db = -8.0
 bus = &"reverbSFX"
 
-[node name="popupPos" type="Marker3D" parent="."]
+[node name="popupPos" type="Marker3D" parent="." unique_id=785050399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="basicAttackCooldown" type="Timer" parent="."]
+[node name="basicAttackCooldown" type="Timer" parent="." unique_id=1754782281]
 unique_name_in_owner = true
 wait_time = 0.3
 one_shot = true
 
-[node name="StatComponent" type="Node" parent="."]
+[node name="StatComponent" type="Node" parent="." unique_id=17967312]
 script = ExtResource("24_4lsu4")
 metadata/_custom_type_script = "uid://c765h134s7wo0"
 
-[node name="EntityModelController" type="Node" parent="."]
+[node name="EntityModelController" type="Node" parent="." unique_id=1540804606]
 script = ExtResource("25_st7ng")
 metadata/_custom_type_script = "uid://dgcrx5mh3d8c8"
 
-[node name="HealthComponent" type="Node" parent="."]
+[node name="HealthComponent" type="Node" parent="." unique_id=1269661388]
 script = ExtResource("36_22sgx")
 
-[node name="AttackComponent" type="Node" parent="."]
+[node name="AttackComponent" type="Node" parent="." unique_id=1983581081]
 script = ExtResource("37_3t17q")
 metadata/_custom_type_script = "uid://dqeb22rwjfnpv"
 
-[node name="BPComponent" type="Node" parent="."]
+[node name="BPComponent" type="Node" parent="." unique_id=1716038167]
 script = ExtResource("38_bk5u8")
 metadata/_custom_type_script = "uid://c70t5f1x8x3ck"
 
-[node name="targetter" type="Node" parent="." node_paths=PackedStringArray("playerCamera", "targetRadius", "reticle")]
-script = ExtResource("39_1k34p")
-playerCamera = NodePath("../cameras/mainCam")
-targetRadius = NodePath("../targetArea")
-reticle = NodePath("../reticle")
-minDotToTarget = 0.65
-
-[node name="reticle" type="Node3D" parent="."]
+[node name="reticle" type="Node3D" parent="." unique_id=2008617849]
 script = ExtResource("40_4qkhh")
 
-[node name="Sprite3D" type="Sprite3D" parent="reticle"]
+[node name="Sprite3D" type="Sprite3D" parent="reticle" unique_id=1171968063]
 modulate = Color(0.5570313, 0, 0.20461407, 1)
 pixel_size = 0.075
 billboard = 1
@@ -662,11 +629,16 @@ texture_filter = 0
 render_priority = -1
 texture = ExtResource("41_4qkhh")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="reticle"]
-libraries = {
-&"": SubResource("AnimationLibrary_flgut")
-}
-autoplay = "loop"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="reticle" unique_id=895406049]
+libraries/ = SubResource("AnimationLibrary_flgut")
+autoplay = &"loop"
+
+[node name="targetter" type="Node" parent="reticle" unique_id=1863104475 node_paths=PackedStringArray("playerCamera", "targetRadius", "reticle")]
+script = ExtResource("39_1k34p")
+playerCamera = NodePath("../../cameras/mainCam")
+targetRadius = NodePath("../../targetArea")
+reticle = NodePath("..")
+minDotToTarget = 0.65
 
 [connection signal="child_entered_tree" from="inventory" to="inventory" method="inventory_updated"]
 [connection signal="area_entered" from="head" to="." method="_on_head_area_entered"]

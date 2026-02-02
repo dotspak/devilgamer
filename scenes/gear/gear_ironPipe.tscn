@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://b27ex14grova6"]
+
+[ext_resource type="Script" uid="uid://b2gvtbmuae2px" path="res://src/battle/gear.gd" id="1_ybhwf"]
+[ext_resource type="Texture2D" uid="uid://dlb7vko2jd0ci" path="res://assets/gearIcons/gear_ironPipe.png" id="2_d3khx"]
+[ext_resource type="PackedScene" uid="uid://dqbtt3qeauutp" path="res://scenes/actions/machineGun.tscn" id="3_m1h0o"]
+[ext_resource type="Script" uid="uid://cpi4uts4pough" path="res://src/battle/playerAttackData.gd" id="4_buqd8"]
+[ext_resource type="Shader" uid="uid://c4u2ou740syo7" path="res://shaders/psx/psx_lit_metal.gdshader" id="4_m1h0o"]
+[ext_resource type="AnimationLibrary" uid="uid://roid3vtnjskd" path="res://animationLibraries/playerAttacks.res" id="6_buqd8"]
+
+[sub_resource type="Resource" id="Resource_6giyd"]
+script = ExtResource("4_buqd8")
+animation = "basicSwing"
+metadata/_custom_type_script = "uid://cpi4uts4pough"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_6giyd"]
+frequency = 0.0227
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ml85w"]
+width = 64
+height = 64
+noise = SubResource("FastNoiseLite_6giyd")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8mue"]
+render_priority = 0
+shader = ExtResource("4_m1h0o")
+shader_parameter/modulate_color = Color(0.40367988, 0.40218893, 0.44375002, 1)
+shader_parameter/albedoTex = SubResource("NoiseTexture2D_ml85w")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2nmlh"]
+material = SubResource("ShaderMaterial_a8mue")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 1.5
+radial_segments = 8
+rings = 2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_d3khx"]
+height = 1.375
+radius = 0.25
+
+[node name="ironPipe" type="Node" unique_id=996090173 node_paths=PackedStringArray("model", "hitbox", "animator")]
+script = ExtResource("1_ybhwf")
+action_a = ExtResource("3_m1h0o")
+gearName = "Iron Pipe"
+sprite = ExtResource("2_d3khx")
+model = NodePath("model")
+hitbox = NodePath("model/Area3D")
+animator = NodePath("AnimationPlayer")
+primaryFire = SubResource("Resource_6giyd")
+metadata/_custom_type_script = "uid://b2gvtbmuae2px"
+
+[node name="model" type="Node3D" parent="." unique_id=1393775687]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="model" unique_id=1260925485]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("CylinderMesh_2nmlh")
+
+[node name="Area3D" type="Area3D" parent="model" unique_id=1167437988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+collision_layer = 8
+collision_mask = 32
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="model/Area3D" unique_id=1455851839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0625, 0)
+shape = SubResource("CylinderShape3D_d3khx")
+debug_color = Color(0.70196074, 0, 0.037452597, 0.9411765)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1788333249]
+libraries/playerAttacks = ExtResource("6_buqd8")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://deysr8xllppqi"]
+[gd_scene format=3 uid="uid://deysr8xllppqi"]
 
 [ext_resource type="Script" uid="uid://dmq2pvdayxfpi" path="res://ui/battle/ui_battle_actions.gd" id="1_60lkr"]
 [ext_resource type="Texture2D" uid="uid://dlb7vko2jd0ci" path="res://assets/gearIcons/gear_ironPipe.png" id="1_sob5k"]
@@ -13,6 +13,18 @@ border_color = Color(0.361166, 0.344683, 0.697656, 1)
 corner_radius_top_left = 4
 corner_radius_bottom_right = 4
 anti_aliasing = false
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h8kr1"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_dsnjk"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uu05m"]
+gradient = SubResource("Gradient_dsnjk")
+width = 48
+height = 48
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h8kr1"]
 bg_color = Color(0, 0, 0, 1)
@@ -49,7 +61,7 @@ border_color = Color(0.361166, 0.344683, 0.697656, 1)
 corner_radius_top_left = 4
 corner_radius_bottom_right = 4
 
-[node name="battleActions" type="Control"]
+[node name="battleActions" type="Control" unique_id=1407811161]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -58,7 +70,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_60lkr")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=551220360]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -69,26 +81,26 @@ grow_vertical = 0
 size_flags_horizontal = 4
 alignment = 2
 
-[node name="selectedLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="selectedLabel" type="RichTextLabel" parent="VBoxContainer" unique_id=1688761095]
 unique_name_in_owner = true
 layout_mode = 2
 bbcode_enabled = true
 text = "[bgcolor=000]> Iron Pipe"
 fit_content = true
 
-[node name="gear" type="HBoxContainer" parent="VBoxContainer"]
+[node name="gear" type="HBoxContainer" parent="VBoxContainer" unique_id=2143345951]
 unique_name_in_owner = true
 layout_mode = 2
 theme_override_constants/separation = 4
 
-[node name="gear0" type="PanelContainer" parent="VBoxContainer/gear"]
+[node name="gear0" type="PanelContainer" parent="VBoxContainer/gear" unique_id=262303236]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_y14kt")
 
-[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear0"]
+[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear0" unique_id=808426394]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -96,7 +108,15 @@ size_flags_vertical = 4
 texture = ExtResource("1_sob5k")
 expand_mode = 1
 
-[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear0"]
+[node name="cooldown" type="TextureProgressBar" parent="VBoxContainer/gear/gear0" unique_id=249803670]
+material = SubResource("CanvasItemMaterial_h8kr1")
+layout_mode = 2
+fill_mode = 4
+texture_progress = SubResource("GradientTexture2D_uu05m")
+tint_over = Color(0.16078432, 0.18431373, 0.32941177, 1)
+tint_progress = Color(0.16078432, 0.18431373, 0.32941177, 1)
+
+[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear0" unique_id=1457602042]
 layout_mode = 2
 bbcode_enabled = true
 text = "[outline_size=4][outline_color=000]999"
@@ -104,25 +124,33 @@ scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear0"]
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear0" unique_id=1496332098]
 layout_mode = 2
 bbcode_enabled = true
 text = "[font_size=12][outline_size=4][outline_color=000]1"
 scroll_active = false
 
-[node name="gear1" type="PanelContainer" parent="VBoxContainer/gear"]
+[node name="gear1" type="PanelContainer" parent="VBoxContainer/gear" unique_id=1356790230]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_h8kr1")
 
-[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear1"]
+[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear1" unique_id=387373301]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("3_y14kt")
 expand_mode = 1
 
-[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear1"]
+[node name="cooldown" type="TextureProgressBar" parent="VBoxContainer/gear/gear1" unique_id=1504627966]
+material = SubResource("CanvasItemMaterial_h8kr1")
+layout_mode = 2
+fill_mode = 4
+texture_progress = SubResource("GradientTexture2D_uu05m")
+tint_over = Color(0.16078432, 0.18431373, 0.32941177, 1)
+tint_progress = Color(0.16078432, 0.18431373, 0.32941177, 1)
+
+[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear1" unique_id=1742052168]
 layout_mode = 2
 bbcode_enabled = true
 text = "999"
@@ -130,25 +158,33 @@ scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear1"]
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear1" unique_id=1517053594]
 layout_mode = 2
 bbcode_enabled = true
 text = "[font_size=12][outline_size=4][outline_color=000]2"
 scroll_active = false
 
-[node name="gear2" type="PanelContainer" parent="VBoxContainer/gear"]
+[node name="gear2" type="PanelContainer" parent="VBoxContainer/gear" unique_id=247401659]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_dsnjk")
 
-[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear2"]
+[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear2" unique_id=1472051125]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("4_h8kr1")
 expand_mode = 1
 
-[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear2"]
+[node name="cooldown" type="TextureProgressBar" parent="VBoxContainer/gear/gear2" unique_id=1325027271]
+material = SubResource("CanvasItemMaterial_h8kr1")
+layout_mode = 2
+fill_mode = 4
+texture_progress = SubResource("GradientTexture2D_uu05m")
+tint_over = Color(0.16078432, 0.18431373, 0.32941177, 1)
+tint_progress = Color(0.16078432, 0.18431373, 0.32941177, 1)
+
+[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear2" unique_id=1745339312]
 layout_mode = 2
 bbcode_enabled = true
 text = "999"
@@ -156,25 +192,33 @@ scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear2"]
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear2" unique_id=1735712256]
 layout_mode = 2
 bbcode_enabled = true
 text = "[font_size=12][outline_size=4][outline_color=000]3"
 scroll_active = false
 
-[node name="gear3" type="PanelContainer" parent="VBoxContainer/gear"]
+[node name="gear3" type="PanelContainer" parent="VBoxContainer/gear" unique_id=1753147495]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_uu05m")
 
-[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear3"]
+[node name="icon" type="TextureRect" parent="VBoxContainer/gear/gear3" unique_id=1440782294]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture = ExtResource("1_sob5k")
 expand_mode = 1
 
-[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear3"]
+[node name="cooldown" type="TextureProgressBar" parent="VBoxContainer/gear/gear3" unique_id=1721305918]
+material = SubResource("CanvasItemMaterial_h8kr1")
+layout_mode = 2
+fill_mode = 4
+texture_progress = SubResource("GradientTexture2D_uu05m")
+tint_over = Color(0.16078432, 0.18431373, 0.32941177, 1)
+tint_progress = Color(0.16078432, 0.18431373, 0.32941177, 1)
+
+[node name="stacks" type="RichTextLabel" parent="VBoxContainer/gear/gear3" unique_id=258753894]
 layout_mode = 2
 bbcode_enabled = true
 text = "999"
@@ -182,13 +226,13 @@ scroll_active = false
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear3"]
+[node name="slotID" type="RichTextLabel" parent="VBoxContainer/gear/gear3" unique_id=859649104]
 layout_mode = 2
 bbcode_enabled = true
 text = "[font_size=12][outline_size=4][outline_color=000]4"
 scroll_active = false
 
-[node name="items" type="HBoxContainer" parent="VBoxContainer"]
+[node name="items" type="HBoxContainer" parent="VBoxContainer" unique_id=2018950433]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -196,42 +240,42 @@ size_flags_vertical = 8
 theme_override_constants/separation = 4
 alignment = 1
 
-[node name="item0" type="PanelContainer" parent="VBoxContainer/items"]
+[node name="item0" type="PanelContainer" parent="VBoxContainer/items" unique_id=523762627]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_60lkr")
 
-[node name="icon" type="TextureRect" parent="VBoxContainer/items/item0"]
+[node name="icon" type="TextureRect" parent="VBoxContainer/items/item0" unique_id=1296978728]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
-[node name="item1" type="PanelContainer" parent="VBoxContainer/items"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-size_flags_vertical = 8
-theme_override_styles/panel = SubResource("StyleBoxFlat_60lkr")
-
-[node name="icon" type="TextureRect" parent="VBoxContainer/items/item1"]
-custom_minimum_size = Vector2(48, 48)
-layout_mode = 2
-
-[node name="item2" type="PanelContainer" parent="VBoxContainer/items"]
+[node name="item1" type="PanelContainer" parent="VBoxContainer/items" unique_id=963913595]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_60lkr")
 
-[node name="icon" type="TextureRect" parent="VBoxContainer/items/item2"]
+[node name="icon" type="TextureRect" parent="VBoxContainer/items/item1" unique_id=1197677488]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 
-[node name="item3" type="PanelContainer" parent="VBoxContainer/items"]
+[node name="item2" type="PanelContainer" parent="VBoxContainer/items" unique_id=1794504412]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_vertical = 8
 theme_override_styles/panel = SubResource("StyleBoxFlat_60lkr")
 
-[node name="icon" type="TextureRect" parent="VBoxContainer/items/item3"]
+[node name="icon" type="TextureRect" parent="VBoxContainer/items/item2" unique_id=1242066084]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+
+[node name="item3" type="PanelContainer" parent="VBoxContainer/items" unique_id=1318193299]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_60lkr")
+
+[node name="icon" type="TextureRect" parent="VBoxContainer/items/item3" unique_id=606628667]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2

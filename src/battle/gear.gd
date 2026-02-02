@@ -1,25 +1,29 @@
-@icon("res://icons/gearIcon.png")
+@icon("res://icons/battleData.png")
 extends Node
 class_name Gear
 
+enum FireSlot{ PRIMARY, SECONDARY }
+
+@export var action_a : PackedScene
+
+@export_category("Info")
 @export var gearName : String = ""
 @export_multiline var description : String = ""
 @export var sprite : Texture
 
-@export_category("Primary Fire")
-@export var skill_a : Skill
-@export var action_a : PackedScene
-@export var primarySpawner : ProjectileSpawner
+@export_category("Visuals")
+@export var model : Node3D
+@export var hitbox : Area3D
+@export var animator : AnimationPlayer
 
-@export_category("Secondary Fire")
-@export var skill_b : Skill
-@export var action_b : PackedScene
-@export var secondarySpawner : ProjectileSpawner
+@export_category("Attacks")
+@export var primaryFire : PlayerAttackData = PlayerAttackData.new()
+@export var secondaryFire : PlayerAttackData = PlayerAttackData.new()
 
 var cooldownTimer : Timer
-var statComponent : StatComponent
 var passives : Array[Passive]
 var entity : Entity
+var currentFire : PlayerAttackData
 
 @export var stacks : int = 0 :
 	set(val):
@@ -27,6 +31,9 @@ var entity : Entity
 		stacksChanged.emit(stacks)
 
 signal stacksChanged(stacks : int)
+signal castStarted(slot : FireSlot)
+signal castFinished(slot : FireSlot)
+signal attackFinished(slot : FireSlot)
 
 func _ready():
 	if find_entity(get_parent()):
@@ -34,19 +41,91 @@ func _ready():
 			if n is Passive: 
 				passives.append(n)
 				n.setup(entity)
-				
-			if n is StatComponent: 
-				statComponent = n
 
-	cooldownTimer = get_node_or_null("CooldownTimer")
-	if !cooldownTimer:
-		cooldownTimer = Timer.new()
-		add_child(cooldownTimer)
+	setup_cooldown_timer()
+	verify_hitbox()
+	attackFinished.connect(func(): currentFire = null)
 
 
+func setup_cooldown_timer() -> void:
+	if cooldownTimer: cooldownTimer.queue_free()
+	cooldownTimer = Timer.new()
+	add_child(cooldownTimer)
+
+
+func scale_animators(attack : PlayerAttackData) -> void: if animator: animator.speed_scale = attack.attackSpeed
+
+
+# ---------------------
+# getters
+# ---------------------
+func get_cast_time(slot : FireSlot = FireSlot.PRIMARY) -> float: return secondaryFire.castTime if slot == FireSlot.SECONDARY else primaryFire.castTime
+func get_cooldown(slot : FireSlot = FireSlot.PRIMARY) -> float: return secondaryFire.cooldown if slot == FireSlot.SECONDARY else primaryFire.cooldown
+func get_attack_speed(slot : FireSlot = FireSlot.PRIMARY) -> float: return secondaryFire.attackSpeed if slot == FireSlot.SECONDARY else primaryFire.attackSpeed
+func get_attack_type(slot : FireSlot = FireSlot.PRIMARY) -> PlayerAttackData.AttackType: return secondaryFire.attackType if slot == FireSlot.SECONDARY else primaryFire.attackType
+func get_fire(slot : FireSlot = FireSlot.PRIMARY) -> PlayerAttackData: return secondaryFire if slot == FireSlot.SECONDARY else primaryFire
+
+# ---------------------
+# hitboxes
+# ---------------------
+func verify_hitbox() -> void:
+	if !hitbox: return
+	hitbox.collision_layer = 8
+	hitbox.collision_mask = 32
+
+
+func set_hitbox_enabled(enabled : bool = true) -> void:
+	if !hitbox:
+		print(gearName, " has no hitbox!")
+		return
+
+	hitbox.monitoring = enabled
+	hitbox.monitorable = enabled
+
+func enable_hitbox() -> void: set_hitbox_enabled(true)
+func disable_hitbox() -> void: set_hitbox_enabled(false)
+
+# ---------------------
+# signal callers
+# ---------------------
+func notify_cast_started(slot : FireSlot) -> void: 
+	castStarted.emit(slot)
+
+func notify_attack_finished(slot : FireSlot) -> void: 
+	attackFinished.emit(slot)
+	cooldownTimer.paused = false
+	cooldownTimer.start()
+
+func notify_cast_finished(slot : FireSlot) -> void: 
+	castFinished.emit(slot)
+	if animator:
+		animator.speed_scale = currentFire.attackSpeed
+		animator.play(currentFire.animation)
+
+# ---------------------
+# Fire logic
+# ---------------------
+func use_gear(slot : FireSlot = FireSlot.PRIMARY) -> void:
+	if cooldownTimer.wait_time > 0: return
+	currentFire = get_fire(slot)
+	cooldownTimer.paused = true
+	cooldownTimer.wait_time = currentFire.cooldown
+	
+	# use the actual attack
+	notify_cast_started(slot)
+	await get_tree().create_timer(currentFire.castTime).timeout
+	
+	notify_cast_finished(slot)
+	await get_tree().create_timer(currentFire.attackSpeed).timeout
+	
+	notify_attack_finished(slot)
+
+# ---------------------
+# OUTDATED
+# ---------------------
 func use() -> void:
 	var scene : PackedScene = get_action_scene()
-	var attackSpeed : float = (1.0 + 0.38) / skill_a.cooldown
+	var attackSpeed : float = (1.0 + 0.38)
 	owner.model.attack(attackSpeed)
 	
 	# spawn the gear's attack

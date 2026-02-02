@@ -736,9 +736,6 @@ func use_action(scene : PackedScene) -> void:
 	lastMoveDir = playerRot
 
 	var skill : Skill = scene.instantiate().skill
-	var attackSpeed : float = (1.0 + 0.38) / skill.cooldown
-	model.attack(attackSpeed)
-
 	usingSkill = true
 
 	var action : Action = scene.instantiate()

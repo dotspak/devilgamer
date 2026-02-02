@@ -1,5 +1,6 @@
 @tool
-class_name EpiaSkin extends Node3D
+extends Node3D
+class_name EpiaSkin
 
 @export_tool_button("Mercury Mode", "Node3D") 
 var mercModeButton : Callable = enter_merc_mode
@@ -105,17 +106,19 @@ func weaponString() -> String:
 	return string
 
 
+func cast(type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, speed : float = 1.0) -> void:
+	pass
+
+func attack(type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, speed : float = 1.0) -> void:
+	# animation_tree.set("parameters/StateMachine/attack/TimeScale/scale", attackSpeed)
+	# state_machine.travel("attack")
+
+	# weaponSlot.show()
+	# await animation_tree.animation_finished
+	# weaponSlot.hide()
+	pass
+
 func weaponIdle() -> void: weaponState.travel(weaponString() + "idle")
-
-
-func attack(attackSpeed : float = 1.0):
-	animation_tree.set("parameters/StateMachine/attack/TimeScale/scale", attackSpeed)
-	state_machine.travel("attack")
-
-	weaponSlot.show()
-	await animation_tree.animation_finished
-	weaponSlot.hide()
-	
 
 func clear_weapon_holder() -> void:
 	for n in weaponSlot.get_children():
@@ -140,3 +143,7 @@ func enter_norm_mode() -> void:
 	$model/Armature/Skeleton3D/hornPlate.hide()
 
 	$model/Armature/Skeleton3D/armL.show()
+
+
+func show_hand_attachment() -> void: %handAttachment.show()
+func hide_hand_attachment() -> void: %handAttachment.hide()
