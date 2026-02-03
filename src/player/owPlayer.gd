@@ -57,7 +57,8 @@ const maxPitch : float = 50
 @onready var menuCam : PhantomCamera3D = %menuCam
 @onready var defaultSpringLength : float = mainCam.spring_length
 @onready var defaultCamOffset : Vector3 = mainCam.follow_offset
-@onready var targetter : PlayerTargetter = $targetter
+@onready var targetter : PlayerTargetter = $reticle/targetter
+@onready var attackController : PlayerAttackController = $PlayerAttackController
 
 var jumpVelocity : float = 5.0
 var jumpGravity : float = 5.0
@@ -218,9 +219,9 @@ func _physics_process(delta: float) -> void:
 		# 			print("looking for new target")
 		# 			skillTarget = get_closest_target()
 		
-		if Input.is_action_pressed("skill_cast"):
-			if should_use_skill():
-				use_weapon()
+		# use weapon
+		var weaponSlot : int = 0 if Input.is_action_pressed("primary_fire") else 1 if Input.is_action_pressed("secondary_fire") else -1
+		if weaponSlot >= 0: use_weapon(weaponSlot as Gear.FireSlot)
 		
 		# handle drowning logic
 		if headInWater: breathTimer -= delta
@@ -618,7 +619,6 @@ func hide_target_indicator() -> void:
 func lock_on() -> void:
 	GameManager.enter_focus_ui()
 	
-	model.set_look_target(targetter.softTarget)
 	lockCam.priority = 1
 	mainCam.priority = 0
 
@@ -718,12 +718,18 @@ func inventory_updated(_node : Node) -> void:
 	GameManager.battleBar.gear = updatedInvetory
 
 
-func use_weapon() -> void:
+func use_weapon(slot : Gear.FireSlot = Gear.FireSlot.PRIMARY) -> void:
+	if !should_use_skill(): return
+
 	var camForward : Vector3 = mainCam.global_basis.z
 	camForward  = camForward.normalized()
 	castPosition.look_at(castPosition.global_transform.origin + camForward, Vector3.UP)
 
-	inventory.get_selected_gear().use()
+	lastMoveDir = targetter.softTarget.global_position.normalized()
+	lastMoveDir.y = 0
+
+	inventory.get_selected_gear().use_gear(slot)
+	attackController.call_attack(inventory.get_selected_gear())
 
 
 func use_action(scene : PackedScene) -> void:
@@ -759,3 +765,5 @@ func use_action(scene : PackedScene) -> void:
 	cooldownTimer.start(action.skill.cooldown)
 
 func can_roll() -> bool: return bpComponent.BP > bpComponent.maxBP * 0.25
+
+func _on_targetter_found_target(target: Node3D) -> void: model.set_look_target(target)

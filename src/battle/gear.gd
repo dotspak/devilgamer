@@ -44,12 +44,15 @@ func _ready():
 
 	setup_cooldown_timer()
 	verify_hitbox()
-	attackFinished.connect(func(): currentFire = null)
+
+	if model: model.hide()
+	attackFinished.connect(func(_slot): currentFire = null)
 
 
 func setup_cooldown_timer() -> void:
 	if cooldownTimer: cooldownTimer.queue_free()
 	cooldownTimer = Timer.new()
+	cooldownTimer.one_shot = true
 	add_child(cooldownTimer)
 
 
@@ -72,6 +75,7 @@ func verify_hitbox() -> void:
 	if !hitbox: return
 	hitbox.collision_layer = 8
 	hitbox.collision_mask = 32
+	hitbox.body_entered.connect(_hitbox_collision)
 
 
 func set_hitbox_enabled(enabled : bool = true) -> void:
@@ -85,6 +89,10 @@ func set_hitbox_enabled(enabled : bool = true) -> void:
 func enable_hitbox() -> void: set_hitbox_enabled(true)
 func disable_hitbox() -> void: set_hitbox_enabled(false)
 
+func _hitbox_collision(node : Node3D) -> void:
+	if node is Enemy:
+		node.take_damage(currentFire.skill.calc_damage(GameManager.player))
+
 # ---------------------
 # signal callers
 # ---------------------
@@ -95,6 +103,7 @@ func notify_attack_finished(slot : FireSlot) -> void:
 	attackFinished.emit(slot)
 	cooldownTimer.paused = false
 	cooldownTimer.start()
+	disable_hitbox()
 
 func notify_cast_finished(slot : FireSlot) -> void: 
 	castFinished.emit(slot)
@@ -106,18 +115,22 @@ func notify_cast_finished(slot : FireSlot) -> void:
 # Fire logic
 # ---------------------
 func use_gear(slot : FireSlot = FireSlot.PRIMARY) -> void:
-	if cooldownTimer.wait_time > 0: return
-	currentFire = get_fire(slot)
-	cooldownTimer.paused = true
-	cooldownTimer.wait_time = currentFire.cooldown
+	if cooldownTimer.time_left > 0: return
 	
-	# use the actual attack
+	print("attempting to use gear " + gearName)
+	currentFire = get_fire(slot)
+	cooldownTimer.start(200)
+	
+	# cast the attack
 	notify_cast_started(slot)
 	await get_tree().create_timer(currentFire.castTime).timeout
 	
+	# use the attack
 	notify_cast_finished(slot)
 	await get_tree().create_timer(currentFire.attackSpeed).timeout
-	
+
+	# start cooldown
+	cooldownTimer.start(currentFire.cooldown)
 	notify_attack_finished(slot)
 
 # ---------------------

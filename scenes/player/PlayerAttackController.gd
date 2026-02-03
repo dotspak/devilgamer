@@ -6,20 +6,35 @@ enum Phase { READY, CASTING, ATTACKING }
 
 @export var model : EpiaSkin
 
-var phase : Phase = Phase.READY
-var currentGear : Gear
+var phase : Phase = Phase.READY :
+	set(val):
+		phase = val
+		match(phase):
+			Phase.READY:        print("ready to use an attack")
+			Phase.CASTING:      print("casting an attack")
+			Phase.ATTACKING:    print("using an attack")
 
 # first calls the respective cast animation (cast_swing)
 # then calls the attack animation (attack_swing)
 func call_attack(usedGear : Gear) -> void:
-    currentGear = usedGear
+	get_parent().velocity = Vector3.ZERO
+	if !usedGear.currentFire: return
 
-    phase = Phase.CASTING
-    model.cast(currentGear.attackType, currentGear.currentFire.castTime)
-    await currentGear.castFinished
+	# cast the attack
+	phase = Phase.CASTING
+	model.cast(usedGear.currentFire.attackType, usedGear.currentFire.castTime)
+	if usedGear.model:
+		model.attach_to_hand(usedGear.model)
+		usedGear.model.show()
+	await usedGear.castFinished
 
-    phase = Phase.ATTACKING
-    model.attack(currentGear.attackType, currentGear.currentFire.attackSpeed)
-    await currentGear.attackFinished
+	# use the attack
+	phase = Phase.ATTACKING
+	model.attack(usedGear.currentFire.attackType, usedGear.currentFire.attackSpeed)
+	await usedGear.attackFinished
 
-    phase = Phase.READY
+	# recover/cooldown
+	if usedGear.model: 
+		usedGear.model.hide()
+		usedGear.model.reparent(usedGear)
+	phase = Phase.READY

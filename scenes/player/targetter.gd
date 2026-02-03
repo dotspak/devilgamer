@@ -12,7 +12,10 @@ class_name PlayerTargetter
 @export_range(0,1, 0.01) var minDotToTarget : float = 0.7
 @export var distanceWeight : float = 0.15
 
-var softTarget : Node3D = null
+var softTarget : Node3D = null :
+	set(val):
+		softTarget = val
+		foundTarget.emit(softTarget)
 var lockedTarget : Node3D = null :
 	set(val):
 		lockedTarget = val
@@ -21,6 +24,8 @@ var lockedTarget : Node3D = null :
 			owner.lock_off()
 
 var validTargets : Array[Node3D] = []
+
+signal foundTarget(target : Node3D)
 
 func has_target() -> bool: return softTarget != null
 func is_targettable(node : Node) -> Node3D: return node.get_node_or_null("TargetPoint")

@@ -6,10 +6,12 @@
 [ext_resource type="Script" uid="uid://cpi4uts4pough" path="res://src/battle/playerAttackData.gd" id="4_buqd8"]
 [ext_resource type="Shader" uid="uid://c4u2ou740syo7" path="res://shaders/psx/psx_lit_metal.gdshader" id="4_m1h0o"]
 [ext_resource type="AnimationLibrary" uid="uid://roid3vtnjskd" path="res://animationLibraries/playerAttacks.res" id="6_buqd8"]
+[ext_resource type="Material" uid="uid://ss5pvse1cfol" path="res://scenes/actions/fireballTrailMaterial.tres" id="6_ml85w"]
+[ext_resource type="Script" uid="uid://c1f0esp0hdccy" path="res://addons/Trail3D.gd" id="7_a8mue"]
 
 [sub_resource type="Resource" id="Resource_6giyd"]
 script = ExtResource("4_buqd8")
-animation = "basicSwing"
+animation = "playerAttacks/basicSwing"
 metadata/_custom_type_script = "uid://cpi4uts4pough"
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_6giyd"]
@@ -21,23 +23,76 @@ height = 64
 noise = SubResource("FastNoiseLite_6giyd")
 seamless = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_buqd8"]
+render_priority = 0
+shader = ExtResource("4_m1h0o")
+shader_parameter/modulate_color = Color(0, 0, 0, 1)
+shader_parameter/albedoTex = SubResource("NoiseTexture2D_ml85w")
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_2nmlh"]
+material = SubResource("ShaderMaterial_buqd8")
+top_radius = 0.02
+bottom_radius = 0.02
+height = 1.5
+radial_segments = 8
+rings = 2
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a8mue"]
 render_priority = 0
 shader = ExtResource("4_m1h0o")
 shader_parameter/modulate_color = Color(0.40367988, 0.40218893, 0.44375002, 1)
 shader_parameter/albedoTex = SubResource("NoiseTexture2D_ml85w")
 
-[sub_resource type="CylinderMesh" id="CylinderMesh_2nmlh"]
+[sub_resource type="BoxMesh" id="BoxMesh_buqd8"]
 material = SubResource("ShaderMaterial_a8mue")
-top_radius = 0.05
-bottom_radius = 0.05
-height = 1.5
-radial_segments = 8
-rings = 2
+size = Vector3(0.5, 0.3, 0.2)
+
+[sub_resource type="ImmediateMesh" id="ImmediateMesh_2nmlh"]
+
+[sub_resource type="Animation" id="Animation_ml85w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_a8mue"]
+resource_name = "loop"
+length = 0.2
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 1.5707964, 0), Vector3(6.2831855, 1.5707964, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2nmlh"]
+_data = {
+&"RESET": SubResource("Animation_ml85w"),
+&"loop": SubResource("Animation_a8mue")
+}
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_d3khx"]
 height = 1.375
 radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_buqd8"]
+radius = 0.4
 
 [node name="ironPipe" type="Node" unique_id=996090173 node_paths=PackedStringArray("model", "hitbox", "animator")]
 script = ExtResource("1_ybhwf")
@@ -56,6 +111,26 @@ metadata/_custom_type_script = "uid://b2gvtbmuae2px"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 mesh = SubResource("CylinderMesh_2nmlh")
 
+[node name="MeshInstance3D" type="MeshInstance3D" parent="model/MeshInstance3D" unique_id=1691053259]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+mesh = SubResource("BoxMesh_buqd8")
+
+[node name="Trail3D" type="MeshInstance3D" parent="model/MeshInstance3D/MeshInstance3D" unique_id=1914525321]
+transform = Transform3D(-4.3711367e-08, 0, 0.9999995, 0, 1, 0, -0.9999995, 0, -4.3711367e-08, 0, 0, 0)
+material_override = ExtResource("6_ml85w")
+cast_shadow = 0
+mesh = SubResource("ImmediateMesh_2nmlh")
+skeleton = NodePath("../..")
+script = ExtResource("7_a8mue")
+fromWidth = 0.2
+toWidth = 0.2
+startColor = Color(1, 0, 0.04705143, 1)
+endColor = Color(0, 0, 0, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="model/MeshInstance3D/MeshInstance3D/Trail3D" unique_id=1933920805]
+libraries/ = SubResource("AnimationLibrary_2nmlh")
+autoplay = &"loop"
+
 [node name="Area3D" type="Area3D" parent="model" unique_id=1167437988]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
 collision_layer = 8
@@ -65,6 +140,11 @@ collision_mask = 32
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0625, 0)
 shape = SubResource("CylinderShape3D_d3khx")
 debug_color = Color(0.70196074, 0, 0.037452597, 0.9411765)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="model/Area3D" unique_id=96558127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+shape = SubResource("SphereShape3D_buqd8")
+debug_color = Color(0.7, 0, 0.046666622, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1788333249]
 libraries/playerAttacks = ExtResource("6_buqd8")

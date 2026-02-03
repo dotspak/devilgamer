@@ -27,7 +27,6 @@ enum WEAPONSTATES {None, Gun, OneHand, TwoHand}
 @onready var animation_tree = %AnimationTree
 @onready var state_machine : AnimationNodeStateMachinePlayback = animation_tree.get("parameters/StateMachine/playback")
 
-
 @onready var tree : AnimationTree = %AnimationTree2
 @onready var weaponState : AnimationNodeStateMachinePlayback = tree.get("parameters/weaponState/playback")
 
@@ -41,7 +40,7 @@ func _ready() -> void:
 func clear_look_target() -> void: lookAt.target_node = ""
 func set_look_target(target : Node3D, secondaryRotation : bool = true) -> void: 
 	lookAt.use_secondary_rotation = secondaryRotation
-	lookAt.target_node = target.get_path()
+	lookAt.target_node = target.get_path() if target else "" as NodePath
 
 
 func idle():
@@ -106,10 +105,10 @@ func weaponString() -> String:
 	return string
 
 
-func cast(type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, speed : float = 1.0) -> void:
+func cast(_type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, _speed : float = 1.0) -> void:
 	pass
 
-func attack(type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, speed : float = 1.0) -> void:
+func attack(_type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, _speed : float = 1.0) -> void:
 	# animation_tree.set("parameters/StateMachine/attack/TimeScale/scale", attackSpeed)
 	# state_machine.travel("attack")
 
@@ -147,3 +146,7 @@ func enter_norm_mode() -> void:
 
 func show_hand_attachment() -> void: %handAttachment.show()
 func hide_hand_attachment() -> void: %handAttachment.hide()
+
+func attach_to_hand(node : Node3D) -> void:
+	node.reparent(weaponSlot)
+	node.transform = weaponSlot.transform

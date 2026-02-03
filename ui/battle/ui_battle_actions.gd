@@ -2,7 +2,7 @@ extends Control
 class_name BattleActions
 
 const ICON_IDX : int = 0
-const STACK_IDX : int = 1
+const STACK_IDX : int = 2
 const LABEL_HEADER : String = "[bgcolor=000]> "
 const STACK_HEADER : String = "[outline_size=4][outline_color=000][color=5ff]"
 
