@@ -8,6 +8,13 @@ var mercModeButton : Callable = enter_merc_mode
 @export_tool_button("Normal Mode", "Node3D") 
 var normModeButton : Callable = enter_norm_mode
 
+@export var testAttackType : PlayerAttackData.AttackType
+@export_tool_button("Test Attack", "Node3D")
+var testAttackButton : Callable = func():
+	cast(testAttackType, 0.2)
+	await get_tree().create_timer(0.2).timeout
+	attack(testAttackType, 0.2)
+
 @export_range(0, 1) var speed : float = 0 :
 	set(val):
 		speed = clamp(val, 0, 1)
@@ -106,7 +113,11 @@ func weaponString() -> String:
 
 
 func cast(_type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, _speed : float = 1.0) -> void:
-	pass
+	print("casting with type " + PlayerAttackData.AttackType.keys()[_type])
+	tree.set("parameters/weaponState/cast/castSpeed/scale", _speed)
+	tree.set("parameters/weaponState/cast/castType/blend_position", _type)
+	weaponState.travel("cast")
+
 
 func attack(_type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SWING, _speed : float = 1.0) -> void:
 	# animation_tree.set("parameters/StateMachine/attack/TimeScale/scale", attackSpeed)
@@ -115,9 +126,13 @@ func attack(_type : PlayerAttackData.AttackType = PlayerAttackData.AttackType.SW
 	# weaponSlot.show()
 	# await animation_tree.animation_finished
 	# weaponSlot.hide()
-	pass
+	print("attacking with type " + PlayerAttackData.AttackType.keys()[_type])
+	tree.set("parameters/weaponState/attack/attackSpeed/scale", _speed)
+	tree.set("parameters/weaponState/attack/attackType/blend_position", _type)
+	weaponState.travel("attack")
 
-func weaponIdle() -> void: weaponState.travel(weaponString() + "idle")
+func weaponIdle() -> void: 
+	weaponState.travel("idle")
 
 func clear_weapon_holder() -> void:
 	for n in weaponSlot.get_children():
