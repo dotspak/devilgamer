@@ -1,4 +1,4 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://nc21s1vjsihl"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://nc21s1vjsihl"]
 
 [ext_resource type="Texture2D" uid="uid://cnp4w6whahl3m" path="res://textures/tex_frostedCube.png" id="1_lcfsb"]
 

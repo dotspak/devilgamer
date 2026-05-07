@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://ds8l8svmaw5lt"
+path="res://.godot/imported/map_bth_dankhalltest.map-da85cb286e2b0b547908515c1085e0f6.tres"
+
+[deps]
+
+source_file="res://maps/bathroom/map_bth_dankhalltest.map"
+dest_files=["res://.godot/imported/map_bth_dankhalltest.map-da85cb286e2b0b547908515c1085e0f6.tres"]
+
+[params]
+

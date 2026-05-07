@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dx16os6lmq4oh"]
+
+[ext_resource type="Texture2D" uid="uid://dedliuw6pd851" path="res://textures/tex_concrete1.png" id="1_rlxgs"]
+[ext_resource type="Texture2D" uid="uid://cgpa1smu7hwbb" path="res://textures/rough_concrete1.png" id="2_2n0tc"]
+
+[resource]
+albedo_texture = ExtResource("1_rlxgs")
+metallic_specular = 0.0
+roughness_texture = ExtResource("2_2n0tc")
+texture_filter = 2

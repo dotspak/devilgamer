@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://iflfrbxiqxqo"]
+[gd_scene format=3 uid="uid://iflfrbxiqxqo"]
 
 [ext_resource type="Script" uid="uid://74i7swymbqit" path="res://ui/ui_terminal_screen.gd" id="1_2tvuy"]
 [ext_resource type="PackedScene" uid="uid://6wluy6gfwgjc" path="res://assets/models/littleDevilBaby.glb" id="1_8fryo"]
@@ -232,25 +232,17 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7me0c"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81hap"]
-content_margin_left = 1.0
-content_margin_top = 1.0
-content_margin_right = 1.0
-content_margin_bottom = 1.0
-bg_color = Color(1, 1, 1, 1)
-draw_center = false
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rtka1"]
 content_margin_left = 8.0
 content_margin_top = 4.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnmxw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81hap"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
 bg_color = Color(1, 1, 1, 1)
 draw_center = false
 border_width_left = 1
@@ -264,6 +256,14 @@ content_margin_top = 4.0
 content_margin_right = 8.0
 content_margin_bottom = 4.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xnmxw"]
+bg_color = Color(1, 1, 1, 1)
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7me0c"]
 bg_color = Color(1, 1, 1, 1)
 draw_center = false
@@ -275,12 +275,12 @@ border_width_bottom = 1
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8d7cd"]
 blend_mode = 3
 
-[node name="terminalScenes" type="CanvasLayer"]
+[node name="terminalScenes" type="CanvasLayer" unique_id=1664611877]
 layer = 100
 script = ExtResource("1_2tvuy")
 SCRIPT = ExtResource("2_kk5ac")
 
-[node name="bg" type="ColorRect" parent="."]
+[node name="bg" type="ColorRect" parent="." unique_id=1500854750]
 z_index = -10
 anchors_preset = 15
 anchor_right = 1.0
@@ -291,7 +291,7 @@ mouse_filter = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
-[node name="terminal" type="Control" parent="."]
+[node name="terminal" type="Control" parent="." unique_id=839720678]
 unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
@@ -300,8 +300,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="mainText" type="MarginContainer" parent="terminal"]
-layout_mode = 2
+[node name="mainText" type="MarginContainer" parent="terminal" unique_id=382082174]
+layout_mode = 0
 offset_right = 896.0
 offset_bottom = 504.0
 grow_horizontal = 2
@@ -313,7 +313,7 @@ theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 metadata/_edit_use_anchors_ = true
 
-[node name="models" type="SubViewportContainer" parent="terminal/mainText"]
+[node name="models" type="SubViewportContainer" parent="terminal/mainText" unique_id=1353618716]
 texture_filter = 1
 material = SubResource("ShaderMaterial_n7bxt")
 custom_minimum_size = Vector2(256, 256)
@@ -324,7 +324,7 @@ focus_mode = 0
 stretch = true
 stretch_shrink = 2
 
-[node name="SubViewport" type="SubViewport" parent="terminal/mainText/models"]
+[node name="SubViewport" type="SubViewport" parent="terminal/mainText/models" unique_id=297105582]
 own_world_3d = true
 transparent_bg = true
 handle_input_locally = false
@@ -332,16 +332,16 @@ gui_disable_input = true
 size = Vector2i(128, 128)
 render_target_update_mode = 4
 
-[node name="devil" type="Node3D" parent="terminal/mainText/models/SubViewport"]
+[node name="devil" type="Node3D" parent="terminal/mainText/models/SubViewport" unique_id=217693859]
 script = ExtResource("4_7me0c")
 
-[node name="baby" parent="terminal/mainText/models/SubViewport/devil" instance=ExtResource("1_8fryo")]
+[node name="baby" parent="terminal/mainText/models/SubViewport/devil" unique_id=753298131 instance=ExtResource("1_8fryo")]
 
 [node name="head" parent="terminal/mainText/models/SubViewport/devil/baby" index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_2tvuy")
 surface_material_override/1 = SubResource("StandardMaterial3D_yfj3l")
 
-[node name="babyFace" type="Sprite3D" parent="terminal/mainText/models/SubViewport/devil/baby"]
+[node name="babyFace" type="Sprite3D" parent="terminal/mainText/models/SubViewport/devil/baby" unique_id=141202390]
 unique_name_in_owner = true
 transform = Transform3D(0.722163, -0.218238, 0.656393, 0.163361, 0.975892, 0.144735, -0.672155, 0.00270711, 0.740405, 0.2, 1.775, 1.168)
 texture_filter = 0
@@ -349,37 +349,31 @@ texture = ExtResource("5_xnmxw")
 hframes = 5
 vframes = 5
 
-[node name="faceAnim" type="AnimationPlayer" parent="terminal/mainText/models/SubViewport/devil/baby/babyFace"]
+[node name="faceAnim" type="AnimationPlayer" parent="terminal/mainText/models/SubViewport/devil/baby/babyFace" unique_id=1493681635]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_j5x05")
-}
+libraries/ = SubResource("AnimationLibrary_j5x05")
 
-[node name="Timer" type="Timer" parent="terminal/mainText/models/SubViewport/devil/baby"]
+[node name="Timer" type="Timer" parent="terminal/mainText/models/SubViewport/devil/baby" unique_id=1666097369]
 wait_time = 5.0
 autostart = true
 
-[node name="posAnim" type="AnimationPlayer" parent="terminal/mainText/models/SubViewport"]
-libraries = {
-&"": SubResource("AnimationLibrary_s82og")
-}
-autoplay = "loop_2"
+[node name="posAnim" type="AnimationPlayer" parent="terminal/mainText/models/SubViewport" unique_id=2128699558]
+libraries/ = SubResource("AnimationLibrary_s82og")
+autoplay = &"loop_2"
 speed_scale = 0.4
 
-[node name="rotAnim" type="AnimationPlayer" parent="terminal/mainText/models/SubViewport"]
-libraries = {
-&"": SubResource("AnimationLibrary_s82og")
-}
-autoplay = "loop"
+[node name="rotAnim" type="AnimationPlayer" parent="terminal/mainText/models/SubViewport" unique_id=1187953157]
+libraries/ = SubResource("AnimationLibrary_s82og")
+autoplay = &"loop"
 speed_scale = 0.1
 
-[node name="Camera3D" type="Camera3D" parent="terminal/mainText/models/SubViewport"]
+[node name="Camera3D" type="Camera3D" parent="terminal/mainText/models/SubViewport" unique_id=1211513886]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 2.5)
 projection = 1
 current = true
 size = 3.4
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="terminal/mainText/models/SubViewport"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="terminal/mainText/models/SubViewport" unique_id=2117834111]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.36452, 0)
 material_overlay = SubResource("StandardMaterial3D_rtka1")
 amount = 30
@@ -387,16 +381,14 @@ speed_scale = 0.6
 process_material = SubResource("ParticleProcessMaterial_j5x05")
 draw_pass_1 = SubResource("SphereMesh_wtfcr")
 
-[node name="modelDisplayer" type="AnimationPlayer" parent="terminal/mainText/models"]
+[node name="modelDisplayer" type="AnimationPlayer" parent="terminal/mainText/models" unique_id=790826150]
 unique_name_in_owner = true
-libraries = {
-&"": SubResource("AnimationLibrary_81hap")
-}
+libraries/ = SubResource("AnimationLibrary_81hap")
 
-[node name="text" type="VBoxContainer" parent="terminal/mainText"]
+[node name="text" type="VBoxContainer" parent="terminal/mainText" unique_id=193666530]
 layout_mode = 2
 
-[node name="header" type="RichTextLabel" parent="terminal/mainText/text"]
+[node name="header" type="RichTextLabel" parent="terminal/mainText/text" unique_id=19619259]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 0
@@ -404,18 +396,18 @@ mouse_filter = 1
 theme_override_font_sizes/normal_font_size = 16
 theme_override_styles/normal = SubResource("StyleBoxEmpty_7me0c")
 bbcode_enabled = true
-text = "--------------------------------------
-DEVILGAMER 0.0
-© Altlas Inc.
---------------------------------------"
+text = "-----------------------------------------------
+DEVILGAMER 0.0 - SYNCHRONIZATION TERMINAL
+©20XX ATLAS INC.
+-----------------------------------------------"
 fit_content = true
 scroll_active = false
 
-[node name="textContainer" type="VBoxContainer" parent="terminal/mainText/text"]
+[node name="textContainer" type="VBoxContainer" parent="terminal/mainText/text" unique_id=100156905]
 unique_name_in_owner = true
 layout_mode = 2
 
-[node name="playerInput" type="LineEdit" parent="terminal/mainText/text"]
+[node name="playerInput" type="LineEdit" parent="terminal/mainText/text" unique_id=2049682876]
 unique_name_in_owner = true
 visible = false
 custom_minimum_size = Vector2(512, 16)
@@ -423,8 +415,8 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxFlat_81hap")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_rtka1")
+theme_override_styles/focus = SubResource("StyleBoxFlat_81hap")
 placeholder_text = "INPUT RESPONSE NOW"
 max_length = 64
 context_menu_enabled = false
@@ -435,7 +427,7 @@ drag_and_drop_selection_enabled = false
 caret_blink = true
 caret_force_displayed = true
 
-[node name="options" type="VBoxContainer" parent="terminal/mainText/text" node_paths=PackedStringArray("response_template")]
+[node name="options" type="VBoxContainer" parent="terminal/mainText/text" unique_id=1916886796 node_paths=PackedStringArray("response_template")]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
@@ -444,16 +436,16 @@ alignment = 2
 script = ExtResource("9_j5x05")
 response_template = NodePath("Button")
 
-[node name="Button" type="Button" parent="terminal/mainText/text/options"]
+[node name="Button" type="Button" parent="terminal/mainText/text/options" unique_id=1363569677]
 layout_mode = 2
 size_flags_horizontal = 0
 mouse_filter = 1
-theme_override_styles/focus = SubResource("StyleBoxFlat_xnmxw")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s82og")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xnmxw")
 text = "EXAMPLE"
 alignment = 2
 
-[node name="terminalText" parent="terminal/mainText/text" instance=ExtResource("8_rtka1")]
+[node name="terminalText" parent="terminal/mainText/text" unique_id=961672399 instance=ExtResource("8_rtka1")]
 unique_name_in_owner = true
 visible = false
 clip_contents = false
@@ -463,7 +455,7 @@ autowrap_mode = 0
 visible_characters_behavior = 0
 seconds_per_pause_step = 0.2
 
-[node name="border" type="MarginContainer" parent="terminal"]
+[node name="border" type="MarginContainer" parent="terminal" unique_id=938374291]
 unique_name_in_owner = true
 layout_mode = 0
 offset_right = 896.0
@@ -476,15 +468,15 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="Panel" type="Panel" parent="terminal/border"]
+[node name="Panel" type="Panel" parent="terminal/border" unique_id=315240741]
 layout_mode = 2
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_7me0c")
 
-[node name="colorOverlay" type="ColorRect" parent="terminal"]
+[node name="colorOverlay" type="ColorRect" parent="terminal" unique_id=1531802654]
 z_index = 10
 material = SubResource("CanvasItemMaterial_8d7cd")
-layout_mode = 2
+layout_mode = 0
 offset_right = 896.0
 offset_bottom = 504.0
 grow_horizontal = 2
@@ -492,12 +484,12 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.3987, 0.697656, 0.399753, 1)
 
-[node name="bgs" type="AudioStreamPlayer" parent="."]
+[node name="bgs" type="AudioStreamPlayer" parent="." unique_id=1676627772]
 stream = ExtResource("2_s82og")
 bus = &"BGS"
 parameters/looping = true
 
-[node name="bgm" type="AudioStreamPlayer" parent="."]
+[node name="bgm" type="AudioStreamPlayer" parent="." unique_id=1155658644]
 stream = ExtResource("3_rtka1")
 bus = &"BGM"
 parameters/looping = true

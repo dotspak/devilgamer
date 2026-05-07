@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://djl0ttvvuvoi7"]
+
+[ext_resource type="Texture2D" uid="uid://mh15qb43u266" path="res://textures/tex_bathFloor2.png" id="1_meoq5"]
+[ext_resource type="Texture2D" uid="uid://b3th86jcik626" path="res://textures/norm_bathFloor1.png" id="2_asmxf"]
+
+[resource]
+albedo_texture = ExtResource("1_meoq5")
+roughness = 0.33
+normal_enabled = true
+normal_scale = 6.19
+normal_texture = ExtResource("2_asmxf")
+texture_filter = 2

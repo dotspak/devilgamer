@@ -20,7 +20,7 @@ var phoneOption : Button = null
 func _ready() -> void:
 	hide()
 
-	var buttonEffect : Callable = func(button : Node): 
+	var buttonEffect : Callable = func(button : Node) -> void: 
 		phoneOption = button
 		buttonLabel.text = BG + "> " + button.name
 	
@@ -29,7 +29,7 @@ func _ready() -> void:
 		n.mouse_entered.connect(buttonEffect.bind(n))
 
 
-func _unhandled_input(_event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	if !visible: return
 	if !transitioning:
 		# fun animations

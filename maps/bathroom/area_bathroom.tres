@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Area" load_steps=13 format=3 uid="uid://cc7qwvkq76da0"]
+[gd_resource type="Resource" script_class="Area" format=3 uid="uid://cc7qwvkq76da0"]
 
 [ext_resource type="AudioStream" uid="uid://cqxdp0i1hq6j" path="res://assets/audio/bgm/bgm_bathhouse.ogg" id="1_bcc2x"]
 [ext_resource type="Script" uid="uid://blggp4b1l6f6u" path="res://src/world/roomDef.gd" id="1_p08qg"]

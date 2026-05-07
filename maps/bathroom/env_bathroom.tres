@@ -6,8 +6,14 @@ colors = PackedColorArray(0, 0, 0, 1, 0.98, 0.98, 0.98, 1)
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_l0p1w"]
 gradient = SubResource("Gradient_jhmw6")
 
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jhmw6"]
+
+[sub_resource type="Sky" id="Sky_l0p1w"]
+sky_material = SubResource("ProceduralSkyMaterial_jhmw6")
+
 [resource]
 background_mode = 1
+sky = SubResource("Sky_l0p1w")
 ambient_light_source = 2
 ambient_light_color = Color(0.37123206, 0.4793754, 0.61960787, 1)
 reflected_light_source = 2
@@ -40,6 +46,7 @@ volumetric_fog_albedo = Color(0.34723392, 0.46718752, 0.37880072, 1)
 volumetric_fog_emission = Color(0.07213019, 0.093509115, 0.119531274, 1)
 volumetric_fog_length = 200.0
 volumetric_fog_detail_spread = 6.0
+volumetric_fog_sky_affect = 0.258
 adjustment_enabled = true
 adjustment_contrast = 1.2
 adjustment_saturation = 1.3

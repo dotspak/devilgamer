@@ -1,4 +1,4 @@
-[gd_scene load_steps=210 format=4 uid="uid://bant5qedkc3eb"]
+[gd_scene format=4 uid="uid://bant5qedkc3eb"]
 
 [ext_resource type="Script" uid="uid://b2bprkgeq3r1n" path="res://src/world/room.gd" id="1_pc5bm"]
 [ext_resource type="Script" uid="uid://bdeiryyg8mpde" path="res://addons/func_godot/src/map/func_godot_map.gd" id="2_8edgk"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://cpuu7v63lymwm" path="res://assets/particles/pe_ripple.png" id="20_2ocs3"]
 [ext_resource type="PackedScene" uid="uid://c54uxkb2kkknm" path="res://scenes/exitPointer.tscn" id="20_23lxw"]
 [ext_resource type="AudioStream" uid="uid://ihxxmxhn6mg2" path="res://assets/audio/bgs/bgs_rain1.ogg" id="20_sgvt4"]
+[ext_resource type="PackedScene" uid="uid://cw66vhkep53m" path="res://maps/bathroom/bathhouse_enviro.tscn" id="21_23lxw"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3oiuc"]
 _surfaces = [{
@@ -778,626 +779,626 @@ billboard_keep_scale = true
 material = SubResource("StandardMaterial3D_2ocs3")
 size = Vector2(0.02, 0.2)
 
-[node name="bath_mainElevator" type="Node3D" node_paths=PackedStringArray("exits")]
+[node name="bath_mainElevator" type="Node3D" unique_id=1775274123 node_paths=PackedStringArray("exits")]
 script = ExtResource("1_pc5bm")
 roomName = "Main Elevator"
 description = "The main elevator room in the bathouse."
 exits = [NodePath("exit1"), NodePath("exit2")]
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1350925740]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, 0, 0, 0)
 top_level = true
 light_energy = 0.5
 light_volumetric_fog_energy = 8.0
 shadow_enabled = true
 
-[node name="FuncGodotMap" type="Node3D" parent="."]
+[node name="FuncGodotMap" type="Node3D" parent="." unique_id=1341016062]
 script = ExtResource("2_8edgk")
 local_map_file = "uid://csebgyrasjayt"
 map_settings = ExtResource("3_rmyl8")
 metadata/_custom_type_script = "uid://bdeiryyg8mpde"
 
-[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
+[node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap" unique_id=365237241]
 collision_mask = 0
 
-[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=106033135]
 mesh = SubResource("ArrayMesh_3oiuc")
 
-[node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_occluder_instance" type="OccluderInstance3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1293401765]
 occluder = SubResource("ArrayOccluder3D_2ocs3")
 
-[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_0_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=947468280]
 shape = SubResource("ConvexPolygonShape3D_23lxw")
 
-[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_1_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1628146520]
 shape = SubResource("ConvexPolygonShape3D_sgvt4")
 
-[node name="entity_0_brush_2_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_2_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1456765032]
 shape = SubResource("ConvexPolygonShape3D_6sko3")
 
-[node name="entity_0_brush_3_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_3_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=964440337]
 shape = SubResource("ConvexPolygonShape3D_63y2r")
 
-[node name="entity_0_brush_4_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_4_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=163477705]
 shape = SubResource("ConvexPolygonShape3D_q3mss")
 
-[node name="entity_0_brush_5_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_5_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=595080985]
 shape = SubResource("ConvexPolygonShape3D_y04di")
 
-[node name="entity_0_brush_6_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_6_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1410248217]
 shape = SubResource("ConvexPolygonShape3D_c1j6v")
 
-[node name="entity_0_brush_7_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_7_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1945156861]
 shape = SubResource("ConvexPolygonShape3D_kuk3s")
 
-[node name="entity_0_brush_8_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_8_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=953006306]
 shape = SubResource("ConvexPolygonShape3D_8k5lk")
 
-[node name="entity_0_brush_9_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_9_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=777563580]
 shape = SubResource("ConvexPolygonShape3D_8fpwc")
 
-[node name="entity_0_brush_10_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_10_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1697474488]
 shape = SubResource("ConvexPolygonShape3D_j6spn")
 
-[node name="entity_0_brush_11_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_11_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2010058767]
 shape = SubResource("ConvexPolygonShape3D_aa6j8")
 
-[node name="entity_0_brush_12_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_12_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1231482553]
 shape = SubResource("ConvexPolygonShape3D_g6mtx")
 
-[node name="entity_0_brush_13_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_13_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1370556188]
 shape = SubResource("ConvexPolygonShape3D_yca32")
 
-[node name="entity_0_brush_14_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_14_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2131293351]
 shape = SubResource("ConvexPolygonShape3D_wtn0w")
 
-[node name="entity_0_brush_15_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_15_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1130720319]
 shape = SubResource("ConvexPolygonShape3D_qb5d5")
 
-[node name="entity_0_brush_16_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_16_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1771908517]
 shape = SubResource("ConvexPolygonShape3D_lagg2")
 
-[node name="entity_0_brush_17_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_17_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1354358742]
 shape = SubResource("ConvexPolygonShape3D_064um")
 
-[node name="entity_0_brush_18_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_18_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=246193542]
 shape = SubResource("ConvexPolygonShape3D_naniq")
 
-[node name="entity_0_brush_19_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_19_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=723485581]
 shape = SubResource("ConvexPolygonShape3D_jpj45")
 
-[node name="entity_0_brush_20_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_20_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1946002199]
 shape = SubResource("ConvexPolygonShape3D_1vjv1")
 
-[node name="entity_0_brush_21_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_21_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2027110723]
 shape = SubResource("ConvexPolygonShape3D_fjglt")
 
-[node name="entity_0_brush_22_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_22_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1866422637]
 shape = SubResource("ConvexPolygonShape3D_ha4x5")
 
-[node name="entity_0_brush_23_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_23_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=109703732]
 shape = SubResource("ConvexPolygonShape3D_238yv")
 
-[node name="entity_0_brush_24_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_24_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=932166533]
 shape = SubResource("ConvexPolygonShape3D_cckv4")
 
-[node name="entity_0_brush_25_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_25_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=690257519]
 shape = SubResource("ConvexPolygonShape3D_jh2tw")
 
-[node name="entity_0_brush_26_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_26_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1769830804]
 shape = SubResource("ConvexPolygonShape3D_matqc")
 
-[node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_27_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=903754642]
 shape = SubResource("ConvexPolygonShape3D_xfsjq")
 
-[node name="entity_0_brush_28_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_28_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1962153044]
 shape = SubResource("ConvexPolygonShape3D_jsrds")
 
-[node name="entity_0_brush_29_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_29_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=345664911]
 shape = SubResource("ConvexPolygonShape3D_0y3pp")
 
-[node name="entity_0_brush_30_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_30_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=804245353]
 shape = SubResource("ConvexPolygonShape3D_38d2w")
 
-[node name="entity_0_brush_31_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_31_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1888860811]
 shape = SubResource("ConvexPolygonShape3D_7fnqs")
 
-[node name="entity_0_brush_32_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_32_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1965100563]
 shape = SubResource("ConvexPolygonShape3D_21455")
 
-[node name="entity_0_brush_33_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_33_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1017895402]
 shape = SubResource("ConvexPolygonShape3D_uq4ea")
 
-[node name="entity_0_brush_34_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_34_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1142801761]
 shape = SubResource("ConvexPolygonShape3D_pcw0d")
 
-[node name="entity_0_brush_35_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_35_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1679778507]
 shape = SubResource("ConvexPolygonShape3D_eab1o")
 
-[node name="entity_0_brush_36_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_36_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1266458327]
 shape = SubResource("ConvexPolygonShape3D_0qahg")
 
-[node name="entity_0_brush_37_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_37_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1988503891]
 shape = SubResource("ConvexPolygonShape3D_gw8gi")
 
-[node name="entity_0_brush_38_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_38_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=42224393]
 shape = SubResource("ConvexPolygonShape3D_mstw7")
 
-[node name="entity_0_brush_39_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_39_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=49465043]
 shape = SubResource("ConvexPolygonShape3D_epe7c")
 
-[node name="entity_0_brush_40_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_40_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1289755756]
 shape = SubResource("ConvexPolygonShape3D_6u1hd")
 
-[node name="entity_0_brush_41_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_41_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1959737113]
 shape = SubResource("ConvexPolygonShape3D_rj8d1")
 
-[node name="entity_0_brush_42_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_42_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=234073733]
 shape = SubResource("ConvexPolygonShape3D_tyoa4")
 
-[node name="entity_0_brush_43_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_43_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=279337367]
 shape = SubResource("ConvexPolygonShape3D_h58db")
 
-[node name="entity_0_brush_44_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_44_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1587511382]
 shape = SubResource("ConvexPolygonShape3D_v8f33")
 
-[node name="entity_0_brush_45_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_45_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2006421777]
 shape = SubResource("ConvexPolygonShape3D_l3hq1")
 
-[node name="entity_0_brush_46_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_46_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=71090564]
 shape = SubResource("ConvexPolygonShape3D_miijc")
 
-[node name="entity_0_brush_47_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_47_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1347202377]
 shape = SubResource("ConvexPolygonShape3D_e6ao4")
 
-[node name="entity_0_brush_48_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_48_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=169666399]
 shape = SubResource("ConvexPolygonShape3D_dx450")
 
-[node name="entity_0_brush_49_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_49_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1405504103]
 shape = SubResource("ConvexPolygonShape3D_36btw")
 
-[node name="entity_0_brush_50_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_50_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=147646224]
 shape = SubResource("ConvexPolygonShape3D_07o11")
 
-[node name="entity_0_brush_51_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_51_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1840239134]
 shape = SubResource("ConvexPolygonShape3D_3ju4v")
 
-[node name="entity_0_brush_52_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_52_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1105520038]
 shape = SubResource("ConvexPolygonShape3D_l620j")
 
-[node name="entity_0_brush_53_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_53_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=70081048]
 shape = SubResource("ConvexPolygonShape3D_gseop")
 
-[node name="entity_0_brush_54_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_54_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=858380519]
 shape = SubResource("ConvexPolygonShape3D_xmdac")
 
-[node name="entity_0_brush_55_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_55_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1420015296]
 shape = SubResource("ConvexPolygonShape3D_n7m3c")
 
-[node name="entity_0_brush_56_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_56_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=118820623]
 shape = SubResource("ConvexPolygonShape3D_lukvr")
 
-[node name="entity_0_brush_57_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_57_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=642041735]
 shape = SubResource("ConvexPolygonShape3D_hcml3")
 
-[node name="entity_0_brush_58_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_58_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=396280634]
 shape = SubResource("ConvexPolygonShape3D_lbwup")
 
-[node name="entity_0_brush_59_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_59_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=485040186]
 shape = SubResource("ConvexPolygonShape3D_34v0a")
 
-[node name="entity_0_brush_60_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_60_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=857913707]
 shape = SubResource("ConvexPolygonShape3D_msmej")
 
-[node name="entity_0_brush_61_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_61_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1063572197]
 shape = SubResource("ConvexPolygonShape3D_lfnx5")
 
-[node name="entity_0_brush_62_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_62_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1790361371]
 shape = SubResource("ConvexPolygonShape3D_hx5g3")
 
-[node name="entity_0_brush_63_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_63_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1595839910]
 shape = SubResource("ConvexPolygonShape3D_vbev7")
 
-[node name="entity_0_brush_64_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_64_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1204132699]
 shape = SubResource("ConvexPolygonShape3D_n510l")
 
-[node name="entity_0_brush_65_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_65_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=129188121]
 shape = SubResource("ConvexPolygonShape3D_cexma")
 
-[node name="entity_0_brush_66_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_66_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=867865804]
 shape = SubResource("ConvexPolygonShape3D_735rw")
 
-[node name="entity_0_brush_67_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_67_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1653879061]
 shape = SubResource("ConvexPolygonShape3D_7xftu")
 
-[node name="entity_0_brush_68_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_68_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=165861820]
 shape = SubResource("ConvexPolygonShape3D_cxwmr")
 
-[node name="entity_0_brush_69_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_69_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2054896341]
 shape = SubResource("ConvexPolygonShape3D_1bbop")
 
-[node name="entity_0_brush_70_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_70_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=166174176]
 shape = SubResource("ConvexPolygonShape3D_gngrn")
 
-[node name="entity_0_brush_71_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_71_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=693523284]
 shape = SubResource("ConvexPolygonShape3D_hxad1")
 
-[node name="entity_0_brush_72_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_72_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=141361542]
 shape = SubResource("ConvexPolygonShape3D_hcpqb")
 
-[node name="entity_0_brush_73_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_73_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1129542541]
 shape = SubResource("ConvexPolygonShape3D_234cl")
 
-[node name="entity_0_brush_74_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_74_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1919339373]
 shape = SubResource("ConvexPolygonShape3D_03prm")
 
-[node name="entity_0_brush_75_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_75_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1946167742]
 shape = SubResource("ConvexPolygonShape3D_6vip2")
 
-[node name="entity_0_brush_76_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_76_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1105603537]
 shape = SubResource("ConvexPolygonShape3D_stnyh")
 
-[node name="entity_0_brush_77_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_77_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1500777781]
 shape = SubResource("ConvexPolygonShape3D_5t8yf")
 
-[node name="entity_0_brush_78_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_78_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1954806187]
 shape = SubResource("ConvexPolygonShape3D_7xi41")
 
-[node name="entity_0_brush_79_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_79_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=461260742]
 shape = SubResource("ConvexPolygonShape3D_bs0ct")
 
-[node name="entity_0_brush_80_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_80_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1285664666]
 shape = SubResource("ConvexPolygonShape3D_anbhg")
 
-[node name="entity_0_brush_81_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_81_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=584252763]
 shape = SubResource("ConvexPolygonShape3D_rrb7a")
 
-[node name="entity_0_brush_82_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_82_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=410865219]
 shape = SubResource("ConvexPolygonShape3D_gapft")
 
-[node name="entity_0_brush_83_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_83_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=741419811]
 shape = SubResource("ConvexPolygonShape3D_oe5hn")
 
-[node name="entity_0_brush_84_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_84_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=639388603]
 shape = SubResource("ConvexPolygonShape3D_qxsqn")
 
-[node name="entity_0_brush_85_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_85_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=441568727]
 shape = SubResource("ConvexPolygonShape3D_qufma")
 
-[node name="entity_0_brush_86_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_86_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=920645161]
 shape = SubResource("ConvexPolygonShape3D_0j1j1")
 
-[node name="entity_0_brush_87_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_87_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1516894066]
 shape = SubResource("ConvexPolygonShape3D_y1b67")
 
-[node name="entity_0_brush_88_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_88_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1186588788]
 shape = SubResource("ConvexPolygonShape3D_65jfw")
 
-[node name="entity_0_brush_89_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_89_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=972355198]
 shape = SubResource("ConvexPolygonShape3D_dj00g")
 
-[node name="entity_0_brush_90_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_90_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1000742331]
 shape = SubResource("ConvexPolygonShape3D_px3c3")
 
-[node name="entity_0_brush_91_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_91_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=770884870]
 shape = SubResource("ConvexPolygonShape3D_6w4bx")
 
-[node name="entity_0_brush_92_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_92_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1584522204]
 shape = SubResource("ConvexPolygonShape3D_bdx27")
 
-[node name="entity_0_brush_93_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_93_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1101427581]
 shape = SubResource("ConvexPolygonShape3D_wneth")
 
-[node name="entity_0_brush_94_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_94_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=785743092]
 shape = SubResource("ConvexPolygonShape3D_wjv0y")
 
-[node name="entity_0_brush_95_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_95_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=19176089]
 shape = SubResource("ConvexPolygonShape3D_ivuyw")
 
-[node name="entity_0_brush_96_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_96_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=486540616]
 shape = SubResource("ConvexPolygonShape3D_x0s41")
 
-[node name="entity_0_brush_97_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_97_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1395332118]
 shape = SubResource("ConvexPolygonShape3D_2gjkw")
 
-[node name="entity_0_brush_98_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_98_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2096866661]
 shape = SubResource("ConvexPolygonShape3D_1eo3p")
 
-[node name="entity_0_brush_99_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_99_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1126537035]
 shape = SubResource("ConvexPolygonShape3D_sms8w")
 
-[node name="entity_0_brush_100_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_100_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=414473968]
 shape = SubResource("ConvexPolygonShape3D_dxqce")
 
-[node name="entity_0_brush_101_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_101_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=79534079]
 shape = SubResource("ConvexPolygonShape3D_ryr1c")
 
-[node name="entity_0_brush_102_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_102_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2029934630]
 shape = SubResource("ConvexPolygonShape3D_v0gge")
 
-[node name="entity_0_brush_103_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_103_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1444858249]
 shape = SubResource("ConvexPolygonShape3D_0ujcs")
 
-[node name="entity_0_brush_104_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_104_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=94210799]
 shape = SubResource("ConvexPolygonShape3D_a2vr1")
 
-[node name="entity_0_brush_105_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_105_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=782637595]
 shape = SubResource("ConvexPolygonShape3D_iryf0")
 
-[node name="entity_0_brush_106_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_106_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1047489933]
 shape = SubResource("ConvexPolygonShape3D_444ue")
 
-[node name="entity_0_brush_107_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_107_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1616179442]
 shape = SubResource("ConvexPolygonShape3D_i1p8v")
 
-[node name="entity_0_brush_108_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_108_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1843745532]
 shape = SubResource("ConvexPolygonShape3D_r53vu")
 
-[node name="entity_0_brush_109_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_109_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=783530040]
 shape = SubResource("ConvexPolygonShape3D_t2fm8")
 
-[node name="entity_0_brush_110_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_110_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=469188994]
 shape = SubResource("ConvexPolygonShape3D_2hu37")
 
-[node name="entity_0_brush_111_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_111_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=623315570]
 shape = SubResource("ConvexPolygonShape3D_va1vc")
 
-[node name="entity_0_brush_112_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_112_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1632580694]
 shape = SubResource("ConvexPolygonShape3D_hflai")
 
-[node name="entity_0_brush_113_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_113_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=572650423]
 shape = SubResource("ConvexPolygonShape3D_4orcs")
 
-[node name="entity_0_brush_114_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_114_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2073550928]
 shape = SubResource("ConvexPolygonShape3D_gks20")
 
-[node name="entity_0_brush_115_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_115_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=238950479]
 shape = SubResource("ConvexPolygonShape3D_dq17r")
 
-[node name="entity_0_brush_116_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_116_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=140169548]
 shape = SubResource("ConvexPolygonShape3D_rafhx")
 
-[node name="entity_0_brush_117_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_117_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=306155097]
 shape = SubResource("ConvexPolygonShape3D_ggyye")
 
-[node name="entity_0_brush_118_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_118_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=921650219]
 shape = SubResource("ConvexPolygonShape3D_5f1j5")
 
-[node name="entity_0_brush_119_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_119_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1343818734]
 shape = SubResource("ConvexPolygonShape3D_i7sko")
 
-[node name="entity_0_brush_120_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_120_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=819735014]
 shape = SubResource("ConvexPolygonShape3D_v2gii")
 
-[node name="entity_0_brush_121_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_121_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=169102665]
 shape = SubResource("ConvexPolygonShape3D_wng6j")
 
-[node name="entity_0_brush_122_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_122_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1272752659]
 shape = SubResource("ConvexPolygonShape3D_cdnje")
 
-[node name="entity_0_brush_123_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_123_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=35757100]
 shape = SubResource("ConvexPolygonShape3D_tsju6")
 
-[node name="entity_0_brush_124_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_124_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1195011042]
 shape = SubResource("ConvexPolygonShape3D_c73ur")
 
-[node name="entity_0_brush_125_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_125_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1649975103]
 shape = SubResource("ConvexPolygonShape3D_fvqd4")
 
-[node name="entity_0_brush_126_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_126_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1871690974]
 shape = SubResource("ConvexPolygonShape3D_rtnka")
 
-[node name="entity_0_brush_127_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_127_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1964979928]
 shape = SubResource("ConvexPolygonShape3D_2xl6m")
 
-[node name="entity_0_brush_128_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_128_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=22883208]
 shape = SubResource("ConvexPolygonShape3D_lun28")
 
-[node name="entity_0_brush_129_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_129_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=141466035]
 shape = SubResource("ConvexPolygonShape3D_08p5f")
 
-[node name="entity_0_brush_130_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_130_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=820668535]
 shape = SubResource("ConvexPolygonShape3D_cqusn")
 
-[node name="entity_0_brush_131_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_131_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1060911983]
 shape = SubResource("ConvexPolygonShape3D_67ydi")
 
-[node name="entity_0_brush_132_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_132_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2003047208]
 shape = SubResource("ConvexPolygonShape3D_q5suj")
 
-[node name="entity_0_brush_133_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_133_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=230972549]
 shape = SubResource("ConvexPolygonShape3D_nad7r")
 
-[node name="entity_0_brush_134_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_134_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1611271060]
 shape = SubResource("ConvexPolygonShape3D_t6i40")
 
-[node name="entity_0_brush_135_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_135_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=190791154]
 shape = SubResource("ConvexPolygonShape3D_p44f0")
 
-[node name="entity_0_brush_136_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_136_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=749239425]
 shape = SubResource("ConvexPolygonShape3D_ontia")
 
-[node name="entity_0_brush_137_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_137_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=154498499]
 shape = SubResource("ConvexPolygonShape3D_ih1uk")
 
-[node name="entity_0_brush_138_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_138_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=71007250]
 shape = SubResource("ConvexPolygonShape3D_jg72i")
 
-[node name="entity_0_brush_139_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_139_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2140889942]
 shape = SubResource("ConvexPolygonShape3D_auo4m")
 
-[node name="entity_0_brush_140_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_140_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1594199305]
 shape = SubResource("ConvexPolygonShape3D_0irkt")
 
-[node name="entity_0_brush_141_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_141_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1200416493]
 shape = SubResource("ConvexPolygonShape3D_wvj2l")
 
-[node name="entity_0_brush_142_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_142_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=233754659]
 shape = SubResource("ConvexPolygonShape3D_kohqp")
 
-[node name="entity_0_brush_143_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_143_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=327659024]
 shape = SubResource("ConvexPolygonShape3D_45bs4")
 
-[node name="entity_0_brush_144_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_144_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1128793256]
 shape = SubResource("ConvexPolygonShape3D_rlclt")
 
-[node name="entity_0_brush_145_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_145_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1472860113]
 shape = SubResource("ConvexPolygonShape3D_ri5as")
 
-[node name="entity_0_brush_146_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_146_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=2136836799]
 shape = SubResource("ConvexPolygonShape3D_8io12")
 
-[node name="entity_0_brush_147_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_147_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=165999577]
 shape = SubResource("ConvexPolygonShape3D_jkkyu")
 
-[node name="entity_0_brush_148_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_148_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1210681572]
 shape = SubResource("ConvexPolygonShape3D_ejpyr")
 
-[node name="entity_0_brush_149_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_149_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1991794958]
 shape = SubResource("ConvexPolygonShape3D_vxedx")
 
-[node name="entity_0_brush_150_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_150_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=359742841]
 shape = SubResource("ConvexPolygonShape3D_7fljr")
 
-[node name="entity_0_brush_151_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_151_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1115672951]
 shape = SubResource("ConvexPolygonShape3D_rgh0o")
 
-[node name="entity_0_brush_152_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_152_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=749301581]
 shape = SubResource("ConvexPolygonShape3D_nju5x")
 
-[node name="entity_0_brush_153_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_153_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1430296418]
 shape = SubResource("ConvexPolygonShape3D_u4hvc")
 
-[node name="entity_0_brush_154_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_154_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1839337489]
 shape = SubResource("ConvexPolygonShape3D_rnuk6")
 
-[node name="entity_0_brush_155_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_155_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1346635146]
 shape = SubResource("ConvexPolygonShape3D_efpyk")
 
-[node name="entity_0_brush_156_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_156_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1535642390]
 shape = SubResource("ConvexPolygonShape3D_ubne2")
 
-[node name="entity_0_brush_157_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_157_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=177042341]
 shape = SubResource("ConvexPolygonShape3D_wn001")
 
-[node name="entity_0_brush_158_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_158_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=1466926695]
 shape = SubResource("ConvexPolygonShape3D_w0v64")
 
-[node name="entity_0_brush_159_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn"]
+[node name="entity_0_brush_159_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_0_worldspawn" unique_id=441983612]
 shape = SubResource("ConvexPolygonShape3D_c4b8j")
 
-[node name="entity_1_func_illusionary" type="Node3D" parent="FuncGodotMap"]
+[node name="entity_1_func_illusionary" type="Node3D" parent="FuncGodotMap" unique_id=1946367639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -32)
 
-[node name="entity_2_func_illusionary" type="Node3D" parent="FuncGodotMap"]
+[node name="entity_2_func_illusionary" type="Node3D" parent="FuncGodotMap" unique_id=548932476]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32, -1.5, 0)
 
-[node name="entity_3_func_illusionary" type="Node3D" parent="FuncGodotMap"]
+[node name="entity_3_func_illusionary" type="Node3D" parent="FuncGodotMap" unique_id=2064200405]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
 
-[node name="entity_4_func_detail" type="StaticBody3D" parent="FuncGodotMap"]
+[node name="entity_4_func_detail" type="StaticBody3D" parent="FuncGodotMap" unique_id=162456434]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 11, 0)
 collision_mask = 0
 
-[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_4_func_detail"]
+[node name="entity_4_mesh_instance" type="MeshInstance3D" parent="FuncGodotMap/entity_4_func_detail" unique_id=1226915276]
 mesh = SubResource("ArrayMesh_bkmyo")
 
-[node name="entity_4_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_4_func_detail"]
+[node name="entity_4_collision_shape" type="CollisionShape3D" parent="FuncGodotMap/entity_4_func_detail" unique_id=430472222]
 shape = SubResource("ConcavePolygonShape3D_jhdcb")
 
-[node name="ceilingLight" type="OmniLight3D" parent="."]
+[node name="ceilingLight" type="OmniLight3D" parent="." unique_id=1241292945]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.421524, 0)
 light_color = Color(1, 0.974811, 0.772186, 1)
 light_energy = 2.0
 shadow_enabled = true
 omni_range = 30.0
 
-[node name="ceilingLight4" type="OmniLight3D" parent="."]
+[node name="ceilingLight4" type="OmniLight3D" parent="." unique_id=1134427563]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 11.5, -28)
 light_color = Color(1, 0.974811, 0.772186, 1)
 light_energy = 2.0
 shadow_enabled = true
 omni_range = 12.0
 
-[node name="ceilingLight2" type="OmniLight3D" parent="."]
+[node name="ceilingLight2" type="OmniLight3D" parent="." unique_id=1377605051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 10.421524, 0)
 light_color = Color(1, 0.974811, 0.772186, 1)
 light_energy = 2.0
 shadow_enabled = true
 omni_range = 30.0
 
-[node name="ceilingLight3" type="OmniLight3D" parent="."]
+[node name="ceilingLight3" type="OmniLight3D" parent="." unique_id=1823059034]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 10.421524, 0)
 light_color = Color(1, 0.974811, 0.772186, 1)
 light_energy = 2.0
 shadow_enabled = true
 omni_range = 30.0
 
-[node name="ceilingLight5" type="OmniLight3D" parent="."]
+[node name="ceilingLight5" type="OmniLight3D" parent="." unique_id=921504006]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.149204, 7.3978767, 0)
 light_color = Color(1, 0.974811, 0.772186, 1)
 light_energy = 2.0
 shadow_enabled = true
 omni_range = 30.0
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ceilingLight5"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ceilingLight5" unique_id=806868828]
 stream = ExtResource("16_2s1ko")
 volume_db = -10.0
 max_db = 1.0
 autoplay = true
 bus = &"reverbSFX"
 
-[node name="wallElevator" parent="." instance=ExtResource("8_u64ml")]
+[node name="wallElevator" parent="." unique_id=1464859058 instance=ExtResource("8_u64ml")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 19, 2.5, 0)
 ID = "bathMain"
 
-[node name="basementWater" type="MeshInstance3D" parent="."]
+[node name="basementWater" type="MeshInstance3D" parent="." unique_id=1203901859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, -0.3, -40.7)
 material_override = SubResource("ShaderMaterial_wr0eb")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_ay4kq")
 skeleton = NodePath("../..")
 
-[node name="splash" type="Area3D" parent="basementWater"]
+[node name="splash" type="Area3D" parent="basementWater" unique_id=1436851786]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_mask = 3
 script = ExtResource("12_4lul6")
 metadata/_custom_type_script = "uid://bum83qjydbkg7"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="basementWater/splash"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="basementWater/splash" unique_id=1010918613]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2499993, 0)
 shape = SubResource("BoxShape3D_ndk1v")
 debug_color = Color(0, 0.0999999, 1, 1)
 
-[node name="water" type="MeshInstance3D" parent="."]
+[node name="water" type="MeshInstance3D" parent="." unique_id=512614450]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.74025, -1, 9.3)
 material_override = SubResource("ShaderMaterial_ndk1v")
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_ndk1v")
 skeleton = NodePath("../..")
 
-[node name="splash" type="Area3D" parent="water"]
+[node name="splash" type="Area3D" parent="water" unique_id=1606951553]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 collision_mask = 3
 script = ExtResource("12_4lul6")
 metadata/_custom_type_script = "uid://bum83qjydbkg7"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="water/splash"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="water/splash" unique_id=1783447647]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -34.75, 0)
 shape = SubResource("BoxShape3D_sms8w")
 debug_color = Color(0, 0.0999999, 1, 1)
 
-[node name="KillPlane" type="Area3D" parent="."]
+[node name="KillPlane" type="Area3D" parent="." unique_id=1492308060]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.7066045, 0)
 script = ExtResource("15_ay4kq")
 metadata/_custom_type_script = "uid://c0muddf08l6bb"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="KillPlane"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="KillPlane" unique_id=607168388]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38.8, 0, 12.5)
 shape = SubResource("BoxShape3D_2s1ko")
 debug_color = Color(0.965826, 1, 0.321476, 1)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1555054446]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.003828, 0)
 stream = ExtResource("16_2s1ko")
 volume_db = -5.0
@@ -1405,7 +1406,7 @@ max_db = 1.0
 autoplay = true
 bus = &"reverbSFX"
 
-[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="."]
+[node name="AudioStreamPlayer3D2" type="AudioStreamPlayer3D" parent="." unique_id=1886566247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.265147, -27.937649)
 stream = ExtResource("16_2s1ko")
 volume_db = -10.0
@@ -1413,7 +1414,7 @@ max_db = 1.0
 autoplay = true
 bus = &"reverbSFX"
 
-[node name="rain" type="GPUParticles3D" parent="."]
+[node name="rain" type="GPUParticles3D" parent="." unique_id=827660557]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.363623, -12.123638, -0.20503044)
 material_override = SubResource("StandardMaterial3D_23lxw")
 amount = 100
@@ -1426,7 +1427,7 @@ trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_63y2r")
 draw_pass_1 = SubResource("RibbonTrailMesh_q3mss")
 
-[node name="ripple" type="GPUParticles3D" parent="rain"]
+[node name="ripple" type="GPUParticles3D" parent="rain" unique_id=522949043]
 visible = false
 material_override = SubResource("StandardMaterial3D_y04di")
 amount = 1000
@@ -1435,11 +1436,11 @@ visibility_aabb = AABB(-500, -4, -500, 1000, 50, 1000)
 process_material = SubResource("ParticleProcessMaterial_8k5lk")
 draw_pass_1 = SubResource("QuadMesh_8fpwc")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="rain"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="rain" unique_id=712547908]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.5, 0)
 size = Vector3(10, 5, 10)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="rain"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="rain" unique_id=442751483]
 visible = false
 amount = 100
 lifetime = 0.2
@@ -1447,7 +1448,7 @@ speed_scale = 2.0
 process_material = SubResource("ParticleProcessMaterial_2ocs3")
 draw_pass_1 = SubResource("QuadMesh_23lxw")
 
-[node name="rain2" type="GPUParticles3D" parent="."]
+[node name="rain2" type="GPUParticles3D" parent="." unique_id=1920526272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36362267, -17.123638, -12.20503)
 material_override = SubResource("StandardMaterial3D_23lxw")
 amount = 100
@@ -1460,18 +1461,18 @@ trail_enabled = true
 process_material = SubResource("ParticleProcessMaterial_63y2r")
 draw_pass_1 = SubResource("RibbonTrailMesh_q3mss")
 
-[node name="ripple" type="GPUParticles3D" parent="rain2"]
+[node name="ripple" type="GPUParticles3D" parent="rain2" unique_id=1882772463]
 material_override = SubResource("StandardMaterial3D_y04di")
 speed_scale = 5.0
 visibility_aabb = AABB(-500, -4, -500, 1000, 50, 1000)
 process_material = SubResource("ParticleProcessMaterial_8k5lk")
 draw_pass_1 = SubResource("QuadMesh_8fpwc")
 
-[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="rain2"]
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="rain2" unique_id=458964898]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 6.5, 0)
 size = Vector3(27, 18, 10)
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="rain2"]
+[node name="GPUParticles3D" type="GPUParticles3D" parent="rain2" unique_id=641753708]
 visible = false
 amount = 50
 lifetime = 0.2
@@ -1479,13 +1480,13 @@ speed_scale = 2.0
 process_material = SubResource("ParticleProcessMaterial_2ocs3")
 draw_pass_1 = SubResource("QuadMesh_23lxw")
 
-[node name="exit1" parent="." instance=ExtResource("20_23lxw")]
+[node name="exit1" parent="." unique_id=53407397 instance=ExtResource("20_23lxw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.5, 4.5, 14.5)
 
-[node name="exit2" parent="." instance=ExtResource("20_23lxw")]
+[node name="exit2" parent="." unique_id=564922190 instance=ExtResource("20_23lxw")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -37.5, 4.5, -14.5)
 
-[node name="rainSFX" type="AudioStreamPlayer3D" parent="."]
+[node name="rainSFX" type="AudioStreamPlayer3D" parent="." unique_id=1249487028]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.5, 11.5, -0.75)
 stream = ExtResource("20_sgvt4")
 pitch_scale = 1.5
@@ -1494,7 +1495,7 @@ max_distance = 100.0
 bus = &"reverbBGS"
 parameters/looping = true
 
-[node name="rainSFX2" type="AudioStreamPlayer3D" parent="."]
+[node name="rainSFX2" type="AudioStreamPlayer3D" parent="." unique_id=1481475497]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 13.25, -11.25)
 stream = ExtResource("20_sgvt4")
 volume_db = -5.0
@@ -1503,3 +1504,6 @@ autoplay = true
 max_distance = 100.0
 bus = &"reverbBGS"
 parameters/looping = true
+
+[node name="bathhouseEnviro" parent="." unique_id=1479201273 instance=ExtResource("21_23lxw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 30, -32)
