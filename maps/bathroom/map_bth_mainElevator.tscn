@@ -20,7 +20,6 @@
 [ext_resource type="Texture2D" uid="uid://cpuu7v63lymwm" path="res://assets/particles/pe_ripple.png" id="20_2ocs3"]
 [ext_resource type="PackedScene" uid="uid://c54uxkb2kkknm" path="res://scenes/exitPointer.tscn" id="20_23lxw"]
 [ext_resource type="AudioStream" uid="uid://ihxxmxhn6mg2" path="res://assets/audio/bgs/bgs_rain1.ogg" id="20_sgvt4"]
-[ext_resource type="PackedScene" uid="uid://cw66vhkep53m" path="res://maps/bathroom/bathhouse_enviro.tscn" id="21_23lxw"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_3oiuc"]
 _surfaces = [{
@@ -1504,6 +1503,3 @@ autoplay = true
 max_distance = 100.0
 bus = &"reverbBGS"
 parameters/looping = true
-
-[node name="bathhouseEnviro" parent="." unique_id=1479201273 instance=ExtResource("21_23lxw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.5, 30, -32)

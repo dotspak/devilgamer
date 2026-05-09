@@ -25,7 +25,6 @@
 [ext_resource type="Material" uid="uid://b4j2e2017rnxx" path="res://maps/bathroom/bathFogMat1.tres" id="22_4y6fo"]
 [ext_resource type="Texture2D" uid="uid://cpuu7v63lymwm" path="res://assets/particles/pe_ripple.png" id="24_x1t4m"]
 [ext_resource type="AudioStream" uid="uid://ihxxmxhn6mg2" path="res://assets/audio/bgs/bgs_rain1.ogg" id="25_ldve1"]
-[ext_resource type="PackedScene" uid="uid://demhactqsjfxi" path="res://test/test_puyon.tscn" id="26_uxs5m"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_4y6fo"]
 _surfaces = [{
@@ -690,7 +689,7 @@ shader_parameter/WaveSpeed = 0.02
 shader_parameter/waveColor = Color(0.655481, 0.73114, 0.81875, 1)
 shader_parameter/color = Color(0.074375, 0.163625, 0.185938, 1)
 shader_parameter/texturescale = 5.0
-shader_parameter/alpha = 0.8
+shader_parameter/alpha = 0.9
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_aruku"]
 size = Vector2(200, 200)
@@ -1583,9 +1582,3 @@ max_distance = 150.0
 panning_strength = 0.0
 bus = &"reverbBGS"
 parameters/looping = true
-
-[node name="testPuyon" parent="." unique_id=1863156151 instance=ExtResource("26_uxs5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 7, -18)
-
-[node name="testPuyon2" parent="." unique_id=336801861 instance=ExtResource("26_uxs5m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 9, 29)
