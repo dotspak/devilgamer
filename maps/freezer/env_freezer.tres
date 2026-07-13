@@ -1,5 +1,7 @@
 [gd_resource type="Environment" format=3 uid="uid://dtka8i3ysfwmq"]
 
+[ext_resource type="Texture2D" uid="uid://32rnfs3c425h" path="res://assets/bathhouseSky.png" id="1_lxlub"]
+
 [sub_resource type="Gradient" id="Gradient_bi7hc"]
 offsets = PackedFloat32Array(0, 0.937008)
 
@@ -7,6 +9,8 @@ offsets = PackedFloat32Array(0, 0.937008)
 gradient = SubResource("Gradient_bi7hc")
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_bi7hc"]
+panorama = ExtResource("1_lxlub")
+energy_multiplier = 2.0
 
 [sub_resource type="Sky" id="Sky_2vtwm"]
 sky_material = SubResource("PanoramaSkyMaterial_bi7hc")
@@ -16,8 +20,8 @@ background_mode = 2
 sky = SubResource("Sky_2vtwm")
 ambient_light_source = 3
 ambient_light_color = Color(0.832307, 0.964613, 1, 1)
-ambient_light_sky_contribution = 0.62
-ambient_light_energy = 0.4
+ambient_light_sky_contribution = 0.4
+ambient_light_energy = 0.1
 reflected_light_source = 2
 tonemap_mode = 4
 tonemap_exposure = 2.01
@@ -35,15 +39,14 @@ glow_bloom = 0.08
 fog_enabled = true
 fog_mode = 1
 fog_light_color = Color(0.544, 0.643733, 0.68, 1)
-fog_light_energy = 0.29
+fog_light_energy = 0.3
 fog_density = 1.0
-fog_depth_begin = 0.0
-fog_depth_end = 65.0
+fog_depth_end = 40.0
 volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0.547697, 0.636859, 0.751878, 1)
-volumetric_fog_emission = Color(0.182366, 0.376597, 0.438957, 1)
-volumetric_fog_gi_inject = 0.0
-volumetric_fog_sky_affect = 0.905
+volumetric_fog_emission = Color(0.259, 0.34225002, 0.37, 1)
+volumetric_fog_length = 3.0
+volumetric_fog_sky_affect = 0.6
 adjustment_enabled = true
 adjustment_brightness = 1.1
 adjustment_contrast = 1.1

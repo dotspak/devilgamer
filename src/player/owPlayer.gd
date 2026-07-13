@@ -40,6 +40,7 @@ const maxPitch : float = 50
 @onready var jumpCheck : RayCast3D = %jumpCheck
 
 @onready var stepParticles : GPUParticles3D = %stepParticles
+@onready var stepWater : GPUParticles3D = %stepWater
 @onready var fallingParticles : GPUParticles3D = %fallingParticles
 
 @onready var ledgeRayVert : RayCast3D = %ledgeRayVert
@@ -639,6 +640,11 @@ func lock_off() -> void:
 func _on_feet_area_entered(area : Area3D) -> void:
 	if area is WaterArea3D:
 		print("player has entered water")
+		# var collider : CollisionShape3D
+		# for n in area.get_children(): if n is CollisionShape3D: collider = n
+		# var ripplePos : float = collider.global_position.y + collider.shape.size.y / 2
+		# print("water top at y coord: ", ripplePos)
+		# stepWater.global_position.y = ripplePos
 		inWater = true
 
 

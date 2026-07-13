@@ -801,12 +801,12 @@ vertex_color_use_as_albedo = true
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 use_particle_trails = true
 
-[sub_resource type="Gradient" id="Gradient_uxs5m"]
+[sub_resource type="Gradient" id="Gradient_vybvq"]
 offsets = PackedFloat32Array(0.0054200543, 1)
 colors = PackedColorArray(0.2370078, 0.3711567, 0.43673304, 1, 0.04507523, 0.2942338, 0.4202275, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_nm4br"]
-gradient = SubResource("Gradient_uxs5m")
+gradient = SubResource("Gradient_vybvq")
 
 [sub_resource type="Gradient" id="Gradient_uejp2"]
 offsets = PackedFloat32Array(0, 0.18157181, 1)
@@ -847,15 +847,23 @@ curve = SubResource("Curve_ldve1")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ldve1"]
 transparency = 1
+cull_mode = 2
 shading_mode = 0
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("24_x1t4m")
+
+[sub_resource type="Gradient" id="Gradient_uxs5m"]
+offsets = PackedFloat32Array(0.0054200543, 1)
+colors = PackedColorArray(0.2370078, 0.3711567, 0.43673304, 1, 0.04507523, 0.2942338, 0.4202275, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3tg6"]
+gradient = SubResource("Gradient_uxs5m")
 
 [sub_resource type="Gradient" id="Gradient_nm4br"]
 offsets = PackedFloat32Array(0, 0.1754386, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3tg6"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_uwnot"]
 gradient = SubResource("Gradient_nm4br")
 
 [sub_resource type="Curve" id="Curve_uwnot"]
@@ -869,8 +877,8 @@ curve = SubResource("Curve_uwnot")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_x1t4m"]
 gravity = Vector3(0, 0, 0)
 scale_curve = SubResource("CurveTexture_432ok")
-color_ramp = SubResource("GradientTexture1D_e3tg6")
-color_initial_ramp = SubResource("GradientTexture1D_nm4br")
+color_ramp = SubResource("GradientTexture1D_uwnot")
+color_initial_ramp = SubResource("GradientTexture1D_e3tg6")
 hue_variation_min = -0.010000022
 hue_variation_max = 0.009999977
 

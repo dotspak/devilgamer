@@ -36,6 +36,7 @@
 [ext_resource type="Script" uid="uid://c765h134s7wo0" path="res://src/battle/components/statComponent.gd" id="24_4lsu4"]
 [ext_resource type="Script" uid="uid://dtefnwl2axrqu" path="res://scenes/player/PlayerAttackController.gd" id="24_8swys"]
 [ext_resource type="Script" uid="uid://dgcrx5mh3d8c8" path="res://src/entityModel.gd" id="25_st7ng"]
+[ext_resource type="Texture2D" uid="uid://cpuu7v63lymwm" path="res://assets/particles/pe_ripple.png" id="31_8swys"]
 [ext_resource type="AudioStream" uid="uid://be817rxrv42ln" path="res://assets/audio/sfx/SE_jump1.ogg" id="33_oc67l"]
 [ext_resource type="AudioStream" uid="uid://dd76un3q2kmtv" path="res://assets/audio/sfx/SE_roll1.ogg" id="34_elhsl"]
 [ext_resource type="Script" uid="uid://djwrnxn25nog8" path="res://src/components/PlayerHealthComponent.gd" id="36_22sgx"]
@@ -186,6 +187,47 @@ material = SubResource("StandardMaterial3D_st7ng")
 script = ExtResource("16_sws5g")
 duration = 0.5
 transition = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_05uve"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("31_8swys")
+
+[sub_resource type="Gradient" id="Gradient_vybvq"]
+offsets = PackedFloat32Array(0.0054200543, 1)
+colors = PackedColorArray(0.2370078, 0.3711567, 0.43673304, 1, 0.04507523, 0.2942338, 0.4202275, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_nm4br"]
+gradient = SubResource("Gradient_vybvq")
+
+[sub_resource type="Gradient" id="Gradient_vl6ob"]
+offsets = PackedFloat32Array(0, 0.1754386, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_e3tg6"]
+gradient = SubResource("Gradient_vl6ob")
+
+[sub_resource type="Curve" id="Curve_vcgxr"]
+_limits = [0.0, 2.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 2), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_432ok"]
+curve = SubResource("Curve_vcgxr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i8qoh"]
+lifetime_randomness = 0.23
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_432ok")
+color_ramp = SubResource("GradientTexture1D_e3tg6")
+color_initial_ramp = SubResource("GradientTexture1D_nm4br")
+hue_variation_min = -0.010000022
+hue_variation_max = 0.009999977
+
+[sub_resource type="QuadMesh" id="QuadMesh_di035"]
+orientation = 1
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_lo5xy"]
 
@@ -373,12 +415,11 @@ script = ExtResource("24_8swys")
 model = NodePath("../EpiaSkin")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1541188948]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 light_color = Color(1, 0.944116, 0.861228, 1)
+light_energy = 0.2
 light_volumetric_fog_energy = 0.0
-omni_range = 30.0
-omni_attenuation = 2.0
+omni_range = 3.0
 
 [node name="cameras" type="Node3D" parent="." unique_id=1289960598]
 
@@ -509,6 +550,17 @@ transform = Transform3D(0.939692, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939692, -0
 script = ExtResource("15_4vs3c")
 tween_resource = SubResource("Resource_st7ng")
 metadata/_custom_type_script = "uid://csjccrhj5wnx7"
+
+[node name="stepWater" type="GPUParticles3D" parent="EpiaSkin" unique_id=7018835]
+unique_name_in_owner = true
+material_override = SubResource("StandardMaterial3D_05uve")
+emitting = false
+amount = 4
+lifetime = 2.0
+speed_scale = 3.0
+visibility_aabb = AABB(-500, -4, -500, 1000, 50, 1000)
+process_material = SubResource("ParticleProcessMaterial_i8qoh")
+draw_pass_1 = SubResource("QuadMesh_di035")
 
 [node name="head" type="Area3D" parent="." unique_id=2069552419 groups=["player"]]
 unique_name_in_owner = true

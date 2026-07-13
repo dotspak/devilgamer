@@ -842,7 +842,7 @@ visible = false
 layer = 5
 
 [node name="container" type="SubViewportContainer" parent="world" unique_id=1767933246]
-texture_filter = 1
+texture_filter = 3
 material = ExtResource("7_qbj2a")
 anchors_preset = 15
 anchor_right = 1.0

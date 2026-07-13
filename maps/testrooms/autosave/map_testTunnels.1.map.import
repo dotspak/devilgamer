@@ -1,0 +1,14 @@
+[remap]
+
+importer="func_godot.map"
+type="Resource"
+uid="uid://cd50cpcxt1b3a"
+path="res://.godot/imported/map_testTunnels.1.map-86a1b5042551c2b08fb437c6972d603d.tres"
+
+[deps]
+
+source_file="res://maps/testrooms/autosave/map_testTunnels.1.map"
+dest_files=["res://.godot/imported/map_testTunnels.1.map-86a1b5042551c2b08fb437c6972d603d.tres"]
+
+[params]
+

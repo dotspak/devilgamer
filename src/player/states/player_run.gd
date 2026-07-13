@@ -4,7 +4,6 @@ var stepTimer : float = 0
 
 func enter() -> void:
 	player.model.move()
-	player.stepParticles.emitting = true
 
 	player.stairRayAhead.enabled = true
 	player.stairRayDown.enabled = true
@@ -41,9 +40,17 @@ func physics_update(delta : float) -> void:
 
 func exit() -> void: 
 	player.stepParticles.emitting = false
+	player.stepWater.emitting = false
 
 
 func footsteps(delta : float) -> void:
+	if !player.is_underwater(): 
+		player.stepParticles.emitting = true
+		player.stepWater.emitting = false
+	else:
+		player.stepParticles.emitting = false
+		player.stepWater.emitting = true
+
 	stepTimer += delta
 	if stepTimer > 0.28:
 		if player.is_underwater():
