@@ -1169,11 +1169,11 @@ points = PackedVector3Array(-132, 0, -132, -132, -1, -132, -44, -1, -132, -44, 0
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kgg2f"]
 render_priority = 0
 shader = ExtResource("9_eslj3")
-shader_parameter/WaveStrength = 0.2
-shader_parameter/WaveSpeed = 0.002
+shader_parameter/WaveStrength = 0.5
+shader_parameter/WaveSpeed = 0.01
 shader_parameter/waveColor = Color(0.655481, 0.73114, 0.81875, 1)
 shader_parameter/color = Color(0.074375, 0.163625, 0.185938, 1)
-shader_parameter/texturescale = 1.0
+shader_parameter/texturescale = 5.0
 shader_parameter/alpha = 0.8
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_b55vl"]
